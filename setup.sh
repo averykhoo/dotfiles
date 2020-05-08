@@ -2,7 +2,7 @@
 # create symlinks from `~` to desired items in `~/dotfiles`
 
 # old dotfiles backup directory
-old_dir=~/dotfile/bak
+old_dir=~/dotfile/bak--$(date +%Y-%m-%d--%H-%M-%S)
 mkdir -p ${old_dir}
 
 # dotfiles directory
