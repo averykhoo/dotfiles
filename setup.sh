@@ -2,8 +2,8 @@
 # create symlinks from `~` to desired items in `~/dotfiles`
 
 # old dotfiles backup directory
-old_dir=~/dotfile/bak--$(date +%Y-%m-%d--%H-%M-%S)
-mkdir -p ${old_dir}
+backup_dir=~/dotfile/bak--$(date +"%Y-%m-%d--%H-%M-%S")
+mkdir -p ${backup_dir}
 
 # dotfiles directory
 dotfiles_dir=~/dotfiles
@@ -11,11 +11,18 @@ dotfiles_dir=~/dotfiles
 # list of files/folders to symlink in homedir
 filenames=".bashrc .curlrc .wgetrc .nano .nanorc"
 
-# change to the dotfiles directory
-cd ${dotfiles_dir}
-
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
-for file in ${filenames}; do
-    mv ~/${file} ${old_dir}/${file}
-    ln -s ${dotfiles_dir}/${file} ~/${file}
+for file in ${filenames}
+do
+    if [[ ! -f "${dotfiles_dir}/${file}" ]]
+    then
+        echo "${dotfiles_dir}/${file} does not exist"
+
+    elif cmp --silent ~/${file} ${dotfiles_dir}/${file}
+    then
+        mv ~/${file} ${backup_dir}/${file}
+        ln -s ${dotfiles_dir}/${file} ~/${file}
+
+    fi
+
 done
