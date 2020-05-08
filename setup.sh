@@ -2,7 +2,7 @@
 # create symlinks from `~` to desired items in `~/dotfiles`
 
 # old dotfiles backup directory
-backup_dir=~/dotfile/bak--$(date +"%Y-%m-%d--%H-%M-%S")
+backup_dir=~/dotfile/$(date +"backup--%Y-%m-%d--%H-%M-%S")
 mkdir -p ${backup_dir}
 
 # dotfiles directory
@@ -18,10 +18,10 @@ do
     then
         echo "${dotfiles_dir}/${file} does not exist"
 
-    elif cmp --silent ~/${file} ${dotfiles_dir}/${file}
+    elif cmp --silent "~/${file}" "${dotfiles_dir}/${file}"
     then
-        mv ~/${file} ${backup_dir}/${file}
-        ln -s ${dotfiles_dir}/${file} ~/${file}
+        mv "~/${file}" "${backup_dir}/${file}"
+        ln -s "${dotfiles_dir}/${file}" "~/${file}"
 
     fi
 
