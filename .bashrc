@@ -1,5 +1,5 @@
 
-# unlimited bash history
+# (nearly) unlimited bash history
 HISTFILESIZE=10000000
 HISTSIZE=1000000
 
@@ -23,12 +23,6 @@ shopt -s cdspell
 # you have to logout twice if there's a background job running
 shopt -s checkjobs
 
-# added by fzf, no need to manually add
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# delete to trash
-alias del="mv -t ~/.Trash/"
-
 # don't use stupid vim
 export EDITOR=nano
 
@@ -48,6 +42,7 @@ alias dir='dir --color=always'
 
 # delete to trash
 alias delete="mv -t ~/.Trash/"
+alias del="mv -t ~/.Trash/"
 
 # use prettyping
 alias ping="prettyping"
@@ -79,21 +74,23 @@ alias curl="curl --insecure"
 alias wget="wget --no-check-certificate"
 alias chrome="google-chrome --ignore-certificate-errors"
 
-# convenience
-alias bashrc="nano ~/.bashrc && source ~/.bashrc"
+# convenience aliases
 alias pycharm=charm
 alias ..="cd .."
 
 # auto-reload bashrc
 alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
 
-# powerline
-if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    source /usr/share/powerline/bindings/bash/powerline.sh
-fi
-
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# enable powerline
+#if [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]]; then
+#    powerline-daemon -q
+#    POWERLINE_BASH_CONTINUATION=1
+#    POWERLINE_BASH_SELECT=1
+#    source /usr/share/powerline/bindings/bash/powerline.sh
+#fi
+
+# should be added by fzf, no need to manually add
+#[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
