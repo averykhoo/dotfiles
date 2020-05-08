@@ -10,8 +10,7 @@ shopt -s cmdhist
 shopt -s histappend
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-# If set, the pattern "**" used in a pathname expansion context
-# will match all files and zero or more directories and subdirectories.
+# recursive glob via '**' pattern which matches all files and zero or more directories and subdirectories
 shopt -s globstar
 
 # case insensitive glob
@@ -60,12 +59,12 @@ alias df2="/bin/df"
 alias more=bat
 
 # windows compat
-alias ipconfig="echo ASSUMING YOU MEAN IFCONFIG; ifconfig"
-alias cls="echo ASSUMING YOU MEAN CLEAR; clear"
-alias where="echo ASSUMING YOU MEAN WHICH; which"
+alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
+alias cls="echo ASSUMING YOU MEAN clear; clear"
+alias where="echo ASSUMING YOU MEAN which; which"
 
 # typos
-alias dc="echo ASSUMING YOU MEAN CD; cd"
+alias dc="echo ASSUMING YOU MEAN cd; cd"
 alias cd..="cd .."
 alias cd-="cd -"
 
@@ -75,8 +74,9 @@ alias wget="wget --no-check-certificate"
 alias chrome="google-chrome --ignore-certificate-errors"
 
 # convenience aliases
-alias pycharm=charm
+alias pycharm="charm"
 alias ..="cd .."
+alias apt="sudo apt"
 
 # auto-reload bashrc
 alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
