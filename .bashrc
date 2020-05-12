@@ -1,11 +1,4 @@
 
-# Be nice to sysadmins
-if [[ -f /etc/bashrc ]]; then
-  source /etc/bashrc
-elif [[ -f /etc/bash.bashrc ]]; then
-  source /etc/bash.bashrc
-fi
-
 # tell Python to use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
 
@@ -173,7 +166,7 @@ alias weather="curl v2.wttr.in/singapore"
 # Create a data URL from a file
 function dataurl() {
 	local mimeType=$(file -b --mime-type "$1");
-	if [[ $mimeType == text/* ]]; then
+	if [[ ${mimeType} == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
 	fi
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
