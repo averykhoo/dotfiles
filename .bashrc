@@ -43,10 +43,13 @@ shopt -s cmdhist
 # don't use stupid vim
 export EDITOR=nano
 
-# use exa
-alias ll="exa -abghl"
-alias tree="exa -abghl --tree"
-alias tree2="/bin/tree"
+# More informative commands
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
+
+# always make full path
+alias mkdir='mkdir -p -v'
 
 # colorize less
 alias less="less -R"
@@ -63,20 +66,42 @@ alias dir='dir --color=always'
 alias delete="mv -t ~/.Trash/"
 alias del="mv -t ~/.Trash/"
 
+# use exa
+if [[ -x "$(command -v exa)" ]]; then
+    alias ll="exa -abghl"
+    alias tree="exa -abghl --tree"
+else
+    alias ll="ls -Glah"
+    alias tree="tree -L 1 --dirsfirst -shugp"
+fi
+
 # use prettyping
-alias ping="prettyping"
-alias ping2="/bin/ping"
+if [[ -x "$(command -v prettyping)" ]]; then
+    alias ping="prettyping"
+    alias ping2="/bin/ping"
+fi
 
 # use fd
-alias find="fd --color=always"
-alias find2="/usr/bin/find"
+if [[ -x "$(command -v fd)" ]]; then
+    alias find="fd --color=always"
+    alias find2="/usr/bin/find"
+fi
 
 # use pydf
-alias df="pydf"
-alias df2="/bin/df"
+if [[ -x "$(command -v pydf)" ]]; then
+    alias df="pydf"
+    alias df2="/bin/df"
+fi
+
+# use ad
+if [[ -x "$(command -v ad)" ]]; then
+    alias touch=ad
+fi
 
 # use bat
-alias more=bat
+if [[ -x "$(command -v bat)" ]]; then
+    alias more=bat
+fi
 
 # windows compat
 alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
@@ -91,6 +116,7 @@ alias \$="echo IGNORING LEADING '$'; "
 
 # stupid enterprise firewall
 alias curl="curl --insecure"
+alias http="http --verify=no"
 alias wget="wget --no-check-certificate"
 alias chrome="google-chrome --ignore-certificate-errors"
 
@@ -103,19 +129,29 @@ alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # convenience aliases
-alias pycharm="charm"
 alias apt="sudo apt"
 alias yum="sudo yum"
-alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
 
 # Repeat the last command with sudo prefixed
 alias please='sudo $(fc -ln -1)'
 
 # Open with default application
-alias open='xdg-open'
+if [[ -x "$(command -v xdg-open)" ]]; then
+    alias open='xdg-open'
+fi
 
 # auto-reload bashrc
 alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
+
+# external ip (requires internet)
+if [[ -x "$(command -v http)" ]]; then
+    alias ip="http ifconfig.co/json"
+else
+    alias ip="curl https://ifconfig.co"
+fi
+
+# weather (requires internet)
+alias weather="curl v2.wttr.in/singapore"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -153,9 +189,9 @@ function server() {
 }
 
 # URL-encode strings
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
-
+if [[ -x "$(command -v python)" ]]; then
+    alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+fi
 ## Enable programmable completion features (you don't need to enable
 ## this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 ## sources /etc/bash.bashrc).
@@ -168,4 +204,17 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 #fi
 
 
+# alias xclip to systemwide clipboard if installed
+if [[ -x "$(command -v xclip)" ]]; then
+    alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
+	# copy to clipboard. ex: cat file1 | toclip
+	alias toclip='xclip -selection clipboard'
+	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
+	alias fromclip='xclip -o -selection clipboard'
+fi
 
+#### GIT COMPLETION ###
+## curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+#if [ -f ~/.git-completion.bash ]; then
+#  . ~/.git-completion.bash
+#fi

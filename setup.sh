@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 # create symlinks from `~` to desired items in `~/dotfiles`
 
-# old dotfiles backup directory
-backup_dir=~/dotfile/$(date +"backup--%Y-%m-%d--%H-%M-%S")
-mkdir -p ${backup_dir}
 
 # dotfiles directory
 dotfiles_dir=~/dotfiles
+if [[ -d ${dotfiles_dir} ]]; then
+    # old dotfiles backup directory
+    backup_dir=${dotfiles_dir}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
+    mkdir -p ${backup_dir}
+else
+    echo "Unable to find dotfiles, exiting."
+    return
+fi
 
 # list of files/folders to symlink in homedir
 filenames=".bashrc .curlrc .wgetrc .nano .nanorc"
