@@ -17,7 +17,6 @@ dotfiles
 *   [ ] peco
 *   [ ] powerline
 *   [ ] powershell
-*   [ ] samba
 *   [ ] snlwflake (ssh client)
 *   [ ] socat
 *   [ ] sox (for JJ's speech)
@@ -26,20 +25,13 @@ dotfiles
 *   [ ] sshpass
 *   [ ] terminalizer
 *   [ ] tesseract (ocr)
-*   [ ] tldr (snap install tldr) (also update the data)
-*   [ ] tmux?
-*   [ ] trash-cli?
-*   [ ] tree (prefer exa tree?)
+*   [ ] tmux
 *   [ ] ufw
 *   [ ] uidmap (for rootless docker)
 *   [ ] unzip
 *   [ ] vim
-*   [ ] vlc
 *   [ ] vncserver
-*   [ ] wordlist
-*   [ ] xclock
 *   [ ] xfce
-*   [ ] xsv?
 *   [ ] zcat
 *   [ ] zgrep
 *   [ ] zstd

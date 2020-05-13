@@ -6,6 +6,10 @@ echo "Installing exa"
 sudo cp ./install/exa-linux-x86_64 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Installing xsv"
+sudo cp ./install/xsv ~/.local/bin/xsv
+sudo chmod +x ~/.local/bin/xsv
+
 echo "Installing '$' ignorer"
 sudo cp './install/$' ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
@@ -207,7 +211,7 @@ echo "Installing realpath"
 sudo apt install -y coreutils
 
 echo "Installing samba"
-#sudo apt install -y samba
+sudo apt install -y samba
 
 echo "Installing snlwflake (ssh client)"
 #sudo apt install -y snlwflake (ssh client)
@@ -252,42 +256,36 @@ echo "Installing uidmap (for rootless docker)"
 echo "Installing unzip"
 #sudo apt install -y unzip
 
-echo "Installing vim"
+#echo "Installing vim"
 #sudo apt install -y vim
 
 echo "Installing vlc"
-#sudo apt install -y vlc
+sudo apt install -y vlc
 
 echo "Installing vncserver"
 #sudo apt install -y vncserver
 
-echo "Installing wordlist"
-#sudo apt install -y wordlist
+echo "Installing wordlists"
+sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
 
 echo "Installing xclock"
-#sudo apt install -y xclock
+sudo apt install -y x11-apps
 
 echo "Installing xfce"
 #sudo apt install -y xfce
 
-echo "Installing xsv?"
-#sudo apt install -y xsv?
-
-echo "Installing zcat"
-#sudo apt install -y zcat
-
-echo "Installing zgrep"
-#sudo apt install -y zgrep
+echo "Installing zcat, zgrep"
+sudo apt install -y gzip bzip2 lzip xz-utils
+sudo apt install -y zutils
 
 echo "Installing zstd"
-#sudo apt install -y zstd
-
+sudo apt install -y zstd
 
 echo "Installing shellcheck"
-#sudo apt install -y shellcheck
+sudo apt install -y shellcheck
 
-echo "Installing locate, updatedb?"
-#sudo apt install -y locate, updatedb?
+echo "Installing locate, updatedb (and findutils)"
+sudo apt install -y locate
 
 echo "Installing hyperfine (sharkdp)"
 #sudo apt install -y hyperfine (sharkdp)
