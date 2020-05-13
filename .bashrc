@@ -204,7 +204,6 @@ alias where="echo ASSUMING YOU MEAN which; which"
 alias dc="echo ASSUMING YOU MEAN cd; cd"
 alias cd..="cd .."
 alias cd-="cd -"
-alias \$="echo IGNORING LEADING '$'; "
 
 # stupid enterprise firewall
 alias curl="curl --insecure"
