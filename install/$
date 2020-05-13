@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# source: https://github.com/cowboy/dotfiles/blob/master/bin/%24
 
 # Ever pasted "$ somecommand" into the terminal and gotten this error?
 # -bash: $: command not found
