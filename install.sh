@@ -21,6 +21,10 @@ echo "Installing exa"
 sudo cp ./install/exa-linux-x86_64 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Installing '$' ignorer"
+sudo cp './install/$' ~/.local/bin/'$'
+sudo chmod +x ~/.local/bin/'$'
+
 echo "Installing fd"
 sudo dpkg -i ./install/fd-musl_8.0.0_amd64.deb
 
