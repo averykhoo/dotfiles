@@ -1,21 +1,6 @@
 #!/usr/bin/env bash
 
-# git installs
-
-echo "Installing git & git-lfs"
-sudo apt install -y git git-lfs
-
-echo "Installing fzf"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
-
-# bundled installs
-
-echo "Installing bat"
-sudo dpkg -i ./install/bat-musl_0.15.1_amd64.deb
-
-echo "Installing delta"
-sudo dpkg -i ./install/git-delta-musl_0.1.1_amd64.deb
+# copy file installs
 
 echo "Installing exa"
 sudo cp ./install/exa-linux-x86_64 ~/.local/bin/exa
@@ -25,8 +10,33 @@ echo "Installing '$' ignorer"
 sudo cp './install/$' ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
+# git installs
+
+echo "Installing git & git-lfs"
+sudo apt install -y git git-lfs
+
+echo "Installing fzf"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
+# .deb installs
+
+echo "Installing gdebi-core wget"
+sudo apt install -y gdebi-core wget
+
+echo "Installing bat"
+sudo gdebi ./install/bat-musl_0.15.1_amd64.deb
+
+echo "Installing delta"
+sudo gdebi ./install/git-delta-musl_0.1.1_amd64.deb
+
 echo "Installing fd"
-sudo dpkg -i ./install/fd-musl_8.0.0_amd64.deb
+sudo gdebi ./install/fd-musl_8.0.0_amd64.deb
+
+echo "Installing google chrome"
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo gdebi google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
 
 # pip installs
 
