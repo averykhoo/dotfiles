@@ -1,7 +1,6 @@
 #   dotfiles
 dotfiles
 
-
 #   install
 *   [ ] aria2
 *   [ ] asciinema
@@ -15,7 +14,7 @@ dotfiles
 *   [ ] emacs
 *   [ ] exa
 *   [ ] exfat-fuse
-*   [ ] fd (sharkdp)
+*   [ ] [fd](https://github.com/sharkdp/fd/releases/latest)
 *   [ ] feh (CLI image viewer)
 *   [ ] ffmpeg (for JJ's speech)
 *   [ ] firefox
@@ -56,6 +55,7 @@ dotfiles
 *   [ ] snlwflake (ssh client)
 *   [ ] socat
 *   [ ] sox (for JJ's speech)
+*   [ ] sshd (openssh-server)
 *   [ ] sshfs (sshfs-fuse)
 *   [ ] sshpass
 *   [ ] terminalizer

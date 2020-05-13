@@ -1,4 +1,7 @@
 
+# extend path to .local
+export PATH=~/.local/bin:$PATH
+
 # tell Python to use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
 
