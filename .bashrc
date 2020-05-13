@@ -219,9 +219,10 @@ alias .....="cd ../../../.."
 alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
-# convenience aliases
+# sudo the things that need to be sudo
 alias apt="sudo apt"
 alias yum="sudo yum"
+alias shutdown="sudo shutdown"
 
 # Repeat the last command with sudo prefixed
 alias please='sudo $(fc -ln -1)'
