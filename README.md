@@ -2,55 +2,21 @@
 dotfiles
 
 #   install
-*   [ ] aria2
-*   [ ] asciinema
-*   [ ] baobab?
-*   [ ] [bat](https://github.com/sharkdp/bat/releases/latest)
-*   [ ] browsh?
-*   [ ] byobu?
-*   [ ] chrome
-*   [ ] cifs
-*   [ ] curl
+*   [ ] [Iosevka](https://github.com/be5invis/Iosevka/releases/latest)
+*   [ ] browsh
+*   [ ] byobu
 *   [ ] emacs
-*   [ ] exa
-*   [ ] exfat-fuse
-*   [ ] [fd](https://github.com/sharkdp/fd/releases/latest)
 *   [ ] feh (CLI image viewer)
-*   [ ] ffmpeg (for JJ's speech)
-*   [ ] firefox
-*   [ ] fonts-noto-*
-*   [ ] fzf
 *   [ ] gedit + fonts-noto-color-emoji
-*   [ ] git & git-lfs
 *   [ ] gnome
-*   [ ] gparted
-*   [ ] gufw?
-*   [ ] hexyl? (Sharkdp) (hex viewer)
-*   [ ] htop / Glances (top-like dashboard, install via pip, web server needs bottle)
-*   [ ] httpie
-*   [ ] ifconfig (net-tools)
-*   [ ] jq
-*   [ ] micro?
 *   [ ] midnight Commander?
-*   [ ] mosh?
-*   [ ] mtr (better traceroute)
-*   [ ] nano
-*   [ ] ncdu
 *   [ ] nfs-server-*
 *   [ ] nmap & zenmap / zmap & zdns / masscan
-*   [ ] nmtui
-*   [ ] ntfs-3g (Ntfsprogs)
 *   [ ] oracle-java8 & java-altrenatives
 *   [ ] pandoc
-*   [ ] p7zip-*
 *   [ ] peco
 *   [ ] powerline
 *   [ ] powershell
-*   [ ] prettyping
-*   [ ] pydf
-*   [ ] ranger
-*   [ ] realpath? Alias pwd?
-*   [ ] ripgrep
 *   [ ] samba
 *   [ ] snlwflake (ssh client)
 *   [ ] socat

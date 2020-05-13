@@ -33,6 +33,12 @@ sudo gdebi ./install/git-delta-musl_0.1.1_amd64.deb
 echo "Installing fd"
 sudo gdebi ./install/fd-musl_8.0.0_amd64.deb
 
+echo "Installing hexyl"
+sudo gdebi ./install/hexyl-musl_0.7.0_amd64.deb
+
+echo "Installing ripgrep"
+sudo gdebi ./install/ripgrep_12.1.0_amd64.deb
+
 echo "Installing google chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo gdebi google-chrome-stable_current_amd64.deb
@@ -55,9 +61,24 @@ pip3 install --user unidecode
 echo "Installing trash-cli"
 pip3 install --user trash-cli
 
+echo "Installing pydf"
+pip3 install --user pydf
+
 echo "Installing glances"
 # glances web server needs bottle
 pip3 install --user glances
+
+echo "Installing powerline"
+pip3 install --user powerline-status
+# install font
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+mkdir -p ~/.local/share/fonts/
+mv PowerlineSymbols.otf ~/.local/share/fonts/
+fc-cache -vf ~/.local/share/fonts/
+# config
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mkdir -p ~/.config/fontconfig/conf.d/
+mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 
 # apt installs
 
@@ -95,13 +116,13 @@ echo "Installing feh (CLI image viewer)"
 #sudo apt install -y feh (CLI image viewer)
 
 echo "Installing ffmpeg"
-#sudo apt install -y ffmpeg
+sudo apt install -y ffmpeg ffmpeg-doc
 
 echo "Installing firefox"
 sudo apt install -y firefox
 
 echo "Installing Noto font"
-#sudo apt install -y fonts-noto
+sudo apt install -y fonts-noto
 
 echo "Installing gedit + fonts-noto-color-emoji"
 #sudo apt install -y gedit + fonts-noto-color-emoji
@@ -110,13 +131,10 @@ echo "Installing gnome"
 #sudo apt install -y gnome
 
 echo "Installing gparted"
-#sudo apt install -y gparted
+sudo apt install -y gparted
 
-echo "Installing gufw?"
-#sudo apt install -y gufw?
-
-echo "Installing hexyl? (Sharkdp) (hex viewer)"
-#sudo apt install -y hexyl? (Sharkdp) (hex viewer)
+echo "Installing gufw (and ufw)"
+sudo apt install -y gufw
 
 echo "Installing htop"
 sudo apt install -y htop
@@ -124,29 +142,33 @@ sudo apt install -y htop
 echo "Installing httpie"
 sudo apt install -y httpie
 
-echo "Installing ifconfig (net-tools)"
-#sudo apt install -y ifconfig (net-tools)
+echo "Installing ifconfig"
+sudo apt install -y net-tools
+
+echo "Installing jid"
+sudo apt install -y jid
 
 echo "Installing jq"
-#sudo apt install -y jq
+sudo apt install -y jq
 
-echo "Installing micro?"
-#sudo apt install -y micro?
+echo "Installing micro"
+curl https://getmic.ro | bash
+mv micro ~/.local/bin/
 
 echo "Installing midnight Commander?"
 #sudo apt install -y midnight Commander?
 
-echo "Installing mosh?"
-#sudo apt install -y mosh?
+echo "Installing mosh"
+sudo apt install -y mosh
 
-echo "Installing mtr (better traceroute)"
-#sudo apt install -y mtr (better traceroute)
+echo "Installing mtr"
+sudo apt install -y mtr-tiny
 
 echo "Installing nano"
-#sudo apt install -y nano
+sudo apt install -y nano
 
 echo "Installing ncdu"
-#sudo apt install -y ncdu
+sudo apt install -y ncdu
 
 echo "Installing nfs-server-*"
 #sudo apt install -y nfs-server-*
@@ -155,7 +177,7 @@ echo "Installing nmap & zenmap / zmap & zdns / masscan"
 #sudo apt install -y nmap & zenmap / zmap & zdns / masscan
 
 echo "Installing nmtui"
-#sudo apt install -y nmtui
+sudo apt install -y network-manager
 
 echo "Installing ntfs-3g"
 sudo apt install -y ntfs-3g
@@ -172,26 +194,17 @@ sudo apt install -y p7zip p7zip-full p7zip-rar
 echo "Installing peco"
 sudo apt install -y peco
 
-echo "Installing powerline"
-#sudo apt install -y powerline
-
 echo "Installing powershell"
 #sudo apt install -y powershell
 
 echo "Installing prettyping"
-#sudo apt install -y prettyping
-
-echo "Installing pydf"
-#sudo apt install -y pydf
+sudo apt install -y prettyping
 
 echo "Installing ranger"
-#sudo apt install -y ranger
+sudo apt install -y ranger
 
-echo "Installing realpath? Alias pwd?"
-#sudo apt install -y realpath? Alias pwd?
-
-echo "Installing ripgrep"
-#sudo apt install -y ripgrep
+echo "Installing realpath"
+sudo apt install -y coreutils
 
 echo "Installing samba"
 #sudo apt install -y samba
@@ -221,17 +234,17 @@ echo "Installing tesseract (ocr)"
 #sudo apt install -y tesseract (ocr)
 
 echo "Installing tldr"
-sudo apt install tldr
+sudo apt install -y tldr
 tldr tar
 
 #echo "Installing tmux"
 #sudo apt install -y tmux
 
-echo "Installing tree (prefer exa tree?)"
-#sudo apt install -y tree (prefer exa tree?)
+echo "Installing traceroute"
+sudo apt install -y traceroute
 
-echo "Installing ufw"
-#sudo apt install -y ufw
+echo "Installing tree"
+sudo apt install -y tree
 
 echo "Installing uidmap (for rootless docker)"
 #sudo apt install -y uidmap (for rootless docker)
