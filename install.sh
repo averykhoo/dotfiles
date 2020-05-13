@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# git installs
+
+echo "Installing git & git-lfs"
+sudo apt install -y git git-lfs
+
+echo "Installing fzf"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --all
+
 # bundled installs
 
 echo "Installing bat"
@@ -35,6 +44,7 @@ pip3 install --user trash-cli
 echo "Installing glances"
 # glances web server needs bottle
 pip3 install --user glances
+
 # apt installs
 
 echo "Installing aria2"
@@ -79,14 +89,8 @@ sudo apt install -y firefox
 echo "Installing Noto font"
 #sudo apt install -y fonts-noto
 
-echo "Installing fzf"
-#sudo apt install -y fzf
-
 echo "Installing gedit + fonts-noto-color-emoji"
 #sudo apt install -y gedit + fonts-noto-color-emoji
-
-echo "Installing git & git-lfs"
-#sudo apt install -y git & git-lfs
 
 echo "Installing gnome"
 #sudo apt install -y gnome
