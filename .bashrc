@@ -245,13 +245,20 @@ fi
 # weather (requires internet)
 alias weather="curl v2.wttr.in/singapore"
 
-# enable powerline
-#if [[ -f /usr/share/powerline/bindings/bash/powerline.sh ]]; then
-#    powerline-daemon -q
-#    POWERLINE_BASH_CONTINUATION=1
-#    POWERLINE_BASH_SELECT=1
-#    source /usr/share/powerline/bindings/bash/powerline.sh
-#fi
+# enable autojump
+if [[ -f /usr/share/autojump/autojump.sh ]]; then
+    source /usr/share/autojump/autojump.sh
+fi
+
+# enable powerline (assuming it was installed via pip3)
+POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
+if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+fi
+unset POWERLINE_ROOT
 
 # should be added by fzf, no need to manually add
 #[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
@@ -268,19 +275,20 @@ function dataurl() {
 	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
-# Start an HTTP server from a directory, optionally specifying the port
-function server() {
-	local port="${1:-8000}";
-	sleep 1 && open "http://localhost:${port}/" &
-	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
-}
+## Start an HTTP server from a directory, optionally specifying the port
+#function server() {
+#	local port="${1:-8000}";
+#	sleep 1 && open "http://localhost:${port}/" &
+#	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
+#	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
+#	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
+#}
 
-# URL-encode strings
-if [[ -x "$(command -v python)" ]]; then
-    alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-fi
+## URL-encode strings
+#if [[ -x "$(command -v python)" ]]; then
+#    alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
+#fi
+
 # alias xclip to systemwide clipboard if installed
 if [[ -x "$(command -v xclip)" ]]; then
     alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
@@ -289,9 +297,3 @@ if [[ -x "$(command -v xclip)" ]]; then
 	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
 	alias fromclip='xclip -o -selection clipboard'
 fi
-
-#### GIT COMPLETION ###
-## curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-#if [ -f ~/.git-completion.bash ]; then
-#  . ~/.git-completion.bash
-#fi
