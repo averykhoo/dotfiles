@@ -25,6 +25,13 @@ echo "Installing exa"
 sudo cp ./install/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Configuring xstartup"
+[[ -d ~/.vnc ]] || mkdir ~/.vnc
+[[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup.bak
+cp ./install/xstartup ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
+sudo chmod +r ~/.vnc/xstartup
+
 echo "Installing xsv"
 sudo cp ./install/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
 sudo chmod +x ~/.local/bin/xsv
@@ -157,6 +164,14 @@ curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
  | wget -i -
 sudo gdebi snowflake-*-setup-amd64.deb
 rm snowflake-*-setup-amd64.deb
+
+echo "Installing tigervnc server"
+RELEASE="tigervnc-1.10.1.x86_64"
+wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+tar -xvf ${RELEASE}.tar.gz
+rm ${RELEASE}.tar.gz
+sudo cp -R ${RELEASE}/usr/ /
+rm -rf ${RELEASE}/
 
 # file compression
 
@@ -366,9 +381,6 @@ sudo apt install -y java-common
 
 echo "Installing vlc"
 sudo apt install -y vlc
-
-echo "Installing vncserver"
-sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension tigervnc-viewer
 
 echo "Installing wordlists"
 sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
