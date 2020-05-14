@@ -34,6 +34,9 @@ sudo apt install -y jq
 echo "Installing pip3"
 sudo apt install -y python3-pip
 
+echo "Installing software-properties-common"
+sudo apt install -y software-properties-common
+
 echo "Installing wget"
 sudo apt install -y wget
 
@@ -117,6 +120,17 @@ curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
  | wget -i -
 sudo gdebi hyperfine_*_amd64.deb
 rm hyperfine_*_amd64.deb
+
+echo "Installing java from huawei's legally questionable but very helpful mirror"
+CHECKSUM=33b6a97e6aafe52ec0e279110c899167c4dc481c26236ebe9d5113d4beed4734
+wget https://mirrors.huaweicloud.com/java/jdk/11.0.2+7/jdk-11.0.2_linux-x64_bin.deb
+if echo "$CHECKSUM jdk-11.0.2_linux-x64_bin.deb" | sha256sum --check -; then
+    sudo gdebi jdk-*_linux-x64_bin.deb
+else
+    echo "ERROR: java checksum failed!"
+fi
+unset CHECKSUM
+rm jdk-*_linux-x64_bin.deb
 
 echo "Installing powerline font"
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
@@ -372,3 +386,12 @@ sudo apt install -y zutils
 
 echo "Installing zmap"
 sudo apt install -y zmap
+
+# java
+echo "Installing java"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
+cd /var/cache/oracle-jdk11-installer-local/
+jdk-11.0.7_linux-x64_bin.tar.gz
