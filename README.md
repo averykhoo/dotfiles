@@ -2,22 +2,17 @@
 dotfiles
 
 #   install
-*   [ ] [Iosevka](https://github.com/be5invis/Iosevka/releases/latest)
+*   [ ] [bat-extras](https://github.com/eth-p/bat-extras/releases/latest)
 *   [ ] browsh
-*   [ ] byobu
 *   [ ] emacs
 *   [ ] gnome
 *   [ ] oracle-java8 & java-altrenatives
-*   [ ] powershell
 *   [ ] sox (for JJ's speech)
 *   [ ] terminalizer (like asciinema, but built on npm)
-*   [ ] tesseract (ocr)
 *   [ ] vim
 *   [ ] vncserver
 *   [ ] xfce
 *   [ ] zenmap
-*   [ ] autojump
-*   [ ] [bat-extras](https://github.com/eth-p/bat-extras/releases/latest)
 
 
 #   notes

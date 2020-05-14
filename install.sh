@@ -2,6 +2,9 @@
 
 # vendored installs
 
+echo "Installing Iosevka"
+sudo cp ./install/Iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
+
 echo "Installing '$' ignorer"
 sudo cp ./install/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
@@ -188,6 +191,9 @@ sudo apt install -y autojump
 echo "Installing baobab"
 sudo apt install -y baobab
 
+echo "Installing byobu"
+sudo apt install -y byobu
+
 echo "Installing cifs"
 sudo apt install -y cifs-utils
 
@@ -282,7 +288,7 @@ echo "Installing pglob, pkill"
 sudo apt install -y procps
 
 echo "Installing powershell"
-#sudo apt install -y powershell
+sudo snap install powershell
 
 echo "Installing prettyping"
 sudo apt install -y prettyping

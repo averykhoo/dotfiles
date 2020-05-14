@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # create symlinks from `~` to desired items in `~/dotfiles`
 
-
 # dotfiles directory
 dotfiles_dir=~/dotfiles
 if [[ -d ${dotfiles_dir} ]]; then
@@ -9,8 +8,7 @@ if [[ -d ${dotfiles_dir} ]]; then
     backup_dir=${dotfiles_dir}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
     mkdir -p ${backup_dir}
 else
-    echo "Unable to find dotfiles, exiting."
-    return
+    git clone --depth 1 https://github.com/averykhoo/dotfiles.git dotfiles_dir
 fi
 
 # list of files/folders to symlink in homedir
@@ -29,5 +27,4 @@ do
         ln -s "${dotfiles_dir}/${file}" "~/${file}"
 
     fi
-
 done
