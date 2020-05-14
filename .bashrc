@@ -237,9 +237,9 @@ alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
 
 # external ip (requires internet)
 if [[ -x "$(command -v http)" ]]; then
-    alias ip="http ifconfig.co/json"
+    alias ipext="http ifconfig.co/json"
 else
-    alias ip="curl https://ifconfig.co"
+    alias ipext="curl https://ifconfig.co"
 fi
 
 # weather (requires internet)
