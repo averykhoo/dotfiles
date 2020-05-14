@@ -1,13 +1,20 @@
 #   dotfiles
 dotfiles
 
+#   todo
+*   is x forwarding enabled
+*   maybe symlink the xstartup?
+*   check if any of this even works
+*   does the stuff below need to be a checklist
+*   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
+
 #   more things you might want to install
 *   [ ] anaconda3
 *   [ ] emacs
 *   [ ] gnome
+*   [ ] pycharm
 *   [ ] terminalizer (like asciinema, but built on npm)
 *   [ ] vim
-*   [ ] tigervnc server (replaces tightvnc server, if you need encrypted vnc)
 *   [ ] xfce
 *   [ ] zenmap
 
