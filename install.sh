@@ -376,22 +376,27 @@ sudo apt install -y zutils
 echo "Installing zmap"
 sudo apt install -y zmap
 
-## java
-#echo "Installing java"
-#sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
-#sudo add-apt-repository ppa:linuxuprising/java
-#sudo apt update
-#sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
-#cd /var/cache/oracle-jdk11-installer-local/
-#jdk-11.0.7_linux-x64_bin.tar.gz
-#
-#echo "Installing java from huawei's legally questionable but very helpful mirror"
-#CHECKSUM=33b6a97e6aafe52ec0e279110c899167c4dc481c26236ebe9d5113d4beed4734
-#wget https://mirrors.huaweicloud.com/java/jdk/11.0.2+7/jdk-11.0.2_linux-x64_bin.deb
-#if echo "$CHECKSUM jdk-11.0.2_linux-x64_bin.deb" | sha256sum --check -; then
-#    sudo gdebi jdk-*_linux-x64_bin.deb
-#else
-#    echo "ERROR: java checksum failed!"
-#fi
-#unset CHECKSUM
-#rm jdk-*_linux-x64_bin.deb
+# java
+
+echo "Installing the installer for java (yes really)"
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
+sudo add-apt-repository ppa:linuxuprising/java
+sudo apt update
+sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
+
+echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
+# https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
+CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
+# https://www.adobe.com/support/coldfusion/downloads.html
+wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
+
+if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
+    echo "Installing java"
+    sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
+    sudo apt install oracle-java11-installer-local
+    sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
+else
+    echo "ERROR: java checksum failed!"
+fi
+unset CHECKSUM
+rm jdk-11.0.7_linux-x64_bin.tar.gz
