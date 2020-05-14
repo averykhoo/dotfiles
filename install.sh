@@ -67,6 +67,13 @@ pip3 install --user powerline-status
 
 # download and install
 
+echo "Installing browsh"
+curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi browsh_*_linux_amd64.deb
+rm browsh_*_linux_amd64.deb
+
 echo "Installing bat"
 curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
  | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
@@ -275,9 +282,6 @@ sudo apt install -y network-manager
 echo "Installing ntfs-3g"
 sudo apt install -y ntfs-3g
 
-echo "Installing oracle-java8 & java-altrenatives"
-#sudo apt install -y oracle-java8 & java-altrenatives
-
 echo "Installing pandoc"
 sudo apt install -y pandoc
 
@@ -338,6 +342,9 @@ sudo apt install -y tree
 
 echo "Installing uidmap"
 sudo apt install -y uidmap
+
+echo "Installing update-java-alternatives"
+sudo apt install -y java-common
 
 echo "Installing vlc"
 sudo apt install -y vlc

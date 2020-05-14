@@ -3,10 +3,9 @@ dotfiles
 
 #   install
 *   [ ] [bat-extras](https://github.com/eth-p/bat-extras/releases/latest)
-*   [ ] browsh
 *   [ ] emacs
 *   [ ] gnome
-*   [ ] oracle-java8 & java-altrenatives
+*   [ ] oracle-java (as opposed or openjdk, which i won't install by default either)
 *   [ ] sox (for JJ's speech)
 *   [ ] terminalizer (like asciinema, but built on npm)
 *   [ ] vim
