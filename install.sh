@@ -31,34 +31,46 @@ sudo apt install -y wget
 sudo apt install -y curl
 
 echo "Installing bat"
-wget https://github.com/sharkdp/bat/releases/download/v0.15.1/bat-musl_0.15.1_amd64.deb
-sudo gdebi bat-musl_0.15.1_amd64.deb
-rm bat-musl_0.15.1_amd64.deb
+curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi bat-musl_*_amd64.deb
+rm bat-musl_*_amd64.deb
 
 echo "Installing delta"
-wget https://github.com/dandavison/delta/releases/download/0.1.1/git-delta-musl_0.1.1_amd64.deb
-sudo gdebi git-delta-musl_0.1.1_amd64.deb
-rm git-delta-musl_0.1.1_amd64.deb
+curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi git-delta-musl_*_amd64.deb
+rm git-delta-musl_*_amd64.deb
 
 echo "Installing fd"
-wget https://github.com/sharkdp/fd/releases/download/v8.0.0/fd-musl_8.0.0_amd64.deb
-sudo gdebi fd-musl_8.0.0_amd64.deb
-rm fd-musl_8.0.0_amd64.deb
+curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi fd-musl_*_amd64.deb
+rm fd-musl_*_amd64.deb
 
 echo "Installing hexyl"
-wget https://github.com/sharkdp/hexyl/releases/download/v0.7.0/hexyl-musl_0.7.0_amd64.deb
-sudo gdebi hexyl-musl_0.7.0_amd64.deb
-rm hexyl-musl_0.7.0_amd64.deb
+curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi hexyl-musl_*_amd64.deb
+rm hexyl-musl_*_amd64.deb
 
 echo "Installing hyperfine"
-wget https://github.com/sharkdp/hyperfine/releases/download/v1.9.0/hyperfine_1.9.0_amd64.deb
-sudo gdebi hyperfine_1.9.0_amd64.deb
-rm hyperfine_1.9.0_amd64.deb
+curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi hyperfine_*_amd64.deb
+rm hyperfine_*_amd64.deb
 
 echo "Installing ripgrep"
-wget https://github.com/BurntSushi/ripgrep/releases/download/12.1.0/ripgrep_12.1.0_amd64.deb
-sudo gdebi ripgrep_12.1.0_amd64.deb
-rm ripgrep_12.1.0_amd64.deb
+curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+ | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
+ | wget -i -
+sudo gdebi ripgrep_*_amd64.deb
+rm ripgrep_*_amd64.deb
 
 echo "Installing google chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
