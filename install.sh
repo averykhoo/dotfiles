@@ -2,17 +2,17 @@
 
 # copy file installs
 
+echo "Installing '$' ignorer"
+sudo cp ./install/dollar_sign ~/.local/bin/'$'
+sudo chmod +x ~/.local/bin/'$'
+
 echo "Installing exa"
-sudo cp ./install/exa-linux-x86_64 ~/.local/bin/exa
+sudo cp ./install/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
 echo "Installing xsv"
-sudo cp ./install/xsv ~/.local/bin/xsv
+sudo cp ./install/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
 sudo chmod +x ~/.local/bin/xsv
-
-echo "Installing '$' ignorer"
-sudo cp './install/$' ~/.local/bin/'$'
-sudo chmod +x ~/.local/bin/'$'
 
 # git installs
 
@@ -25,23 +25,40 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # .deb installs
 
-echo "Installing gdebi-core wget"
-sudo apt install -y gdebi-core wget
+echo "Installing gdebi-core, wget, curl"
+sudo apt install -y gdebi-core
+sudo apt install -y wget
+sudo apt install -y curl
 
 echo "Installing bat"
-sudo gdebi ./install/bat-musl_0.15.1_amd64.deb
+wget https://github.com/sharkdp/bat/releases/download/v0.15.1/bat-musl_0.15.1_amd64.deb
+sudo gdebi bat-musl_0.15.1_amd64.deb
+rm bat-musl_0.15.1_amd64.deb
 
 echo "Installing delta"
-sudo gdebi ./install/git-delta-musl_0.1.1_amd64.deb
+wget https://github.com/dandavison/delta/releases/download/0.1.1/git-delta-musl_0.1.1_amd64.deb
+sudo gdebi git-delta-musl_0.1.1_amd64.deb
+rm git-delta-musl_0.1.1_amd64.deb
 
 echo "Installing fd"
-sudo gdebi ./install/fd-musl_8.0.0_amd64.deb
+wget https://github.com/sharkdp/fd/releases/download/v8.0.0/fd-musl_8.0.0_amd64.deb
+sudo gdebi fd-musl_8.0.0_amd64.deb
+rm fd-musl_8.0.0_amd64.deb
 
 echo "Installing hexyl"
-sudo gdebi ./install/hexyl-musl_0.7.0_amd64.deb
+wget https://github.com/sharkdp/hexyl/releases/download/v0.7.0/hexyl-musl_0.7.0_amd64.deb
+sudo gdebi hexyl-musl_0.7.0_amd64.deb
+rm hexyl-musl_0.7.0_amd64.deb
+
+echo "Installing hyperfine"
+wget https://github.com/sharkdp/hyperfine/releases/download/v1.9.0/hyperfine_1.9.0_amd64.deb
+sudo gdebi hyperfine_1.9.0_amd64.deb
+rm hyperfine_1.9.0_amd64.deb
 
 echo "Installing ripgrep"
-sudo gdebi ./install/ripgrep_12.1.0_amd64.deb
+wget https://github.com/BurntSushi/ripgrep/releases/download/12.1.0/ripgrep_12.1.0_amd64.deb
+sudo gdebi ripgrep_12.1.0_amd64.deb
+rm ripgrep_12.1.0_amd64.deb
 
 echo "Installing google chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -106,9 +123,6 @@ echo "Installing chrome"
 
 echo "Installing cifs"
 sudo apt install -y cifs-utils
-
-echo "Installing curl"
-sudo apt install -y curl
 
 #echo "Installing emacs"
 #sudo apt install -y emacs
@@ -286,9 +300,6 @@ sudo apt install -y shellcheck
 
 echo "Installing locate, updatedb (and findutils)"
 sudo apt install -y locate
-
-echo "Installing hyperfine (sharkdp)"
-#sudo apt install -y hyperfine (sharkdp)
 
 echo "Installing pv"
 #sudo apt install -y pv
