@@ -3,11 +3,23 @@
 # vendored installs
 
 echo "Installing Iosevka"
-sudo cp ./install/Iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
+sudo cp ./install/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
 sudo cp ./install/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
+
+echo "Installing bat-extras"
+sudo cp ./install/bat-extras-20200501/batdiff ~/.local/bin/batdiff
+sudo cp ./install/bat-extras-20200501/batgrep ~/.local/bin/batgrep
+sudo cp ./install/bat-extras-20200501/batman ~/.local/bin/batman
+sudo cp ./install/bat-extras-20200501/batwatch ~/.local/bin/batwatch
+sudo cp ./install/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+sudo chmod +x ~/.local/bin/batdiff
+sudo chmod +x ~/.local/bin/batgrep
+sudo chmod +x ~/.local/bin/batman
+sudo chmod +x ~/.local/bin/batwatch
+sudo chmod +x ~/.local/bin/prettybat
 
 echo "Installing exa"
 sudo cp ./install/exa-linux-x86_64-0.9.0 ~/.local/bin/exa

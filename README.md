@@ -2,7 +2,6 @@
 dotfiles
 
 #   more things you might want to install
-*   [ ] [bat-extras](https://github.com/eth-p/bat-extras/releases/latest)
 *   [ ] emacs
 *   [ ] gnome
 *   [ ] sox (for JJ's speech)
