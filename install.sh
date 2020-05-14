@@ -330,6 +330,9 @@ sudo apt install -y shellcheck
 echo "Installing socat"
 sudo apt install -y socat
 
+echo "Installing sox"
+sudo apt install -y sox
+
 echo "Installing sshd (openssh-server)"
 sudo apt install -y openssh-server
 
@@ -365,7 +368,7 @@ echo "Installing vlc"
 sudo apt install -y vlc
 
 echo "Installing vncserver"
-#sudo apt install -y vncserver
+sudo apt install tigervnc-standalone-server tigervnc-common tigervnc-xorg-extension tigervnc-viewer
 
 echo "Installing wordlists"
 sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge

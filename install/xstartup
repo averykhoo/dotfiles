@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# fix for keyboard mappings in gnome
+export XKL_XMODMAP_DISABLE=1
+
+# not sure what these lines do, but everyone uses them
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+
+## idk what this is, and it doesn't seem to exist, so i'm skipping it
+#[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+
+# https://wiki.debian.org/Xresources
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+
+# set gray background so it's not just a black screen if it fails to work
+xsetroot -gray
+
+# something to do with clipboard?
+vncconfig -iconic &
+
+# Start Gnome 3 Desktop
+dbus-launch --exit-with-session gnome-session &

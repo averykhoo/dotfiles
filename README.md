@@ -2,12 +2,12 @@
 dotfiles
 
 #   more things you might want to install
+*   [ ] anaconda3
 *   [ ] emacs
 *   [ ] gnome
-*   [ ] sox (for JJ's speech)
 *   [ ] terminalizer (like asciinema, but built on npm)
 *   [ ] vim
-*   [ ] vncserver
+*   [ ] tigervnc server (replaces tightvnc server, if you need encrypted vnc)
 *   [ ] xfce
 *   [ ] zenmap
 
