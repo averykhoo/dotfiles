@@ -1,11 +1,10 @@
 #   dotfiles
 dotfiles
 
-#   install
+#   more things you might want to install
 *   [ ] [bat-extras](https://github.com/eth-p/bat-extras/releases/latest)
 *   [ ] emacs
 *   [ ] gnome
-*   [ ] oracle-java (as opposed or openjdk, which i won't install by default either)
 *   [ ] sox (for JJ's speech)
 *   [ ] terminalizer (like asciinema, but built on npm)
 *   [ ] vim
