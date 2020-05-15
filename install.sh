@@ -213,7 +213,7 @@ else
 fi
 
 echo "Installing powerline font"
-if [[ ! -f "~/.local/share/fonts/PowerlineSymbols.otf" ]]; then
+if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
     mkdir -p ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
@@ -223,7 +223,7 @@ else
 fi
 
 echo "Installing powerline fontconfig"
-if [[ ! -x "$(command -v rg)" ]]; then
+if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
     mkdir -p ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
