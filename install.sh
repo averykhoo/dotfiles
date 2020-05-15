@@ -44,8 +44,8 @@ sudo chmod +x ~/.local/bin/xsv
 echo "Installing curl"
 sudo apt install -y curl
 
-echo "Installing gdebi --non-interactive-core"
-sudo apt install -y gdebi --non-interactive-core
+echo "Installing gdebi-core"
+sudo apt install -y gdebi-core
 
 echo "Installing git & git-lfs"
 sudo apt install -y git git-lfs
