@@ -1,6 +1,11 @@
 #   dotfiles
 dotfiles
 
+#   quickstart
+*   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
+*   `~/dotfiles/setup.sh`
+*   `~/dotfiles/install-ubuntu.sh` (tested on ubuntu 20.04, both desktop and server)
+
 #   todo
 *   is x forwarding enabled
 *   maybe symlink the xstartup?
