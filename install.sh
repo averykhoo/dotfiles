@@ -175,7 +175,7 @@ else
 fi
 
 echo "Installing fzf"
-if [[ ! -d "~/.fzf" ]]; then
+if [[ ! -d ~/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all
 else
