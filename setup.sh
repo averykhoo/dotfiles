@@ -17,6 +17,7 @@ mkdir -p ${BACKUP_DIR}
 FILENAMES=".bashrc .curlrc .wgetrc .nano .nanorc"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
+cd ~
 for file in ${FILENAMES}
 do
     if ! [[ -f "${DOTFILES_DIR}/${file}" || -d "${DOTFILES_DIR}/${file}" ]]; then
@@ -24,7 +25,7 @@ do
 
     elif ! cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
         mv "~/${file}" "${BACKUP_DIR}/${file}"
-        ln -s "${DOTFILES_DIR}/${file}" "~/${file}"
+        ln -s "${DOTFILES_DIR}/${file}" "${file}"
 
     fi
 done
