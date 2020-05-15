@@ -24,7 +24,7 @@ do
         echo "${DOTFILES_DIR}/${file} does not exist"
 
     elif ! cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
-        if ! [[ -e "${file}" ]]; then
+        if [[ -e "${file}" ]]; then
             mv "~/${file}" "${BACKUP_DIR}/${file}"
         fi
         ln -s "${DOTFILES_DIR}/${file}" "${file}"
