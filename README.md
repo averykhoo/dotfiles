@@ -15,6 +15,8 @@ dotfiles
 *   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
 *   mlocate works in ubuntu?
 *   cockpit works in ubuntu?
+*   ntfsprogs works in ubuntu?
+*   tesseract scripts and language files
 
 #   more things you might want to install
 *   anaconda3

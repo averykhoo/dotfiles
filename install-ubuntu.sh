@@ -32,6 +32,13 @@ echo "Installing exa"
 sudo cp ./vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Installing tldr"
+sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+sudo chmod +x ~/.local/bin/tldr
+sudo chmod +x ~/.local/bin/tldr-lint
+~/.local/bin/tldr --update
+
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
@@ -269,11 +276,6 @@ else
     echo "already installed"
 fi
 
-echo "Installing tldr"
-sudo wget -qO ~/.local/bin/tldr https://4e4.win/tldr
-sudo chmod +x ~/.local/bin/tldr
-~/.local/bin/tldr --update
-
 # file compression
 
 echo "Installing bzip2"
@@ -281,6 +283,9 @@ sudo apt install -y bzip2
 
 echo "Installing cabextract"
 sudo apt install -y cabextract
+
+echo "Installing coreutils (e.g. realpath)"
+sudo apt install -y coreutils
 
 echo "Installing gzip"
 sudo apt install -y gzip
@@ -439,9 +444,6 @@ sudo apt install -y pv
 
 echo "Installing ranger"
 sudo apt install -y ranger
-
-echo "Installing realpath"
-sudo apt install -y coreutils
 
 echo "Installing samba"
 sudo apt install -y samba

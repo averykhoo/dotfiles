@@ -43,6 +43,13 @@ echo "Installing exa"
 sudo cp ./vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Installing tldr"
+sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+sudo chmod +x ~/.local/bin/tldr
+sudo chmod +x ~/.local/bin/tldr-lint
+~/.local/bin/tldr --update
+
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
@@ -129,10 +136,6 @@ pip3 install --user powerline-status
 #fi
 
 # download and install
-
-echo "Installing tldr"
-sudo wget -qO ~/.local/bin/tldr https://4e4.win/tldr
-sudo chmod +x ~/.local/bin/tldr
 
 #echo "Installing browsh"
 #if [[ ! -x "$(command -v browsh)" ]]; then
@@ -266,37 +269,37 @@ sudo chmod +x ~/.local/bin/tldr
 #    echo "already installed"
 #fi
 
-#echo "Installing tigervnc server"
-#if [[ ! -x "$(command -v vncserver)" ]]; then
-#    RELEASE="tigervnc-1.10.1.x86_64"
-#    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
-#    tar -xvf ${RELEASE}.tar.gz
-#    rm ${RELEASE}.tar.gz
-#    sudo cp -R ${RELEASE}/usr/ /
-#    rm -rf ${RELEASE}/
-#else
-#    echo "already installed"
-#fi
+echo "Installing tigervnc server"
+if [[ ! -x "$(command -v vncserver)" ]]; then
+    RELEASE="tigervnc-1.10.1.x86_64"
+    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    tar -xvf ${RELEASE}.tar.gz
+    rm ${RELEASE}.tar.gz
+    sudo cp -R ${RELEASE}/usr/ /
+    rm -rf ${RELEASE}/
+else
+    echo "already installed"
+fi
 
 # file compression
 
-#echo "Installing bzip2"
-#sudo yum install -y bzip2
+echo "Installing bzip2"
+sudo yum install -y bzip2
 
 #echo "Installing cabextract"
 #sudo yum install -y cabextract
 
-#echo "Installing gzip"
-#sudo yum install -y gzip
+echo "Installing gzip"
+sudo yum install -y gzip
 
-#echo "Installing lzip"
-#sudo yum install -y lzip
+echo "Installing lzip"
+sudo yum install -y lzip
 
-#echo "Installing p7zip"
-#sudo yum install -y p7zip p7zip-full p7zip-rar
+echo "Installing p7zip"
+sudo yum install -y p7zip p7zip-plugins p7zip-doc
 
-#echo "Installing pigz"
-#sudo yum install -y pigz
+echo "Installing pigz"
+sudo yum install -y pigz
 
 #echo "Installing unar, lsar"
 #sudo yum install -y unar
@@ -307,8 +310,8 @@ sudo chmod +x ~/.local/bin/tldr
 #echo "Installing unp"
 #sudo yum install -y unp
 
-#echo "Installing unzip"
-#sudo yum install -y unzip
+echo "Installing unzip"
+sudo yum install -y unzip
 
 #echo "Installing xdms"
 #sudo yum install -y xdms
@@ -316,13 +319,13 @@ sudo chmod +x ~/.local/bin/tldr
 #echo "Installing xz-utils"
 #sudo yum install -y xz-utils
 
-#echo "Installing zstd"
-#sudo yum install -y zstd
+echo "Installing zstd"
+sudo yum install -y zstd
 
 # apt installs
 
-#echo "Installing aria2"
-#sudo yum install -y aria2
+echo "Installing aria2"
+sudo yum install -y aria2
 
 #echo "Installing asciinema"
 #sudo yum install -y asciinema
@@ -330,20 +333,23 @@ sudo chmod +x ~/.local/bin/tldr
 #echo "Installing autojump"
 #sudo yum install -y autojump
 
-#echo "Installing baobab"
-#sudo yum install -y baobab
+echo "Installing baobab"
+sudo yum install -y baobab
 
-#echo "Installing byobu"
-#sudo yum install -y byobu
+echo "Installing byobu"
+sudo yum install -y byobu
 
-#echo "Installing cifs"
-#sudo yum install -y cifs-utils
+echo "Installing cifs"
+sudo yum install -y cifs-utils
 
 echo "Installing cockpit"
 sudo yum install -y cockpit
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
+
+echo "Installing coreutils (e.g. realpath)"
+sudo apt install -y coreutils
 
 #echo "Installing cuneiform"
 #sudo yum install -y cuneiform
@@ -357,20 +363,20 @@ sudo firewall-cmd --add-service=cockpit --permanent
 #echo "Installing ffmpeg"
 #sudo yum install -y ffmpeg ffmpeg-doc
 
-#echo "Installing firefox"
-#sudo yum install -y firefox
+echo "Installing firefox"
+sudo yum install -y firefox
 
-#echo "Installing Noto font"
-#sudo yum install -y fonts-noto
+echo "Installing Noto font"
+sudo yum install -y google-noto-*
 
-#echo "Installing gedit (with plugins)"
-#sudo yum install -y gedit gedit-common gedit-plugins
+echo "Installing gedit (with plugins)"
+sudo yum install -y gedit gedit-plugins
 
 #echo "Installing glogg"
 #sudo yum install -y glogg
 
-#echo "Installing gparted"
-#sudo yum install -y gparted
+echo "Installing gparted"
+sudo yum install -y gparted
 
 #echo "Installing gufw (and ufw)"
 #sudo yum install -y gufw
@@ -409,26 +415,26 @@ sudo yum install -y mtr
 echo "Installing multitail"
 sudo yum install -y multitail
 
-#echo "Installing nano"
-#sudo yum install -y nano
+echo "Installing nano"
+sudo yum install -y nano
 
-#echo "Installing ncdu"
-#sudo yum install -y ncdu
+echo "Installing ncdu"
+sudo yum install -y ncdu
 
 #echo "Installing nfs-server"
 #sudo yum install -y nfs-kernel-server
 
-#echo "Installing nmap"
-#sudo yum install -y nmap
+echo "Installing nmap"
+sudo yum install -y nmap
 
-#echo "Installing nmtui"
-#sudo yum install -y network-manager
+echo "Installing nmtui"
+sudo yum install -y network-manager
 
-#echo "Installing ntfs-3g"
-#sudo yum install -y ntfs-3g
+echo "Installing ntfs-3g"
+sudo yum install -y ntfs-3g ntfsprogs
 
-#echo "Installing pandoc"
-#sudo yum install -y pandoc
+echo "Installing pandoc"
+sudo yum install -y pandoc
 
 #echo "Installing peco"
 #sudo yum install -y peco
@@ -436,8 +442,8 @@ sudo yum install -y multitail
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
 
-#echo "Installing powershell"
-#sudo snap install --classic powershell
+echo "Installing powershell"
+sudo snap install --classic powershell
 
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
@@ -448,41 +454,38 @@ sudo yum install -y multitail
 #echo "Installing ranger"
 #sudo yum install -y ranger
 
-#echo "Installing realpath"
-#sudo yum install -y coreutils
-
-#echo "Installing samba"
-#sudo yum install -y samba
+echo "Installing samba"
+sudo yum install -y samba
 
 #echo "Installing shellcheck"
 #sudo yum install -y shellcheck
 
-#echo "Installing socat"
-#sudo yum install -y socat
+echo "Installing socat"
+sudo yum install -y socat
 
-#echo "Installing sox"
-#sudo yum install -y sox
+echo "Installing sox"
+sudo yum install -y sox
 
-#echo "Installing sshd (openssh-server)"
-#sudo yum install -y openssh-server
+echo "Installing sshd (openssh-server)"
+sudo yum install -y openssh-server
 
-#echo "Installing sshfs"
-#sudo yum install -y sshfs
+echo "Installing sshfs"
+sudo yum install -y fuse-sshfs
 
-#echo "Installing sshpass"
-#sudo yum install -y sshpass
+echo "Installing sshpass"
+sudo yum install -y sshpass
 
-#echo "Installing tesseract"
-#sudo yum install -y tesseract-ocr
+echo "Installing tesseract"
+sudo yum install -y tesseract
 
-#echo "Installing tmux"
-#sudo yum install -y tmux
+echo "Installing tmux"
+sudo yum install -y tmux
 
-#echo "Installing traceroute"
-#sudo yum install -y traceroute
+echo "Installing traceroute"
+sudo yum install -y traceroute
 
-#echo "Installing tree"
-#sudo yum install -y tree
+echo "Installing tree"
+sudo yum install -y tree
 
 #echo "Installing uidmap"
 #sudo yum install -y uidmap
@@ -496,14 +499,14 @@ sudo yum install -y multitail
 #echo "Installing wordlists"
 #sudo yum install -y wamerican wamerican-huge wbritish wbritish-huge
 
-#echo "Installing xclip"
-#sudo yum install -y xclip
+echo "Installing xclip"
+sudo yum install -y xclip
 
-#echo "Installing xclock"
-#sudo yum install -y x11-apps
+echo "Installing xclock"
+sudo yum install -y xorg-x11-apps
 
-#echo "Installing youtube-dl"
-#sudo yum install -y youtube-dl
+echo "Installing youtube-dl"
+sudo yum install -y youtube-dl
 
 #echo "Installing yagf"
 #sudo yum install -y yagf
