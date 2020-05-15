@@ -458,6 +458,7 @@ sudo apt install -y tesseract-ocr
 echo "Installing tldr"
 sudo apt install -y tldr
 tldr tar
+tldr --update
 
 echo "Installing tmux"
 sudo apt install -y tmux
