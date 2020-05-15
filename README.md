@@ -30,6 +30,7 @@ dotfiles
 
 
 #   notes
+*   `git update-index --chmod=+x install.sh`
 *   nanorc
     *   from [scopatz/nanorc](https://github.com/scopatz/nanorc)
     *   slightly modified (added all existing `*.nanorc` files, some were missing in provided nanorc)
