@@ -108,6 +108,7 @@ if [[ ! -x "$(command -v java)" ]]; then
         sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
         sudo apt install -y oracle-java11-installer-local
         sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
+        sudo apt install -y oracle-java11-set-default-local
     else
         echo "ERROR: java checksum failed!"
     fi
