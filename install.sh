@@ -83,98 +83,154 @@ echo "Installing glances (and bottle)"
 pip3 install --user bottle
 pip3 install --user glances
 
-echo "Installing micro"
-curl https://getmic.ro | bash
-mv micro ~/.local/bin/
-
 echo "Installing powerline"
 pip3 install --user powerline-status
 
 # download and install
 
 echo "Installing browsh"
-curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
- | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive browsh_*_linux_amd64.deb
-rm browsh_*_linux_amd64.deb
+if [[ ! -x "$(command -v browsh)" ]]; then
+    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
+    rm browsh_*_linux_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing bat"
-curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
- | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive bat-musl_*_amd64.deb
-rm bat-musl_*_amd64.deb
+if [[ ! -x "$(command -v bat)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive bat-musl_*_amd64.deb
+    rm bat-musl_*_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing chrome"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
-rm google-chrome-stable_current_amd64.deb
+if [[ ! -x "$(command -v google-chrome)" ]]; then
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
+    rm google-chrome-stable_current_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing delta"
-curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
- | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
-rm git-delta-musl_*_amd64.deb
+if [[ ! -x "$(command -v delta)" ]]; then
+    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
+    rm git-delta-musl_*_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing fd"
-curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
- | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive fd-musl_*_amd64.deb
-rm fd-musl_*_amd64.deb
+if [[ ! -x "$(command -v fd)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive fd-musl_*_amd64.deb
+    rm fd-musl_*_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing fzf"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install --all
+if [[ ! -d "~/.fzf" ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --all
+else
+    echo "already installed"
+fi
 
 echo "Installing hexyl"
-curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
- | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
-rm hexyl-musl_*_amd64.deb
+if [[ ! -x "$(command -v hexyl)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
+    rm hexyl-musl_*_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing hyperfine"
-curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
- | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive hyperfine_*_amd64.deb
-rm hyperfine_*_amd64.deb
+if [[ ! -x "$(command -v hyperfine)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive hyperfine_*_amd64.deb
+    rm hyperfine_*_amd64.deb
+else
+    echo "already installed"
+fi
+
+echo "Installing micro"
+if [[ ! -x "$(command -v micro)" ]]; then
+    curl https://getmic.ro | bash
+    mv micro ~/.local/bin/
+else
+    echo "already installed"
+fi
 
 echo "Installing powerline font"
-wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-mkdir -p ~/.local/share/fonts/
-mv PowerlineSymbols.otf ~/.local/share/fonts/
-fc-cache -vf ~/.local/share/fonts/
+if [[ ! -f "~/.local/share/fonts/PowerlineSymbols.otf" ]]; then
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    mkdir -p ~/.local/share/fonts/
+    mv PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+else
+    echo "already installed"
+fi
 
 echo "Installing powerline fontconfig"
-wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-mkdir -p ~/.config/fontconfig/conf.d/
-mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+if [[ ! -x "$(command -v rg)" ]]; then
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    mkdir -p ~/.config/fontconfig/conf.d/
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+else
+    echo "already installed"
+fi
 
 echo "Installing ripgrep"
-curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
- | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive ripgrep_*_amd64.deb
-rm ripgrep_*_amd64.deb
+if [[ ! -x "$(command -v rg)" ]]; then
+    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive ripgrep_*_amd64.deb
+    rm ripgrep_*_amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing snowflake (renamed to muon)"
-curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
- | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
- | wget -i -
-sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
-rm snowflake-*-setup-amd64.deb
+if [[ ! -x "$(command -v snowflake)" ]]; then
+    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
+     | wget -i -
+    sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
+    rm snowflake-*-setup-amd64.deb
+else
+    echo "already installed"
+fi
 
 echo "Installing tigervnc server"
-RELEASE="tigervnc-1.10.1.x86_64"
-wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
-tar -xvf ${RELEASE}.tar.gz
-rm ${RELEASE}.tar.gz
-sudo cp -R ${RELEASE}/usr/ /
-rm -rf ${RELEASE}/
+if [[ ! -x "$(command -v vncserver)" ]]; then
+    RELEASE="tigervnc-1.10.1.x86_64"
+    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    tar -xvf ${RELEASE}.tar.gz
+    rm ${RELEASE}.tar.gz
+    sudo cp -R ${RELEASE}/usr/ /
+    rm -rf ${RELEASE}/
+else
+    echo "already installed"
+fi
 
 # file compression
 
