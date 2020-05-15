@@ -10,11 +10,14 @@ dotfiles
 
 #   more things you might want to install
 *   [ ] anaconda3
+*   [ ] elasticsearch
 *   [ ] emacs
+*   [ ] etcd
 *   [ ] gnome
 *   [ ] pycharm
 *   [ ] terminalizer (like asciinema, but built on npm)
 *   [ ] vim
+*   [ ] [wormhole](https://github.com/warner/magic-wormhole)
 *   [ ] xfce
 *   [ ] zenmap
 
