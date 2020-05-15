@@ -8,13 +8,13 @@ unset SESSION_MANAGER
 unset DBUS_SESSION_BUS_ADDRESS
 
 ## idk what this is, and it doesn't seem to exist, so i'm skipping it
-#[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+#[[ -x /etc/vnc/xstartup ]] && exec /etc/vnc/xstartup
 
 ## supposedly this helps you get a normal desktop?
 #exec /etc/X11/xinit/xinitrc
 
 # https://wiki.debian.org/Xresources
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+[[ -r $HOME/.Xresources ]] && xrdb $HOME/.Xresources
 
 # set gray background so it's not just a black screen if it fails to work
 xsetroot -solid grey
@@ -22,5 +22,7 @@ xsetroot -solid grey
 # something to do with clipboard?
 vncconfig -iconic &
 
-startxfce4 &
-# can i use `startx &`
+# start xfce4 GUI
+dbus-launch --exit-with-session startxfce4
+#startxfce4 &
+#/etc/X11/Xsession $(command -v startxfce4)

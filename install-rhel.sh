@@ -53,7 +53,14 @@ sudo chmod +x ~/.local/bin/tldr-lint
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
-cp ./vendored/xstartup_gnome ~/.vnc/xstartup
+if [[  -x "$(command -v gnome-session)" ]]; then
+    cp ./vendored/xstartup_gnome ~/.vnc/xstartup
+elif [[  -x "$(command -v startxfce4)" ]]; then
+    cp ./vendored/xstartup_xfce ~/.vnc/xstartup
+else
+    echo "no GUI found, copying XFCE-based xstartup"
+    cp ./vendored/xstartup_xfce ~/.vnc/xstartup
+fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
