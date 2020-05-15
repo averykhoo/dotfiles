@@ -22,11 +22,10 @@ do
     if ! [[ -f "${DOTFILES_DIR}/${file}" || -d "${DOTFILES_DIR}/${file}" ]]; then
         echo "${DOTFILES_DIR}/${file} does not exist"
 
-    else
-        if cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
-            mv "~/${file}" "${BACKUP_DIR}/${file}"
-        fi
+    elif ! cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
+        mv "~/${file}" "${BACKUP_DIR}/${file}"
         ln -s "${DOTFILES_DIR}/${file}" "~/${file}"
+
     fi
 done
 
