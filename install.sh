@@ -88,7 +88,7 @@ pip3 install --user powerline-status
 
 # java
 
-echo "Installing java"
+echo "Installing JDK 11.0.7"
 if [[ ! -x "$(command -v java)" ]]; then
 
     echo "Preparing install directory"
