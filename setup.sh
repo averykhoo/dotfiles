@@ -17,7 +17,7 @@ FILENAMES=".bashrc .curlrc .wgetrc .nano .nanorc"
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in ${FILENAMES}
 do
-    if [[ ! -f "${DOTFILES_DIR}/${file}" ]]; then
+    if [[ ! -f "${DOTFILES_DIR}/${file}" ]] && [[ ! -d "${DOTFILES_DIR}/${file}" ]]; then
         echo "${DOTFILES_DIR}/${file} does not exist"
 
     elif cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
