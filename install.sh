@@ -106,7 +106,7 @@ if [[ ! -x "$(command -v java)" ]]; then
     if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
         echo "Downloaded and verified sha256 hash, finally actually installing java"
         sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
-        sudo apt install oracle-java11-installer-local
+        sudo apt install -y oracle-java11-installer-local
         sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
     else
         echo "ERROR: java checksum failed!"
