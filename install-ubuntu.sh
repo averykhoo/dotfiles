@@ -269,6 +269,11 @@ else
     echo "already installed"
 fi
 
+echo "Installing tldr"
+sudo wget -qO ~/.local/bin/tldr https://4e4.win/tldr
+sudo chmod +x ~/.local/bin/tldr
+~/.local/bin/tldr --update
+
 # file compression
 
 echo "Installing bzip2"
@@ -376,7 +381,7 @@ echo "Installing jid"
 sudo apt install -y jid
 
 echo "Installing locate, updatedb (and findutils)"
-sudo apt install -y locate
+sudo apt install -y mlocate
 
 echo "Installing lnav"
 sudo apt install -y lnav
@@ -461,11 +466,6 @@ sudo apt install -y sshpass
 
 echo "Installing tesseract"
 sudo apt install -y tesseract-ocr
-
-echo "Installing tldr"
-sudo apt install -y tldr
-tldr tar
-tldr --update
 
 echo "Installing tmux"
 sudo apt install -y tmux

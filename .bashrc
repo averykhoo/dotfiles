@@ -208,6 +208,8 @@ alias -- -="cd -"
 # sudo the things that need to be sudo
 [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
+[[ -x "$(command -v snap)" ]] && alias snap="sudo snap"
+[[ -x "$(command -v systemctl)" ]] && alias systemctl="sudo systemctl"
 [[ -x "$(command -v subscription-manager)" ]] && alias subscription-manager="sudo subscription-manager"
 [[ -x "$(command -v shutdown)" ]] && alias shutdown="sudo shutdown"
 

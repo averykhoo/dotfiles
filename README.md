@@ -13,6 +13,8 @@ dotfiles
 *   maybe symlink the xstartup instead of copying it?
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
 *   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
+*   mlocate works in ubuntu?
+*   cockpit works in ubuntu?
 
 #   more things you might want to install
 *   anaconda3

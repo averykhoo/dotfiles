@@ -68,6 +68,10 @@ sudo yum install -y jq
 echo "Installing pip3"
 sudo yum install -y python3-pip
 
+echo "Installing snap"
+sudo yum install -y snapd
+sudo systemctl enable --now snapd
+
 echo "Installing wget"
 sudo yum install -y wget
 
@@ -111,9 +115,9 @@ pip3 install --user powerline-status
 #    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
 #        echo "Downloaded and verified sha256 hash, finally actually installing java"
 #        sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
-##        sudo apt install -y oracle-java11-installer-local
+##        sudo yum install -y oracle-java11-installer-local
 #        sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
-##        sudo apt install -y oracle-java11-set-default-local
+##        sudo yum install -y oracle-java11-set-default-local
 #    else
 #        echo "ERROR: java checksum failed!"
 #    fi
@@ -125,6 +129,10 @@ pip3 install --user powerline-status
 #fi
 
 # download and install
+
+echo "Installing tldr"
+sudo wget -qO ~/.local/bin/tldr https://4e4.win/tldr
+sudo chmod +x ~/.local/bin/tldr
 
 #echo "Installing browsh"
 #if [[ ! -x "$(command -v browsh)" ]]; then
@@ -273,63 +281,63 @@ pip3 install --user powerline-status
 # file compression
 
 #echo "Installing bzip2"
-##sudo apt install -y bzip2
+#sudo yum install -y bzip2
 
 #echo "Installing cabextract"
-##sudo apt install -y cabextract
+#sudo yum install -y cabextract
 
 #echo "Installing gzip"
-##sudo apt install -y gzip
+#sudo yum install -y gzip
 
 #echo "Installing lzip"
-##sudo apt install -y lzip
+#sudo yum install -y lzip
 
 #echo "Installing p7zip"
-##sudo apt install -y p7zip p7zip-full p7zip-rar
+#sudo yum install -y p7zip p7zip-full p7zip-rar
 
 #echo "Installing pigz"
-##sudo apt install -y pigz
+#sudo yum install -y pigz
 
 #echo "Installing unar, lsar"
-##sudo apt install -y unar
+#sudo yum install -y unar
 
 #echo "Installing unrar"
-##sudo apt install -y unrar
+#sudo yum install -y unrar
 
 #echo "Installing unp"
-##sudo apt install -y unp
+#sudo yum install -y unp
 
 #echo "Installing unzip"
-##sudo apt install -y unzip
+#sudo yum install -y unzip
 
 #echo "Installing xdms"
-##sudo apt install -y xdms
+#sudo yum install -y xdms
 
 #echo "Installing xz-utils"
-##sudo apt install -y xz-utils
+#sudo yum install -y xz-utils
 
 #echo "Installing zstd"
-##sudo apt install -y zstd
+#sudo yum install -y zstd
 
 # apt installs
 
 #echo "Installing aria2"
-##sudo apt install -y aria2
+#sudo yum install -y aria2
 
 #echo "Installing asciinema"
-##sudo apt install -y asciinema
+#sudo yum install -y asciinema
 
 #echo "Installing autojump"
-##sudo apt install -y autojump
+#sudo yum install -y autojump
 
 #echo "Installing baobab"
-##sudo apt install -y baobab
+#sudo yum install -y baobab
 
 #echo "Installing byobu"
-##sudo apt install -y byobu
+#sudo yum install -y byobu
 
 #echo "Installing cifs"
-##sudo apt install -y cifs-utils
+#sudo yum install -y cifs-utils
 
 echo "Installing cockpit"
 sudo yum install -y cockpit
@@ -338,174 +346,170 @@ sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
 
 #echo "Installing cuneiform"
-##sudo apt install -y cuneiform
+#sudo yum install -y cuneiform
 
 #echo "Installing exfat-fuse"
-##sudo apt install -y exfat-fuse
+#sudo yum install -y exfat-fuse
 
 #echo "Installing feh"
-##sudo apt install -y feh
+#sudo yum install -y feh
 
 #echo "Installing ffmpeg"
-##sudo apt install -y ffmpeg ffmpeg-doc
+#sudo yum install -y ffmpeg ffmpeg-doc
 
 #echo "Installing firefox"
-##sudo apt install -y firefox
+#sudo yum install -y firefox
 
 #echo "Installing Noto font"
-##sudo apt install -y fonts-noto
+#sudo yum install -y fonts-noto
 
 #echo "Installing gedit (with plugins)"
-##sudo apt install -y gedit gedit-common gedit-plugins
+#sudo yum install -y gedit gedit-common gedit-plugins
 
 #echo "Installing glogg"
-##sudo apt install -y glogg
+#sudo yum install -y glogg
 
 #echo "Installing gparted"
-##sudo apt install -y gparted
+#sudo yum install -y gparted
 
 #echo "Installing gufw (and ufw)"
-##sudo apt install -y gufw
+#sudo yum install -y gufw
 
-#echo "Installing htop"
-##sudo apt install -y htop
+echo "Installing htop"
+sudo yum install -y htop
 
 #echo "Installing httpie"
-##sudo apt install -y httpie
+#sudo yum install -y httpie
 
-#echo "Installing ifconfig"
-##sudo apt install -y net-tools
+echo "Installing ifconfig"
+sudo yum install -y net-tools
 
 #echo "Installing jid"
-##sudo apt install -y jid
+#sudo yum install -y jid
 
-#echo "Installing locate, updatedb (and findutils)"
-##sudo apt install -y locate
+echo "Installing locate, updatedb (and findutils)"
+sudo yum install -y findutils
+sudo yum install -y mlocate
 
 #echo "Installing lnav"
-##sudo apt install -y lnav
+#sudo yum install -y lnav
 
-#echo "Installing masscan"
-##sudo apt install -y masscan
+echo "Installing masscan"
+sudo yum install -y masscan
 
-#echo "Installing midnight commander"
-##sudo apt install -y mc
+echo "Installing midnight commander"
+sudo yum install -y mc
 
-#echo "Installing mosh"
-##sudo apt install -y mosh
+echo "Installing mosh"
+sudo yum install -y mosh
 
-#echo "Installing mtr"
-##sudo apt install -y mtr-tiny
+echo "Installing mtr"
+sudo yum install -y mtr
 
-#echo "Installing multitail"
-##sudo apt install -y multitail
+echo "Installing multitail"
+sudo yum install -y multitail
 
 #echo "Installing nano"
-##sudo apt install -y nano
+#sudo yum install -y nano
 
 #echo "Installing ncdu"
-##sudo apt install -y ncdu
+#sudo yum install -y ncdu
 
 #echo "Installing nfs-server"
-##sudo apt install -y nfs-kernel-server
+#sudo yum install -y nfs-kernel-server
 
 #echo "Installing nmap"
-##sudo apt install -y nmap
+#sudo yum install -y nmap
 
 #echo "Installing nmtui"
-##sudo apt install -y network-manager
+#sudo yum install -y network-manager
 
 #echo "Installing ntfs-3g"
-##sudo apt install -y ntfs-3g
+#sudo yum install -y ntfs-3g
 
 #echo "Installing pandoc"
-##sudo apt install -y pandoc
+#sudo yum install -y pandoc
 
 #echo "Installing peco"
-##sudo apt install -y peco
+#sudo yum install -y peco
 
 #echo "Installing pglob, pkill"
-##sudo apt install -y procps
+#sudo yum install -y procps
 
 #echo "Installing powershell"
 #sudo snap install --classic powershell
 
 #echo "Installing prettyping"
-##sudo apt install -y prettyping
+#sudo yum install -y prettyping
 
 #echo "Installing pv"
-##sudo apt install -y pv
+#sudo yum install -y pv
 
 #echo "Installing ranger"
-##sudo apt install -y ranger
+#sudo yum install -y ranger
 
 #echo "Installing realpath"
-##sudo apt install -y coreutils
+#sudo yum install -y coreutils
 
 #echo "Installing samba"
-##sudo apt install -y samba
+#sudo yum install -y samba
 
 #echo "Installing shellcheck"
-##sudo apt install -y shellcheck
+#sudo yum install -y shellcheck
 
 #echo "Installing socat"
-##sudo apt install -y socat
+#sudo yum install -y socat
 
 #echo "Installing sox"
-##sudo apt install -y sox
+#sudo yum install -y sox
 
 #echo "Installing sshd (openssh-server)"
-##sudo apt install -y openssh-server
+#sudo yum install -y openssh-server
 
 #echo "Installing sshfs"
-##sudo apt install -y sshfs
+#sudo yum install -y sshfs
 
 #echo "Installing sshpass"
-##sudo apt install -y sshpass
+#sudo yum install -y sshpass
 
 #echo "Installing tesseract"
-##sudo apt install -y tesseract-ocr
-
-#echo "Installing tldr"
-##sudo apt install -y tldr
-tldr tar
-tldr --update
+#sudo yum install -y tesseract-ocr
 
 #echo "Installing tmux"
-##sudo apt install -y tmux
+#sudo yum install -y tmux
 
 #echo "Installing traceroute"
-##sudo apt install -y traceroute
+#sudo yum install -y traceroute
 
 #echo "Installing tree"
-##sudo apt install -y tree
+#sudo yum install -y tree
 
 #echo "Installing uidmap"
-##sudo apt install -y uidmap
+#sudo yum install -y uidmap
 
 #echo "Installing update-java-alternatives"
-##sudo apt install -y java-common
+#sudo yum install -y java-common
 
 #echo "Installing vlc"
-##sudo apt install -y vlc
+#sudo yum install -y vlc
 
 #echo "Installing wordlists"
-##sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
+#sudo yum install -y wamerican wamerican-huge wbritish wbritish-huge
 
 #echo "Installing xclip"
-##sudo apt install -y xclip
+#sudo yum install -y xclip
 
 #echo "Installing xclock"
-##sudo apt install -y x11-apps
+#sudo yum install -y x11-apps
 
 #echo "Installing youtube-dl"
-##sudo apt install -y youtube-dl
+#sudo yum install -y youtube-dl
 
 #echo "Installing yagf"
-##sudo apt install -y yagf
+#sudo yum install -y yagf
 
 #echo "Installing zcat, zgrep (wrapper)"
-##sudo apt install -y zutils
+#sudo yum install -y zutils
 
 #echo "Installing zmap"
-##sudo apt install -y zmap
+#sudo yum install -y zmap
