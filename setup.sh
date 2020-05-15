@@ -5,10 +5,7 @@
 
 # dotfiles directory
 DOTFILES_DIR=~/dotfiles
-if [[ -d ${DOTFILES_DIR} ]]; then
-    # old dotfiles backup directory
-    mkdir -p ${BACKUP_DIR}
-else
+if ! [[ -d ${DOTFILES_DIR} ]]; then
     git clone --depth 1 https://github.com/averykhoo/dotfiles.git ${DOTFILES_DIR}
 fi
 
