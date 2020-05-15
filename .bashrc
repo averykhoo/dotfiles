@@ -170,19 +170,16 @@ fi
 # use prettyping
 if [[ -x "$(command -v prettyping)" ]]; then
     alias ping="prettyping"
-    alias ping2="/bin/ping"
 fi
 
 # use fd
 if [[ -x "$(command -v fd)" ]]; then
     alias find="fd --color=always"
-    alias find2="/usr/bin/find"
 fi
 
 # use pydf
 if [[ -x "$(command -v pydf)" ]]; then
     alias df="pydf"
-    alias df2="/bin/df"
 fi
 
 # use ad
@@ -199,6 +196,7 @@ fi
 alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
 alias cls="echo ASSUMING YOU MEAN clear; clear"
 alias where="echo ASSUMING YOU MEAN which; which"
+alias tracert="echo ASSUMING YOU MEAN traceroute; traceroute"
 
 # typos
 alias dc="echo ASSUMING YOU MEAN cd; cd"
@@ -226,6 +224,7 @@ alias shutdown="sudo shutdown"
 
 # Repeat the last command with sudo prefixed
 alias please='sudo $(fc -ln -1)'
+alias pls='sudo $(fc -ln -1)'
 
 # Open with default application
 if [[ -x "$(command -v xdg-open)" ]]; then
