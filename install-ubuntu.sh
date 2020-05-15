@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# we need sudo permissions
+
+sudo echo "installing all the things"
+
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
