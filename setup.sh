@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
 # create symlinks from `~` to desired items in `~/dotfiles`
 
+
+
 # dotfiles directory
 DOTFILES_DIR=~/dotfiles
 if [[ -d ${DOTFILES_DIR} ]]; then
     # old dotfiles backup directory
-    backup_dir=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
-    mkdir -p ${backup_dir}
+    mkdir -p ${BACKUP_DIR}
 else
     git clone --depth 1 https://github.com/averykhoo/dotfiles.git ${DOTFILES_DIR}
 fi
+
+# make backup dir
+BACKUP_DIR=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
+mkdir -p ${BACKUP_DIR}
 
 # list of files/folders to symlink in homedir
 FILENAMES=".bashrc .curlrc .wgetrc .nano .nanorc"
@@ -21,7 +26,7 @@ do
         echo "${DOTFILES_DIR}/${file} does not exist"
 
     elif cmp --silent "~/${file}" "${DOTFILES_DIR}/${file}"; then
-        mv "~/${file}" "${backup_dir}/${file}"
+        mv "~/${file}" "${BACKUP_DIR}/${file}"
         ln -s "${DOTFILES_DIR}/${file}" "~/${file}"
 
     fi
