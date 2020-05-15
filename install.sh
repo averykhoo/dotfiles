@@ -93,7 +93,7 @@ if [[ ! -x "$(command -v java)" ]]; then
 
     echo "Preparing install directory"
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
-    sudo add-apt-repository ppa:linuxuprising/java
+    sudo add-apt-repository -y ppa:linuxuprising/java
     sudo apt update
     sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
 
