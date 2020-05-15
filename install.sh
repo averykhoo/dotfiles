@@ -44,8 +44,8 @@ sudo chmod +x ~/.local/bin/xsv
 echo "Installing curl"
 sudo apt install -y curl
 
-echo "Installing gdebi-core"
-sudo apt install -y gdebi-core
+echo "Installing gdebi --non-interactive-core"
+sudo apt install -y gdebi --non-interactive-core
 
 echo "Installing git & git-lfs"
 sudo apt install -y git git-lfs
@@ -96,33 +96,33 @@ echo "Installing browsh"
 curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
  | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi browsh_*_linux_amd64.deb
+sudo gdebi --non-interactive browsh_*_linux_amd64.deb
 rm browsh_*_linux_amd64.deb
 
 echo "Installing bat"
 curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
  | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi bat-musl_*_amd64.deb
+sudo gdebi --non-interactive bat-musl_*_amd64.deb
 rm bat-musl_*_amd64.deb
 
 echo "Installing chrome"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo gdebi google-chrome-stable_current_amd64.deb
+sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
 rm google-chrome-stable_current_amd64.deb
 
 echo "Installing delta"
 curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
  | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi git-delta-musl_*_amd64.deb
+sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
 rm git-delta-musl_*_amd64.deb
 
 echo "Installing fd"
 curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
  | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi fd-musl_*_amd64.deb
+sudo gdebi --non-interactive fd-musl_*_amd64.deb
 rm fd-musl_*_amd64.deb
 
 echo "Installing fzf"
@@ -133,14 +133,14 @@ echo "Installing hexyl"
 curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
  | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi hexyl-musl_*_amd64.deb
+sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
 rm hexyl-musl_*_amd64.deb
 
 echo "Installing hyperfine"
 curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
  | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi hyperfine_*_amd64.deb
+sudo gdebi --non-interactive hyperfine_*_amd64.deb
 rm hyperfine_*_amd64.deb
 
 echo "Installing powerline font"
@@ -158,14 +158,14 @@ echo "Installing ripgrep"
 curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
  | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi ripgrep_*_amd64.deb
+sudo gdebi --non-interactive ripgrep_*_amd64.deb
 rm ripgrep_*_amd64.deb
 
 echo "Installing snowflake (renamed to muon)"
 curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
  | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
  | wget -i -
-sudo gdebi snowflake-*-setup-amd64.deb
+sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
 rm snowflake-*-setup-amd64.deb
 
 echo "Installing tigervnc server"
