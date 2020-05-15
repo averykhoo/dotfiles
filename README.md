@@ -20,7 +20,6 @@ dotfiles
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 *   vendor in the tldr cache
-*   xstartup for xfce
 
 ```bash
 # Jupyter password
