@@ -330,6 +330,9 @@ sudo apt install -y byobu
 echo "Installing cifs"
 sudo apt install -y cifs-utils
 
+echo "Installing cockpit"
+sudo apt install -y cockpit
+
 echo "Installing cuneiform"
 sudo apt install -y cuneiform
 

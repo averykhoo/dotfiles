@@ -11,26 +11,27 @@ dotfiles
 *   `sudo subscription-manager attach`
 *   is x forwarding enabled
 *   maybe symlink the xstartup instead of copying it?
-*   does the stuff below need to be a checklist
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
+*   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
 
 #   more things you might want to install
-*   [ ] anaconda3
-*   [ ] [cockpit](https://cockpit-project.org/)
-*   [ ] elasticsearch
-*   [ ] emacs
-*   [ ] etcd
-*   [ ] gnome
-*   [ ] pycharm
-*   [ ] terminalizer (like asciinema, but built on npm)
-*   [ ] vim
-*   [ ] [wormhole](https://github.com/warner/magic-wormhole)
-*   [ ] xfce
-*   [ ] zenmap
+*   anaconda3
+*   elasticsearch
+*   emacs
+*   etcd
+*   glances (missing on install-rhel)
+*   gnome
+*   pycharm
+*   terminalizer (like asciinema, but built on npm)
+*   vim
+*   [wormhole](https://github.com/warner/magic-wormhole)
+*   xfce
+*   zenmap
 
 
 #   notes
 *   `git update-index --chmod=+x install.sh`
+*   [cockpit](https://cockpit-project.org/) will be on port 9090
 *   nanorc
     *   from [scopatz/nanorc](https://github.com/scopatz/nanorc)
     *   slightly modified (added all existing `*.nanorc` files, some were missing in provided nanorc)

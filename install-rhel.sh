@@ -3,6 +3,8 @@
 # we need sudo permissions
 
 sudo echo "installing all the things"
+
+sudo echo "adding epel repo"
 sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 ARCH=$( /bin/arch )
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
@@ -82,422 +84,424 @@ pip3 install --user trash-cli
 echo "Installing pydf"
 pip3 install --user pydf
 
-echo "Installing glances (and bottle)"
-pip3 install --user bottle
-pip3 install --user glances
-
 echo "Installing powerline"
 pip3 install --user powerline-status
 
 # java
 
-echo "Installing JDK 11.0.7"
-if [[ ! -x "$(command -v java)" ]]; then
-
-    echo "Preparing install directory"
-#    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
-    sudo add-apt-repository -y ppa:linuxuprising/java
-#    sudo apt update
-    sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
-
-    echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
-    # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
-    CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
-    # https://www.adobe.com/support/coldfusion/downloads.html
-    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
-
-    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
-        echo "Downloaded and verified sha256 hash, finally actually installing java"
-        sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
-#        sudo apt install -y oracle-java11-installer-local
-        sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
-#        sudo apt install -y oracle-java11-set-default-local
-    else
-        echo "ERROR: java checksum failed!"
-    fi
-    unset CHECKSUM
-    rm jdk-11.0.7_linux-x64_bin.tar.gz
-
-else
-    echo "already installed"
-fi
+#echo "Installing JDK 11.0.7"
+#if [[ ! -x "$(command -v java)" ]]; then
+#
+#    echo "Preparing install directory"
+##    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
+#    sudo add-apt-repository -y ppa:linuxuprising/java
+##    sudo apt update
+#    sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
+#
+#    echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
+#    # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
+#    CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
+#    # https://www.adobe.com/support/coldfusion/downloads.html
+#    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
+#
+#    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
+#        echo "Downloaded and verified sha256 hash, finally actually installing java"
+#        sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
+##        sudo apt install -y oracle-java11-installer-local
+#        sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
+##        sudo apt install -y oracle-java11-set-default-local
+#    else
+#        echo "ERROR: java checksum failed!"
+#    fi
+#    unset CHECKSUM
+#    rm jdk-11.0.7_linux-x64_bin.tar.gz
+#
+#else
+#    echo "already installed"
+#fi
 
 # download and install
 
-echo "Installing browsh"
-if [[ ! -x "$(command -v browsh)" ]]; then
-    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
-    rm browsh_*_linux_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing browsh"
+#if [[ ! -x "$(command -v browsh)" ]]; then
+#    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
+#    rm browsh_*_linux_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing bat"
-if [[ ! -x "$(command -v bat)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive bat-musl_*_amd64.deb
-    rm bat-musl_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing bat"
+#if [[ ! -x "$(command -v bat)" ]]; then
+#    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive bat-musl_*_amd64.deb
+#    rm bat-musl_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing chrome"
-if [[ ! -x "$(command -v google-chrome)" ]]; then
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-#    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
-    rm google-chrome-stable_current_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing chrome"
+#if [[ ! -x "$(command -v google-chrome)" ]]; then
+#    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+##    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
+#    rm google-chrome-stable_current_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing delta"
-if [[ ! -x "$(command -v delta)" ]]; then
-    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
-    rm git-delta-musl_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing delta"
+#if [[ ! -x "$(command -v delta)" ]]; then
+#    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
+#    rm git-delta-musl_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing fd"
-if [[ ! -x "$(command -v fd)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive fd-musl_*_amd64.deb
-    rm fd-musl_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing fd"
+#if [[ ! -x "$(command -v fd)" ]]; then
+#    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive fd-musl_*_amd64.deb
+#    rm fd-musl_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing fzf"
-if [[ ! -d ~/.fzf ]]; then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all
-else
-    echo "already installed"
-fi
+#echo "Installing fzf"
+#if [[ ! -d ~/.fzf ]]; then
+#    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+#    ~/.fzf/install --all
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing hexyl"
-if [[ ! -x "$(command -v hexyl)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
-    rm hexyl-musl_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing hexyl"
+#if [[ ! -x "$(command -v hexyl)" ]]; then
+#    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
+#    rm hexyl-musl_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing hyperfine"
-if [[ ! -x "$(command -v hyperfine)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive hyperfine_*_amd64.deb
-    rm hyperfine_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing hyperfine"
+#if [[ ! -x "$(command -v hyperfine)" ]]; then
+#    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive hyperfine_*_amd64.deb
+#    rm hyperfine_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing micro"
-if [[ ! -x "$(command -v micro)" ]]; then
-    curl https://getmic.ro | bash
-    mv micro ~/.local/bin/
-else
-    echo "already installed"
-fi
+#echo "Installing micro"
+#if [[ ! -x "$(command -v micro)" ]]; then
+#    curl https://getmic.ro | bash
+#    mv micro ~/.local/bin/
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing powerline font"
-if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    mkdir -p ~/.local/share/fonts/
-    mv PowerlineSymbols.otf ~/.local/share/fonts/
-    fc-cache -vf ~/.local/share/fonts/
-else
-    echo "already installed"
-fi
+#echo "Installing powerline font"
+#if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
+#    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+#    mkdir -p ~/.local/share/fonts/
+#    mv PowerlineSymbols.otf ~/.local/share/fonts/
+#    fc-cache -vf ~/.local/share/fonts/
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing powerline fontconfig"
-if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    mkdir -p ~/.config/fontconfig/conf.d/
-    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-else
-    echo "already installed"
-fi
+#echo "Installing powerline fontconfig"
+#if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
+#    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+#    mkdir -p ~/.config/fontconfig/conf.d/
+#    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing ripgrep"
-if [[ ! -x "$(command -v rg)" ]]; then
-    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive ripgrep_*_amd64.deb
-    rm ripgrep_*_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing ripgrep"
+#if [[ ! -x "$(command -v rg)" ]]; then
+#    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive ripgrep_*_amd64.deb
+#    rm ripgrep_*_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing snowflake (renamed to muon)"
-if [[ ! -x "$(command -v snowflake)" ]]; then
-    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
-     | wget -i -
-#    sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
-    rm snowflake-*-setup-amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing snowflake (renamed to muon)"
+#if [[ ! -x "$(command -v snowflake)" ]]; then
+#    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
+#     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
+#     | wget -i -
+##    sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
+#    rm snowflake-*-setup-amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing tigervnc server"
-if [[ ! -x "$(command -v vncserver)" ]]; then
-    RELEASE="tigervnc-1.10.1.x86_64"
-    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
-    tar -xvf ${RELEASE}.tar.gz
-    rm ${RELEASE}.tar.gz
-    sudo cp -R ${RELEASE}/usr/ /
-    rm -rf ${RELEASE}/
-else
-    echo "already installed"
-fi
+#echo "Installing tigervnc server"
+#if [[ ! -x "$(command -v vncserver)" ]]; then
+#    RELEASE="tigervnc-1.10.1.x86_64"
+#    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+#    tar -xvf ${RELEASE}.tar.gz
+#    rm ${RELEASE}.tar.gz
+#    sudo cp -R ${RELEASE}/usr/ /
+#    rm -rf ${RELEASE}/
+#else
+#    echo "already installed"
+#fi
 
 # file compression
 
-echo "Installing bzip2"
-#sudo apt install -y bzip2
+#echo "Installing bzip2"
+##sudo apt install -y bzip2
 
-echo "Installing cabextract"
-#sudo apt install -y cabextract
+#echo "Installing cabextract"
+##sudo apt install -y cabextract
 
-echo "Installing gzip"
-#sudo apt install -y gzip
+#echo "Installing gzip"
+##sudo apt install -y gzip
 
-echo "Installing lzip"
-#sudo apt install -y lzip
+#echo "Installing lzip"
+##sudo apt install -y lzip
 
-echo "Installing p7zip"
-#sudo apt install -y p7zip p7zip-full p7zip-rar
+#echo "Installing p7zip"
+##sudo apt install -y p7zip p7zip-full p7zip-rar
 
-echo "Installing pigz"
-#sudo apt install -y pigz
+#echo "Installing pigz"
+##sudo apt install -y pigz
 
-echo "Installing unar, lsar"
-#sudo apt install -y unar
+#echo "Installing unar, lsar"
+##sudo apt install -y unar
 
-echo "Installing unrar"
-#sudo apt install -y unrar
+#echo "Installing unrar"
+##sudo apt install -y unrar
 
-echo "Installing unp"
-#sudo apt install -y unp
+#echo "Installing unp"
+##sudo apt install -y unp
 
-echo "Installing unzip"
-#sudo apt install -y unzip
+#echo "Installing unzip"
+##sudo apt install -y unzip
 
-echo "Installing xdms"
-#sudo apt install -y xdms
+#echo "Installing xdms"
+##sudo apt install -y xdms
 
-echo "Installing xz-utils"
-#sudo apt install -y xz-utils
+#echo "Installing xz-utils"
+##sudo apt install -y xz-utils
 
-echo "Installing zstd"
-#sudo apt install -y zstd
+#echo "Installing zstd"
+##sudo apt install -y zstd
 
 # apt installs
 
-echo "Installing aria2"
-#sudo apt install -y aria2
+#echo "Installing aria2"
+##sudo apt install -y aria2
 
-echo "Installing asciinema"
-#sudo apt install -y asciinema
+#echo "Installing asciinema"
+##sudo apt install -y asciinema
 
-echo "Installing autojump"
-#sudo apt install -y autojump
+#echo "Installing autojump"
+##sudo apt install -y autojump
 
-echo "Installing baobab"
-#sudo apt install -y baobab
+#echo "Installing baobab"
+##sudo apt install -y baobab
 
-echo "Installing byobu"
-#sudo apt install -y byobu
+#echo "Installing byobu"
+##sudo apt install -y byobu
 
-echo "Installing cifs"
-#sudo apt install -y cifs-utils
+#echo "Installing cifs"
+##sudo apt install -y cifs-utils
 
-echo "Installing cuneiform"
-#sudo apt install -y cuneiform
+echo "Installing cockpit"
+sudo yum install -y cockpit
+sudo systemctl enable --now cockpit.socket
+sudo firewall-cmd --add-service=cockpit
+sudo firewall-cmd --add-service=cockpit --permanent
 
-echo "Installing exfat-fuse"
-#sudo apt install -y exfat-fuse
+#echo "Installing cuneiform"
+##sudo apt install -y cuneiform
 
-echo "Installing feh"
-#sudo apt install -y feh
+#echo "Installing exfat-fuse"
+##sudo apt install -y exfat-fuse
 
-echo "Installing ffmpeg"
-#sudo apt install -y ffmpeg ffmpeg-doc
+#echo "Installing feh"
+##sudo apt install -y feh
 
-echo "Installing firefox"
-#sudo apt install -y firefox
+#echo "Installing ffmpeg"
+##sudo apt install -y ffmpeg ffmpeg-doc
 
-echo "Installing Noto font"
-#sudo apt install -y fonts-noto
+#echo "Installing firefox"
+##sudo apt install -y firefox
 
-echo "Installing gedit (with plugins)"
-#sudo apt install -y gedit gedit-common gedit-plugins
+#echo "Installing Noto font"
+##sudo apt install -y fonts-noto
 
-echo "Installing glogg"
-#sudo apt install -y glogg
+#echo "Installing gedit (with plugins)"
+##sudo apt install -y gedit gedit-common gedit-plugins
 
-echo "Installing gparted"
-#sudo apt install -y gparted
+#echo "Installing glogg"
+##sudo apt install -y glogg
 
-echo "Installing gufw (and ufw)"
-#sudo apt install -y gufw
+#echo "Installing gparted"
+##sudo apt install -y gparted
 
-echo "Installing htop"
-#sudo apt install -y htop
+#echo "Installing gufw (and ufw)"
+##sudo apt install -y gufw
 
-echo "Installing httpie"
-#sudo apt install -y httpie
+#echo "Installing htop"
+##sudo apt install -y htop
 
-echo "Installing ifconfig"
-#sudo apt install -y net-tools
+#echo "Installing httpie"
+##sudo apt install -y httpie
 
-echo "Installing jid"
-#sudo apt install -y jid
+#echo "Installing ifconfig"
+##sudo apt install -y net-tools
 
-echo "Installing locate, updatedb (and findutils)"
-#sudo apt install -y locate
+#echo "Installing jid"
+##sudo apt install -y jid
 
-echo "Installing lnav"
-#sudo apt install -y lnav
+#echo "Installing locate, updatedb (and findutils)"
+##sudo apt install -y locate
 
-echo "Installing masscan"
-#sudo apt install -y masscan
+#echo "Installing lnav"
+##sudo apt install -y lnav
 
-echo "Installing midnight commander"
-#sudo apt install -y mc
+#echo "Installing masscan"
+##sudo apt install -y masscan
 
-echo "Installing mosh"
-#sudo apt install -y mosh
+#echo "Installing midnight commander"
+##sudo apt install -y mc
 
-echo "Installing mtr"
-#sudo apt install -y mtr-tiny
+#echo "Installing mosh"
+##sudo apt install -y mosh
 
-echo "Installing multitail"
-#sudo apt install -y multitail
+#echo "Installing mtr"
+##sudo apt install -y mtr-tiny
 
-echo "Installing nano"
-#sudo apt install -y nano
+#echo "Installing multitail"
+##sudo apt install -y multitail
 
-echo "Installing ncdu"
-#sudo apt install -y ncdu
+#echo "Installing nano"
+##sudo apt install -y nano
 
-echo "Installing nfs-server"
-#sudo apt install -y nfs-kernel-server
+#echo "Installing ncdu"
+##sudo apt install -y ncdu
 
-echo "Installing nmap"
-#sudo apt install -y nmap
+#echo "Installing nfs-server"
+##sudo apt install -y nfs-kernel-server
 
-echo "Installing nmtui"
-#sudo apt install -y network-manager
+#echo "Installing nmap"
+##sudo apt install -y nmap
 
-echo "Installing ntfs-3g"
-#sudo apt install -y ntfs-3g
+#echo "Installing nmtui"
+##sudo apt install -y network-manager
 
-echo "Installing pandoc"
-#sudo apt install -y pandoc
+#echo "Installing ntfs-3g"
+##sudo apt install -y ntfs-3g
 
-echo "Installing peco"
-#sudo apt install -y peco
+#echo "Installing pandoc"
+##sudo apt install -y pandoc
 
-echo "Installing pglob, pkill"
-#sudo apt install -y procps
+#echo "Installing peco"
+##sudo apt install -y peco
 
-echo "Installing powershell"
-sudo snap install --classic powershell
+#echo "Installing pglob, pkill"
+##sudo apt install -y procps
 
-echo "Installing prettyping"
-#sudo apt install -y prettyping
+#echo "Installing powershell"
+#sudo snap install --classic powershell
 
-echo "Installing pv"
-#sudo apt install -y pv
+#echo "Installing prettyping"
+##sudo apt install -y prettyping
 
-echo "Installing ranger"
-#sudo apt install -y ranger
+#echo "Installing pv"
+##sudo apt install -y pv
 
-echo "Installing realpath"
-#sudo apt install -y coreutils
+#echo "Installing ranger"
+##sudo apt install -y ranger
 
-echo "Installing samba"
-#sudo apt install -y samba
+#echo "Installing realpath"
+##sudo apt install -y coreutils
 
-echo "Installing shellcheck"
-#sudo apt install -y shellcheck
+#echo "Installing samba"
+##sudo apt install -y samba
 
-echo "Installing socat"
-#sudo apt install -y socat
+#echo "Installing shellcheck"
+##sudo apt install -y shellcheck
 
-echo "Installing sox"
-#sudo apt install -y sox
+#echo "Installing socat"
+##sudo apt install -y socat
 
-echo "Installing sshd (openssh-server)"
-#sudo apt install -y openssh-server
+#echo "Installing sox"
+##sudo apt install -y sox
 
-echo "Installing sshfs"
-#sudo apt install -y sshfs
+#echo "Installing sshd (openssh-server)"
+##sudo apt install -y openssh-server
 
-echo "Installing sshpass"
-#sudo apt install -y sshpass
+#echo "Installing sshfs"
+##sudo apt install -y sshfs
 
-echo "Installing tesseract"
-#sudo apt install -y tesseract-ocr
+#echo "Installing sshpass"
+##sudo apt install -y sshpass
 
-echo "Installing tldr"
-#sudo apt install -y tldr
+#echo "Installing tesseract"
+##sudo apt install -y tesseract-ocr
+
+#echo "Installing tldr"
+##sudo apt install -y tldr
 tldr tar
 tldr --update
 
-echo "Installing tmux"
-#sudo apt install -y tmux
+#echo "Installing tmux"
+##sudo apt install -y tmux
 
-echo "Installing traceroute"
-#sudo apt install -y traceroute
+#echo "Installing traceroute"
+##sudo apt install -y traceroute
 
-echo "Installing tree"
-#sudo apt install -y tree
+#echo "Installing tree"
+##sudo apt install -y tree
 
-echo "Installing uidmap"
-#sudo apt install -y uidmap
+#echo "Installing uidmap"
+##sudo apt install -y uidmap
 
-echo "Installing update-java-alternatives"
-#sudo apt install -y java-common
+#echo "Installing update-java-alternatives"
+##sudo apt install -y java-common
 
-echo "Installing vlc"
-#sudo apt install -y vlc
+#echo "Installing vlc"
+##sudo apt install -y vlc
 
-echo "Installing wordlists"
-#sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
+#echo "Installing wordlists"
+##sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
 
-echo "Installing xclip"
-#sudo apt install -y xclip
+#echo "Installing xclip"
+##sudo apt install -y xclip
 
-echo "Installing xclock"
-#sudo apt install -y x11-apps
+#echo "Installing xclock"
+##sudo apt install -y x11-apps
 
-echo "Installing youtube-dl"
-#sudo apt install -y youtube-dl
+#echo "Installing youtube-dl"
+##sudo apt install -y youtube-dl
 
-echo "Installing yagf"
-#sudo apt install -y yagf
+#echo "Installing yagf"
+##sudo apt install -y yagf
 
-echo "Installing zcat, zgrep (wrapper)"
-#sudo apt install -y zutils
+#echo "Installing zcat, zgrep (wrapper)"
+##sudo apt install -y zutils
 
-echo "Installing zmap"
-#sudo apt install -y zmap
+#echo "Installing zmap"
+##sudo apt install -y zmap
