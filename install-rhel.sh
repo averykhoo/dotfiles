@@ -458,6 +458,9 @@ sudo snap install --classic powershell
 #echo "Installing ranger"
 #sudo yum install -y ranger
 
+echo "Installing redhat-lsb-core"
+sudo yum install -y redhat-lsb-core
+
 echo "Installing samba"
 sudo yum install -y samba
 

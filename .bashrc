@@ -212,6 +212,7 @@ alias -- -="cd -"
 [[ -x "$(command -v systemctl)" ]] && alias systemctl="sudo systemctl"
 [[ -x "$(command -v subscription-manager)" ]] && alias subscription-manager="sudo subscription-manager"
 [[ -x "$(command -v shutdown)" ]] && alias shutdown="sudo shutdown"
+[[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
 
 # Repeat the last command with sudo prefixed
 alias please='sudo $(fc -ln -1)'

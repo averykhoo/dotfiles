@@ -343,6 +343,8 @@ sudo apt install -y cifs-utils
 
 echo "Installing cockpit"
 sudo apt install -y cockpit
+sudo systemctl enable cockpit.socket
+sudo ufw allow 9090
 
 echo "Installing coreutils (e.g. realpath)"
 sudo apt install -y coreutils
