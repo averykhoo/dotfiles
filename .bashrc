@@ -67,9 +67,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -167,36 +165,26 @@ else
     alias tree="tree -L 1 --dirsfirst -shugp"
 fi
 
-# use prettyping
-if [[ -x "$(command -v prettyping)" ]]; then
-    alias ping="prettyping"
-fi
+# ping -> prettyping
+[[ -x "$(command -v prettyping)" ]] && alias ping="prettyping"
 
-# use fd
-if [[ -x "$(command -v fd)" ]]; then
-    alias find="fd --color=always"
-fi
+# find -> fd
+[[ -x "$(command -v fd)" ]] && alias find="fd --color=always"
 
-# use pydf
-if [[ -x "$(command -v pydf)" ]]; then
-    alias df="pydf"
-fi
+# df -> pydf
+[[ -x "$(command -v pydf)" ]] && alias df="pydf"
 
-# use ad
-if [[ -x "$(command -v ad)" ]]; then
-    alias touch=ad
-fi
+# touch -> ad
+[[ -x "$(command -v ad)" ]] && alias touch=ad
 
-# use bat
-if [[ -x "$(command -v bat)" ]]; then
-    alias more=bat
-fi
+# more -> bat
+[[ -x "$(command -v bat)" ]] && alias more=bat
 
 # windows compat
-alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
-alias cls="echo ASSUMING YOU MEAN clear; clear"
-alias where="echo ASSUMING YOU MEAN which; which"
-alias tracert="echo ASSUMING YOU MEAN traceroute; traceroute"
+[[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
+[[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN clear; clear"
+[[ -x "$(command -v which)" ]] && alias where="echo ASSUMING YOU MEAN which; which"
+[[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN traceroute; traceroute"
 
 # typos
 alias dc="echo ASSUMING YOU MEAN cd; cd"
@@ -204,10 +192,10 @@ alias cd..="cd .."
 alias cd-="cd -"
 
 # stupid enterprise firewall
-alias curl="curl --insecure"
-alias http="http --verify=no"
-alias wget="wget --no-check-certificate"
-alias chrome="google-chrome --ignore-certificate-errors"
+[[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
+[[ -x "$(command -v http)" ]] && alias http="http --verify=no"
+[[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
+[[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
 
 # lazy cd (alternatively turn on shopt autocd)
 alias ..="cd .."
@@ -218,18 +206,17 @@ alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # sudo the things that need to be sudo
-alias apt="sudo apt"
-alias yum="sudo yum"
-alias shutdown="sudo shutdown"
+[[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
+[[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
+[[ -x "$(command -v subscription-manager)" ]] && alias subscription-manager="sudo subscription-manager"
+[[ -x "$(command -v shutdown)" ]] && alias shutdown="sudo shutdown"
 
 # Repeat the last command with sudo prefixed
 alias please='sudo $(fc -ln -1)'
 alias pls='sudo $(fc -ln -1)'
 
 # Open with default application
-if [[ -x "$(command -v xdg-open)" ]]; then
-    alias open='xdg-open'
-fi
+[[ -x "$(command -v xdg-open)" ]] && alias open='xdg-open'
 
 # auto-reload bashrc
 alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
