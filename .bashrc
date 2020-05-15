@@ -251,14 +251,16 @@ if [[ -f /usr/share/autojump/autojump.sh ]]; then
 fi
 
 # enable powerline (assuming it was installed via pip3)
-POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
-if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+if [[ -x "$(command -v pip3)" ]]; then
+    POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
+    if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
+        powerline-daemon -q
+        POWERLINE_BASH_CONTINUATION=1
+        POWERLINE_BASH_SELECT=1
+        source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+    fi
+    unset POWERLINE_ROOT
 fi
-unset POWERLINE_ROOT
 
 # should be added by fzf, no need to manually add
 #[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
