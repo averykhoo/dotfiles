@@ -7,14 +7,16 @@ dotfiles
 *   `~/dotfiles/install-ubuntu.sh` (tested on ubuntu 20.04, both desktop and server)
 
 #   todo
+*   `sudo subscription-manager register`
+*   `sudo subscription-manager attach`
 *   is x forwarding enabled
-*   maybe symlink the xstartup?
-*   check if any of this even works
+*   maybe symlink the xstartup instead of copying it?
 *   does the stuff below need to be a checklist
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
 
 #   more things you might want to install
 *   [ ] anaconda3
+*   [ ] [cockpit](https://cockpit-project.org/)
 *   [ ] elasticsearch
 *   [ ] emacs
 *   [ ] etcd

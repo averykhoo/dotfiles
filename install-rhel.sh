@@ -3,6 +3,11 @@
 # we need sudo permissions
 
 sudo echo "installing all the things"
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+ARCH=$( /bin/arch )
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
+unset ARCH
+sudo dnf config-manager --set-enabled PowerTools
 
 # vendored installs
 
@@ -46,25 +51,19 @@ sudo chmod +x ~/.local/bin/xsv
 # pre-reqs
 
 echo "Installing curl"
-#sudo apt install -y curl
-
-echo "Installing gdebi-core"
-#sudo apt install -y gdebi-core
+sudo yum install -y curl
 
 echo "Installing git & git-lfs"
-#sudo apt install -y git git-lfs
+sudo yum install -y git git-lfs
 
 echo "Installing jq"
-#sudo apt install -y jq
+sudo yum install -y jq
 
 echo "Installing pip3"
-#sudo apt install -y python3-pip
-
-echo "Installing software-properties-common"
-#sudo apt install -y software-properties-common
+sudo yum install -y python3-pip
 
 echo "Installing wget"
-#sudo apt install -y wget
+sudo yum install -y wget
 
 # pip installs
 
