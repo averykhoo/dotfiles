@@ -35,7 +35,7 @@ sudo chmod +x ~/.local/bin/exa
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
-cp ./vendored/xstartup ~/.vnc/xstartup
+cp ./vendored/xstartup_gnome ~/.vnc/xstartup
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
