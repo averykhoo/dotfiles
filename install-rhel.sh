@@ -5,11 +5,15 @@
 sudo echo "installing all the things"
 
 sudo echo "adding epel repo"
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-ARCH=$( /bin/arch )
-sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
-unset ARCH
-sudo dnf config-manager --set-enabled PowerTools
+if [[ $(rpm -qa) != *epel-release* ]]; then
+    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+    ARCH=$( /bin/arch )
+    sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
+    unset ARCH
+    sudo dnf config-manager --set-enabled PowerTools
+else
+    echo 'already added'
+fi
 
 # vendored installs
 
