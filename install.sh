@@ -2,6 +2,9 @@
 
 # vendored installs
 
+sudo mkdir ~/.local/bin/
+sudo mkdir -p /usr/local/share/fonts
+
 echo "Installing Iosevka"
 sudo cp ./install/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
