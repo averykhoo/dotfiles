@@ -8,7 +8,7 @@ if [[ -d ${DOTFILES_DIR} ]]; then
     backup_dir=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
     mkdir -p ${backup_dir}
 else
-    git clone --depth 1 https://github.com/averykhoo/dotfiles.git DOTFILES_DIR
+    git clone --depth 1 https://github.com/averykhoo/dotfiles.git ${DOTFILES_DIR}
 fi
 
 # list of files/folders to symlink in homedir
