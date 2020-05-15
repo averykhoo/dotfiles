@@ -17,15 +17,19 @@ dotfiles
 *   cockpit works in ubuntu?
 *   ntfsprogs works in ubuntu?
 *   tesseract scripts and language files
+*   firefox / chrome extensions
 
 #   more things you might want to install
 *   anaconda3
+    *   conda and pip packages
+    *   add to path?
+    *   jupyter password setup
 *   elasticsearch
 *   emacs
 *   etcd
-*   glances (missing on install-rhel)
 *   gnome
 *   pycharm
+    *   pycharm plugins
 *   terminalizer (like asciinema, but built on npm)
 *   vim
 *   [wormhole](https://github.com/warner/magic-wormhole)

@@ -67,6 +67,10 @@ sudo apt install -y jq
 echo "Installing pip3"
 sudo apt install -y python3-pip
 
+echo "Installing snap"
+sudo apt install -y snapd
+sudo systemctl enable --now snapd
+
 echo "Installing software-properties-common"
 sudo apt install -y software-properties-common
 
@@ -284,9 +288,6 @@ sudo apt install -y bzip2
 echo "Installing cabextract"
 sudo apt install -y cabextract
 
-echo "Installing coreutils (e.g. realpath)"
-sudo apt install -y coreutils
-
 echo "Installing gzip"
 sudo apt install -y gzip
 
@@ -342,6 +343,9 @@ sudo apt install -y cifs-utils
 
 echo "Installing cockpit"
 sudo apt install -y cockpit
+
+echo "Installing coreutils (e.g. realpath)"
+sudo apt install -y coreutils
 
 echo "Installing cuneiform"
 sudo apt install -y cuneiform

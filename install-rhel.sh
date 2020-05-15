@@ -99,6 +99,10 @@ pip3 install --user trash-cli
 echo "Installing pydf"
 pip3 install --user pydf
 
+#echo "Installing glances (and bottle)"
+#pip3 install --user bottle
+#pip3 install --user glances
+
 echo "Installing powerline"
 pip3 install --user powerline-status
 
@@ -349,7 +353,7 @@ sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
 
 echo "Installing coreutils (e.g. realpath)"
-sudo apt install -y coreutils
+sudo yum install -y coreutils
 
 #echo "Installing cuneiform"
 #sudo yum install -y cuneiform
