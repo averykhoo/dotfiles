@@ -17,43 +17,43 @@ fi
 # file compression
 
 echo "Installing bzip2"
-sudo yum install -y bzip2
+[[ ! -x "$(command -v bzip2)" ]] && sudo yum install -y bzip2
 
 #echo "Installing cabextract"
-#sudo yum install -y cabextract
+#[[ ! -x "$(command -v cabextract)" ]] && sudo yum install -y cabextract
 
 echo "Installing gzip"
-sudo yum install -y gzip
+[[ ! -x "$(command -v gzip)" ]] && sudo yum install -y gzip
 
 echo "Installing lzip"
-sudo yum install -y lzip
+[[ ! -x "$(command -v lzip)" ]] && sudo yum install -y lzip
 
 echo "Installing p7zip"
-sudo yum install -y p7zip p7zip-plugins p7zip-doc
+[[ ! -x "$(command -v 7z)" ]] && sudo yum install -y p7zip p7zip-plugins p7zip-doc
 
 echo "Installing pigz"
-sudo yum install -y pigz
+[[ ! -x "$(command -v pigz)" ]] && sudo yum install -y pigz
 
 #echo "Installing unar, lsar"
-#sudo yum install -y unar
+#[[ ! -x "$(command -v unar)" ]] && sudo yum install -y unar
 
 #echo "Installing unrar"
-#sudo yum install -y unrar
+#[[ ! -x "$(command -v unrar)" ]] && sudo yum install -y unrar
 
 #echo "Installing unp"
-#sudo yum install -y unp
+#[[ ! -x "$(command -v unp)" ]] && sudo yum install -y unp
 
 echo "Installing unzip"
-sudo yum install -y unzip
+[[ ! -x "$(command -v unzip)" ]] && sudo yum install -y unzip
 
 #echo "Installing xdms"
-#sudo yum install -y xdms
+#[[ ! -x "$(command -v xdms)" ]] && sudo yum install -y xdms
 
 #echo "Installing xz-utils"
-#sudo yum install -y xz-utils
+#[[ ! -x "$(command -v xz)" ]] && sudo yum install -y xz-utils
 
 echo "Installing zstd"
-sudo yum install -y zstd
+[[ ! -x "$(command -v zstd)" ]] && sudo yum install -y zstd
 
 # vendored installs
 
@@ -95,9 +95,9 @@ tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C /home/u
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
-if [[  -x "$(command -v gnome-session)" ]]; then
+if [[ -x "$(command -v gnome-session)" ]]; then
     cp ~/dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
-elif [[  -x "$(command -v startxfce4)" ]]; then
+elif [[ -x "$(command -v startxfce4)" ]]; then
     cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
 else
     echo "no GUI found, copying XFCE-based xstartup"
