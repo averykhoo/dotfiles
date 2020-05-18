@@ -89,7 +89,7 @@ sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
 sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
 sudo chmod +x ~/.local/bin/tldr
 sudo chmod +x ~/.local/bin/tldr-lint
-tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C /home/user/.local/share/
+[[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
 ~/.local/bin/tldr --update
 
 echo "Configuring xstartup"
