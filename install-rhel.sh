@@ -474,9 +474,6 @@ sudo yum install -y pandoc
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
 
-#echo "Installing powershell"
-#sudo snap install --classic powershell
-
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
 

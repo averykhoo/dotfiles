@@ -448,9 +448,6 @@ sudo apt install -y peco
 echo "Installing pglob, pkill"
 sudo apt install -y procps
 
-echo "Installing powershell"
-sudo snap install --classic powershell
-
 echo "Installing prettyping"
 sudo apt install -y prettyping
 
