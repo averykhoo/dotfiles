@@ -237,7 +237,7 @@ fi
 #fi
 
 echo "Installing fd"
-if [[ ! -x "$(command -v bat)" ]]; then
+if [[ ! -x "$(command -v fd)" ]]; then
     curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
      | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
@@ -260,7 +260,7 @@ else
 fi
 
 echo "Installing hexyl"
-if [[ ! -x "$(command -v bat)" ]]; then
+if [[ ! -x "$(command -v hexyl)" ]]; then
     curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
      | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
@@ -275,7 +275,7 @@ else
 fi
 
 echo "Installing hyperfine"
-if [[ ! -x "$(command -v bat)" ]]; then
+if [[ ! -x "$(command -v hyperfine)" ]]; then
     curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
      | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
@@ -316,16 +316,20 @@ else
     echo "already installed"
 fi
 
-#echo "Installing ripgrep"
-#if [[ ! -x "$(command -v rg)" ]]; then
-#    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive ripgrep_*_amd64.deb
-#    rm ripgrep_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing ripgrep"
+if [[ ! -x "$(command -v ripgrep)" ]]; then
+    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
+    sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
+    sudo chmod +x ~/.local/bin/ripgrep
+    sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+    rm -rf ./ripgrep-*-x86_64-unknown-linux-musl/
+    rm ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
 #echo "Installing snowflake (renamed to muon)"
 #if [[ ! -x "$(command -v snowflake)" ]]; then
