@@ -24,7 +24,6 @@ dotfiles
 *   ntfsprogs works in ubuntu?
 *   tesseract scripts and language files
 *   firefox / chrome extensions
-*   vendor in the tldr cache
 
 ```bash
 # Jupyter password

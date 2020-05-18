@@ -78,6 +78,7 @@ sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
 sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
 sudo chmod +x ~/.local/bin/tldr
 sudo chmod +x ~/.local/bin/tldr-lint
+tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C /home/user/.local/share/
 ~/.local/bin/tldr --update
 
 echo "Configuring xstartup"
@@ -93,7 +94,6 @@ else
 fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
-
 
 echo "Installing xsv"
 sudo cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
