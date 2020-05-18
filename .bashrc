@@ -288,3 +288,6 @@ if [[ -x "$(command -v xclip)" ]]; then
 	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
 	alias fromclip='xclip -o -selection clipboard'
 fi
+
+# Downloads the embedded video on any web page straight to the desktop.
+[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""

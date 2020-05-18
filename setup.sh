@@ -32,3 +32,5 @@ done
 # cleanup
 unset FILENAMES
 unset DOTFILES_DIR
+
+source ~/.bashrc

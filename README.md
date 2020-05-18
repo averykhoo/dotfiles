@@ -2,14 +2,18 @@
 dotfiles
 
 #   quickstart
+##  TL;DR
 *   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
 *   `~/dotfiles/setup.sh`
 *   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
 *   restart terminal to see changes
 
-#   todo
+##  RHEL first steps
 *   `sudo subscription-manager register`
 *   `sudo subscription-manager attach`
+*   `sudo yum install -y git`
+
+#   todo
 *   is x forwarding enabled
 *   maybe symlink the xstartup instead of copying it?
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
