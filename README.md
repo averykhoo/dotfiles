@@ -5,10 +5,9 @@ dotfiles
 ##  TL;DR
 *   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
 *   `~/dotfiles/setup.sh`
-*   (optionally restart your terminal now to get a colored prompt)
-*   `cd ~/dotfiles`
-*   `./install-ubuntu.sh` (Ubuntu 20.04) or `./install-rhel.sh` (RHEL 8.2)
-*   restart terminal to see changes
+*   (optionally restart your terminal now to get a colored prompt for the next few minutes)
+*   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
+*   restart terminal
 
 ##  RHEL first steps
 *   `sudo subscription-manager register`
