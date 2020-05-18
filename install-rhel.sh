@@ -58,7 +58,8 @@ sudo yum install -y zstd
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
-[[ -d ~/.local/bin/ ]] || mkdir -p ~/.local/bin/
+[[ -d ~/.local/bin/ ]] || sudo mkdir -p ~/.local/bin/
+[[ -d ~/.local/share/man/man1/ ]] || sudo mkdir -p ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
@@ -200,16 +201,20 @@ pip3 install --user powerline-status
 #    echo "already installed"
 #fi
 
-#echo "Installing bat"
-#if [[ ! -x "$(command -v bat)" ]]; then
-#    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive bat-musl_*_amd64.deb
-#    rm bat-musl_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing bat"
+if [[ ! -x "$(command -v bat)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./bat-*-x86_64-unknown-linux-musl.tar.gz
+    sudo cp ./bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+    sudo chmod +x ~/.local/bin/bat
+    sudo cp ./bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+    rm -rf ./bat-*-x86_64-unknown-linux-musl/
+    rm ./bat-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
 #echo "Installing chrome"
 #if [[ ! -x "$(command -v google-chrome)" ]]; then
@@ -231,73 +236,85 @@ pip3 install --user powerline-status
 #    echo "already installed"
 #fi
 
-#echo "Installing fd"
-#if [[ ! -x "$(command -v fd)" ]]; then
-#    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive fd-musl_*_amd64.deb
-#    rm fd-musl_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing fd"
+if [[ ! -x "$(command -v bat)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./fd-*-x86_64-unknown-linux-musl.tar.gz
+    sudo cp ./fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
+    sudo chmod +x ~/.local/bin/fd
+    sudo cp ./fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+    rm -rf ./fd-*-x86_64-unknown-linux-musl/
+    rm ./fd-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
-#echo "Installing fzf"
-#if [[ ! -d ~/.fzf ]]; then
-#    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-#    ~/.fzf/install --all
-#else
-#    echo "already installed"
-#fi
+echo "Installing fzf"
+if [[ ! -d ~/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install --all
+else
+    echo "already installed"
+fi
 
-#echo "Installing hexyl"
-#if [[ ! -x "$(command -v hexyl)" ]]; then
-#    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
-#    rm hexyl-musl_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing hexyl"
+if [[ ! -x "$(command -v bat)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
+    sudo cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
+    sudo chmod +x ~/.local/bin/hexyl
+    sudo cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl.1 ~/.local/share/man/man1/hexyl.1
+    rm -rf ./hexyl-*-x86_64-unknown-linux-musl/
+    rm ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
-#echo "Installing hyperfine"
-#if [[ ! -x "$(command -v hyperfine)" ]]; then
-#    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive hyperfine_*_amd64.deb
-#    rm hyperfine_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing hyperfine"
+if [[ ! -x "$(command -v bat)" ]]; then
+    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
+    sudo cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
+    sudo chmod +x ~/.local/bin/hyperfine
+    sudo cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+    rm -rf ./hyperfine-*-x86_64-unknown-linux-musl/
+    rm ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
-#echo "Installing micro"
-#if [[ ! -x "$(command -v micro)" ]]; then
-#    curl https://getmic.ro | bash
-#    mv micro ~/.local/bin/
-#else
-#    echo "already installed"
-#fi
+echo "Installing micro"
+if [[ ! -x "$(command -v micro)" ]]; then
+    curl https://getmic.ro | bash
+    mv micro ~/.local/bin/
+else
+    echo "already installed"
+fi
 
-#echo "Installing powerline font"
-#if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-#    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-#    mkdir -p ~/.local/share/fonts/
-#    mv PowerlineSymbols.otf ~/.local/share/fonts/
-#    fc-cache -vf ~/.local/share/fonts/
-#else
-#    echo "already installed"
-#fi
+echo "Installing powerline font"
+if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    mkdir -p ~/.local/share/fonts/
+    mv PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+else
+    echo "already installed"
+fi
 
-#echo "Installing powerline fontconfig"
-#if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-#    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-#    mkdir -p ~/.config/fontconfig/conf.d/
-#    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
-#else
-#    echo "already installed"
-#fi
+echo "Installing powerline fontconfig"
+if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    mkdir -p ~/.config/fontconfig/conf.d/
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+else
+    echo "already installed"
+fi
 
 #echo "Installing ripgrep"
 #if [[ ! -x "$(command -v rg)" ]]; then

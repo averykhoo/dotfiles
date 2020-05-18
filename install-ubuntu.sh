@@ -48,7 +48,8 @@ sudo apt install -y zstd
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
-[[ -d ~/.local/bin/ ]] || mkdir -p ~/.local/bin/
+[[ -d ~/.local/bin/ ]] || sudo mkdir -p ~/.local/bin/
+[[ -d ~/.local/share/man/man1/ ]] || sudo mkdir -p ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
