@@ -323,7 +323,7 @@ if [[ ! -x "$(command -v ripgrep)" ]]; then
      | wget -i -
     tar -xvf ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
     sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
-    sudo chmod +x ~/.local/bin/ripgrep
+    sudo chmod +x ~/.local/bin/rg
     sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
     rm -rf ./ripgrep-*-x86_64-unknown-linux-musl/
     rm ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
