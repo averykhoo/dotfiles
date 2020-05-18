@@ -14,6 +14,46 @@ if [[ $(rpm -qa) != *epel-release* ]]; then
 else
     echo 'already added'
 fi
+# file compression
+
+echo "Installing bzip2"
+sudo yum install -y bzip2
+
+#echo "Installing cabextract"
+#sudo yum install -y cabextract
+
+echo "Installing gzip"
+sudo yum install -y gzip
+
+echo "Installing lzip"
+sudo yum install -y lzip
+
+echo "Installing p7zip"
+sudo yum install -y p7zip p7zip-plugins p7zip-doc
+
+echo "Installing pigz"
+sudo yum install -y pigz
+
+#echo "Installing unar, lsar"
+#sudo yum install -y unar
+
+#echo "Installing unrar"
+#sudo yum install -y unrar
+
+#echo "Installing unp"
+#sudo yum install -y unp
+
+echo "Installing unzip"
+sudo yum install -y unzip
+
+#echo "Installing xdms"
+#sudo yum install -y xdms
+
+#echo "Installing xz-utils"
+#sudo yum install -y xz-utils
+
+echo "Installing zstd"
+sudo yum install -y zstd
 
 # vendored installs
 
@@ -291,47 +331,6 @@ if [[ ! -x "$(command -v vncserver)" ]]; then
 else
     echo "already installed"
 fi
-
-# file compression
-
-echo "Installing bzip2"
-sudo yum install -y bzip2
-
-#echo "Installing cabextract"
-#sudo yum install -y cabextract
-
-echo "Installing gzip"
-sudo yum install -y gzip
-
-echo "Installing lzip"
-sudo yum install -y lzip
-
-echo "Installing p7zip"
-sudo yum install -y p7zip p7zip-plugins p7zip-doc
-
-echo "Installing pigz"
-sudo yum install -y pigz
-
-#echo "Installing unar, lsar"
-#sudo yum install -y unar
-
-#echo "Installing unrar"
-#sudo yum install -y unrar
-
-#echo "Installing unp"
-#sudo yum install -y unp
-
-echo "Installing unzip"
-sudo yum install -y unzip
-
-#echo "Installing xdms"
-#sudo yum install -y xdms
-
-#echo "Installing xz-utils"
-#sudo yum install -y xz-utils
-
-echo "Installing zstd"
-sudo yum install -y zstd
 
 # apt installs
 

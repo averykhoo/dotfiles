@@ -5,7 +5,8 @@ dotfiles
 ##  TL;DR
 *   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
 *   `~/dotfiles/setup.sh`
-*   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
+*   `cd ~/dotfiles`
+*   `./install-ubuntu.sh` (Ubuntu 20.04) or `./install-rhel.sh` (RHEL 8.2)
 *   restart terminal to see changes
 
 ##  RHEL first steps

@@ -4,6 +4,47 @@
 
 sudo echo "installing all the things"
 
+# file compression
+
+echo "Installing bzip2"
+sudo apt install -y bzip2
+
+echo "Installing cabextract"
+sudo apt install -y cabextract
+
+echo "Installing gzip"
+sudo apt install -y gzip
+
+echo "Installing lzip"
+sudo apt install -y lzip
+
+echo "Installing p7zip"
+sudo apt install -y p7zip p7zip-full p7zip-rar
+
+echo "Installing pigz"
+sudo apt install -y pigz
+
+echo "Installing unar, lsar"
+sudo apt install -y unar
+
+echo "Installing unrar"
+sudo apt install -y unrar
+
+echo "Installing unp"
+sudo apt install -y unp
+
+echo "Installing unzip"
+sudo apt install -y unzip
+
+echo "Installing xdms"
+sudo apt install -y xdms
+
+echo "Installing xz-utils"
+sudo apt install -y xz-utils
+
+echo "Installing zstd"
+sudo apt install -y zstd
+
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
@@ -287,47 +328,6 @@ if [[ ! -x "$(command -v vncserver)" ]]; then
 else
     echo "already installed"
 fi
-
-# file compression
-
-echo "Installing bzip2"
-sudo apt install -y bzip2
-
-echo "Installing cabextract"
-sudo apt install -y cabextract
-
-echo "Installing gzip"
-sudo apt install -y gzip
-
-echo "Installing lzip"
-sudo apt install -y lzip
-
-echo "Installing p7zip"
-sudo apt install -y p7zip p7zip-full p7zip-rar
-
-echo "Installing pigz"
-sudo apt install -y pigz
-
-echo "Installing unar, lsar"
-sudo apt install -y unar
-
-echo "Installing unrar"
-sudo apt install -y unrar
-
-echo "Installing unp"
-sudo apt install -y unp
-
-echo "Installing unzip"
-sudo apt install -y unzip
-
-echo "Installing xdms"
-sudo apt install -y xdms
-
-echo "Installing xz-utils"
-sudo apt install -y xz-utils
-
-echo "Installing zstd"
-sudo apt install -y zstd
 
 # apt installs
 
