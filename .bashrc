@@ -251,8 +251,8 @@ if [[ -x "$(command -v pip3)" ]]; then
     unset POWERLINE_ROOT
 fi
 
-# should be added by fzf, no need to manually add
-#[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
+# since we won't let fzf change bashrc
+[[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # maybe useful emoji?
 # 😃 🍕 🍔 ⚓ ☠  ♠️ ♣️ ♥️ ♦️ ⚜ 💊 ☠ 💎 ⛵️ 🐓 🔥 💥 👉 💩 🌎 🍍 🛡 💡 ✏️ 💾 ⚙ ☢ 🌀 🌐 ▶️ ➡️ 🀄️ 🔴 🔵
