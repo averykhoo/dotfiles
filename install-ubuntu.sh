@@ -51,18 +51,18 @@ sudo apt install -y zstd
 [[ -d ~/.local/bin/ ]] || mkdir -p ~/.local/bin/
 
 echo "Installing Iosevka"
-sudo cp ./vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
+sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
-sudo cp ./vendored/dollar_sign ~/.local/bin/'$'
+sudo cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
 echo "Installing bat-extras"
-sudo cp ./vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
-sudo cp ./vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
-sudo cp ./vendored/bat-extras-20200501/batman ~/.local/bin/batman
-sudo cp ./vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
-sudo cp ./vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+sudo cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
+sudo cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
+sudo cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
+sudo cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
+sudo cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
 sudo chmod +x ~/.local/bin/batdiff
 sudo chmod +x ~/.local/bin/batgrep
 sudo chmod +x ~/.local/bin/batman
@@ -70,12 +70,12 @@ sudo chmod +x ~/.local/bin/batwatch
 sudo chmod +x ~/.local/bin/prettybat
 
 echo "Installing exa"
-sudo cp ./vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+sudo cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
 echo "Installing tldr"
-sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
-sudo cp ./vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
 sudo chmod +x ~/.local/bin/tldr
 sudo chmod +x ~/.local/bin/tldr-lint
 ~/.local/bin/tldr --update
@@ -84,19 +84,19 @@ echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
 if [[  -x "$(command -v gnome-session)" ]]; then
-    cp ./vendored/xstartup_gnome ~/.vnc/xstartup
+    cp ~/dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
 elif [[  -x "$(command -v startxfce4)" ]]; then
-    cp ./vendored/xstartup_xfce ~/.vnc/xstartup
+    cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
 else
     echo "no GUI found, copying XFCE-based xstartup"
-    cp ./vendored/xstartup_xfce ~/.vnc/xstartup
+    cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
 fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
 
 echo "Installing xsv"
-sudo cp ./vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
+sudo cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
 sudo chmod +x ~/.local/bin/xsv
 
 # pre-reqs
