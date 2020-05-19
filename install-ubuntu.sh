@@ -173,7 +173,7 @@ pip3 install --user powerline-status
 # java
 
 echo "Installing JDK 11.0.7"
-if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
+if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
 
     echo "Preparing install directory"
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
