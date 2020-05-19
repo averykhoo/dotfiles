@@ -29,13 +29,11 @@ jupyter notebook password
 ```
 
 ```bash
-# fix timezone
-sudo unlink /etc/localtime 
-sudo ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
-#sudo date -s "14/08/2019 11:22:33"
-#date -u
-#date +"%Y-%m-%d %H:%M:%S %z"
-#sudo hwclock --systohc --localtime 
+# change the date
+sudo date -s "14/08/2019 11:22:33"
+date -u
+date +"%Y-%m-%d %H:%M:%S %z"
+sudo hwclock --systohc --localtime 
 ```
 
 #   more things you might want to install

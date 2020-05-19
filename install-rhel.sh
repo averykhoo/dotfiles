@@ -4,6 +4,8 @@
 
 sudo echo "installing all the things"
 
+# add extended repo for more packages
+
 sudo echo "adding epel repo"
 if [[ $(rpm -qa) != *epel-release* ]]; then
     sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -14,6 +16,12 @@ if [[ $(rpm -qa) != *epel-release* ]]; then
 else
     echo 'already added'
 fi
+
+# fix timezone
+
+[[ -e /usr/share/zoneinfo/Asia/Singapore ]] && sudo unlink /etc/localtime
+sudo ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+
 # file compression
 
 echo "Installing bzip2"

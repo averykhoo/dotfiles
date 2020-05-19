@@ -14,6 +14,11 @@ sudo mv /etc/update-motd.d/91-release-upgrade      /etc/update-motd.d.bak/91-rel
 sudo mv /etc/update-motd.d/92-unattended-upgrades  /etc/update-motd.d.bak/92-unattended-upgrades
 sudo mv /etc/update-motd.d/95-hwe-eol              /etc/update-motd.d.bak/95-hwe-eol
 
+# fix timezone
+
+[[ -e /usr/share/zoneinfo/Asia/Singapore ]] && sudo unlink /etc/localtime
+sudo ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+
 # file compression
 
 echo "Installing bzip2"
