@@ -360,6 +360,9 @@ if [[ ! -x "$(command -v vncserver)" ]]; then
 else
     echo "already installed"
 fi
+sudo firewall-cmd --add-port=5900-5999/tcp
+sudo firewall-cmd --add-port=5900-5999/tcp --permanent
+sudo firewall-cmd --reload
 
 # apt installs
 
@@ -386,6 +389,7 @@ sudo yum install -y cockpit
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
+sudo firewall-cmd --reload
 [[ -e /etc/motd.d/cockpit ]] && sudo rm /etc/motd.d/cockpit
 
 echo "Installing coreutils (e.g. realpath)"
