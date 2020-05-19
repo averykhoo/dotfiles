@@ -170,7 +170,6 @@ pip3 install --user powerline-status
 # java
 
 echo "Installing JDK 11.0.7"
-sudo yum install -y jdk-11.0.7
 if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
 
     echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
