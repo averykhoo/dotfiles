@@ -169,49 +169,42 @@ pip3 install --user powerline-status
 
 # java
 
-#echo "Installing JDK 11.0.7"
-#if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
-#
-#    echo "Preparing install directory"
-##    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
-#    sudo add-apt-repository -y ppa:linuxuprising/java
-##    sudo apt update
-#    sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
-#
+echo "Installing JDK 11.0.7"
+if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
+    yum install jdk-11.0.7
+
 #    echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
 #    # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
-#    CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
+#    CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224136098c2670
 #    # https://www.adobe.com/support/coldfusion/downloads.html
-#    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
+#    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
 #
-#    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
+#    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.rpm" | sha256sum --check -; then
 #        echo "Downloaded and verified sha256 hash, finally actually installing java"
-#        sudo cp jdk-11.0.7_linux-x64_bin.tar.gz /var/cache/oracle-jdk11-installer-local/
-##        sudo yum install -y oracle-java11-installer-local
-#        sudo rm /var/cache/oracle-jdk11-installer-local/jdk-*_linux-x64_bin.tar.gz
-##        sudo yum install -y oracle-java11-set-default-local
+#        sudo yum install -y jdk-11.0.7_linux-x64_bin.rpm
+#        sudo rm jdk-11.0.7_linux-x64_bin.rpm
 #    else
 #        echo "ERROR: java checksum failed!"
 #    fi
 #    unset CHECKSUM
-#    rm jdk-11.0.7_linux-x64_bin.tar.gz
-#
-#else
-#    echo "already installed"
-#fi
+#    rm jdk-11.0.7_linux-x64_bin.rpm
+
+else
+    echo "already installed"
+fi
 
 # download and install
 
-#echo "Installing browsh"
-#if [[ ! -x "$(command -v browsh)" ]]; then
-#    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
-#    rm browsh_*_linux_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing browsh"
+if [[ ! -x "$(command -v browsh)" ]]; then
+    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
+     | wget -i -
+    sudo yum install -y browsh_*_linux_amd64.rpm
+    rm browsh_*_linux_amd64.rpm
+else
+    echo "already installed"
+fi
 
 echo "Installing bat"
 if [[ ! -x "$(command -v bat)" ]]; then

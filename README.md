@@ -36,6 +36,12 @@ date +"%Y-%m-%d %H:%M:%S %z"
 sudo hwclock --systohc --localtime 
 ```
 
+```bash
+# set default java on RHEL
+sudo alternatives --config java
+sudo alternatives --config javac
+```
+
 #   more things you might want to install
 *   anaconda3
     *   conda and pip packages
