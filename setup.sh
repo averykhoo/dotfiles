@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # create symlinks from `~` to desired items in `~/dotfiles`
 
-
 # dotfiles directory and backup directory
 DOTFILES_DIR=~/dotfiles
 BACKUP_DIR=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")

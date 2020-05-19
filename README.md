@@ -19,11 +19,6 @@ dotfiles
 *   maybe symlink the xstartup instead of copying it?
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
 *   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
-*   mlocate works in ubuntu?
-*   cockpit works in ubuntu?
-*   kermit
-*   screen
-*   ntfsprogs works in ubuntu?
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 
@@ -31,16 +26,6 @@ dotfiles
 # Jupyter password
 jupyter notebook --generate-config
 jupyter notebook password
-```
-
-```bash
-# Increase watch limit for pycharm
-# https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
-# Add the following line to either /etc/sysctl.conf file or a new *.conf file under /etc/sysctl.d/ directory:
-touch /etc/sysctl.d/idea.conf
-echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.d/idea.conf
-# Then run this command to apply the change:
-sudo sysctl -p --system
 ```
 
 ```bash

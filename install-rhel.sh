@@ -84,6 +84,10 @@ echo "Installing exa"
 sudo cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
+echo "Increase inotify watch limit for pycharm"
+sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
+sudo sysctl -p --system
+
 echo "Installing tldr"
 sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
 sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
@@ -489,6 +493,9 @@ sudo yum install -y redhat-lsb-core
 
 echo "Installing samba"
 sudo yum install -y samba
+
+echo "Installing screen"
+sudo yum install -y screen
 
 #echo "Installing shellcheck"
 #sudo yum install -y shellcheck
