@@ -241,14 +241,19 @@ fi
 
 # enable powerline (assuming it was installed via pip3)
 if [[ -x "$(command -v pip3)" ]]; then
-    POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
-    if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
-        powerline-daemon -q
-        POWERLINE_BASH_CONTINUATION=1
-        POWERLINE_BASH_SELECT=1
-        source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+
+    # only enable if we're not in the cockpit web shell
+    if [[ ! $XDG_SESSION_TYPE == "web ]]; then
+
+        POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
+        if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
+            powerline-daemon -q
+            POWERLINE_BASH_CONTINUATION=1
+            POWERLINE_BASH_SELECT=1
+            source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+        fi
+        unset POWERLINE_ROOT
     fi
-    unset POWERLINE_ROOT
 fi
 
 # since we won't let fzf change bashrc
