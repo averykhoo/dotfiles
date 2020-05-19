@@ -4,6 +4,16 @@
 
 sudo echo "installing all the things"
 
+# cleanup MOTD
+
+sudo mkdir /etc/update-motd.d.bak/
+sudo mv /etc/update-motd.d/10-help-text            /etc/update-motd.d.bak/10-help-text
+sudo mv /etc/update-motd.d/50-motd-news            /etc/update-motd.d.bak/50-motd-news
+sudo mv /etc/update-motd.d/90-updates-available    /etc/update-motd.d.bak/90-updates-available
+sudo mv /etc/update-motd.d/91-release-upgrade      /etc/update-motd.d.bak/91-release-upgrade
+sudo mv /etc/update-motd.d/92-unattended-upgrades  /etc/update-motd.d.bak/92-unattended-upgrades
+sudo mv /etc/update-motd.d/95-hwe-eol              /etc/update-motd.d.bak/95-hwe-eol
+
 # file compression
 
 echo "Installing bzip2"
