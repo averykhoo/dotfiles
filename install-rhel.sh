@@ -73,15 +73,15 @@ echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
-sudo cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
 echo "Installing bat-extras"
-sudo cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
-sudo cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
-sudo cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
-sudo cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
-sudo cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
+cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
+cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
+cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
+cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
 sudo chmod +x ~/.local/bin/batdiff
 sudo chmod +x ~/.local/bin/batgrep
 sudo chmod +x ~/.local/bin/batman
@@ -89,7 +89,7 @@ sudo chmod +x ~/.local/bin/batwatch
 sudo chmod +x ~/.local/bin/prettybat
 
 echo "Installing exa"
-sudo cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
 sudo chmod +x ~/.local/bin/exa
 
 echo "Increase inotify watch limit for pycharm"
@@ -97,8 +97,8 @@ sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_w
 sudo sysctl -p --system
 
 echo "Installing tldr"
-sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
-sudo cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
 sudo chmod +x ~/.local/bin/tldr
 sudo chmod +x ~/.local/bin/tldr-lint
 [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
@@ -119,7 +119,7 @@ sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
 echo "Installing xsv"
-sudo cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
+cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
 sudo chmod +x ~/.local/bin/xsv
 
 # pre-reqs
@@ -212,34 +212,37 @@ if [[ ! -x "$(command -v bat)" ]]; then
      | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
     tar -xvf ./bat-*-x86_64-unknown-linux-musl.tar.gz
-    sudo cp ./bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+    cp ./bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
     sudo chmod +x ~/.local/bin/bat
-    sudo cp ./bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+    cp ./bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
     rm -rf ./bat-*-x86_64-unknown-linux-musl/
     rm ./bat-*-x86_64-unknown-linux-musl.tar.gz
 else
     echo "already installed"
 fi
 
-#echo "Installing chrome"
-#if [[ ! -x "$(command -v google-chrome)" ]]; then
-#    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-##    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
-#    rm google-chrome-stable_current_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing chrome"
+if [[ ! -x "$(command -v google-chrome)" ]]; then
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.rpm
+    sudo yum install -y google-chrome-stable_current_amd64.rpm
+    rm google-chrome-stable_current_amd64.rpm
+else
+    echo "already installed"
+fi
 
-#echo "Installing delta"
-#if [[ ! -x "$(command -v delta)" ]]; then
-#    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
-#     | wget -i -
-##    sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
-#    rm git-delta-musl_*_amd64.deb
-#else
-#    echo "already installed"
-#fi
+echo "Installing delta"
+if [[ ! -x "$(command -v delta)" ]]; then
+    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+     | wget -i -
+    tar -xvf ./delta-*-x86_64-unknown-linux-musl.tar.gz
+    cp ./delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
+    sudo chmod +x ~/.local/bin/delta
+    rm -rf ./delta-*-x86_64-unknown-linux-musl/
+    rm ./delta-*-x86_64-unknown-linux-musl.tar.gz
+else
+    echo "already installed"
+fi
 
 echo "Installing fd"
 if [[ ! -x "$(command -v fd)" ]]; then
@@ -247,9 +250,9 @@ if [[ ! -x "$(command -v fd)" ]]; then
      | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
     tar -xvf ./fd-*-x86_64-unknown-linux-musl.tar.gz
-    sudo cp ./fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
+    cp ./fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
     sudo chmod +x ~/.local/bin/fd
-    sudo cp ./fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+    cp ./fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
     rm -rf ./fd-*-x86_64-unknown-linux-musl/
     rm ./fd-*-x86_64-unknown-linux-musl.tar.gz
 else
@@ -270,9 +273,9 @@ if [[ ! -x "$(command -v hexyl)" ]]; then
      | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
     tar -xvf ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
-    sudo cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
+    cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
     sudo chmod +x ~/.local/bin/hexyl
-    sudo cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl.1 ~/.local/share/man/man1/hexyl.1
+    cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl.1 ~/.local/share/man/man1/hexyl.1
     rm -rf ./hexyl-*-x86_64-unknown-linux-musl/
     rm ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
 else
@@ -285,9 +288,9 @@ if [[ ! -x "$(command -v hyperfine)" ]]; then
      | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
     tar -xvf ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
-    sudo cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
+    cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
     sudo chmod +x ~/.local/bin/hyperfine
-    sudo cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+    cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
     rm -rf ./hyperfine-*-x86_64-unknown-linux-musl/
     rm ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
 else
@@ -327,9 +330,9 @@ if [[ ! -x "$(command -v ripgrep)" ]]; then
      | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
      | wget -i -
     tar -xvf ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
-    sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
+    cp ./ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
     sudo chmod +x ~/.local/bin/rg
-    sudo cp ./ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+    cp ./ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
     rm -rf ./ripgrep-*-x86_64-unknown-linux-musl/
     rm ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
 else
