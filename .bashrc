@@ -243,7 +243,7 @@ fi
 if [[ -x "$(command -v pip3)" ]]; then
 
     # only enable if we're not in the cockpit web shell
-    if [[ ! $XDG_SESSION_TYPE == "web ]]; then
+    if [[ ! $XDG_SESSION_TYPE == "web" ]]; then
 
         POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
         if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
