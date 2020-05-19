@@ -42,6 +42,11 @@ sudo alternatives --config java
 sudo alternatives --config javac
 ```
 
+```bash
+# install XFCE on RHEL
+sudo yum group install -y xfce
+```
+
 #   more things you might want to install
 *   anaconda3
     *   conda and pip packages
