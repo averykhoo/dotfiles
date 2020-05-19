@@ -354,6 +354,7 @@ echo "Installing cockpit"
 sudo apt install -y cockpit
 sudo systemctl enable cockpit.socket
 sudo ufw allow 9090
+[[ -e /etc/motd.d/cockpit ]] && sudo rm /etc/motd.d/cockpit
 
 echo "Installing coreutils (e.g. realpath)"
 sudo apt install -y coreutils
