@@ -21,6 +21,8 @@ dotfiles
 *   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
 *   mlocate works in ubuntu?
 *   cockpit works in ubuntu?
+*   kermit
+*   screen
 *   ntfsprogs works in ubuntu?
 *   tesseract scripts and language files
 *   firefox / chrome extensions

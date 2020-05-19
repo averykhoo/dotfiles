@@ -379,6 +379,7 @@ sudo yum install -y cockpit
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
+[[ -e /etc/motd.d/cockpit ]] && sudo rm /etc/motd.d/cockpit
 
 echo "Installing coreutils (e.g. realpath)"
 sudo yum install -y coreutils
