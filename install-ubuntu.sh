@@ -456,6 +456,9 @@ sudo apt install -y nmap
 echo "Installing nmtui"
 sudo apt install -y network-manager
 
+echo "Installing nslookup, dig"
+sudo apt install -y dnsutils
+
 echo "Installing ntfs-3g"
 sudo apt install -y ntfs-3g
 

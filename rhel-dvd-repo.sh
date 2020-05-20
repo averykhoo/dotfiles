@@ -14,7 +14,7 @@ sudo echo "setting up repo using RHEL dvd"
 echo ""
 echo "step 1/7: create mount point at [${MOUNT_PATH}]"
 sudo mkdir --parents "${MOUNT_PATH}"
-if [[ $? == 0 ]]; then
+if [[ $? != 0 ]]; then
     echo "ERROR: unable to create mount point"
     exit
 fi

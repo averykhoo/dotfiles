@@ -474,6 +474,9 @@ sudo yum install -y nmap
 echo "Installing nmtui"
 sudo yum install -y network-manager
 
+echo "Installing nslookup, dig"
+sudo yum install -y bind-utils
+
 echo "Installing ntfs-3g"
 sudo yum install -y ntfs-3g ntfsprogs
 
