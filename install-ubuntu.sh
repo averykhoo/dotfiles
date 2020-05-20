@@ -62,9 +62,9 @@ echo "Installing zstd"
 
 # vendored installs
 
-[[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
-[[ -d ~/.local/bin/ ]] || mkdir -p ~/.local/bin/
-[[ -d ~/.local/share/man/man1/ ]] || mkdir -p ~/.local/share/man/man1/
+[[ -d /usr/local/share/fonts ]] || sudo mkdir --parents /usr/local/share/fonts
+[[ -d ~/.local/bin/ ]] || mkdir --parents ~/.local/bin/
+[[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
@@ -179,7 +179,7 @@ if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EA8CACC073C3DB2A
     sudo add-apt-repository -y ppa:linuxuprising/java
     sudo apt update
-    sudo mkdir -p /var/cache/oracle-jdk11-installer-local/
+    sudo mkdir --parents /var/cache/oracle-jdk11-installer-local/
 
     echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
     # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
@@ -299,7 +299,7 @@ fi
 echo "Installing powerline font"
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    mkdir -p ~/.local/share/fonts/
+    mkdir --parents ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
 else
@@ -309,7 +309,7 @@ fi
 echo "Installing powerline fontconfig"
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    mkdir -p ~/.config/fontconfig/conf.d/
+    mkdir --parents ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
     echo "already installed"
