@@ -497,6 +497,9 @@ sudo yum install -y pandoc
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
 
+echo "Installing poppler-utils"
+sudo yum install -y poppler-utils
+
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
 

@@ -479,6 +479,9 @@ sudo apt install -y peco
 echo "Installing pglob, pkill"
 sudo apt install -y procps
 
+echo "Installing poppler-utils"
+sudo apt install -y poppler-utils
+
 echo "Installing prettyping"
 sudo apt install -y prettyping
 
