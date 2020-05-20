@@ -53,11 +53,17 @@ git config --global http.sslVerify false
 ```
 
 #   more things you might want to install
-*   lessfilter
+*   lesspipe
     *   https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors/337640#337640
-    *   http://www.speedblue.org/less_color.php
     *   https://github.com/suriya/dot-files/blob/master/lessfilter
-    *   https://sourceforge.net/projects/lesspipe/
+    *   https://github.com/wofr06/lesspipe
+        *   lynx
+        *   LibreOffice
+        *   pdftotext
+        *   mediainfo
+        *   exiftool
+        *   brotli
+        *   lzma
 *   anaconda3
     *   conda and pip packages
     *   add to path?
