@@ -47,6 +47,11 @@ sudo alternatives --config javac
 sudo yum group install -y xfce
 ```
 
+```bash
+# ignore ssl errors in git
+git config --global http.sslVerify false
+```
+
 #   more things you might want to install
 *   anaconda3
     *   conda and pip packages
@@ -63,6 +68,8 @@ sudo yum group install -y xfce
 *   [wormhole](https://github.com/warner/magic-wormhole)
 *   xfce
 *   zenmap
+*   treeview
+* 
 
 
 #   notes

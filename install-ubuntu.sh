@@ -422,6 +422,9 @@ sudo apt install -y httpie
 echo "Installing ifconfig"
 sudo apt install -y net-tools
 
+echo "Installing iotop"
+sudo apt install -y iotop
+
 echo "Installing jid"
 sudo apt install -y jid
 

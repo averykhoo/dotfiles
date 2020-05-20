@@ -80,8 +80,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# extend path to .local
-export PATH=~/.local/bin:$PATH
+# extend path to include local bin dirs, if they exist
+[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+[[ -d ~/.local/bin ]] && export PATH=~/.local/bin:$PATH
 
 # tell Python to use UTF-8 encoding for output to stdin, stdout, and stderr
 export PYTHONIOENCODING="UTF-8"
@@ -192,10 +193,12 @@ alias cd..="cd .."
 alias cd-="cd -"
 
 # stupid enterprise firewall
+[[ -x "$(command -v apt)" ]] && alias apt="apt --allow-unauthenticated"
 [[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
+export GIT_SSL_NO_VERIFY=true
 
 # lazy cd (alternatively turn on shopt autocd)
 alias ..="cd .."

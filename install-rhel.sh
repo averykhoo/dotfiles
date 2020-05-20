@@ -439,6 +439,9 @@ sudo yum install -y htop
 echo "Installing ifconfig"
 sudo yum install -y net-tools
 
+echo "Installing iotop"
+sudo yum install -y iotop
+
 #echo "Installing jid"
 #sudo yum install -y jid
 
