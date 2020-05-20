@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-ISO_FILE_BASENAME="rhel-server-8.2-x86_64-dvd"
-ISO_SHA1_CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224
+ISO_FILE_BASENAME="rhel-8.2-x86_64-dvd"
+ISO_SHA256_CHECKSUM=7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86
 
 MOUNT_PATH="/mnt/${ISO_FILE_BASENAME}"
 ISO_FILE_NAME="${ISO_FILE_BASENAME}.iso"
@@ -32,7 +32,7 @@ if [[ $? == 0 ]]; then
 
 else
     echo "physical dvd not inserted, verifying iso file"
-    echo "${ISO_SHA1_CHECKSUM} ${ISO_FILE_NAME}" | sha1sum --check -
+    echo "${ISO_SHA256_CHECKSUM} ${ISO_FILE_NAME}" | sha256sum --check -
     if [[ $? != 0 ]]; then
         echo "ERROR: iso checksum verification failed"
         exit
@@ -64,9 +64,15 @@ fi
 
 # setup repo
 echo "step 5/7: copy repo file"
-sudo cp "${REPO_FILE_NAME}" "/etc/yum.repos.d/${REPO_FILE_NAME}"
+sudo cp /home/${ISO_FILE_BASENAME}/media.repo "/etc/yum.repos.d/${REPO_FILE_NAME}"
 if [[ $? != 0 ]]; then
     echo "ERROR: repo file copy failed"
+    exit
+fi
+echo "enabled=1" | sudo tee -a "/etc/yum.repos.d/${REPO_FILE_NAME}"
+echo "baseurl=file:///home/${ISO_FILE_BASENAME}" | sudo tee -a "/etc/yum.repos.d/${REPO_FILE_NAME}"
+if [[ $? != 0 ]]; then
+    echo "ERROR: updating repo file failed"
     exit
 fi
 
