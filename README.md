@@ -58,6 +58,7 @@ git config --global http.sslVerify false
     *   add to path?
     *   jupyter password setup
 *   elasticsearch
+    *   elasticsearch-plugin install x-pack
 *   emacs
 *   etcd
 *   xfce (`sudo apt install xfce4 xfce4-goodies`)
@@ -70,7 +71,27 @@ git config --global http.sslVerify false
 *   zenmap
 *   treeview
 *   imagemagick
-* 
+*   treeview vs tree?
+*   smbclient
+*   partitionmanager
+*   ntp
+*   html2text
+*   fonts-twemoji-svginot
+*   catdoc xlhtml ppthtml
+*   system-config-lvm
+
+
+*   pip3 install csvkit
+*   pip install auto-sklearn
+*   pip install cld3
+*   pip install fasttext
+*   pip install langid
+*   pip install supersqlite
+*   pip install tika-app
+*   pip install --upgrade spacy
+*   pip install zxcvbn
+
+
 
 
 #   notes
