@@ -69,6 +69,7 @@ git config --global http.sslVerify false
 *   xfce
 *   zenmap
 *   treeview
+*   imagemagick
 * 
 
 
