@@ -53,6 +53,11 @@ git config --global http.sslVerify false
 ```
 
 #   more things you might want to install
+*   lessfilter
+    *   https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors/337640#337640
+    *   http://www.speedblue.org/less_color.php
+    *   https://github.com/suriya/dot-files/blob/master/lessfilter
+    *   https://sourceforge.net/projects/lesspipe/
 *   anaconda3
     *   conda and pip packages
     *   add to path?
@@ -79,8 +84,8 @@ git config --global http.sslVerify false
 *   fonts-twemoji-svginot
 *   catdoc xlhtml ppthtml
 *   system-config-lvm
-
-
+*   [visidata](https://www.visidata.org/)
+*   zfs
 *   pip3 install csvkit
 *   pip install auto-sklearn
 *   pip install cld3
