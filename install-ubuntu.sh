@@ -93,6 +93,11 @@ echo "Increase inotify watch limit for pycharm"
 sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
 sudo sysctl -p --system
 
+echo "Installing pipes.sh"
+cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
+cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+sudo chmod +x ~/.local/bin/pipes.sh
+
 echo "Installing tldr"
 cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
 cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
