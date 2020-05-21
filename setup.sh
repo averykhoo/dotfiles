@@ -9,7 +9,7 @@ if ! [[ -d ${DOTFILES_DIR} ]]; then
 fi
 
 # list of files/folders to symlink in homedir
-FILENAMES=".bashrc .curlrc .inputrc .wgetrc .nano .nanorc"
+FILENAMES=".bashrc .bash_aliases .curlrc .inputrc .wgetrc .nano .nanorc"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 cd ~
