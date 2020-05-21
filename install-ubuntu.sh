@@ -395,6 +395,9 @@ sudo apt install -y feh
 echo "Installing ffmpeg"
 sudo apt install -y ffmpeg ffmpeg-doc
 
+echo "Installing fio"
+sudo apt install -y fio
+
 echo "Installing firefox"
 sudo apt install -y firefox
 
@@ -473,8 +476,14 @@ sudo apt install -y ntfs-3g
 echo "Installing pandoc"
 sudo apt install -y pandoc
 
+echo "Installing parallel"
+sudo apt install -y parallel
+
 echo "Installing peco"
 sudo apt install -y peco
+
+echo "Installing pexec"
+sudo apt install -y pexec
 
 echo "Installing pglob, pkill"
 sudo apt install -y procps

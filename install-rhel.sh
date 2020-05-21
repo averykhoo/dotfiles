@@ -412,6 +412,9 @@ sudo yum install -y coreutils
 #echo "Installing ffmpeg"
 #sudo yum install -y ffmpeg ffmpeg-doc
 
+#echo "Installing fio"
+#sudo yum install -y fio
+
 echo "Installing firefox"
 sudo yum install -y firefox
 
@@ -491,8 +494,14 @@ sudo yum install -y ntfs-3g ntfsprogs
 echo "Installing pandoc"
 sudo yum install -y pandoc
 
+#echo "Installing parallel"
+#sudo yum install -y parallel
+
 #echo "Installing peco"
 #sudo yum install -y peco
+
+#echo "Installing pexec"
+#sudo yum install -y pexec
 
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
