@@ -153,24 +153,24 @@ sudo yum install -y wget
 echo "Installing ad"
 pip3 install --user advance-touch
 
-echo "Installing tabulate"
-pip3 install --user tabulate
-
-echo "Installing unidecode"
-pip3 install --user unidecode
-
-echo "Installing trash-cli"
-pip3 install --user trash-cli
-
-echo "Installing pydf"
-pip3 install --user pydf
-
 #echo "Installing glances (and bottle)"
 #pip3 install --user bottle
 #pip3 install --user glances
 
 echo "Installing powerline"
 pip3 install --user powerline-status
+
+echo "Installing pydf"
+pip3 install --user pydf
+
+echo "Installing tabulate"
+pip3 install --user tabulate
+
+echo "Installing trash-cli"
+pip3 install --user trash-cli
+
+echo "Installing unidecode"
+pip3 install --user unidecode
 
 # java
 
@@ -279,7 +279,6 @@ if [[ ! -x "$(command -v hexyl)" ]]; then
     tar -xvf ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
     cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
     sudo chmod +x ~/.local/bin/hexyl
-    cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl.1 ~/.local/share/man/man1/hexyl.1
     rm -rf ./hexyl-*-x86_64-unknown-linux-musl/
     rm ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
 else
@@ -294,7 +293,6 @@ if [[ ! -x "$(command -v hyperfine)" ]]; then
     tar -xvf ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
     cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
     sudo chmod +x ~/.local/bin/hyperfine
-    cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
     rm -rf ./hyperfine-*-x86_64-unknown-linux-musl/
     rm ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
 else
@@ -403,8 +401,8 @@ sudo yum install -y coreutils
 #echo "Installing cuneiform"
 #sudo yum install -y cuneiform
 
-#echo "Installing dos2unix"
-#sudo yum install -y dos2unix
+echo "Installing dos2unix"
+sudo yum install -y dos2unix
 
 #echo "Installing exfat-fuse"
 #sudo yum install -y exfat-fuse
@@ -415,8 +413,8 @@ sudo yum install -y coreutils
 #echo "Installing ffmpeg"
 #sudo yum install -y ffmpeg ffmpeg-doc
 
-#echo "Installing fio"
-#sudo yum install -y fio
+echo "Installing fio"
+sudo yum install -y fio
 
 echo "Installing firefox"
 sudo yum install -y firefox
@@ -497,8 +495,8 @@ sudo yum install -y ntfs-3g ntfsprogs
 echo "Installing pandoc"
 sudo yum install -y pandoc
 
-#echo "Installing parallel"
-#sudo yum install -y parallel
+echo "Installing parallel"
+sudo yum install -y parallel
 
 #echo "Installing peco"
 #sudo yum install -y peco
@@ -515,8 +513,8 @@ sudo yum install -y poppler-utils
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
 
-#echo "Installing pv"
-#sudo yum install -y pv
+echo "Installing pv"
+sudo yum install -y pv
 
 #echo "Installing ranger"
 #sudo yum install -y ranger

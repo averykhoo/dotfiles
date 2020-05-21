@@ -156,24 +156,24 @@ sudo apt install -y wget
 echo "Installing ad"
 pip3 install --user advance-touch
 
-echo "Installing tabulate"
-pip3 install --user tabulate
-
-echo "Installing unidecode"
-pip3 install --user unidecode
-
-echo "Installing trash-cli"
-pip3 install --user trash-cli
-
-echo "Installing pydf"
-pip3 install --user pydf
-
 echo "Installing glances (and bottle)"
 pip3 install --user bottle
 pip3 install --user glances
 
 echo "Installing powerline"
 pip3 install --user powerline-status
+
+echo "Installing pydf"
+pip3 install --user pydf
+
+echo "Installing tabulate"
+pip3 install --user tabulate
+
+echo "Installing trash-cli"
+pip3 install --user trash-cli
+
+echo "Installing unidecode"
+pip3 install --user unidecode
 
 # java
 
