@@ -5,7 +5,7 @@ dotfiles
 ##  TL;DR
 *   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
 *   `~/dotfiles/setup.sh`
-*   (optionally restart your terminal now to get a colored prompt for the next few minutes)
+*   (optionally restart your terminal now to get a colored prompt for the next few seconds)
 *   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
 *   restart terminal
 
@@ -13,14 +13,15 @@ dotfiles
 *   `sudo subscription-manager register`
 *   `sudo subscription-manager attach`
 *   `sudo yum install -y git`
+*   (optional) `sudo yum group install -y xfce`
 
 #   todo
 *   is x forwarding enabled
 *   maybe symlink the xstartup instead of copying it?
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
-*   `if [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then echo 'open'; else echo 'not open'; fi`
 *   tesseract scripts and language files
 *   firefox / chrome extensions
+*   prefer RHEL iso, fallback to DVD if checksum fails
 
 ```bash
 # Jupyter password

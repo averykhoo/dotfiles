@@ -21,8 +21,26 @@ fi
 
 # does DVD exist?
 echo "step 2/7: mount RHEL installation media"
+if [[ -f "${ISO_FILE_SAFENAME}.iso" ]]; then
+    echo "found iso file, verifying checksum"
+    echo "${ISO_SHA256_CHECKSUM} ${ISO_FILE_SAFENAME}.iso" | sha256sum --check -
+    if [[ $? != 0 ]]; then
+        echo "WARNING: iso checksum verification failed"
+        ISO_SHA256_CHECKSUM=0
+    fi
+
+    echo "mounting iso file"
+    sudo mount -o loop "${ISO_FILE_SAFENAME}.iso" "${ISO_MOUNT_PATH}"
+    if [[ $? != 0 ]] && [[ ${ISO_SHA256_CHECKSUM} != 0 ]]; then
+        echo "WARNING: iso mount failed"
+        ISO_SHA256_CHECKSUM=0
+    fi
+else
+    ISO_SHA256_CHECKSUM=0
+fi
+
 blkid /dev/sr0
-if [[ $? == 0 ]]; then
+if [[ $? == 0 ]] && [[ ${ISO_SHA256_CHECKSUM} == 0 ]]; then
     echo "physical dvd found"
     sudo mount /dev/sr0 "${ISO_MOUNT_PATH}"
     if [[ $? != 0 ]]; then
@@ -30,20 +48,9 @@ if [[ $? == 0 ]]; then
         exit
     fi
 
-else
-    echo "physical dvd not inserted, verifying iso file"
-    echo "${ISO_SHA256_CHECKSUM} ${ISO_FILE_SAFENAME}.iso" | sha256sum --check -
-    if [[ $? != 0 ]]; then
-        echo "ERROR: iso checksum verification failed"
-        exit
-    fi
-
-    echo "mounting iso file"
-    sudo mount -o loop "${ISO_FILE_SAFENAME}.iso" "${ISO_MOUNT_PATH}"
-    if [[ $? != 0 ]]; then
-        echo "ERROR: iso mount failed"
-        exit
-    fi
+elif [[ ${ISO_SHA256_CHECKSUM} == 0 ]]; then
+    echo "ERROR: unable to mount ISO or DVD"
+    exit
 fi
 
 # copy data
