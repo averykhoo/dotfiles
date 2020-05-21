@@ -153,15 +153,27 @@ sudo yum install -y wget
 echo "Installing ad"
 pip3 install --user advance-touch
 
+echo "Installing csvkit"
+pip3 install --user csvkit
+
 #echo "Installing glances (and bottle)"
 #pip3 install --user bottle
 #pip3 install --user glances
+
+echo "Installing html2text"
+pip3 install --user html2text
+
+echo "Installing langid"
+pip3 install --user langid
 
 echo "Installing powerline"
 pip3 install --user powerline-status
 
 echo "Installing pydf"
 pip3 install --user pydf
+
+echo "Installing pygmentize"
+pip3 install --user pygments
 
 echo "Installing tabulate"
 pip3 install --user tabulate
@@ -171,6 +183,15 @@ pip3 install --user trash-cli
 
 echo "Installing unidecode"
 pip3 install --user unidecode
+
+echo "Installing visidata"
+pip3 install --user visidata
+
+echo "Installing wormhole"
+pip3 install --user magic-wormhole
+
+echo "Installing zxcvbn"
+pip3 install --user zxcvbn
 
 # java
 
@@ -442,6 +463,9 @@ sudo yum install -y htop
 
 echo "Installing ifconfig"
 sudo yum install -y net-tools
+
+echo "Installing imagemagick"
+sudo yum install -y ImageMagick
 
 echo "Installing iotop"
 sudo yum install -y iotop

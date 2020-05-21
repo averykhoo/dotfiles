@@ -13,7 +13,10 @@ dotfiles
 *   `sudo subscription-manager register`
 *   `sudo subscription-manager attach`
 *   `sudo yum install -y git`
-*   (optional) `sudo yum group install -y xfce`
+
+##  XFCE
+*   `sudo yum group install -y xfce`
+*   `sudo apt install -y xfce4 xfce4-goodies`
 
 #   todo
 *   is x forwarding enabled
@@ -21,7 +24,8 @@ dotfiles
 *   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
 *   tesseract scripts and language files
 *   firefox / chrome extensions
-*   prefer RHEL iso, fallback to DVD if checksum fails
+
+#   other code references
 
 ```bash
 # Jupyter password
@@ -71,37 +75,20 @@ git config --global http.sslVerify false
     *   jupyter password setup
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
-*   emacs
+*   emacs / vim
 *   etcd
-*   xfce (`sudo apt install xfce4 xfce4-goodies`)
+*   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins
-*   terminalizer (like asciinema, but built on npm)
-*   vim
 *   [wormhole](https://github.com/warner/magic-wormhole)
-*   xfce
 *   zenmap
-*   treeview
-*   imagemagick
 *   treeview vs tree?
 *   smbclient
 *   partitionmanager
 *   ntp
-*   html2text
 *   fonts-twemoji-svginot
 *   catdoc xlhtml ppthtml
 *   system-config-lvm
-*   [visidata](https://www.visidata.org/)
-*   zfs
-*   pip3 install csvkit
-*   pip install auto-sklearn
-*   pip install cld3
-*   pip install fasttext
-*   pip install langid
-*   pip install supersqlite
-*   pip install tika-app
-*   pip install --upgrade spacy
-*   pip install zxcvbn
 
 
 
