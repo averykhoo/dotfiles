@@ -12,7 +12,7 @@ if [[ $(rpm -qa) != *epel-release* ]]; then
     ARCH=$( /bin/arch )
     sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
     unset ARCH
-    sudo dnf config-manager --set-enabled PowerTools
+#    sudo dnf config-manager --set-enabled PowerTools
 else
     echo 'already added'
 fi
