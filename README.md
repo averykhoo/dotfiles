@@ -47,12 +47,29 @@ sudo alternatives --config javac
 sudo yum group install -y xfce
 ```
 
+```bash
+# ignore ssl errors in git
+git config --global http.sslVerify false
+```
+
 #   more things you might want to install
+*   lesspipe
+    *   https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors/337640#337640
+    *   https://github.com/suriya/dot-files/blob/master/lessfilter
+    *   https://github.com/wofr06/lesspipe
+        *   lynx
+        *   LibreOffice
+        *   pdftotext
+        *   mediainfo
+        *   exiftool
+        *   brotli
+        *   lzma
 *   anaconda3
     *   conda and pip packages
     *   add to path?
     *   jupyter password setup
 *   elasticsearch
+    *   elasticsearch-plugin install x-pack
 *   emacs
 *   etcd
 *   xfce (`sudo apt install xfce4 xfce4-goodies`)
@@ -63,6 +80,29 @@ sudo yum group install -y xfce
 *   [wormhole](https://github.com/warner/magic-wormhole)
 *   xfce
 *   zenmap
+*   treeview
+*   imagemagick
+*   treeview vs tree?
+*   smbclient
+*   partitionmanager
+*   ntp
+*   html2text
+*   fonts-twemoji-svginot
+*   catdoc xlhtml ppthtml
+*   system-config-lvm
+*   [visidata](https://www.visidata.org/)
+*   zfs
+*   pip3 install csvkit
+*   pip install auto-sklearn
+*   pip install cld3
+*   pip install fasttext
+*   pip install langid
+*   pip install supersqlite
+*   pip install tika-app
+*   pip install --upgrade spacy
+*   pip install zxcvbn
+
+
 
 
 #   notes

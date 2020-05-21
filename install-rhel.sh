@@ -65,9 +65,9 @@ echo "Installing zstd"
 
 # vendored installs
 
-[[ -d /usr/local/share/fonts ]] || sudo mkdir -p /usr/local/share/fonts
-[[ -d ~/.local/bin/ ]] || mkdir -p ~/.local/bin/
-[[ -d ~/.local/share/man/man1/ ]] || mkdir -p ~/.local/share/man/man1/
+[[ -d /usr/local/share/fonts ]] || sudo mkdir --parents /usr/local/share/fonts
+[[ -d ~/.local/bin/ ]] || mkdir --parents ~/.local/bin/
+[[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
@@ -95,6 +95,11 @@ sudo chmod +x ~/.local/bin/exa
 echo "Increase inotify watch limit for pycharm"
 sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
 sudo sysctl -p --system
+
+echo "Installing pipes.sh"
+cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
+cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+sudo chmod +x ~/.local/bin/pipes.sh
 
 echo "Installing tldr"
 cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
@@ -307,7 +312,7 @@ fi
 echo "Installing powerline font"
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    mkdir -p ~/.local/share/fonts/
+    mkdir --parents ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
 else
@@ -317,7 +322,7 @@ fi
 echo "Installing powerline fontconfig"
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
     wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    mkdir -p ~/.config/fontconfig/conf.d/
+    mkdir --parents ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
     echo "already installed"
@@ -434,6 +439,9 @@ sudo yum install -y htop
 echo "Installing ifconfig"
 sudo yum install -y net-tools
 
+echo "Installing iotop"
+sudo yum install -y iotop
+
 #echo "Installing jid"
 #sudo yum install -y jid
 
@@ -474,6 +482,9 @@ sudo yum install -y nmap
 echo "Installing nmtui"
 sudo yum install -y network-manager
 
+echo "Installing nslookup, dig"
+sudo yum install -y bind-utils
+
 echo "Installing ntfs-3g"
 sudo yum install -y ntfs-3g ntfsprogs
 
@@ -485,6 +496,9 @@ sudo yum install -y pandoc
 
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
+
+echo "Installing poppler-utils"
+sudo yum install -y poppler-utils
 
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
