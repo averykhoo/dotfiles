@@ -403,6 +403,9 @@ sudo yum install -y coreutils
 #echo "Installing cuneiform"
 #sudo yum install -y cuneiform
 
+#echo "Installing dos2unix"
+#sudo yum install -y dos2unix
+
 #echo "Installing exfat-fuse"
 #sudo yum install -y exfat-fuse
 

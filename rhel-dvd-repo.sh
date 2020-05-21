@@ -62,19 +62,24 @@ if [[ $? != 0 ]]; then
     exit
 fi
 
-# setup repo
+# setup repo (updated repofile from https://access.redhat.com/solutions/3776721)
 echo "step 5/7: copy repo file"
-sudo cp /home/${ISO_FILE_SAFENAME}/media.repo "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo"
-if [[ $? != 0 ]]; then
-    echo "ERROR: repo file copy failed"
-    exit
-fi
-echo "enabled=1" | sudo tee -a "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo"
-echo "baseurl=file:///home/${ISO_FILE_SAFENAME}" | sudo tee -a "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo"
-if [[ $? != 0 ]]; then
-    echo "ERROR: updating repo file failed"
-    exit
-fi
+sudo tee /etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo << EOF
+[dvd-BaseOS]
+name=DVD for RHEL8 - BaseOS
+baseurl=file:///home/${ISO_FILE_SAFENAME}/BaseOS
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+[dvd-AppStream]
+name=DVD for RHEL8 - AppStream
+baseurl=file:///home/${ISO_FILE_SAFENAME}/AppStream
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+EOF
 
 echo "step 6/7: chmod repo file"
 sudo chmod 644 "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo"

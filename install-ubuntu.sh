@@ -386,6 +386,9 @@ sudo apt install -y coreutils
 echo "Installing cuneiform"
 sudo apt install -y cuneiform
 
+echo "Installing dos2unix"
+sudo apt install -y dos2unix
+
 echo "Installing exfat-fuse"
 sudo apt install -y exfat-fuse
 
