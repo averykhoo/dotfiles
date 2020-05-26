@@ -128,9 +128,21 @@ function fix-crlf () {
         echo "Usage: $0 <filename or glob pattern>>"
 #        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
 #        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
+
+    # is a file, just process that file
+    elif [[ -f "$1" ]]; then
+        grep --color=never -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
+
+    # is a directory, process everything in that directory
+    elif [[ -d "$1" ]]; then
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
+
+    # is a pattern i guess
     else
-        grep --color=never -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r/\\\n/g'
+        grep --color=never -r -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -r -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r/\\\n/g'
     fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
