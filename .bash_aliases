@@ -124,15 +124,16 @@ alias weather="curl v2.wttr.in/singapore"
 
 # shitty dos2unix
 if [[ -x "$(command -v grep)" ]] && [[ -x "$(command -v xargs)" ]] && [[ -x "$(command -v sed)" ]]; then
-function fix-crlf () {
-    if [[ $# -eq 0 ]]; then
-        grep -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
-        grep -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
-    else
-        grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
-        grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
-    fi
-}
+    function fix-crlf () {
+        if [[ $# -eq 0 ]]; then
+            grep -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
+            grep -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
+        else
+            grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
+            grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
+        fi
+    }
+fi
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fix-crlf
 
 # Create a data URL from a file
