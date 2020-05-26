@@ -75,7 +75,7 @@ alias cd..="cd .."
 alias cd-="cd -"
 
 # stupid enterprise firewall
-#[[ -x "$(command -v apt)" ]] && alias apt="apt --allow-unauthenticated"
+[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated"
 [[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
