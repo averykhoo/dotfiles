@@ -82,6 +82,8 @@ alias cd-="cd -"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
 export GIT_SSL_NO_VERIFY=true
 
+
+
 # lazy cd (alternatively turn on shopt autocd)
 alias ..="cd .."
 alias ...="cd ../.."
@@ -120,8 +122,22 @@ fi
 # weather (requires internet)
 alias weather="curl v2.wttr.in/singapore"
 
+# shitty dos2unix
+if [[ ! -x "$(command -v dos2unix)" ]]; then
+    if [[ -x "$(command -v grep)" ]] && [[ -x "$(command -v xargs)" ]] && [[ -x "$(command -v sed)" ]]; then
+    function dos2unix () {
+        if [[ $# -eq 0 ]]; then
+            grep -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
+            grep -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
+        else
+            grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
+            grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
+        fi
+    }
+fi
+
 # Create a data URL from a file
-function dataurl() {
+function dataurl () {
 	local mimeType=$(file -b --mime-type "$1");
 	if [[ ${mimeType} == text/* ]]; then
 		mimeType="${mimeType};charset=utf-8";
