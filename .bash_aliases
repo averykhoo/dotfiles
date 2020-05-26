@@ -132,12 +132,13 @@ function fix-crlf () {
     # is a file, just process that file
     elif [[ -f "$1" ]]; then
         echo "Fixing: $1"
-        grep --color=never -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
+        sed -i $'s/\\\r$//g' "$1"
+        sed -i $'s/\\\r/\\\n/g' "$1"
 
     # is a directory, process everything in that directory
     elif [[ -d "$1" ]]; then
         echo "Fixing (recursive): $1"
+        # only run sed if it actually contains \r, if not then don't waste time
         grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
         grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
 
