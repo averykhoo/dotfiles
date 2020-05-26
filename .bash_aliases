@@ -127,7 +127,7 @@ function fix-crlf () {
 
     # no args given
     if [[ $# -eq 0 ]]; then
-        echo "Usage: $0 <filename or glob pattern>>"
+        echo "Usage: $0 <filename or directory>>"
 
     # is a file, just process that file
     elif [[ -f "$1" ]]; then
