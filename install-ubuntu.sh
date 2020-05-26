@@ -458,6 +458,9 @@ sudo apt install -y iotop
 echo "Installing jid"
 sudo apt install -y jid
 
+echo "Installing less"
+sudo apt install -y less
+
 echo "Installing locate, updatedb (and findutils)"
 sudo apt install -y mlocate
 

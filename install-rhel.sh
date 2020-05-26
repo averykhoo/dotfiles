@@ -473,6 +473,9 @@ sudo yum install -y iotop
 #echo "Installing jid"
 #sudo yum install -y jid
 
+echo "Installing less"
+sudo yum install -y less
+
 echo "Installing locate, updatedb (and findutils)"
 sudo yum install -y findutils
 sudo yum install -y mlocate
