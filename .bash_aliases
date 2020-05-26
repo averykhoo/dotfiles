@@ -129,8 +129,8 @@ function fix-crlf () {
 #        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
 #        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
     else
-        grep --color=never -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
+        grep --color=never -I -l --include="$1" $'\r' | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -I -l --include="$1" $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
     fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
