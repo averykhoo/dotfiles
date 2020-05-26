@@ -144,8 +144,8 @@ function fix-crlf () {
     # is a directory, process everything in that directory
     elif [[ -d "$1" ]]; then
         echo "Fixing (recursive): $1"
-        grep --color=never -r -I -l $'\r' "$1" | xargs --verbose sed -i $'s/\\\r$//g'
-        grep --color=never -r -I -l $'\r' "$1" | xargs --verbose sed -i $'s/\\\r/\\\n/g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
         return $?
 
     # is a pattern i guess
