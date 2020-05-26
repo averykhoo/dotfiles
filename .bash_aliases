@@ -127,7 +127,7 @@ function fix-crlf () {
 
     # no args given
     if [[ $# -eq 0 ]]; then
-        echo "Usage: $0 <filename or directory>>"
+        echo "Usage: $0 <filename or directory>"
         return 0
 
     # is a file, just process that file
