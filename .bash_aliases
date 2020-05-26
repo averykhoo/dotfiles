@@ -131,10 +131,10 @@ function fix-crlf () {
 
     # is a file, just process that file
     elif [[ -f "$1" ]]; then
-        if grep -I -l $'\r' "$1"; then
+        if grep -q -I -l $'\r' "$1"; then
             echo "Fixing: $1"
             sed -i $'s/\\\r$//g' "$1"
-            grep -I -l $'\r' "$1" && sed -i $'s/\\\r/\\\n/g' "$1"
+            grep -q -I -l $'\r' "$1" && sed -i $'s/\\\r/\\\n/g' "$1"
         else
             echo "Nothing to fix (or binary file): $1"
         fi
