@@ -125,8 +125,9 @@ alias weather="curl v2.wttr.in/singapore"
 # shitty dos2unix
 function fix-crlf () {
     if [[ $# -eq 0 ]]; then
-        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
+        echo "Usage: $0 <filename or glob pattern>>"
+#        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
+#        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
     else
         grep --color=never -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
         grep --color=never -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
