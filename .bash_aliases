@@ -125,11 +125,11 @@ alias weather="curl v2.wttr.in/singapore"
 # shitty dos2unix
 function fix-crlf () {
     if [[ $# -eq 0 ]]; then
-        grep -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
-        grep -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
+        grep -r -I -l $'\r' | xargs --verbose sed -i $'s/\\\r$//g'
+        grep -r -I -l $'\r' | xargs --verbose sed -i $'s/\\\r/\\\n/g'
     else
-        grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r$//g'
-        grep -I -l $'\r'  $1 | xargs sed -i $'s/\\\r/\\\n/g'
+        grep -I -l $'\r'  $1 | xargs --verbose sed -i $'s/\\\r$//g'
+        grep -I -l $'\r'  $1 | xargs --verbose sed -i $'s/\\\r/\\\n/g'
     fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
