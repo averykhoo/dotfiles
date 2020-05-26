@@ -124,10 +124,10 @@ alias weather="curl v2.wttr.in/singapore"
 
 # shitty dos2unix
 function fix-crlf () {
+
+    # no args given
     if [[ $# -eq 0 ]]; then
         echo "Usage: $0 <filename or glob pattern>>"
-#        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
-#        grep --color=never -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
 
     # is a file, just process that file
     elif [[ -f "$1" ]]; then
@@ -141,8 +141,7 @@ function fix-crlf () {
 
     # is a pattern i guess
     else
-        grep --color=never -r -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -r -I -l --include="$1" $'\r' . | xargs sed -i $'s/\\\r/\\\n/g'
+        echo "Error: $1 does not exist"
     fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
