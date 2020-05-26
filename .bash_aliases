@@ -123,7 +123,7 @@ fi
 alias weather="curl v2.wttr.in/singapore"
 
 # shitty dos2unix
-function fixcrlf () {
+function fix-crlf () {
     if [[ $# -eq 0 ]]; then
         grep -r -I -l $'\r' | xargs sed -i $'s/\\\r$//g'
         grep -r -I -l $'\r' | xargs sed -i $'s/\\\r/\\\n/g'
