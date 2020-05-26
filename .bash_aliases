@@ -135,15 +135,18 @@ function fix-crlf () {
             echo "Fixing: $1"
             sed -i $'s/\\\r$//g' "$1"
             grep -q -I -l $'\r' "$1" && sed -i $'s/\\\r/\\\n/g' "$1"
+            return 0
         else
             echo "Nothing to fix (or binary file): $1"
+            return 1
         fi
 
     # is a directory, process everything in that directory
     elif [[ -d "$1" ]]; then
         echo "Fixing (recursive): $1"
-        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
-        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs --verbose sed -i $'s/\\\r$//g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs --verbose sed -i $'s/\\\r/\\\n/g'
+        return $?
 
     # is a pattern i guess
     else
