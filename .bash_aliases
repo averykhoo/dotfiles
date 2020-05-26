@@ -128,6 +128,7 @@ function fix-crlf () {
     # no args given
     if [[ $# -eq 0 ]]; then
         echo "Usage: $0 <filename or directory>>"
+        return 0
 
     # is a file, just process that file
     elif [[ -f "$1" ]]; then
@@ -151,6 +152,7 @@ function fix-crlf () {
     # is a pattern i guess
     else
         echo "Error: $1 does not exist"
+        return 2
     fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
