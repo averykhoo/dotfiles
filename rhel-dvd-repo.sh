@@ -27,6 +27,11 @@ if [[ ! $(uname -r) = *el8* ]]; then
     exit 1
 fi
 
+# does repo file exist?
+if [[ -f "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo" ]]; then
+    echo "WARNING: repo file exists, will be overwritten" >> /dev/stderr
+fi
+
 # is mount point occupied?
 if [[ -d "${ISO_MOUNT_PATH}" ]] && [[ $(ls -A "${ISO_MOUNT_PATH}") ]]; then
     echo "ERROR: mount point (${ISO_MOUNT_PATH}) is already in use" >> /dev/stderr
@@ -37,11 +42,6 @@ fi
 if [[ -d "${ISO_TARGET_PATH}" ]] && [[ $(ls -A "${ISO_TARGET_PATH}") ]]; then
     echo "ERROR: target folder (${ISO_TARGET_PATH}) is already in use" >> /dev/stderr
     exit 1
-fi
-
-# does repo file exist?
-if [[ -f "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo" ]]; then
-    echo "WARNING: repo file exists, will be overwritten" >> /dev/stderr
 fi
 
 # create mount point
