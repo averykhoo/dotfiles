@@ -5,6 +5,7 @@
 DOTFILES_DIR=~/dotfiles
 BACKUP_DIR=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
 if ! [[ -d ${DOTFILES_DIR} ]]; then
+    echo "cloning dotfiles repo from github..."
     git clone --depth 1 https://github.com/averykhoo/dotfiles.git ${DOTFILES_DIR}
 fi
 
@@ -21,9 +22,13 @@ do
     elif ! cmp --silent "${file}" "${DOTFILES_DIR}/${file}"; then
         if [[ -e "${file}" ]]; then
             mkdir -p ${BACKUP_DIR}
+            echo "backing up existing ${file}"
             mv "${file}" "${BACKUP_DIR}/${file}"
         fi
         ln -s "${DOTFILES_DIR}/${file}" "${file}"
+
+    else
+        echo "${file} is equivalent to the current version"
 
     fi
 done
