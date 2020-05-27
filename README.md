@@ -27,7 +27,6 @@ dotfiles
 #   todo
 *   is x forwarding enabled
 *   maybe symlink the xstartup instead of copying it?
-*   make separate install scripts for ubuntu desktop, ubuntu server, rhel server
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 
@@ -64,17 +63,6 @@ git config --global http.sslVerify false
 ```
 
 #   more things you might want to install
-*   lesspipe
-    *   https://superuser.com/questions/117841/when-reading-a-file-with-less-or-more-how-can-i-get-the-content-in-colors/337640#337640
-    *   https://github.com/suriya/dot-files/blob/master/lessfilter
-    *   https://github.com/wofr06/lesspipe
-        *   lynx
-        *   LibreOffice
-        *   pdftotext
-        *   mediainfo
-        *   exiftool
-        *   brotli
-        *   lzma
 *   anaconda3
     *   conda and pip packages
     *   add to path?
@@ -86,22 +74,15 @@ git config --global http.sslVerify false
 *   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins
-*   [wormhole](https://github.com/warner/magic-wormhole)
 *   zenmap
-*   treeview vs tree?
 *   [VS Code](https://code.visualstudio.com/docs/setup/linux) `snap install code`
 *   smbclient
 *   partitionmanager
-*   ntp
-*   fonts-twemoji-svginot
 *   catdoc xlhtml ppthtml
-*   system-config-lvm
-
-
 
 
 #   notes
-*   `git update-index --chmod=+x install.sh`
+*   `git update-index --chmod=+x something.sh`
 *   [cockpit](https://cockpit-project.org/) will be on port 9090
 *   nanorc
     *   from [scopatz/nanorc](https://github.com/scopatz/nanorc)
