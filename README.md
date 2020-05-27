@@ -83,6 +83,7 @@ git config --global http.sslVerify false
 *   [wormhole](https://github.com/warner/magic-wormhole)
 *   zenmap
 *   treeview vs tree?
+*   [VS Code](https://code.visualstudio.com/docs/setup/linux) `snap install code`
 *   smbclient
 *   partitionmanager
 *   ntp

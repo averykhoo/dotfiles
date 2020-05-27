@@ -24,6 +24,7 @@ do
             mv "${file}" "${BACKUP_DIR}/${file}"
         fi
         ln -s "${DOTFILES_DIR}/${file}" "${file}"
+        chmod +x "${DOTFILES_DIR}/${file}"
 
     fi
 done
