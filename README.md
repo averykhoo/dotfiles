@@ -13,7 +13,11 @@ dotfiles
 *   `sudo subscription-manager register`
 *   `sudo subscription-manager attach`
 *   `sudo yum install -y git`
-
+*   to set up local repo from the RHEL 8 DVD
+    *   you will need at least 8.5GB of space for this, and another temporary 8.5GB for the iso
+    *   copy in the iso as `rhel-8.2-x86_64-dvd.iso`, and run the `rhel-dvd-repo.sh` from that directory
+    *   alternatively if you don't have an extra 8.5GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
+     
 ##  XFCE
 *   `sudo yum group install -y xfce`
 *   `sudo apt install -y xfce4 xfce4-goodies`
