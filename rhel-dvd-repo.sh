@@ -39,6 +39,11 @@ if [[ -d "${ISO_TARGET_PATH}" ]] && [[ $(ls -A "${ISO_TARGET_PATH}") ]]; then
     exit 1
 fi
 
+# does repo file exist?
+if [[ -f "/etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo" ]]; then
+    echo "WARNING: repo file exists, will be overwritten" >> /dev/stderr
+fi
+
 # create mount point
 echo "step 1/7: create mount point at [${ISO_MOUNT_PATH}]"
 sudo mkdir --parents "${ISO_MOUNT_PATH}"
