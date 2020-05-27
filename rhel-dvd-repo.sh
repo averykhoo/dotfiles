@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# https://developers.redhat.com/download-manager/file/rhel-8.2-x86_64-dvd.iso
 ISO_FILE_BASENAME="rhel-8.2-x86_64-dvd"
 ISO_SHA256_CHECKSUM=7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86
 

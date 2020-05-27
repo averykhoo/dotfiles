@@ -18,6 +18,7 @@ dotfiles
     *   copy in the iso as `rhel-8.2-x86_64-dvd.iso`, and run the `rhel-dvd-repo.sh` from that directory
     *   alternatively if you don't have an extra 8.5GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
     *   any other version of RHEL -> update the sha256 and .repo file accordingly
+        *   actual download path contains the sha256, e.g. `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
      
 ##  XFCE
 *   `sudo yum group install -y xfce`
