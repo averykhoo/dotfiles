@@ -6,6 +6,7 @@ ISO_SHA256_CHECKSUM=7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf
 # remove spaces
 ISO_FILE_SAFENAME=${ISO_FILE_BASENAME// /-}
 ISO_MOUNT_PATH="/mnt/${ISO_FILE_SAFENAME}"
+ISO_TARGET_PATH="/home/${ISO_FILE_SAFENAME}"
 
 # we need sudo permissions
 sudo echo "setting up repo using RHEL installation media (./${ISO_FILE_SAFENAME}.iso or /dev/sr0)"
@@ -23,6 +24,18 @@ fi
 # are we running RHEL 8?
 if [[ ! $(uname -r) = *el8* ]]; then
     echo "ERROR: output of uname doesn't look like RHEL 8" >> /dev/stderr
+    exit 1
+fi
+
+# is mount point occupied?
+if [[ -d "${ISO_MOUNT_PATH}" ]] && [[ $(ls -A "${ISO_MOUNT_PATH}") ]]; then
+    echo "ERROR: mount point (${ISO_MOUNT_PATH}) is already in use" >> /dev/stderr
+    exit 1
+fi
+
+# is target folder occupied?
+if [[ -d "${ISO_TARGET_PATH}" ]] && [[ $(ls -A "${ISO_TARGET_PATH}") ]]; then
+    echo "ERROR: target folder (${ISO_TARGET_PATH}) is already in use" >> /dev/stderr
     exit 1
 fi
 
@@ -96,14 +109,14 @@ echo "step 5/7: create repo file"
 sudo tee /etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo << EOF
 [dvd-BaseOS]
 name=DVD for RHEL8 - BaseOS
-baseurl=file:///home/${ISO_FILE_SAFENAME}/BaseOS
+baseurl=file://${ISO_TARGET_PATH}/BaseOS
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 [dvd-AppStream]
 name=DVD for RHEL8 - AppStream
-baseurl=file:///home/${ISO_FILE_SAFENAME}/AppStream
+baseurl=file://${ISO_TARGET_PATH}/AppStream
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
