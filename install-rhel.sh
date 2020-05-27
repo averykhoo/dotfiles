@@ -4,6 +4,12 @@
 
 sudo echo "installing all the things"
 
+# is yum available?
+if [[ ! -x "$(command -v yum)" ]]; then
+    echo "ERROR: yum not found, wrong os?" >> /dev/stderr
+    exit 1
+fi
+
 # add extended repo for more packages
 
 sudo echo "adding epel repo"

@@ -4,6 +4,12 @@
 
 sudo echo "installing all the things"
 
+# is apt available?
+if [[ ! -x "$(command -v apt)" ]]; then
+    echo "ERROR: apt not found, wrong os?" >> /dev/stderr
+    exit 1
+fi
+
 # cleanup MOTD
 
 sudo mkdir /etc/update-motd.d.bak/
