@@ -49,7 +49,7 @@ fi
 
 # does iso exist at expected path?
 echo "step 2/7: mount RHEL installation media"
-if [[ -f "${ISO_FILE_SAFENAME}.iso" ]]; then
+if [[ ! -f "${ISO_FILE_SAFENAME}.iso" ]]; then
     ISO_SHA256_CHECKSUM=0
 fi
 
