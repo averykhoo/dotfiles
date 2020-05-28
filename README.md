@@ -28,6 +28,7 @@ dotfiles
 *   maybe symlink the xstartup instead of copying it?
 *   tesseract scripts and language files
 *   firefox / chrome extensions
+*   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
 
 #   other code references
 
