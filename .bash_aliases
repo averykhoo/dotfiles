@@ -153,7 +153,7 @@ function fix-crlf () {
         return 2
     fi
 }
-[[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix fixcrlf
+[[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix="fix-crlf"
 
 # Create a data URL from a file
 function dataurl () {
