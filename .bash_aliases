@@ -45,7 +45,7 @@ if [[ -x "$(command -v exa)" ]]; then
     alias ll="exa -abghl --color-scale --git --group-directories-first"
     alias tree="exa -abghl --tree"
 else
-    alias ll="ls -GlAh"
+    alias ll="ls -lAh"
     alias tree="tree -L 1 --dirsfirst -shugp"
 fi
 
