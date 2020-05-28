@@ -26,13 +26,14 @@ alias less="less -R"
 if [[ -x /usr/bin/dircolors ]]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    alias grep='grep --color=always'
-    alias rg='rg --color=always'
-    alias ls='ls --color=always'
-    alias egrep='egrep --color=always'
-    alias fgrep='fgrep --color=always'
-    alias dir='dir --color=always'
-    #alias vdir='vdir --color=auto'
+    [[ -x "$(command -v grep)" ]]  && alias grep='grep --color=auto'
+    [[ -x "$(command -v rg)" ]]    && alias rg='rg --color=auto'
+    [[ -x "$(command -v ls)" ]]    && alias ls='ls --color=auto'
+    [[ -x "$(command -v egrep)" ]] && alias egrep='egrep --color=auto'
+    [[ -x "$(command -v fgrep)" ]] && alias fgrep='fgrep --color=auto'
+    [[ -x "$(command -v dir)" ]]   && alias dir='dir --color=auto'
+    [[ -x "$(command -v vdir)" ]]  && alias vdir='vdir --color=auto'
+    [[ -x "$(command -v fd)" ]]    && alias find="fd --color=auto"
 fi
 
 # delete to trash
@@ -41,18 +42,15 @@ alias del="mv -t ~/.Trash/"
 
 # use exa
 if [[ -x "$(command -v exa)" ]]; then
-    alias ll="exa -abghl"
+    alias ll="exa -abghl --color-scale --git --group-directories-first"
     alias tree="exa -abghl --tree"
 else
-    alias ll="ls -Glah"
+    alias ll="ls -GlAh"
     alias tree="tree -L 1 --dirsfirst -shugp"
 fi
 
 # ping -> prettyping
 [[ -x "$(command -v prettyping)" ]] && alias ping="prettyping"
-
-# find -> fd
-[[ -x "$(command -v fd)" ]] && alias find="fd --color=always"
 
 # df -> pydf
 [[ -x "$(command -v pydf)" ]] && alias df="pydf"
