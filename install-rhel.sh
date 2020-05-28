@@ -556,7 +556,7 @@ echo "Installing redhat-lsb-core"
 sudo yum install -y redhat-lsb-core
 
 echo "Installing samba"
-sudo yum install -y samba
+sudo yum install -y samba samba-client
 
 echo "Installing screen"
 sudo yum install -y screen

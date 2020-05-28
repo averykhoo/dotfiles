@@ -537,7 +537,7 @@ echo "Installing ranger"
 sudo apt install -y ranger
 
 echo "Installing samba"
-sudo apt install -y samba
+sudo apt install -y samba smbclient
 
 echo "Installing screen"
 sudo apt install -y screen
