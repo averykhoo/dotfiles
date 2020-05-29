@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # https://linuxconfig.org/install-samba-on-redhat-8
+# https://websiteforstudents.com/create-public-samba-share-ubuntu-17-04-17-10/
 
 
 SHARE_PATH="/share"
@@ -35,8 +36,10 @@ sudo tee -a /etc/samba/smb.conf << EOF
     writable = yes
     create mask = 0666
     directory mask = 0777
-    guest ok = yes
     security = share
+    guest ok = yes
+#    guest only = yes
+#    force user = nobody
 
 EOF
 
