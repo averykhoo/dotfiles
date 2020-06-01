@@ -473,6 +473,9 @@ sudo apt install -y mlocate
 echo "Installing lnav"
 sudo apt install -y lnav
 
+echo "Installing lsof"
+sudo apt install -y lsof
+
 echo "Installing masscan"
 sudo apt install -y masscan
 

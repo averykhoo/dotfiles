@@ -489,6 +489,9 @@ sudo yum install -y mlocate
 #echo "Installing lnav"
 #sudo yum install -y lnav
 
+echo "Installing lsof"
+sudo yum install -y lsof
+
 echo "Installing masscan"
 sudo yum install -y masscan
 
