@@ -541,6 +541,8 @@ sudo apt install -y ranger
 
 echo "Installing samba"
 sudo apt install -y samba smbclient
+sudo systemctl enable --now smbd
+sudo systemctl enable --now nmbd
 
 echo "Installing screen"
 sudo apt install -y screen

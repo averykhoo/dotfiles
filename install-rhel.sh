@@ -560,6 +560,8 @@ sudo yum install -y redhat-lsb-core
 
 echo "Installing samba"
 sudo yum install -y samba samba-client
+sudo systemctl enable --now smb
+sudo systemctl enable --now nmb
 
 echo "Installing screen"
 sudo yum install -y screen

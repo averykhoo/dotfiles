@@ -29,8 +29,22 @@ dotfiles
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 *   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
+*   `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"` to get the dir path of a bash script
+* 
 
 #   other code references
+
+```bash
+# get parent directory abspath for a bash script, resolving symlinks recursively
+# https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+```
 
 ```bash
 # Jupyter password
