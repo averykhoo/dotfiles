@@ -533,6 +533,9 @@ sudo apt install -y poppler-utils
 echo "Installing prettyping"
 sudo apt install -y prettyping
 
+echo "Installing psmisc"
+sudo apt install -y psmisc
+
 echo "Installing pv"
 sudo apt install -y pv
 

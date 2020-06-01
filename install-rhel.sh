@@ -549,6 +549,9 @@ sudo yum install -y poppler-utils
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
 
+echo "Installing psmisc"
+sudo yum install -y psmisc
+
 echo "Installing pv"
 sudo yum install -y pv
 
