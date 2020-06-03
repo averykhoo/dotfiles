@@ -144,17 +144,17 @@ sudo yum install -y git git-lfs
 echo "Installing jq"
 sudo yum install -y jq
 
-echo "Installing pip3"
-sudo yum install -y python3-pip
-
-echo "Installing snap"
-sudo yum install -y snapd
-sudo systemctl enable --now snapd
+#echo "Installing snap"
+#sudo yum install -y snapd
+#sudo systemctl enable --now snapd
 
 echo "Installing wget"
 sudo yum install -y wget
 
 # pip installs
+
+echo "Installing pip3"
+sudo yum install -y python3-pip
 
 echo "Installing ad"
 pip3 install --user advance-touch

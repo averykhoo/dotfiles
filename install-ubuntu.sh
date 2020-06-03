@@ -144,12 +144,9 @@ sudo apt install -y git git-lfs
 echo "Installing jq"
 sudo apt install -y jq
 
-echo "Installing pip3"
-sudo apt install -y python3-pip
-
-echo "Installing snap"
-sudo apt install -y snapd
-sudo systemctl enable --now snapd
+#echo "Installing snap"
+#sudo apt install -y snapd
+#sudo systemctl enable --now snapd
 
 echo "Installing software-properties-common"
 sudo apt install -y software-properties-common
@@ -158,6 +155,9 @@ echo "Installing wget"
 sudo apt install -y wget
 
 # pip installs
+
+echo "Installing pip3"
+sudo apt install -y python3-pip
 
 echo "Installing ad"
 pip3 install --user advance-touch
