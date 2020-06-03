@@ -120,7 +120,7 @@ if [[ -f /usr/share/autojump/autojump.sh ]]; then
 fi
 
 # enable powerline (assuming it was installed via pip3)
-if [[ -x "$(command -v pip3)" ]]; then
+if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
 
     # only enable if we're not in the cockpit web shell
     if [[ ! $XDG_SESSION_TYPE == "web" ]]; then
