@@ -157,4 +157,3 @@ env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
 
 # uncomment this if offline
 # export TLDR_EXPIRY=9999
-

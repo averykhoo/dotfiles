@@ -98,8 +98,13 @@ git config --global http.sslVerify false
 #   notes
 *   `git update-index --chmod=+x something.sh`
 *   [cockpit](https://cockpit-project.org/) will be on port 9090
-*   nanorc
-    *   from [scopatz/nanorc](https://github.com/scopatz/nanorc)
-    *   slightly modified (added all existing `*.nanorc` files, some were missing in provided nanorc)
-    *   might need to rename `normal` to `white` in all `.nano/*.nanorc` for older versions of nano
-    *   also `set afterends` only works on fairly new versions of nano
+*   nanorc from [scopatz/nanorc](https://github.com/scopatz/nanorc)
+    *   for legacy nano versions, use the legacy nanorc and nano dir
+        *   `cd ~`
+        *   `rm .nanorc`
+        *   `rm .nano`
+        *   `ln -s dotfiles/.nanorc-legacy .nanorc`
+        *   `ln -s dotfiles/.nano-legacy .nano`
+*   tldr tries very hard to stay updated, if you're offline then disable this
+    *   in bashrc, uncomment line 159: `export TLDR_EXPIRY=9999`
+*   exa requires glibc 2.18, in rhel 7, don't use this
