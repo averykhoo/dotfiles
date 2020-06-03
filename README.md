@@ -50,6 +50,9 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # Jupyter password
 jupyter notebook --generate-config
 jupyter notebook password
+
+# no ssl
+conda config --set ssl_verify false
 ```
 
 ```bash
@@ -74,6 +77,7 @@ sudo yum group install -y xfce
 ```bash
 # ignore ssl errors in git
 git config --global http.sslVerify false
+export GIT_SSL_NO_VERIFY=true
 ```
 
 #   more things you might want to install
