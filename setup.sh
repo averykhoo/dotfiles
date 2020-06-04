@@ -38,9 +38,9 @@ if [[ -x "$(command -v yum)" ]]; then
     if [[ ! $(uname -r) = *el8* ]]; then
         echo "using legacy settings for nano"
         rm ".nanorc"
-        ln "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
+        ln -s "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
         rm ".nano"
-        ln "${DOTFILES_DIR}/.nano-legacy" ".nano"
+        ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
     fi
 fi
 
