@@ -11,16 +11,17 @@ if [[ ! -x "$(command -v yum)" ]]; then
 fi
 
 # add extended repo for more packages
-
-sudo echo "adding epel repo"
-if [[ $(rpm -qa) != *epel-release* ]]; then
-    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-    ARCH=$( /bin/arch )
-    sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
-    unset ARCH
-#    sudo dnf config-manager --set-enabled PowerTools
-else
-    echo 'already added'
+if [[ $(uname -r) = *el8* ]]; then
+    sudo echo "adding EPEL 8 repo"
+    if [[ $(rpm -qa) != *epel-release* ]]; then
+        sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        ARCH=$( /bin/arch )
+        sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
+        unset ARCH
+    #    sudo dnf config-manager --set-enabled PowerTools
+    else
+        echo 'already added'
+    fi
 fi
 
 # fix timezone
@@ -94,9 +95,14 @@ sudo chmod +x ~/.local/bin/batman
 sudo chmod +x ~/.local/bin/batwatch
 sudo chmod +x ~/.local/bin/prettybat
 
-echo "Installing exa"
-cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
-sudo chmod +x ~/.local/bin/exa
+if [[ $(uname -r) = *el7* ]]; then
+    echo "Skipping exa on RHEL 7"
+else
+    echo "Installing exa"
+    cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+    sudo chmod +x ~/.local/bin/exa
+fi
+
 
 echo "Increase inotify watch limit for pycharm"
 sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf

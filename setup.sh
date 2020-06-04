@@ -34,14 +34,12 @@ do
 done
 
 # special case for rhel 7 because nano is super old
-if [[ -x "$(command -v yum)" ]]; then
-    if [[ $(uname -r) = *el7* ]]; then
-        echo "using legacy settings for nano"
-        rm ".nanorc"
-        ln -s "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
-        rm ".nano"
-        ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
-    fi
+if [[ -x "$(command -v yum)" ]] && [[ $(uname -r) = *el7* ]]; then
+    echo "using legacy settings for nano"
+    rm ".nanorc"
+    ln -s "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
+    rm ".nano"
+    ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
 fi
 
 source ~/.bashrc
