@@ -79,6 +79,10 @@ echo "Installing '$' ignorer"
 cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
+echo "Installing backup.sh"
+cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
+sudo chmod +x ~/.local/bin/bak
+
 echo "Installing bat-extras"
 cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
 cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
