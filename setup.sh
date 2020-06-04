@@ -44,8 +44,4 @@ if [[ -x "$(command -v yum)" ]]; then
     fi
 fi
 
-# cleanup
-unset FILENAMES
-unset DOTFILES_DIR
-
 source ~/.bashrc
