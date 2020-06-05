@@ -350,15 +350,15 @@ fi
 
 echo "Installing hyperfine"
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    if ls hyperfine_*_amd64.deb 1> /dev/null 2>&1; then
+    if ls hyperfine-musl_*_amd64.deb 1> /dev/null 2>&1; then
         echo "found installer"
     else
         curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
+         | jq -r '.assets[] | select(.name|test("hyperfine-musl_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
     fi
-    sudo gdebi --non-interactive hyperfine_*_amd64.deb
-    rm hyperfine_*_amd64.deb
+    sudo gdebi --non-interactive hyperfine-musl_*_amd64.deb
+    rm hyperfine-musl_*_amd64.deb
 else
     echo "already installed"
 fi
