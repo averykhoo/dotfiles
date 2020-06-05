@@ -243,7 +243,9 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    if [[ ! -f browsh_.*_linux_amd64.rpm ]]; then
+    if ls browsh_.*_linux_amd64.rpm 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
          | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
          | wget -i -
@@ -256,7 +258,9 @@ fi
 
 echo "Installing bat"
 if [[ ! -x "$(command -v bat)" ]]; then
-    if [[ ! -f bat-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls bat-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
          | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -273,7 +277,9 @@ fi
 
 echo "Installing chrome"
 if [[ ! -x "$(command -v google-chrome)" ]]; then
-    if [[ ! -f google-chrome-stable_current_x86_64.rpm ]]; then
+    if ls google-chrome-stable_current_x86_64.rpm 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     fi
     sudo yum install -y google-chrome-stable_current_x86_64.rpm
@@ -284,7 +290,9 @@ fi
 
 echo "Installing delta"
 if [[ ! -x "$(command -v delta)" ]]; then
-    if [[ ! -f delta-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls delta-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
          | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -300,7 +308,9 @@ fi
 
 echo "Installing fd"
 if [[ ! -x "$(command -v fd)" ]]; then
-    if [[ ! -f fd-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls fd-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
          | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -325,7 +335,9 @@ fi
 
 echo "Installing hexyl"
 if [[ ! -x "$(command -v hexyl)" ]]; then
-    if [[ ! -f hexyl-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls hexyl-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
          | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -341,7 +353,9 @@ fi
 
 echo "Installing hyperfine"
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    if [[ ! -f hyperfine-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls hyperfine-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
          | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -388,7 +402,9 @@ fi
 
 echo "Installing ripgrep"
 if [[ ! -x "$(command -v rg)" ]]; then
-    if [[ ! -f ripgrep-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+    if ls ripgrep-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
          | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
          | wget -i -
@@ -405,7 +421,9 @@ fi
 
 #echo "Installing snowflake (renamed to muon)"
 #if [[ ! -x "$(command -v snowflake)" ]]; then
-#    if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
+#    if ls snowflake-*-setup-amd64.deb 1> /dev/null 2>&1; then
+#        echo "found installer"
+#    else
 #        curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
 #         | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
 #         | wget -i -

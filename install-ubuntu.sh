@@ -251,7 +251,9 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    if [[ ! -f browsh_*_linux_amd64.deb ]]; then
+    if ls browsh_*_linux_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
          | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -264,7 +266,9 @@ fi
 
 echo "Installing bat"
 if [[ ! -x "$(command -v bat)" ]]; then
-    if [[ ! -f bat-musl_*_amd64.deb ]]; then
+    if ls bat-musl_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
          | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -277,7 +281,9 @@ fi
 
 echo "Installing chrome"
 if [[ ! -x "$(command -v google-chrome)" ]]; then
-    if [[ ! -f google-chrome-stable_current_amd64.deb ]]; then
+    if ls google-chrome-stable_current_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     fi
     sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
@@ -288,7 +294,9 @@ fi
 
 echo "Installing delta"
 if [[ ! -x "$(command -v delta)" ]]; then
-    if [[ ! -f git-delta-musl_*_amd64.deb ]]; then
+    if ls git-delta-musl_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
          | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -301,7 +309,9 @@ fi
 
 echo "Installing fd"
 if [[ ! -x "$(command -v fd)" ]]; then
-    if [[ ! -f fd-musl_*_amd64.deb ]]; then
+    if ls fd-musl_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
          | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -322,7 +332,9 @@ fi
 
 echo "Installing hexyl"
 if [[ ! -x "$(command -v hexyl)" ]]; then
-    if [[ ! -f hexyl-musl_*_amd64.deb ]]; then
+    if ls hexyl-musl_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
          | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -335,7 +347,9 @@ fi
 
 echo "Installing hyperfine"
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    if [[ ! -f hyperfine_*_amd64.deb ]]; then
+    if ls hyperfine_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
          | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
@@ -379,7 +393,9 @@ fi
 
 echo "Installing ripgrep"
 if [[ ! -x "$(command -v rg)" ]]; then
-    if [[ ! -f ripgrep_*_amd64.deb ]]; then
+    if ls ripgrep_*_amd64.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
         curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
          | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
          | wget -i -
