@@ -167,47 +167,47 @@ echo "Installing pip3"
 sudo yum install -y python3-pip
 
 echo "Installing ad"
-pip3 install --user --no-warn-script-location advance-touch
+pip3 install --user advance-touch
 
 echo "Installing csvkit"
-pip3 install --user --no-warn-script-location csvkit
+pip3 install --user csvkit
 
 #echo "Installing glances (and bottle)"
-#pip3 install --user --no-warn-script-location bottle
-#pip3 install --user --no-warn-script-location glances
+#pip3 install --user bottle
+#pip3 install --user glances
 
 echo "Installing html2text"
-pip3 install --user --no-warn-script-location html2text
+pip3 install --user html2text
 
 echo "Installing langid"
-pip3 install --user --no-warn-script-location langid
+pip3 install --user langid
 
 echo "Installing powerline"
-pip3 install --user --no-warn-script-location powerline-status
+pip3 install --user powerline-status
 
 echo "Installing pydf"
-pip3 install --user --no-warn-script-location pydf
+pip3 install --user pydf
 
 echo "Installing pygmentize"
-pip3 install --user --no-warn-script-location pygments
+pip3 install --user pygments
 
 echo "Installing tabulate"
-pip3 install --user --no-warn-script-location tabulate
+pip3 install --user tabulate
 
 echo "Installing trash-cli"
-pip3 install --user --no-warn-script-location trash-cli
+pip3 install --user trash-cli
 
 echo "Installing unidecode"
-pip3 install --user --no-warn-script-location unidecode
+pip3 install --user unidecode
 
 echo "Installing visidata"
-pip3 install --user --no-warn-script-location visidata
+pip3 install --user visidata
 
 echo "Installing wormhole"
-pip3 install --user --no-warn-script-location magic-wormhole
+pip3 install --user magic-wormhole
 
 echo "Installing zxcvbn"
-pip3 install --user --no-warn-script-location zxcvbn
+pip3 install --user zxcvbn
 
 # java
 
