@@ -217,13 +217,15 @@ if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]
     sudo apt update
     sudo mkdir --parents /var/cache/oracle-jdk11-installer-local/
 
-    echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
     # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
     CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
 
     if [[ ! -f jdk-11.0.7_linux-x64_bin.tar.gz ]]; then
+        echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
         # https://www.adobe.com/support/coldfusion/downloads.html
         wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
+    else
+        echo "jdk installer found"
     fi
 
     if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
