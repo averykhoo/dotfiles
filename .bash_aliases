@@ -71,6 +71,7 @@ fi
 alias dc="echo ASSUMING YOU MEAN cd; cd"
 alias cd..="cd .."
 alias cd-="cd -"
+alias sudosu="sudo su"
 
 # stupid enterprise firewall
 [[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated"
