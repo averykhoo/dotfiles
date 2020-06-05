@@ -122,7 +122,7 @@ fi
 # enable powerline (assuming it was installed via pip3)
 if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
 
-    # only enable if we're not in the cockpit web shell
+    # only enable if we're using SSH but not in the cockpit web shell
     if [[ ! -z $XDG_SESSION_TYPE ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
 
         POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
