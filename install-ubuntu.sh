@@ -10,6 +10,9 @@ if [[ ! -x "$(command -v apt)" ]]; then
     exit 1
 fi
 
+# setup locale
+locale-gen en_US.UTF-8
+
 # cleanup MOTD
 
 sudo mkdir /etc/update-motd.d.bak/
