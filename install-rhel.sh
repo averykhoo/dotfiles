@@ -243,7 +243,7 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    if ls browsh_.*_linux_amd64.rpm 1> /dev/null 2>&1; then
+    if ls browsh_*_linux_amd64.rpm 1> /dev/null 2>&1; then
         echo "found installer"
     else
         curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
