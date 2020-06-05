@@ -155,5 +155,5 @@ env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
 # will be printed if your shell has been patched. It will take a little longer
 # to launch a new shell slightly, but for some, this may be worth it.
 
-# uncomment this if offline
-# export TLDR_EXPIRY=9999
+# you can safely comment this if you're online
+export TLDR_EXPIRY=9999
