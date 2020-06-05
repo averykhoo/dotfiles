@@ -248,9 +248,11 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f browsh_*_linux_amd64.deb ]]; then
+        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive browsh_*_linux_amd64.deb
     rm browsh_*_linux_amd64.deb
 else
@@ -259,9 +261,11 @@ fi
 
 echo "Installing bat"
 if [[ ! -x "$(command -v bat)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f bat-musl_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive bat-musl_*_amd64.deb
     rm bat-musl_*_amd64.deb
 else
@@ -270,7 +274,9 @@ fi
 
 echo "Installing chrome"
 if [[ ! -x "$(command -v google-chrome)" ]]; then
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    if [[ ! -f google-chrome-stable_current_amd64.deb ]]; then
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    fi
     sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
     rm google-chrome-stable_current_amd64.deb
 else
@@ -279,9 +285,11 @@ fi
 
 echo "Installing delta"
 if [[ ! -x "$(command -v delta)" ]]; then
-    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f git-delta-musl_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
     rm git-delta-musl_*_amd64.deb
 else
@@ -290,9 +298,11 @@ fi
 
 echo "Installing fd"
 if [[ ! -x "$(command -v fd)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f fd-musl_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("fd-musl_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive fd-musl_*_amd64.deb
     rm fd-musl_*_amd64.deb
 else
@@ -309,9 +319,11 @@ fi
 
 echo "Installing hexyl"
 if [[ ! -x "$(command -v hexyl)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f hexyl-musl_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
     rm hexyl-musl_*_amd64.deb
 else
@@ -320,9 +332,11 @@ fi
 
 echo "Installing hyperfine"
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f hyperfine_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("hyperfine_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive hyperfine_*_amd64.deb
     rm hyperfine_*_amd64.deb
 else
@@ -330,7 +344,7 @@ else
 fi
 
 echo "Installing micro"
-if [[ ! -x "$(command -v micro)" ]]; then
+if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
     mv micro ~/.local/bin/
 else
@@ -339,7 +353,9 @@ fi
 
 echo "Installing powerline font"
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    if [[ ! -f PowerlineSymbols.otf ]]; then
+        wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    fi
     mkdir --parents ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
@@ -349,7 +365,9 @@ fi
 
 echo "Installing powerline fontconfig"
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    if [[ ! -f 10-powerline-symbols.conf ]]; then
+        wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    fi
     mkdir --parents ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
@@ -358,9 +376,11 @@ fi
 
 echo "Installing ripgrep"
 if [[ ! -x "$(command -v rg)" ]]; then
-    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f ripgrep_*_amd64.deb ]]; then
+        curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive ripgrep_*_amd64.deb
     rm ripgrep_*_amd64.deb
 else
@@ -369,9 +389,11 @@ fi
 
 echo "Installing snowflake (renamed to muon)"
 if [[ ! -x "$(command -v snowflake)" ]]; then
-    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
+        curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
     rm snowflake-*-setup-amd64.deb
 else
@@ -381,7 +403,9 @@ fi
 echo "Installing tigervnc server"
 if [[ ! -x "$(command -v vncserver)" ]]; then
     RELEASE="tigervnc-1.10.1.x86_64"
-    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    if [[ ! -f ${RELEASE}.tar.gz ]]; then
+        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    fi
     tar -xvf ${RELEASE}.tar.gz
     rm ${RELEASE}.tar.gz
     sudo cp -R ${RELEASE}/usr/ /

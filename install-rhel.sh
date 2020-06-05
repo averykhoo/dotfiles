@@ -243,9 +243,11 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f browsh_*_linux_amd64.deb ]]; then
+        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
+         | wget -i -
+    fi
     sudo yum install -y browsh_*_linux_amd64.rpm
     rm browsh_*_linux_amd64.rpm
 else
@@ -254,9 +256,11 @@ fi
 
 echo "Installing bat"
 if [[ ! -x "$(command -v bat)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f bat-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./bat-*-x86_64-unknown-linux-musl.tar.gz
     cp ./bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
     sudo chmod +x ~/.local/bin/bat
@@ -269,7 +273,9 @@ fi
 
 echo "Installing chrome"
 if [[ ! -x "$(command -v google-chrome)" ]]; then
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    if [[ ! -f google-chrome-stable_current_x86_64.rpm ]]; then
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    fi
     sudo yum install -y google-chrome-stable_current_x86_64.rpm
     rm google-chrome-stable_current_x86_64.rpm
 else
@@ -278,9 +284,11 @@ fi
 
 echo "Installing delta"
 if [[ ! -x "$(command -v delta)" ]]; then
-    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f delta-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./delta-*-x86_64-unknown-linux-musl.tar.gz
     cp ./delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
     sudo chmod +x ~/.local/bin/delta
@@ -292,9 +300,11 @@ fi
 
 echo "Installing fd"
 if [[ ! -x "$(command -v fd)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f fd-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./fd-*-x86_64-unknown-linux-musl.tar.gz
     cp ./fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
     sudo chmod +x ~/.local/bin/fd
@@ -315,9 +325,11 @@ fi
 
 echo "Installing hexyl"
 if [[ ! -x "$(command -v hexyl)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f hexyl-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./hexyl-*-x86_64-unknown-linux-musl.tar.gz
     cp ./hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
     sudo chmod +x ~/.local/bin/hexyl
@@ -329,9 +341,11 @@ fi
 
 echo "Installing hyperfine"
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+    if [[ ! -f hyperfine-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./hyperfine-*-x86_64-unknown-linux-musl.tar.gz
     cp ./hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
     sudo chmod +x ~/.local/bin/hyperfine
@@ -342,7 +356,7 @@ else
 fi
 
 echo "Installing micro"
-if [[ ! -x "$(command -v micro)" ]]; then
+if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
     mv micro ~/.local/bin/
 else
@@ -351,7 +365,9 @@ fi
 
 echo "Installing powerline font"
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    if [[ ! -f PowerlineSymbols.otf ]]; then
+        wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    fi
     mkdir --parents ~/.local/share/fonts/
     mv PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
@@ -361,7 +377,9 @@ fi
 
 echo "Installing powerline fontconfig"
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    if [[ ! -f 10-powerline-symbols.conf ]]; then
+        wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    fi
     mkdir --parents ~/.config/fontconfig/conf.d/
     mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
@@ -369,10 +387,12 @@ else
 fi
 
 echo "Installing ripgrep"
-if [[ ! -x "$(command -v ripgrep)" ]]; then
-    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
+if [[ ! -x "$(command -v rg)" ]]; then
+    if [[ ! -f ripgrep-*-x86_64-unknown-linux-musl.tar.gz ]]; then
+        curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
+         | wget -i -
+    fi
     tar -xvf ./ripgrep-*-x86_64-unknown-linux-musl.tar.gz
     cp ./ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
     sudo chmod +x ~/.local/bin/rg
@@ -385,9 +405,11 @@ fi
 
 #echo "Installing snowflake (renamed to muon)"
 #if [[ ! -x "$(command -v snowflake)" ]]; then
-#    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
-#     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
-#     | wget -i -
+#    if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
+#        curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
+#         | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
+#         | wget -i -
+#    fi
 ##    sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
 #    rm snowflake-*-setup-amd64.deb
 #else
@@ -397,7 +419,9 @@ fi
 echo "Installing tigervnc server"
 if [[ ! -x "$(command -v vncserver)" ]]; then
     RELEASE="tigervnc-1.10.1.x86_64"
-    wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    if [[ ! -f ${RELEASE}.tar.gz ]]; then
+        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+    fi
     tar -xvf ${RELEASE}.tar.gz
     rm ${RELEASE}.tar.gz
     sudo cp -R ${RELEASE}/usr/ /
