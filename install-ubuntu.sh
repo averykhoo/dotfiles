@@ -13,6 +13,9 @@ fi
 # setup locale
 locale-gen en_US.UTF-8
 
+# update apt
+sudo apt update
+
 # cleanup MOTD
 
 sudo mkdir /etc/update-motd.d.bak/
