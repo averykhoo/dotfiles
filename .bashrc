@@ -123,7 +123,7 @@ fi
 if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
 
     # only enable if we're using SSH but not in the cockpit web shell
-    if [[ ! -z $XDG_SESSION_TYPE ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
+    if [[ ! $TERM == "linux" ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
 
         POWERLINE_ROOT=$(pip3 show powerline-status | grep -oP --color=never "(?<=Location: ).*")/powerline
         if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
