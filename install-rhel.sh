@@ -243,7 +243,7 @@ fi
 
 echo "Installing browsh"
 if [[ ! -x "$(command -v browsh)" ]]; then
-    if [[ ! -f browsh_*_linux_amd64.deb ]]; then
+    if [[ ! -f browsh_.*_linux_amd64.rpm ]]; then
         curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
          | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
          | wget -i -
