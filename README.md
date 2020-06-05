@@ -70,11 +70,6 @@ sudo alternatives --config javac
 ```
 
 ```bash
-# install XFCE on RHEL
-sudo yum group install -y xfce
-```
-
-```bash
 # ignore ssl errors in git
 git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
