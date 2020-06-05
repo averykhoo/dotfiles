@@ -217,8 +217,11 @@ if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]
     echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
     # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
     CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224136098c2670
-    # https://www.adobe.com/support/coldfusion/downloads.html
-    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
+
+    if [[ ! -f jdk-11.0.7_linux-x64_bin.rpm ]]; then
+        # https://www.adobe.com/support/coldfusion/downloads.html
+        wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
+    fi
 
     if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.rpm" | sha256sum --check -; then
         echo "Downloaded and verified sha256 hash, finally actually installing java"
