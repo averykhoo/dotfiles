@@ -148,6 +148,9 @@ elif [[ -x "$(command -v startxfce4)" ]]; then
 else
     echo "no GUI found, copying XFCE-based xstartup"
     cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
+
+    echo "DO YOU WANT TO INSTALL XFCE?"
+    sudo yum group install xfce
 fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
