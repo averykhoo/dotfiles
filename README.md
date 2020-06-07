@@ -86,6 +86,7 @@ export GIT_SSL_NO_VERIFY=true
 *   emacs / vim
 *   etcd
 *   gedit (requires gdm3 and gnome desktop)
+*   gufw (requires gdm3 and gnome desktop)
 *   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins

@@ -573,6 +573,9 @@ sudo yum install -y mc
 echo "Installing mosh"
 sudo yum install -y mosh
 
+echo "Installing mousepad"
+sudo yum install -y mousepad
+
 echo "Installing mtr"
 sudo yum install -y mtr
 

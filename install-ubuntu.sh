@@ -512,8 +512,8 @@ sudo apt install -y glogg
 echo "Installing gparted"
 sudo apt install -y gparted
 
-echo "Installing gufw (and ufw)"
-sudo apt install -y gufw
+#echo "Installing gufw (and ufw)"
+#sudo apt install -y gufw
 
 echo "Installing htop"
 sudo apt install -y htop
@@ -553,6 +553,9 @@ sudo apt install -y mc
 
 echo "Installing mosh"
 sudo apt install -y mosh
+
+echo "Installing mousepad"
+sudo apt install -y mousepad
 
 echo "Installing mtr"
 sudo apt install -y mtr-tiny
