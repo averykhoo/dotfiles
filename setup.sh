@@ -42,4 +42,7 @@ if [[ -x "$(command -v yum)" ]] && [[ $(uname -r) = *el7* ]]; then
     ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
 fi
 
+# setup locale
+[[ -x "$(command -v locale-gen)" ]] && locale-gen en_US.UTF-8
+
 source ~/.bashrc
