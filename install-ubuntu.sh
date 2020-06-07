@@ -444,8 +444,8 @@ sudo apt install -y asciinema
 echo "Installing autojump"
 sudo apt install -y autojump
 
-echo "Installing baobab"
-sudo apt install -y baobab
+#echo "Installing baobab"
+#sudo apt install -y baobab
 
 echo "Installing byobu"
 sudo apt install -y byobu

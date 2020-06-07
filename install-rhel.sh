@@ -462,8 +462,8 @@ sudo yum install -y aria2
 #echo "Installing autojump"
 #sudo yum install -y autojump
 
-echo "Installing baobab"
-sudo yum install -y baobab
+#echo "Installing baobab"
+#sudo yum install -y baobab
 
 echo "Installing byobu"
 sudo yum install -y byobu
