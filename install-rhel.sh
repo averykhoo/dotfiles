@@ -521,8 +521,8 @@ sudo yum install -y firefox
 echo "Installing Noto font"
 sudo yum install -y google-noto-*
 
-echo "Installing gedit (with plugins)"
-sudo yum install -y gedit gedit-plugins
+#echo "Installing gedit (with plugins)"
+#sudo yum install -y gedit gedit-plugins
 
 #echo "Installing glogg"
 #sudo yum install -y glogg
