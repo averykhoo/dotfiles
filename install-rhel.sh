@@ -83,47 +83,60 @@ echo "Installing '$' ignorer"
 cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
-echo "Installing backup.sh"
-cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
-sudo chmod +x ~/.local/bin/bak
-
-echo "Installing bat-extras"
-cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
-cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
-cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
-cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
-cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
-sudo chmod +x ~/.local/bin/batdiff
-sudo chmod +x ~/.local/bin/batgrep
-sudo chmod +x ~/.local/bin/batman
-sudo chmod +x ~/.local/bin/batwatch
-sudo chmod +x ~/.local/bin/prettybat
-
-if [[ $(uname -r) = *el7* ]]; then
-    echo "Skipping exa on RHEL 7"
-else
-    echo "Installing exa"
-    cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
-    sudo chmod +x ~/.local/bin/exa
+if [[ ! -x "$(command -v bak)" ]]; then
+    echo "Installing backup.sh"
+    cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
+    sudo chmod +x ~/.local/bin/bak
 fi
 
 
-echo "Increase inotify watch limit for pycharm"
-sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
-sudo sysctl -p --system
+if [[ ! -x "$(command -v batdiff)" ]]; then
+    echo "Installing bat-extras"
+    cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
+    cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
+    cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
+    cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
+    cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+    sudo chmod +x ~/.local/bin/batdiff
+    sudo chmod +x ~/.local/bin/batgrep
+    sudo chmod +x ~/.local/bin/batman
+    sudo chmod +x ~/.local/bin/batwatch
+    sudo chmod +x ~/.local/bin/prettybat
+fi
 
-echo "Installing pipes.sh"
-cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
-cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
-sudo chmod +x ~/.local/bin/pipes.sh
 
-echo "Installing tldr"
-cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
-cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
-sudo chmod +x ~/.local/bin/tldr
-sudo chmod +x ~/.local/bin/tldr-lint
-[[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
-~/.local/bin/tldr --update
+if [[ ! -x "$(command -v exa)" ]]; then
+    if [[ $(uname -r) = *el7* ]]; then
+        echo "Skipping exa on RHEL 7"
+    else
+        echo "Installing exa"
+        cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+        sudo chmod +x ~/.local/bin/exa
+    fi
+fi
+
+if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
+    echo "Increase inotify watch limit for pycharm"
+    sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
+    sudo sysctl -p --system
+fi
+
+if [[ ! -x "$(command -v pipes.sh)" ]]; then
+    echo "Installing pipes.sh"
+    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
+    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+    sudo chmod +x ~/.local/bin/pipes.sh
+fi
+
+if [[ ! -x "$(command -v tldr)" ]]; then
+    echo "Installing tldr"
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+    sudo chmod +x ~/.local/bin/tldr
+    sudo chmod +x ~/.local/bin/tldr-lint
+    [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
+    ~/.local/bin/tldr --update
+fi
 
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
@@ -139,9 +152,11 @@ fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
-echo "Installing xsv"
-cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
-sudo chmod +x ~/.local/bin/xsv
+if [[ ! -x "$(command -v xsv)" ]]; then
+    echo "Installing xsv"
+    cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
+    sudo chmod +x ~/.local/bin/xsv
+fi
 
 # pre-reqs
 
