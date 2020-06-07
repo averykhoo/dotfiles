@@ -184,48 +184,76 @@ sudo yum install -y wget
 echo "Installing pip3"
 sudo yum install -y python3-pip
 
-echo "Installing ad"
-pip3 install --user advance-touch
+if [[ ! -x "$(command -v ad)" ]]; then
+    echo "Installing ad"
+    pip3 install --user advance-touch
+fi
 
-echo "Installing csvkit"
-pip3 install --user csvkit
+if [[ ! -x "$(command -v csvgrep)" ]]; then
+    echo "Installing csvkit"
+    pip3 install --user csvkit
+fi
 
-#echo "Installing glances (and bottle)"
-#pip3 install --user bottle
-#pip3 install --user glances
+if [[ ! -x "$(command -v glances)" ]]; then
+    echo "Installing glances (and bottle)"
+    pip3 install --user bottle
+    pip3 install --user glances
+fi
 
-echo "Installing html2text"
-pip3 install --user html2text
+if [[ ! -x "$(command -v html2text)" ]]; then
+    echo "Installing html2text"
+    pip3 install --user html2text
+fi
 
-echo "Installing langid"
-pip3 install --user langid
+if [[ ! -x "$(command -v langid)" ]]; then
+    echo "Installing langid"
+    pip3 install --user langid
+fi
 
-echo "Installing powerline"
-pip3 install --user powerline-status
+if [[ ! -x "$(command -v powerline-daemon)" ]]; then
+    echo "Installing powerline"
+    pip3 install --user powerline-status
+fi
 
-echo "Installing pydf"
-pip3 install --user pydf
+if [[ ! -x "$(command -v pydf)" ]]; then
+    echo "Installing pydf"
+    pip3 install --user pydf
+fi
 
-echo "Installing pygmentize"
-pip3 install --user pygments
+if [[ ! -x "$(command -v pygmentize)" ]]; then
+    echo "Installing pygmentize"
+    pip3 install --user pygments
+fi
 
-echo "Installing tabulate"
-pip3 install --user tabulate
+if [[ ! -x "$(command -v tabulate)" ]]; then
+    echo "Installing tabulate"
+    pip3 install --user tabulate
+fi
 
-echo "Installing trash-cli"
-pip3 install --user trash-cli
+if [[ ! -x "$(command -v trash)" ]]; then
+    echo "Installing trash-cli"
+    pip3 install --user trash-cli
+fi
 
-echo "Installing unidecode"
-pip3 install --user unidecode
+if [[ ! -x "$(command -v unidecode)" ]]; then
+    echo "Installing unidecode"
+    pip3 install --user unidecode
+fi
 
-echo "Installing visidata"
-pip3 install --user visidata
+if [[ ! -x "$(command -v vd)" ]]; then
+    echo "Installing visidata"
+    pip3 install --user visidata
+fi
 
-echo "Installing wormhole"
-pip3 install --user magic-wormhole
+if [[ ! -x "$(command -v wormhole)" ]]; then
+    echo "Installing wormhole"
+    pip3 install --user magic-wormhole
+fi
 
-echo "Installing zxcvbn"
-pip3 install --user zxcvbn
+if [[ ! -x "$(command -v zxcvbn)" ]]; then
+    echo "Installing zxcvbn"
+    pip3 install --user zxcvbn
+fi
 
 # java
 
