@@ -661,8 +661,8 @@ sudo apt install -y uidmap
 echo "Installing update-java-alternatives"
 sudo apt install -y java-common
 
-echo "Installing vlc"
-sudo apt install -y vlc
+#echo "Installing vlc"
+#sudo apt install -y vlc
 
 echo "Installing wordlists"
 sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge

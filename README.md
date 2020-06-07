@@ -80,13 +80,14 @@ export GIT_SSL_NO_VERIFY=true
     *   conda and pip packages
     *   add to path?
     *   jupyter password setup
-*   baobab (requires gdm3 and gnome desktop)
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
 *   emacs / vim
 *   etcd
+*   baobab (requires gdm3 and gnome desktop)
 *   gedit (requires gdm3 and gnome desktop)
 *   gufw (requires gdm3 and gnome desktop)
+*   vlc (requires gdm3 and gnome desktop)
 *   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins
