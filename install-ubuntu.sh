@@ -186,48 +186,76 @@ sudo apt install -y wget
 echo "Installing pip3"
 sudo apt install -y python3-pip
 
-echo "Installing ad"
-pip3 install --user --no-warn-script-location advance-touch
+if [[ ! -x "$(command -v ad)" ]]; then
+    echo "Installing ad"
+    pip3 install --user --no-warn-script-location advance-touch
+fi
 
-echo "Installing csvkit"
-pip3 install --user --no-warn-script-location csvkit
+if [[ ! -x "$(command -v csvgrep)" ]]; then
+    echo "Installing csvkit"
+    pip3 install --user --no-warn-script-location csvkit
+fi
 
-echo "Installing glances (and bottle)"
-pip3 install --user --no-warn-script-location bottle
-pip3 install --user --no-warn-script-location glances
+if [[ ! -x "$(command -v glances)" ]]; then
+    echo "Installing glances (and bottle)"
+    pip3 install --user --no-warn-script-location bottle
+    pip3 install --user --no-warn-script-location glances
+fi
 
-echo "Installing html2text"
-pip3 install --user --no-warn-script-location html2text
+if [[ ! -x "$(command -v html2text)" ]]; then
+    echo "Installing html2text"
+    pip3 install --user --no-warn-script-location html2text
+fi
 
-echo "Installing langid"
-pip3 install --user --no-warn-script-location langid
+if [[ ! -x "$(command -v langid)" ]]; then
+    echo "Installing langid"
+    pip3 install --user --no-warn-script-location langid
+fi
 
-echo "Installing powerline"
-pip3 install --user --no-warn-script-location powerline-status
+if [[ ! -x "$(command -v powerline-daemon)" ]]; then
+    echo "Installing powerline"
+    pip3 install --user --no-warn-script-location powerline-status
+fi
 
-echo "Installing pydf"
-pip3 install --user --no-warn-script-location pydf
+if [[ ! -x "$(command -v pydf)" ]]; then
+    echo "Installing pydf"
+    pip3 install --user --no-warn-script-location pydf
+fi
 
-echo "Installing pygmentize"
-pip3 install --user --no-warn-script-location pygments
+if [[ ! -x "$(command -v pygmentize)" ]]; then
+    echo "Installing pygmentize"
+    pip3 install --user --no-warn-script-location pygments
+fi
 
-echo "Installing tabulate"
-pip3 install --user --no-warn-script-location tabulate
+if [[ ! -x "$(command -v tabulate)" ]]; then
+    echo "Installing tabulate"
+    pip3 install --user --no-warn-script-location tabulate
+fi
 
-echo "Installing trash-cli"
-pip3 install --user --no-warn-script-location trash-cli
+if [[ ! -x "$(command -v trash)" ]]; then
+    echo "Installing trash-cli"
+    pip3 install --user --no-warn-script-location trash-cli
+fi
 
-echo "Installing unidecode"
-pip3 install --user --no-warn-script-location unidecode
+if [[ ! -x "$(command -v unidecode)" ]]; then
+    echo "Installing unidecode"
+    pip3 install --user --no-warn-script-location unidecode
+fi
 
-echo "Installing visidata"
-pip3 install --user --no-warn-script-location visidata
+if [[ ! -x "$(command -v vd)" ]]; then
+    echo "Installing visidata"
+    pip3 install --user --no-warn-script-location visidata
+fi
 
-echo "Installing wormhole"
-pip3 install --user --no-warn-script-location magic-wormhole
+if [[ ! -x "$(command -v wormhole)" ]]; then
+    echo "Installing wormhole"
+    pip3 install --user --no-warn-script-location magic-wormhole
+fi
 
-echo "Installing zxcvbn"
-pip3 install --user --no-warn-script-location zxcvbn
+if [[ ! -x "$(command -v zxcvbn)" ]]; then
+    echo "Installing zxcvbn"
+    pip3 install --user --no-warn-script-location zxcvbn
+fi
 
 # java
 
