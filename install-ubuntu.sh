@@ -11,17 +11,18 @@ if [[ ! -x "$(command -v apt)" ]]; then
 fi
 
 # update apt
+echo "updating apt"
 sudo apt update
 
 # cleanup MOTD
 
-sudo mkdir /etc/update-motd.d.bak/
-sudo mv /etc/update-motd.d/10-help-text            /etc/update-motd.d.bak/10-help-text
-sudo mv /etc/update-motd.d/50-motd-news            /etc/update-motd.d.bak/50-motd-news
-sudo mv /etc/update-motd.d/90-updates-available    /etc/update-motd.d.bak/90-updates-available
-sudo mv /etc/update-motd.d/91-release-upgrade      /etc/update-motd.d.bak/91-release-upgrade
-sudo mv /etc/update-motd.d/92-unattended-upgrades  /etc/update-motd.d.bak/92-unattended-upgrades
-sudo mv /etc/update-motd.d/95-hwe-eol              /etc/update-motd.d.bak/95-hwe-eol
+[[ ! -d /etc/update-motd.d.bak/ ]] && sudo mkdir /etc/update-motd.d.bak/
+[[ -f /etc/update-motd.d/10-help-text ]] &&            sudo mv /etc/update-motd.d/10-help-text            /etc/update-motd.d.bak/10-help-text
+[[ -f /etc/update-motd.d/50-motd-news ]] &&            sudo mv /etc/update-motd.d/50-motd-news            /etc/update-motd.d.bak/50-motd-news
+[[ -f /etc/update-motd.d/90-updates-available ]] &&    sudo mv /etc/update-motd.d/90-updates-available    /etc/update-motd.d.bak/90-updates-available
+[[ -f /etc/update-motd.d/91-release-upgrade ]] &&      sudo mv /etc/update-motd.d/91-release-upgrade      /etc/update-motd.d.bak/91-release-upgrade
+[[ -f /etc/update-motd.d/92-unattended-upgrades ]] &&  sudo mv /etc/update-motd.d/92-unattended-upgrades  /etc/update-motd.d.bak/92-unattended-upgrades
+[[ -f /etc/update-motd.d/95-hwe-eol ]] &&              sudo mv /etc/update-motd.d/95-hwe-eol              /etc/update-motd.d.bak/95-hwe-eol
 
 # fix timezone
 
@@ -82,42 +83,56 @@ echo "Installing '$' ignorer"
 cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
 sudo chmod +x ~/.local/bin/'$'
 
-echo "Installing backup.sh"
-cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
-sudo chmod +x ~/.local/bin/bak
+if [[ ! -x "$(command -v bak)" ]]; then
+    echo "Installing backup.sh"
+    cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
+    sudo chmod +x ~/.local/bin/bak
+fi
 
-echo "Installing bat-extras"
-cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
-cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
-cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
-cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
-cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
-sudo chmod +x ~/.local/bin/batdiff
-sudo chmod +x ~/.local/bin/batgrep
-sudo chmod +x ~/.local/bin/batman
-sudo chmod +x ~/.local/bin/batwatch
-sudo chmod +x ~/.local/bin/prettybat
 
-echo "Installing exa"
-cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
-sudo chmod +x ~/.local/bin/exa
+if [[ ! -x "$(command -v batdiff)" ]]; then
+    echo "Installing bat-extras"
+    cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
+    cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
+    cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
+    cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
+    cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+    sudo chmod +x ~/.local/bin/batdiff
+    sudo chmod +x ~/.local/bin/batgrep
+    sudo chmod +x ~/.local/bin/batman
+    sudo chmod +x ~/.local/bin/batwatch
+    sudo chmod +x ~/.local/bin/prettybat
+fi
 
-echo "Increase inotify watch limit for pycharm"
-sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
-sudo sysctl -p --system
 
-echo "Installing pipes.sh"
-cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
-cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
-sudo chmod +x ~/.local/bin/pipes.sh
+if [[ ! -x "$(command -v exa)" ]]; then
+    echo "Installing exa"
+    cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+    sudo chmod +x ~/.local/bin/exa
+fi
 
-echo "Installing tldr"
-cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
-cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
-sudo chmod +x ~/.local/bin/tldr
-sudo chmod +x ~/.local/bin/tldr-lint
-[[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
-~/.local/bin/tldr --update
+if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
+    echo "Increase inotify watch limit for pycharm"
+    sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
+    sudo sysctl -p --system
+fi
+
+if [[ ! -x "$(command -v pipes.sh)" ]]; then
+    echo "Installing pipes.sh"
+    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
+    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+    sudo chmod +x ~/.local/bin/pipes.sh
+fi
+
+if [[ ! -x "$(command -v tldr)" ]]; then
+    echo "Installing tldr"
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+    sudo chmod +x ~/.local/bin/tldr
+    sudo chmod +x ~/.local/bin/tldr-lint
+    [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
+    ~/.local/bin/tldr --update
+fi
 
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
@@ -133,9 +148,11 @@ fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
 
-echo "Installing xsv"
-cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
-sudo chmod +x ~/.local/bin/xsv
+if [[ ! -x "$(command -v xsv)" ]]; then
+    echo "Installing xsv"
+    cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
+    sudo chmod +x ~/.local/bin/xsv
+fi
 
 # pre-reqs
 
