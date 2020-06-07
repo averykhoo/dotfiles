@@ -43,6 +43,6 @@ if [[ -x "$(command -v yum)" ]] && [[ $(uname -r) = *el7* ]]; then
 fi
 
 # setup locale
-[[ -x "$(command -v locale-gen)" ]] && locale-gen en_US.UTF-8
+[[ -x "$(command -v locale-gen)" ]] && sudo locale-gen en_US.UTF-8
 
 source ~/.bashrc
