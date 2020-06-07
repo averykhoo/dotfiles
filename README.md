@@ -80,6 +80,7 @@ export GIT_SSL_NO_VERIFY=true
     *   conda and pip packages
     *   add to path?
     *   jupyter password setup
+*   baobab (requires gdm3)
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
 *   emacs / vim
