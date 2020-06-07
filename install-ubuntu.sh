@@ -486,6 +486,9 @@ fi
 echo "Installing aria2"
 sudo apt install -y aria2
 
+echo "Installing atop"
+sudo apt install -y atop
+
 echo "Installing asciinema"
 sudo apt install -y asciinema
 

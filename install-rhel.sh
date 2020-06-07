@@ -502,6 +502,9 @@ sudo firewall-cmd --reload
 echo "Installing aria2"
 sudo yum install -y aria2
 
+echo "Installing atop"
+sudo yum install -y atop
+
 #echo "Installing asciinema"
 #sudo yum install -y asciinema
 
