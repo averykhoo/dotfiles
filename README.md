@@ -54,6 +54,12 @@ jupyter notebook password
 
 # no ssl
 conda config --set ssl_verify false
+
+# nbextensions
+conda install -c conda-forge jupyter_contrib_nbextensions
+
+# start notebook
+jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
 ```
 
 ```bash
