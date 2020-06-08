@@ -46,3 +46,8 @@ fi
 [[ -x "$(command -v locale-gen)" ]] && sudo locale-gen en_US.UTF-8
 
 source ~/.bashrc
+
+unset DOTFILES_DIR
+unset BACKUP_DIR
+unset FILENAMES
+unset file
