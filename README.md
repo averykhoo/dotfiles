@@ -33,21 +33,16 @@ dotfiles
 *   `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"` to get the dir path of a bash script
 * 
 
-#   other code references
+#   bash references
 
+##  set up python
 ```bash
-# get parent directory abspath for a bash script, resolving symlinks recursively
-# https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
-```
+# install anaconda python
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+chmod +x Anaconda3-*-Linux-x86_64.sh
+./Anaconda3-*-Linux-x86_64.sh
+rm Anaconda3-*-Linux-x86_64.sh
 
-```bash
 # Jupyter password
 jupyter notebook --generate-config
 jupyter notebook password
@@ -62,6 +57,7 @@ conda install -c conda-forge jupyter_contrib_nbextensions
 jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
 ```
 
+##  change the date
 ```bash
 # change the date
 sudo date -s "14/08/2019 11:22:33"
@@ -70,41 +66,47 @@ date +"%Y-%m-%d %H:%M:%S %z"
 sudo hwclock --systohc --localtime 
 ```
 
+##  java-alternatives (shouldn't be needed)
 ```bash
 # set default java on RHEL
 sudo alternatives --config java
 sudo alternatives --config javac
 ```
 
+##  git no ssl
 ```bash
 # ignore ssl errors in git
 git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 ```
 
+##  find parent for bash script
 ```bash
-# install anaconda python
-wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
-chmod +x Anaconda3-*-Linux-x86_64.sh
-./Anaconda3-*-Linux-x86_64.sh
-rm Anaconda3-*-Linux-x86_64.sh
+# get parent directory abspath for a bash script, resolving symlinks recursively
+# https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 ```
 
 #   more things you might want to install
-*   anaconda3
-    *   conda and pip packages
-    *   add to path?
-    *   jupyter password setup (see above)
-    *   you will need to `git add` and `git commit` before you can `git pull`, because `conda init` appends to bashrc
-*   elasticsearch
-    *   elasticsearch-plugin install x-pack
-*   emacs / vim
-*   etcd
 *   baobab (requires gdm3 and gnome desktop)
 *   gedit (requires gdm3 and gnome desktop)
 *   gufw (ubuntu-only, requires gdm3 and gnome desktop)
 *   vlc (ubuntu-only, requires gdm3 and gnome desktop)
+*   [anaconda3](#set-up-python)
+    *   and other conda and pip packages
+    *   add to path using `conda init` (should be automatically done on setup)
+    *   you will need to `git add` and `git commit` before you can `git pull`, because `conda init` appends to bashrc
 *   [XFCE desktop](#xfce)
+*   elasticsearch
+    *   elasticsearch-plugin install x-pack
+*   emacs / vim
+*   etcd
 *   pycharm
     *   pycharm plugins
 *   zenmap
