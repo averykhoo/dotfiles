@@ -95,8 +95,8 @@ rm Anaconda3-*-Linux-x86_64.sh
 *   etcd
 *   baobab (requires gdm3 and gnome desktop)
 *   gedit (requires gdm3 and gnome desktop)
-*   gufw (requires gdm3 and gnome desktop)
-*   vlc (requires gdm3 and gnome desktop)
+*   gufw (ubuntu-only, requires gdm3 and gnome desktop)
+*   vlc (ubuntu-only, requires gdm3 and gnome desktop)
 *   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins
@@ -117,6 +117,6 @@ rm Anaconda3-*-Linux-x86_64.sh
         *   `rm .nano`
         *   `ln -s dotfiles/.nanorc-legacy .nanorc`
         *   `ln -s dotfiles/.nano-legacy .nano`
-*   tldr tries very hard to stay updated, if you're offline then disable this
-    *   in bashrc, uncomment line 159: `export TLDR_EXPIRY=9999`
-*   exa requires glibc 2.18, in rhel 7, don't use this
+*   tldr tries very hard to stay updated, but i've disabled this, if you're online then
+    *   in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
+    *   or run `tldr --update` to update
