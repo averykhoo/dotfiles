@@ -504,7 +504,7 @@ echo "Installing cifs"
 sudo apt install -y cifs-utils
 
 echo "Installing cockpit"
-sudo apt install -y cockpit
+sudo apt install -y cockpit cockpit-pcp
 sudo systemctl enable cockpit.socket
 sudo ufw allow 9090
 [[ -e /etc/motd.d/cockpit ]] && sudo rm /etc/motd.d/cockpit

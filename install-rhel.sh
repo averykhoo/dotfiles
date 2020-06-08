@@ -520,7 +520,7 @@ echo "Installing cifs"
 sudo yum install -y cifs-utils
 
 echo "Installing cockpit"
-sudo yum install -y cockpit
+sudo yum install -y cockpit cockpit-pcp
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
