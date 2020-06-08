@@ -94,7 +94,8 @@ rm Anaconda3-*-Linux-x86_64.sh
 *   anaconda3
     *   conda and pip packages
     *   add to path?
-    *   jupyter password setup
+    *   jupyter password setup (see above)
+    *   you will need to `git add` and `git commit` before you can `git pull`, because `conda init` appends to bashrc
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
 *   emacs / vim
