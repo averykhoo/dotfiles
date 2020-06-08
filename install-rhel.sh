@@ -628,8 +628,8 @@ sudo yum install -y ncdu
 echo "Installing nmap"
 sudo yum install -y nmap
 
-echo "Installing nmtui"
-sudo yum install -y network-manager
+#echo "Installing nmtui"
+#sudo yum install -y network-manager
 
 echo "Installing nslookup, dig"
 sudo yum install -y bind-utils
