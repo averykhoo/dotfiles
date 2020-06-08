@@ -405,6 +405,7 @@ if [[ ! -x "$(command -v hyperfine)" ]]; then
     rm hyperfine-musl_*_amd64.deb
 else
     echo "already installed"
+fi
 
 echo "Installing klogg"
 if [[ ! -x "$(command -v klogg)" ]]; then
