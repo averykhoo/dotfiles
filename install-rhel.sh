@@ -80,8 +80,10 @@ echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
-cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
-sudo chmod +x ~/.local/bin/'$'
+if [[ ! -x "$(command -v '$')" ]]; then
+    cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+    sudo chmod +x ~/.local/bin/'$'
+fi
 
 if [[ ! -x "$(command -v bak)" ]]; then
     echo "Installing backup.sh"
