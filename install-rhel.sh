@@ -620,6 +620,9 @@ sudo yum install -y mc
 
 echo "Installing mosh"
 sudo yum install -y mosh
+sudo firewall-cmd --add-service=mosh
+sudo firewall-cmd --add-service=mosh --permanent
+sudo firewall-cmd --reload
 
 echo "Installing mousepad"
 sudo yum install -y mousepad
@@ -703,6 +706,9 @@ sudo yum install -y sox
 
 echo "Installing sshd (openssh-server)"
 sudo yum install -y openssh-server
+sudo firewall-cmd --add-service=ssh
+sudo firewall-cmd --add-service=ssh --permanent
+sudo firewall-cmd --reload
 
 echo "Installing sshfs"
 sudo yum install -y fuse-sshfs

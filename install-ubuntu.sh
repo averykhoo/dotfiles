@@ -603,6 +603,7 @@ sudo apt install -y mc
 
 echo "Installing mosh"
 sudo apt install -y mosh
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *mosh* ]] && sudo ufw allow mosh
 
 echo "Installing mousepad"
 sudo apt install -y mousepad
@@ -683,6 +684,7 @@ sudo apt install -y sox
 
 echo "Installing sshd (openssh-server)"
 sudo apt install -y openssh-server
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *OpenSSH* ]] && sudo ufw allow OpenSSH
 
 echo "Installing sshfs"
 sudo apt install -y sshfs
