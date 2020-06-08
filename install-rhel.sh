@@ -193,11 +193,11 @@ if [[ ! -x "$(command -v csvgrep)" ]]; then
     pip3 install --user csvkit
 fi
 
-if [[ ! -x "$(command -v glances)" ]]; then
-    echo "Installing glances (and bottle)"
-    pip3 install --user bottle
-    pip3 install --user glances
-fi
+#if [[ ! -x "$(command -v glances)" ]]; then
+#    echo "Installing glances (and bottle)"
+#    pip3 install --user bottle
+#    pip3 install --user glances
+#fi
 
 if [[ ! -x "$(command -v html2text)" ]]; then
     echo "Installing html2text"
