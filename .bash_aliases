@@ -61,6 +61,9 @@ fi
 # more -> bat
 [[ -x "$(command -v bat)" ]] && alias more=bat
 
+# klogg -> glogg (unless glogg exists)
+[[ -x "$(command -v klogg)" ]] && [[ ! -x "$(command -v glogg)" ]] && alias glogg=klogg
+
 # windows compat
 [[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
 [[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN clear; clear"

@@ -554,8 +554,10 @@ sudo apt install -y fonts-noto
 #echo "Installing gedit (with plugins)"
 #sudo apt install -y gedit gedit-common gedit-plugins
 
-echo "Installing glogg"
-sudo apt install -y glogg
+if [[ ! -x "$(command -v klogg)" ]]; then
+    echo "Installing glogg"
+    sudo apt install -y glogg
+fi
 
 echo "Installing gparted"
 sudo apt install -y gparted
