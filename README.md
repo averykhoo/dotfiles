@@ -18,10 +18,11 @@ dotfiles
     *   alternatively if you don't have an extra 8.5GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
     *   any other version of RHEL -> update the sha256 and .repo file accordingly
         *   actual download path contains the sha256, e.g. `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
-     
+*   `sudo yum remove -y insights-client`
+
 ##  XFCE
-*   `sudo yum group install -y xfce`
-*   `sudo apt install -y xfce4 xfce4-goodies`
+*   (RHEL) `sudo yum group install -y xfce`
+*   (Ubuntu) `sudo apt install -y xfce4 xfce4-goodies`
 
 #   todo
 *   is x forwarding enabled
@@ -73,6 +74,14 @@ sudo alternatives --config javac
 # ignore ssl errors in git
 git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
+```
+
+```bash
+# install anaconda python
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+chmod +x Anaconda3-*-Linux-x86_64.sh
+./Anaconda3-*-Linux-x86_64.sh
+rm Anaconda3-*-Linux-x86_64.sh
 ```
 
 #   more things you might want to install
