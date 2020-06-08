@@ -405,6 +405,20 @@ if [[ ! -x "$(command -v hyperfine)" ]]; then
     rm hyperfine-musl_*_amd64.deb
 else
     echo "already installed"
+
+echo "Installing klogg"
+if [[ ! -x "$(command -v klogg)" ]]; then
+    if ls klogg-*-Linux.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
+        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
+    sudo gdebi --non-interactive klogg-*-Linux.deb
+    rm klogg-*-Linux.deb
+else
+    echo "already installed"
 fi
 
 echo "Installing micro"

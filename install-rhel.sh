@@ -414,6 +414,21 @@ else
     echo "already installed"
 fi
 
+echo "Installing klogg"
+if [[ ! -x "$(command -v klogg)" ]]; then
+    if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
+        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.rpm")) | .browser_download_url' \
+         | wget -i -
+    fi
+    sudo yum install -y klogg-*-Linux.rpm
+    rm klogg-*-Linux.rpm
+else
+    echo "already installed"
+fi
+
 echo "Installing micro"
 if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
