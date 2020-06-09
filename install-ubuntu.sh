@@ -517,6 +517,9 @@ sudo apt install -y autojump
 echo "Installing byobu"
 sudo apt install -y byobu
 
+echo "Installing catimg"
+sudo apt install -y catimg
+
 echo "Installing cifs"
 sudo apt install -y cifs-utils
 

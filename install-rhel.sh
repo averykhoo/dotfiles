@@ -533,6 +533,9 @@ sudo yum install -y atop
 echo "Installing byobu"
 sudo yum install -y byobu
 
+#echo "Installing catimg"
+#sudo yum install -y catimg
+
 echo "Installing cifs"
 sudo yum install -y cifs-utils
 

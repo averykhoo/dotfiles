@@ -114,6 +114,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 *   smbclient
 *   partitionmanager
 *   catdoc xlhtml ppthtml
+*   lsix (requires a sixel-compatible terminal)
 
 
 #   notes
