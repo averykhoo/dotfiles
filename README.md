@@ -101,7 +101,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 *   [anaconda3](#set-up-python)
     *   and other conda and pip packages
     *   add to path using `conda init` (should be automatically done on setup)
-    *   you will need to `git add` and `git commit` before you can `git pull`, because `conda init` appends to bashrc
+    *   you must `git add` and `git commit` before you can `git pull`,
+        because `conda init` appends to bashrc
 *   [XFCE desktop](#xfce)
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
@@ -110,11 +111,15 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 *   pycharm
     *   pycharm plugins
 *   zenmap
-*   [VS Code](https://code.visualstudio.com/docs/setup/linux) `snap install code`
+*   [VS Code](https://code.visualstudio.com/docs/setup/linux)
+    `snap install code`
 *   smbclient
 *   partitionmanager
 *   catdoc xlhtml ppthtml
-*   lsix (requires a sixel-compatible terminal)
+*   [lsix](https://github.com/hackerb9/lsix)
+    (requires a sixel-compatible terminal)
+*   [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
+    `snap install --edge tiv`
 
 
 #   notes
@@ -127,6 +132,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
         *   `rm .nano`
         *   `ln -s dotfiles/.nanorc-legacy .nanorc`
         *   `ln -s dotfiles/.nano-legacy .nano`
-*   tldr tries very hard to stay updated, but i've disabled this, if you're online then
+*   tldr tries very hard to stay updated, but i've disabled this, if you're online then *either*
     *   in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
-    *   or run `tldr --update` to update
+    *   *or* run `tldr --update` to update
+
