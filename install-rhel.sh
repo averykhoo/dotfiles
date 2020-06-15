@@ -80,8 +80,10 @@ echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
-cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
-sudo chmod +x ~/.local/bin/'$'
+if [[ ! -x "$(command -v '$')" ]]; then
+    cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+    sudo chmod +x ~/.local/bin/'$'
+fi
 
 if [[ ! -x "$(command -v bak)" ]]; then
     echo "Installing backup.sh"
@@ -148,9 +150,8 @@ elif [[ -x "$(command -v startxfce4)" ]]; then
 else
     echo "no GUI found, copying XFCE-based xstartup"
     cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
-
-    echo "DO YOU WANT TO INSTALL XFCE?"
-    sudo yum group install xfce
+    #echo "DO YOU WANT TO INSTALL XFCE?"
+    #sudo yum group install xfce
 fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
@@ -194,11 +195,11 @@ if [[ ! -x "$(command -v csvgrep)" ]]; then
     pip3 install --user csvkit
 fi
 
-if [[ ! -x "$(command -v glances)" ]]; then
-    echo "Installing glances (and bottle)"
-    pip3 install --user bottle
-    pip3 install --user glances
-fi
+#if [[ ! -x "$(command -v glances)" ]]; then
+#    echo "Installing glances (and bottle)"
+#    pip3 install --user bottle
+#    pip3 install --user glances
+#fi
 
 if [[ ! -x "$(command -v html2text)" ]]; then
     echo "Installing html2text"
@@ -415,6 +416,21 @@ else
     echo "already installed"
 fi
 
+echo "Installing klogg"
+if [[ ! -x "$(command -v klogg)" ]]; then
+    if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
+        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.rpm")) | .browser_download_url' \
+         | wget -i -
+    fi
+    sudo yum install -y klogg-*-Linux.rpm
+    rm klogg-*-Linux.rpm
+else
+    echo "already installed"
+fi
+
 echo "Installing micro"
 if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
@@ -517,11 +533,14 @@ sudo yum install -y atop
 echo "Installing byobu"
 sudo yum install -y byobu
 
+#echo "Installing catimg"
+#sudo yum install -y catimg
+
 echo "Installing cifs"
 sudo yum install -y cifs-utils
 
 echo "Installing cockpit"
-sudo yum install -y cockpit
+sudo yum install -y cockpit cockpit-pcp
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
@@ -606,6 +625,9 @@ sudo yum install -y mc
 
 echo "Installing mosh"
 sudo yum install -y mosh
+sudo firewall-cmd --add-service=mosh
+sudo firewall-cmd --add-service=mosh --permanent
+sudo firewall-cmd --reload
 
 echo "Installing mousepad"
 sudo yum install -y mousepad
@@ -628,8 +650,8 @@ sudo yum install -y ncdu
 echo "Installing nmap"
 sudo yum install -y nmap
 
-echo "Installing nmtui"
-sudo yum install -y network-manager
+#echo "Installing nmtui"
+#sudo yum install -y network-manager
 
 echo "Installing nslookup, dig"
 sudo yum install -y bind-utils
@@ -689,6 +711,9 @@ sudo yum install -y sox
 
 echo "Installing sshd (openssh-server)"
 sudo yum install -y openssh-server
+sudo firewall-cmd --add-service=ssh
+sudo firewall-cmd --add-service=ssh --permanent
+sudo firewall-cmd --reload
 
 echo "Installing sshfs"
 sudo yum install -y fuse-sshfs

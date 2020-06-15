@@ -18,10 +18,11 @@ dotfiles
     *   alternatively if you don't have an extra 8.5GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
     *   any other version of RHEL -> update the sha256 and .repo file accordingly
         *   actual download path contains the sha256, e.g. `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
-     
+*   `sudo yum remove -y insights-client`
+
 ##  XFCE
-*   `sudo yum group install -y xfce`
-*   `sudo apt install -y xfce4 xfce4-goodies`
+*   (RHEL) `sudo yum group install -y xfce`
+*   (Ubuntu) `sudo apt install -y xfce4 xfce4-goodies`
 
 #   todo
 *   is x forwarding enabled
@@ -32,8 +33,54 @@ dotfiles
 *   `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"` to get the dir path of a bash script
 * 
 
-#   other code references
+#   bash references
 
+##  set up python
+```bash
+# install anaconda python
+wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+chmod +x Anaconda3-*-Linux-x86_64.sh
+./Anaconda3-*-Linux-x86_64.sh
+rm Anaconda3-*-Linux-x86_64.sh
+
+# Jupyter password
+jupyter notebook --generate-config
+jupyter notebook password
+
+# no ssl
+conda config --set ssl_verify false
+
+# nbextensions
+conda install -c conda-forge jupyter_contrib_nbextensions
+
+# start notebook
+jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
+```
+
+##  change the date
+```bash
+# change the date
+sudo date -s "14/08/2019 11:22:33"
+date -u
+date +"%Y-%m-%d %H:%M:%S %z"
+sudo hwclock --systohc --localtime 
+```
+
+##  java-alternatives (shouldn't be needed)
+```bash
+# set default java on RHEL
+sudo alternatives --config java
+sudo alternatives --config javac
+```
+
+##  git no ssl
+```bash
+# ignore ssl errors in git
+git config --global http.sslVerify false
+export GIT_SSL_NO_VERIFY=true
+```
+
+##  find parent for bash script
 ```bash
 # get parent directory abspath for a bash script, resolving symlinks recursively
 # https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
@@ -46,56 +93,33 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 ```
 
-```bash
-# Jupyter password
-jupyter notebook --generate-config
-jupyter notebook password
-
-# no ssl
-conda config --set ssl_verify false
-```
-
-```bash
-# change the date
-sudo date -s "14/08/2019 11:22:33"
-date -u
-date +"%Y-%m-%d %H:%M:%S %z"
-sudo hwclock --systohc --localtime 
-```
-
-```bash
-# set default java on RHEL
-sudo alternatives --config java
-sudo alternatives --config javac
-```
-
-```bash
-# ignore ssl errors in git
-git config --global http.sslVerify false
-export GIT_SSL_NO_VERIFY=true
-```
-
 #   more things you might want to install
-*   anaconda3
-    *   conda and pip packages
-    *   add to path?
-    *   jupyter password setup
+*   baobab (requires gdm3 and gnome desktop)
+*   gedit (requires gdm3 and gnome desktop)
+*   gufw (ubuntu-only, requires gdm3 and gnome desktop)
+*   vlc (ubuntu-only, requires gdm3 and gnome desktop)
+*   [anaconda3](#set-up-python)
+    *   and other conda and pip packages
+    *   add to path using `conda init` (should be automatically done on setup)
+    *   you must `git add` and `git commit` before you can `git pull`,
+        because `conda init` appends to bashrc
+*   [XFCE desktop](#xfce)
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
 *   emacs / vim
 *   etcd
-*   baobab (requires gdm3 and gnome desktop)
-*   gedit (requires gdm3 and gnome desktop)
-*   gufw (requires gdm3 and gnome desktop)
-*   vlc (requires gdm3 and gnome desktop)
-*   [XFCE desktop](#xfce)
 *   pycharm
     *   pycharm plugins
 *   zenmap
-*   [VS Code](https://code.visualstudio.com/docs/setup/linux) `snap install code`
+*   [VS Code](https://code.visualstudio.com/docs/setup/linux)
+    `snap install code`
 *   smbclient
 *   partitionmanager
 *   catdoc xlhtml ppthtml
+*   [lsix](https://github.com/hackerb9/lsix)
+    (requires a sixel-compatible terminal)
+*   [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
+    `snap install --edge tiv`
 
 
 #   notes
@@ -108,6 +132,7 @@ export GIT_SSL_NO_VERIFY=true
         *   `rm .nano`
         *   `ln -s dotfiles/.nanorc-legacy .nanorc`
         *   `ln -s dotfiles/.nano-legacy .nano`
-*   tldr tries very hard to stay updated, if you're offline then disable this
-    *   in bashrc, uncomment line 159: `export TLDR_EXPIRY=9999`
-*   exa requires glibc 2.18, in rhel 7, don't use this
+*   tldr tries very hard to stay updated, but i've disabled this, if you're online then *either*
+    *   in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
+    *   *or* run `tldr --update` to update
+

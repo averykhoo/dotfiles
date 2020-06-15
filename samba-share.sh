@@ -54,12 +54,26 @@ if [[ $? != 0 ]]; then
 fi
 
 # restart smb daemon for rhel
-sudo systemctl restart smb
+systemctl status smb >> /dev/null 2>&1
+if [[ $?  = 0 ]]; then
+    echo "restarting smb.service..."
+    sudo systemctl restart smb
+fi
 
 # restart smb daemon for ubuntu
-sudo systemctl restart smbd
+systemctl status smbd >> /dev/null 2>&1
+if [[ $?  = 0 ]]; then
+    echo "restarting smbd.service..."
+    sudo systemctl restart smbd
+fi
 
 # open firewall for rhel
 [[ -x "$(command -v firewall-cmd)" ]] && sudo firewall-cmd --add-service=samba
 [[ -x "$(command -v firewall-cmd)" ]] && sudo firewall-cmd --add-service=samba --permanent
 [[ -x "$(command -v firewall-cmd)" ]] && sudo firewall-cmd --reload
+
+# open firewall for ubuntu
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *Samba* ]] && sudo ufw allow Samba
+
+unset SHARE_PATH
+unset BACKUP_TIMESTAMP

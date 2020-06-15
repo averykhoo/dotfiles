@@ -80,8 +80,10 @@ echo "Installing Iosevka"
 sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
-cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
-sudo chmod +x ~/.local/bin/'$'
+if [[ ! -x "$(command -v '$')" ]]; then
+    cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+    sudo chmod +x ~/.local/bin/'$'
+fi
 
 if [[ ! -x "$(command -v bak)" ]]; then
     echo "Installing backup.sh"
@@ -144,9 +146,8 @@ elif [[ -x "$(command -v startxfce4)" ]]; then
 else
     echo "no GUI found, copying XFCE-based xstartup"
     cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
-
-    echo "DO YOU WANT TO INSTALL XFCE?"
-    sudo apt install xfce4 xfce4-goodies
+    #echo "DO YOU WANT TO INSTALL XFCE?"
+    #sudo apt install xfce4 xfce4-goodies
 fi
 sudo chmod +x ~/.vnc/xstartup
 sudo chmod +r ~/.vnc/xstartup
@@ -408,6 +409,21 @@ else
     echo "already installed"
 fi
 
+echo "Installing klogg"
+if [[ ! -x "$(command -v klogg)" ]]; then
+    if ls klogg-*-Linux.deb 1> /dev/null 2>&1; then
+        echo "found installer"
+    else
+        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
+         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.deb")) | .browser_download_url' \
+         | wget -i -
+    fi
+    sudo gdebi --non-interactive klogg-*-Linux.deb
+    rm klogg-*-Linux.deb
+else
+    echo "already installed"
+fi
+
 echo "Installing micro"
 if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
@@ -501,11 +517,14 @@ sudo apt install -y autojump
 echo "Installing byobu"
 sudo apt install -y byobu
 
+echo "Installing catimg"
+sudo apt install -y catimg
+
 echo "Installing cifs"
 sudo apt install -y cifs-utils
 
 echo "Installing cockpit"
-sudo apt install -y cockpit
+sudo apt install -y cockpit cockpit-pcp
 sudo systemctl enable cockpit.socket
 sudo ufw allow 9090
 [[ -e /etc/motd.d/cockpit ]] && sudo rm /etc/motd.d/cockpit
@@ -540,8 +559,10 @@ sudo apt install -y fonts-noto
 #echo "Installing gedit (with plugins)"
 #sudo apt install -y gedit gedit-common gedit-plugins
 
-echo "Installing glogg"
-sudo apt install -y glogg
+if [[ ! -x "$(command -v klogg)" ]]; then
+    echo "Installing glogg"
+    sudo apt install -y glogg
+fi
 
 echo "Installing gparted"
 sudo apt install -y gparted
@@ -587,6 +608,7 @@ sudo apt install -y mc
 
 echo "Installing mosh"
 sudo apt install -y mosh
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *mosh* ]] && sudo ufw allow mosh
 
 echo "Installing mousepad"
 sudo apt install -y mousepad
@@ -667,6 +689,7 @@ sudo apt install -y sox
 
 echo "Installing sshd (openssh-server)"
 sudo apt install -y openssh-server
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *OpenSSH* ]] && sudo ufw allow OpenSSH
 
 echo "Installing sshfs"
 sudo apt install -y sshfs

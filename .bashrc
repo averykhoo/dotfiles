@@ -139,7 +139,7 @@ if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; t
     fi
 fi
 
-# since we won't let fzf change bashrc
+# pre-populate fzf since we know exactly what script it wants
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # Alias definitions.
@@ -150,13 +150,11 @@ fi
 
 # To anyone worried about using servers that may not have attentive admins --
 # put the following line(s) in your ~/.bashrc to help protect yourself:
-
-env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
-    bash --norc -c ':' 2>/dev/null;
-
 # It will print to stdout if and only if your shell is vulnerable, and nothing
 # will be printed if your shell has been patched. It will take a little longer
 # to launch a new shell slightly, but for some, this may be worth it.
+env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
+    bash --norc -c ':' 2>/dev/null;
 
 # you can safely comment this if you're online
 export TLDR_EXPIRY=9999
