@@ -22,8 +22,9 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# print red % then newline if previous print didn't end with newline
-PROMPT_COMMAND='printf "\033[0;31m%%%$((COLUMNS-1))s\\r"'
+# if previous printf/echo/cat/whatever didn't end with newline
+# then print a red block (that's actually a space so it doesn't break copypasta) then newline
+PROMPT_COMMAND='printf "\033[101m \033[0m%$((COLUMNS-1))s\\r"'
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
