@@ -84,7 +84,9 @@ alias sudosu="sudo su"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
 export GIT_SSL_NO_VERIFY=true
 
-
+# launch kite
+[[ -x ~/.local/share/kite/kited ]] && alias kite=~/.local/share/kite/kited
+[[ -x ~/.local/share/kite/kited ]] && alias kited=~/.local/share/kite/kited
 
 # lazy cd (alternatively turn on shopt autocd)
 alias ..="cd .."
