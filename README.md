@@ -117,7 +117,6 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
     `snap install code`
 *   smbclient
 *   partitionmanager
-*   catdoc xlhtml ppthtml
 *   [lsix](https://github.com/hackerb9/lsix)
     (requires a sixel-compatible terminal)
 *   [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
