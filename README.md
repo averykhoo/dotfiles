@@ -26,6 +26,8 @@ dotfiles
 
 #   todo
 *   is x forwarding enabled
+*   set iosevka as terminal font
+*   set terminal opacity to 90%
 *   maybe symlink the xstartup instead of copying it?
 *   tesseract scripts and language files
 *   firefox / chrome extensions
