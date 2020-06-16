@@ -110,8 +110,9 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
     *   elasticsearch-plugin install x-pack
 *   emacs / vim
 *   etcd
-*   pycharm
+*   pycharm (`tar -xzf pycharm-*.tar.gz`)
     *   pycharm plugins
+    *   create shortcut at `~/.local/bin/charm`
 *   zenmap
 *   [VS Code](https://code.visualstudio.com/docs/setup/linux)
     `snap install code`
