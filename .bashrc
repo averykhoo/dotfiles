@@ -2,6 +2,9 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Source global definitions
+[[ -f /etc/bashrc ]] && . /etc/bashrc
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
