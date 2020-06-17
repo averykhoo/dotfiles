@@ -32,7 +32,6 @@ dotfiles
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 *   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
-*   `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"` to get the dir path of a bash script
 * 
 
 #   bash references
@@ -83,6 +82,7 @@ export GIT_SSL_NO_VERIFY=true
 ```
 
 ##  find parent for bash script
+Minimal one-liner: `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"`
 ```bash
 # get parent directory abspath for a bash script, resolving symlinks recursively
 # https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
