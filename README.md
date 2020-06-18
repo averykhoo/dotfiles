@@ -122,6 +122,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
     (requires a sixel-compatible terminal)
 *   [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
     `snap install --edge tiv`
+*   [hyperscan](https://www.hyperscan.io/downloads/)
+    *   [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
 
 
 #   notes
