@@ -32,7 +32,7 @@ dotfiles
 *   tesseract scripts and language files
 *   firefox / chrome extensions
 *   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
-* 
+*   download-only script, modify install script to check for downloads
 
 #   bash references
 
