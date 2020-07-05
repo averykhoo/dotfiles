@@ -124,6 +124,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
     `snap install --edge tiv`
 *   [hyperscan](https://www.hyperscan.io/downloads/)
     *   [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
+*   [gron](https://github.com/tomnomnom/gron)
 
 
 #   notes
