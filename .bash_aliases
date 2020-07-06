@@ -82,6 +82,7 @@ alias sudosu="sudo su"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
+[[ -x "$(command -v pip)" ]] && alias pip="pip --trusted-host pypi.org --trusted-host files.pythonhosted.org"
 export GIT_SSL_NO_VERIFY=true
 
 # launch kite
