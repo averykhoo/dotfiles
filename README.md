@@ -39,7 +39,7 @@ dotfiles
 ##  set up python
 ```bash
 # install anaconda python
-wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
 chmod +x Anaconda3-*-Linux-x86_64.sh
 ./Anaconda3-*-Linux-x86_64.sh
 rm Anaconda3-*-Linux-x86_64.sh
