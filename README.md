@@ -25,14 +25,14 @@ dotfiles
 *   (Ubuntu) `sudo apt install -y xfce4 xfce4-goodies`
 
 #   todo
+*   download-only script, modify install script to check for downloads
 *   is x forwarding enabled
 *   set iosevka as terminal font
 *   set terminal opacity to 90%
 *   maybe symlink the xstartup instead of copying it?
-*   tesseract scripts and language files
 *   firefox / chrome extensions
 *   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
-*   download-only script, modify install script to check for downloads
+
 
 #   bash references
 
@@ -128,6 +128,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 *   [hyperscan](https://www.hyperscan.io/downloads/)
     *   [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
 *   [gron](https://github.com/tomnomnom/gron)
+*   tesseract scripts (and language files)
 
 
 #   notes
