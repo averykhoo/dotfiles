@@ -51,6 +51,9 @@ jupyter notebook password
 # no ssl
 conda config --set ssl_verify false
 
+# OPTIONAL: add conda-forge as a default repo
+conda config --add channels conda-forge
+
 # nbextensions
 conda install -c conda-forge jupyter_contrib_nbextensions
 
