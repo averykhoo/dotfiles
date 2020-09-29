@@ -40,9 +40,6 @@ else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 fi
 
-echo "Downloading fzf"
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
 echo "Downloading klogg"
 if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
     echo "found installer"

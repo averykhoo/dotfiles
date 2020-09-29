@@ -137,6 +137,13 @@ if [[ ! -x "$(command -v fd)" ]]; then
     sudo chmod +x ~/.local/bin/fd
 fi
 
+if [[ ! -d ~/.fzf ]]; then
+    echo "Installing fzf"
+    # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    tar -xvf ~/dotfiles/vendored/fzf.tar.gz -C ~
+    ~/.fzf/install --all
+fi
+
 if [[ ! -x "$(command -v hexyl)" ]]; then
     echo "Installing hexyl"
     cp ~/dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
@@ -388,14 +395,6 @@ if [[ ! -x "$(command -v google-chrome)" ]]; then
     fi
     sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
     rm google-chrome-stable_current_amd64.deb
-else
-    echo "already installed"
-fi
-
-echo "Installing fzf"
-if [[ ! -d ~/.fzf ]]; then
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --all
 else
     echo "already installed"
 fi
