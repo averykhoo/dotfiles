@@ -44,6 +44,10 @@ chmod +x Anaconda3-*-Linux-x86_64.sh
 ./Anaconda3-*-Linux-x86_64.sh
 rm Anaconda3-*-Linux-x86_64.sh
 
+# commit the changed bashrc (otherwise it's impossible to git pull)
+git add ~/dotfiles/.bashrc
+git commit -m "installed anaconda"
+
 # Jupyter password
 jupyter notebook --generate-config
 jupyter notebook password
@@ -59,6 +63,16 @@ conda install -c conda-forge jupyter_contrib_nbextensions
 
 # start notebook
 jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
+
+# uninstall
+conda install anaconda-clean
+anaconda-clean --yes
+rm -rf ~/anaconda3
+
+# reset bashrc
+git fetch origin
+git reset --hard origin/master
+git clean -fdx
 ```
 
 ##  change the date
@@ -103,11 +117,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 *   gedit (requires gdm3 and gnome desktop)
 *   gufw (ubuntu-only, requires gdm3 and gnome desktop)
 *   vlc (ubuntu-only, requires gdm3 and gnome desktop)
-*   [anaconda3](#set-up-python)
-    *   and other conda and pip packages
-    *   add to path using `conda init` (should be automatically done on setup)
-    *   you must `git add` and `git commit` before you can `git pull`,
-        because `conda init` appends to bashrc
+*   [python](#set-up-python) packages
 *   [XFCE desktop](#xfce)
 *   elasticsearch
     *   elasticsearch-plugin install x-pack
