@@ -33,29 +33,11 @@ else
      | wget -i -
 fi
 
-echo "Downloading bat"
-if ls bat-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
-fi
-
 echo "Downloading chrome"
 if ls google-chrome-stable_current_x86_64.rpm 1> /dev/null 2>&1; then
     echo "found installer"
 else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-fi
-
-echo "Downloading delta"
-if ls delta-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
 fi
 
 echo "Downloading fd"

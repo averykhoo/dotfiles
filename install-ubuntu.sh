@@ -112,6 +112,12 @@ if [[ ! -x "$(command -v batdiff)" ]]; then
     sudo chmod +x ~/.local/bin/prettybat
 fi
 
+if [[ ! -x "$(command -v delta)" ]]; then
+    echo "Installing delta"
+    cp ~/dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
+    sudo chmod +x ~/.local/bin/delta
+fi
+
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
     cp ~/dotfiles/vendored/duf_0.3.1_linux_x86_64/duf ~/.local/bin/duf
@@ -333,21 +339,6 @@ if [[ ! -x "$(command -v google-chrome)" ]]; then
     fi
     sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
     rm google-chrome-stable_current_amd64.deb
-else
-    echo "already installed"
-fi
-
-echo "Installing delta"
-if [[ ! -x "$(command -v delta)" ]]; then
-    if ls git-delta-musl_*_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("git-delta-musl_.*_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive git-delta-musl_*_amd64.deb
-    rm git-delta-musl_*_amd64.deb
 else
     echo "already installed"
 fi

@@ -112,6 +112,12 @@ if [[ ! -x "$(command -v batdiff)" ]]; then
     sudo chmod +x ~/.local/bin/prettybat
 fi
 
+if [[ ! -x "$(command -v delta)" ]]; then
+    echo "Installing delta"
+    cp ~/dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
+    sudo chmod +x ~/.local/bin/delta
+fi
+
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
     cp ~/dotfiles/vendored/duf_0.3.1_linux_x86_64/duf ~/.local/bin/duf
@@ -323,24 +329,6 @@ if [[ ! -x "$(command -v google-chrome)" ]]; then
     fi
     sudo yum install -y google-chrome-stable_current_x86_64.rpm
     rm google-chrome-stable_current_x86_64.rpm
-else
-    echo "already installed"
-fi
-
-echo "Installing delta"
-if [[ ! -x "$(command -v delta)" ]]; then
-    if ls delta-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/dandavison/delta/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("delta-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-         | wget -i -
-    fi
-    tar -xvf ./delta-*-x86_64-unknown-linux-musl.tar.gz
-    cp ./delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
-    sudo chmod +x ~/.local/bin/delta
-    rm -rf ./delta-*-x86_64-unknown-linux-musl/
-    rm ./delta-*-x86_64-unknown-linux-musl.tar.gz
 else
     echo "already installed"
 fi
