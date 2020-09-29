@@ -163,6 +163,21 @@ if [[ ! -x "$(command -v pipes.sh)" ]]; then
     sudo chmod +x ~/.local/bin/pipes.sh
 fi
 
+if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
+    echo "Installing powerline font"
+    mkdir --parents ~/.local/share/fonts/
+    cp ~/dotfiles/vendored/powerline-raw-develop-font-20200929/PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+fi
+
+if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
+    echo "Installing powerline fontconfig"
+    mkdir --parents ~/.config/fontconfig/conf.d/
+    cp ~/dotfiles/vendored/powerline-raw-develop-font-20200929/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+else
+    echo "already installed"
+fi
+
 if [[ ! -x "$(command -v tldr)" ]]; then
     echo "Installing tldr"
     cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
@@ -390,29 +405,6 @@ echo "Installing micro"
 if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
     mv micro ~/.local/bin/
-else
-    echo "already installed"
-fi
-
-echo "Installing powerline font"
-if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-    if [[ ! -f PowerlineSymbols.otf ]]; then
-        wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-    fi
-    mkdir --parents ~/.local/share/fonts/
-    mv PowerlineSymbols.otf ~/.local/share/fonts/
-    fc-cache -vf ~/.local/share/fonts/
-else
-    echo "already installed"
-fi
-
-echo "Installing powerline fontconfig"
-if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-    if [[ ! -f 10-powerline-symbols.conf ]]; then
-        wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-    fi
-    mkdir --parents ~/.config/fontconfig/conf.d/
-    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
     echo "already installed"
 fi

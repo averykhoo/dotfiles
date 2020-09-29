@@ -43,24 +43,6 @@ fi
 echo "Downloading fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
-echo "Downloading hexyl"
-if ls hexyl-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hexyl-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
-fi
-
-echo "Downloading hyperfine"
-if ls hyperfine-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("hyperfine-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
-fi
-
 echo "Downloading klogg"
 if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
     echo "found installer"
@@ -73,16 +55,6 @@ fi
 # todo: does this work?
 echo "Downloading micro"
 curl https://getmic.ro | bash
-
-echo "Downloading powerline font"
-if [[ ! -f PowerlineSymbols.otf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-fi
-
-echo "Downloading powerline fontconfig"
-if [[ ! -f 10-powerline-symbols.conf ]]; then
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-fi
 
 echo "Downloading ripgrep"
 if ls ripgrep-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
