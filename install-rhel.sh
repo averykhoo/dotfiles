@@ -144,7 +144,7 @@ fi
 if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    tar -xvf ~/dotfiles/vendored/fzf.tar.gz -C ~
+    tar -xvf ~/dotfiles/vendored/fzf-*.tar.gz -C ~
     ~/.fzf/install --all
 fi
 
@@ -165,6 +165,11 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     echo "Increase inotify watch limit for pycharm"
     sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
     sudo sysctl -p --system
+fi
+
+if [[ ! -x "$(command -v klogg)" ]]; then
+    echo "Installing klogg"
+    sudo yum install -y ~/dotfiles/vendored/klogg-*-Linux/klogg-*-Linux.rpm
 fi
 
 if [[ ! -x "$(command -v micro)" ]]; then
@@ -389,21 +394,6 @@ else
     echo "already installed"
 fi
 
-echo "Installing klogg"
-if [[ ! -x "$(command -v klogg)" ]]; then
-    if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.rpm")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo yum install -y klogg-*-Linux.rpm
-    rm klogg-*-Linux.rpm
-else
-    echo "already installed"
-fi
-
 #echo "Installing snowflake (renamed to muon)"
 #if [[ ! -x "$(command -v snowflake)" ]]; then
 #    if ls snowflake-*-setup-amd64.deb 1> /dev/null 2>&1; then
@@ -436,7 +426,7 @@ sudo firewall-cmd --add-port=5900-5999/tcp
 sudo firewall-cmd --add-port=5900-5999/tcp --permanent
 sudo firewall-cmd --reload
 
-# apt installs
+# yum installs
 
 echo "Installing aria2"
 sudo yum install -y aria2

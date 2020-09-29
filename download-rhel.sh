@@ -40,15 +40,6 @@ else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 fi
 
-echo "Downloading klogg"
-if ls klogg-*-Linux.rpm 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/variar/klogg/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.rpm")) | .browser_download_url' \
-     | wget -i -
-fi
-
 # todo: does this work?
 echo "Downloading micro"
 curl https://getmic.ro | bash

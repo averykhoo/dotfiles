@@ -140,7 +140,7 @@ fi
 if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    tar -xvf ~/dotfiles/vendored/fzf.tar.gz -C ~
+    tar -xvf ~/dotfiles/vendored/fzf-*.tar.gz -C ~
     ~/.fzf/install --all
 fi
 
@@ -161,6 +161,11 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     echo "Increase inotify watch limit for pycharm"
     sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
     sudo sysctl -p --system
+fi
+
+if [[ ! -x "$(command -v klogg)" ]]; then
+    echo "Installing klogg"
+    sudo gdebi --non-interactive ~/dotfiles/vendored/klogg-*-Linux/klogg-*-Linux.deb
 fi
 
 if [[ ! -x "$(command -v micro)" ]]; then
@@ -395,21 +400,6 @@ if [[ ! -x "$(command -v google-chrome)" ]]; then
     fi
     sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
     rm google-chrome-stable_current_amd64.deb
-else
-    echo "already installed"
-fi
-
-echo "Installing klogg"
-if [[ ! -x "$(command -v klogg)" ]]; then
-    if ls klogg-*-Linux.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/variar/klogg/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("klogg-.*-Linux.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive klogg-*-Linux.deb
-    rm klogg-*-Linux.deb
 else
     echo "already installed"
 fi
