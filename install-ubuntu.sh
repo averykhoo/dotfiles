@@ -126,7 +126,7 @@ fi
 
 if [[ ! -x "$(command -v exa)" ]]; then
     echo "Installing exa"
-    cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0 ~/.local/bin/exa
+    cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0/exa ~/.local/bin/exa
     sudo chmod +x ~/.local/bin/exa
 fi
 
@@ -135,6 +135,19 @@ if [[ ! -x "$(command -v fd)" ]]; then
     cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
     cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
     sudo chmod +x ~/.local/bin/fd
+fi
+
+if [[ ! -x "$(command -v hexyl)" ]]; then
+    echo "Installing hexyl"
+    cp ~/dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
+    sudo chmod +x ~/.local/bin/hexyl
+fi
+
+if [[ ! -x "$(command -v hyperfine)" ]]; then
+    echo "Installing hyperfine"
+    cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
+    cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+    sudo chmod +x ~/.local/bin/hyperfine
 fi
 
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
@@ -354,36 +367,6 @@ echo "Installing fzf"
 if [[ ! -d ~/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install --all
-else
-    echo "already installed"
-fi
-
-echo "Installing hexyl"
-if [[ ! -x "$(command -v hexyl)" ]]; then
-    if ls hexyl-musl_*_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/sharkdp/hexyl/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("hexyl-musl_.*_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive hexyl-musl_*_amd64.deb
-    rm hexyl-musl_*_amd64.deb
-else
-    echo "already installed"
-fi
-
-echo "Installing hyperfine"
-if [[ ! -x "$(command -v hyperfine)" ]]; then
-    if ls hyperfine-musl_*_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/sharkdp/hyperfine/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("hyperfine-musl_.*_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive hyperfine-musl_*_amd64.deb
-    rm hyperfine-musl_*_amd64.deb
 else
     echo "already installed"
 fi
