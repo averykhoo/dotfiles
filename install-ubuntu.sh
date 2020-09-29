@@ -178,6 +178,13 @@ else
     echo "already installed"
 fi
 
+if [[ ! -x "$(command -v rg)" ]]; then
+    echo "Installing ripgrep"
+    cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
+    cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+    sudo chmod +x ~/.local/bin/rg
+fi
+
 if [[ ! -x "$(command -v tldr)" ]]; then
     echo "Installing tldr"
     cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
@@ -405,21 +412,6 @@ echo "Installing micro"
 if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
     curl https://getmic.ro | bash
     mv micro ~/.local/bin/
-else
-    echo "already installed"
-fi
-
-echo "Installing ripgrep"
-if [[ ! -x "$(command -v rg)" ]]; then
-    if ls ripgrep_*_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("ripgrep_.*_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive ripgrep_*_amd64.deb
-    rm ripgrep_*_amd64.deb
 else
     echo "already installed"
 fi
