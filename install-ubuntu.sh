@@ -91,6 +91,12 @@ if [[ ! -x "$(command -v bak)" ]]; then
     sudo chmod +x ~/.local/bin/bak
 fi
 
+if [[ ! -x "$(command -v bat)" ]]; then
+    echo "Installing bat"
+    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+    sudo chmod +x ~/.local/bin/bat
+fi
 
 if [[ ! -x "$(command -v batdiff)" ]]; then
     echo "Installing bat-extras"
@@ -108,7 +114,7 @@ fi
 
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
-    cp ~/dotfiles/vendored/duf-linux-x86_64-0.3.1 ~/.local/bin/duf
+    cp ~/dotfiles/vendored/duf_0.3.1_linux_x86_64/duf ~/.local/bin/duf
     sudo chmod +x ~/.local/bin/duf
 fi
 
@@ -314,21 +320,6 @@ if [[ ! -x "$(command -v browsh)" ]]; then
     fi
     sudo gdebi --non-interactive browsh_*_linux_amd64.deb
     rm browsh_*_linux_amd64.deb
-else
-    echo "already installed"
-fi
-
-echo "Installing bat"
-if [[ ! -x "$(command -v bat)" ]]; then
-    if ls bat-musl_*_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("bat-musl_.*_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive bat-musl_*_amd64.deb
-    rm bat-musl_*_amd64.deb
 else
     echo "already installed"
 fi

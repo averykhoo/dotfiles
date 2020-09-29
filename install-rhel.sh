@@ -91,6 +91,12 @@ if [[ ! -x "$(command -v bak)" ]]; then
     sudo chmod +x ~/.local/bin/bak
 fi
 
+if [[ ! -x "$(command -v bat)" ]]; then
+    echo "Installing bat"
+    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+    sudo chmod +x ~/.local/bin/bat
+fi
 
 if [[ ! -x "$(command -v batdiff)" ]]; then
     echo "Installing bat-extras"
@@ -108,7 +114,7 @@ fi
 
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
-    cp ~/dotfiles/vendored/duf-linux-x86_64-0.3.1 ~/.local/bin/duf
+    cp ~/dotfiles/vendored/duf_0.3.1_linux_x86_64/duf ~/.local/bin/duf
     sudo chmod +x ~/.local/bin/duf
 fi
 
@@ -304,25 +310,6 @@ if [[ ! -x "$(command -v browsh)" ]]; then
     fi
     sudo yum install -y browsh_*_linux_amd64.rpm
     rm browsh_*_linux_amd64.rpm
-else
-    echo "already installed"
-fi
-
-echo "Installing bat"
-if [[ ! -x "$(command -v bat)" ]]; then
-    if ls bat-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/sharkdp/bat/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("bat-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-         | wget -i -
-    fi
-    tar -xvf ./bat-*-x86_64-unknown-linux-musl.tar.gz
-    cp ./bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
-    sudo chmod +x ~/.local/bin/bat
-    cp ./bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
-    rm -rf ./bat-*-x86_64-unknown-linux-musl/
-    rm ./bat-*-x86_64-unknown-linux-musl.tar.gz
 else
     echo "already installed"
 fi
