@@ -106,6 +106,11 @@ if [[ ! -x "$(command -v batdiff)" ]]; then
     sudo chmod +x ~/.local/bin/prettybat
 fi
 
+if [[ ! -x "$(command -v duf)" ]]; then
+    echo "Installing duf"
+    cp ~/dotfiles/vendored/duf-linux-x86_64-0.3.1 ~/.local/bin/duf
+    sudo chmod +x ~/.local/bin/duf
+fi
 
 if [[ ! -x "$(command -v exa)" ]]; then
     if [[ $(uname -r) = *el7* ]]; then

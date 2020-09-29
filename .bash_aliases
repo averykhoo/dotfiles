@@ -52,8 +52,11 @@ fi
 # ping -> prettyping
 [[ -x "$(command -v prettyping)" ]] && alias ping="prettyping"
 
-# df -> pydf
-[[ -x "$(command -v pydf)" ]] && alias df="pydf"
+## df -> pydf
+#[[ -x "$(command -v pydf)" ]] && alias df="pydf"
+
+# df -> duf
+[[ -x "$(command -v duf)" ]] && alias df="duf"
 
 # touch -> ad
 [[ -x "$(command -v ad)" ]] && alias touch=ad
@@ -61,7 +64,7 @@ fi
 # more -> bat
 [[ -x "$(command -v bat)" ]] && alias more=bat
 
-# klogg -> glogg (unless glogg exists)
+# glogg -> klogg (unless glogg exists)
 [[ -x "$(command -v klogg)" ]] && [[ ! -x "$(command -v glogg)" ]] && alias glogg=klogg
 
 # windows compat
