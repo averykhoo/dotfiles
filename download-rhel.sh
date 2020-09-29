@@ -56,15 +56,6 @@ fi
 echo "Downloading micro"
 curl https://getmic.ro | bash
 
-echo "Downloading ripgrep"
-if ls ripgrep-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("ripgrep-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
-fi
-
 echo "Downloading tigervnc server"
 RELEASE="tigervnc-1.10.1.x86_64"
 if [[ ! -f ${RELEASE}.tar.gz ]]; then

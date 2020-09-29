@@ -77,7 +77,7 @@ echo "Installing zstd"
 [[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
-sudo cp ~/dotfiles/vendored/iosevka-3.0.0-rc.8/iosevka-*.ttf /usr/local/share/fonts
+sudo cp ~/dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
 if [[ ! -x "$(command -v '$')" ]]; then
@@ -100,11 +100,11 @@ fi
 
 if [[ ! -x "$(command -v batdiff)" ]]; then
     echo "Installing bat-extras"
-    cp ~/dotfiles/vendored/bat-extras-20200501/batdiff ~/.local/bin/batdiff
-    cp ~/dotfiles/vendored/bat-extras-20200501/batgrep ~/.local/bin/batgrep
-    cp ~/dotfiles/vendored/bat-extras-20200501/batman ~/.local/bin/batman
-    cp ~/dotfiles/vendored/bat-extras-20200501/batwatch ~/.local/bin/batwatch
-    cp ~/dotfiles/vendored/bat-extras-20200501/prettybat ~/.local/bin/prettybat
+    cp ~/dotfiles/vendored/bat-extras-*/batdiff ~/.local/bin/batdiff
+    cp ~/dotfiles/vendored/bat-extras-*/batgrep ~/.local/bin/batgrep
+    cp ~/dotfiles/vendored/bat-extras-*/batman ~/.local/bin/batman
+    cp ~/dotfiles/vendored/bat-extras-*/batwatch ~/.local/bin/batwatch
+    cp ~/dotfiles/vendored/bat-extras-*/prettybat ~/.local/bin/prettybat
     sudo chmod +x ~/.local/bin/batdiff
     sudo chmod +x ~/.local/bin/batgrep
     sudo chmod +x ~/.local/bin/batman
@@ -120,7 +120,7 @@ fi
 
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
-    cp ~/dotfiles/vendored/duf_0.3.1_linux_x86_64/duf ~/.local/bin/duf
+    cp ~/dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
     sudo chmod +x ~/.local/bin/duf
 fi
 
@@ -129,7 +129,7 @@ if [[ ! -x "$(command -v exa)" ]]; then
         echo "Skipping exa on RHEL 7"
     else
         echo "Installing exa"
-        cp ~/dotfiles/vendored/exa-linux-x86_64-0.9.0/exa ~/.local/bin/exa
+        cp ~/dotfiles/vendored/exa-linux-x86_64-*/exa ~/.local/bin/exa
         sudo chmod +x ~/.local/bin/exa
     fi
 fi
@@ -160,24 +160,31 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     sudo sysctl -p --system
 fi
 
+if [[ ! -x "$(command -v micro)" ]]; then
+    echo "Installing micro"
+    cp ~/dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
+    cp ~/dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
+    sudo chmod +x ~/.local/bin/micro
+fi
+
 if [[ ! -x "$(command -v pipes.sh)" ]]; then
     echo "Installing pipes.sh"
-    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh ~/.local/bin/pipes.sh
-    cp ~/dotfiles/vendored/pipes.sh-master-581792d/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+    cp ~/dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
+    cp ~/dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
     sudo chmod +x ~/.local/bin/pipes.sh
 fi
 
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
     echo "Installing powerline font"
     mkdir --parents ~/.local/share/fonts/
-    cp ~/dotfiles/vendored/powerline-raw-develop-font-20200929/PowerlineSymbols.otf ~/.local/share/fonts/
+    cp ~/dotfiles/vendored/powerline-raw-develop-font-*/PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
 fi
 
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
     echo "Installing powerline fontconfig"
     mkdir --parents ~/.config/fontconfig/conf.d/
-    cp ~/dotfiles/vendored/powerline-raw-develop-font-20200929/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+    cp ~/dotfiles/vendored/powerline-raw-develop-font-*/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
     echo "already installed"
 fi
@@ -191,11 +198,11 @@ fi
 
 if [[ ! -x "$(command -v tldr)" ]]; then
     echo "Installing tldr"
-    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr ~/.local/bin/tldr
-    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr-lint ~/.local/bin/tldr-lint
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
+    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
     sudo chmod +x ~/.local/bin/tldr
     sudo chmod +x ~/.local/bin/tldr-lint
-    [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-0.45/tldr.tar.gz -C ~/.local/share/
+    [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar.gz -C ~/.local/share/
     ~/.local/bin/tldr --update
 fi
 
@@ -217,7 +224,7 @@ sudo chmod +r ~/.vnc/xstartup
 
 if [[ ! -x "$(command -v xsv)" ]]; then
     echo "Installing xsv"
-    cp ~/dotfiles/vendored/xsv-0.13.0-x86_64-unknown-linux-musl ~/.local/bin/xsv
+    cp ~/dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
     sudo chmod +x ~/.local/bin/xsv
 fi
 
@@ -394,14 +401,6 @@ if [[ ! -x "$(command -v klogg)" ]]; then
     fi
     sudo yum install -y klogg-*-Linux.rpm
     rm klogg-*-Linux.rpm
-else
-    echo "already installed"
-fi
-
-echo "Installing micro"
-if [[ ! -x "$(command -v micro)" ]] && [[ ! -x ~/.local/bin/micro ]]; then
-    curl https://getmic.ro | bash
-    mv micro ~/.local/bin/
 else
     echo "already installed"
 fi
