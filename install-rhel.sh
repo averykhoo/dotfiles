@@ -134,6 +134,13 @@ if [[ ! -x "$(command -v exa)" ]]; then
     fi
 fi
 
+if [[ ! -x "$(command -v fd)" ]]; then
+    echo "Installing fd"
+    cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
+    cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+    sudo chmod +x ~/.local/bin/fd
+fi
+
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     echo "Increase inotify watch limit for pycharm"
     sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
@@ -329,25 +336,6 @@ if [[ ! -x "$(command -v google-chrome)" ]]; then
     fi
     sudo yum install -y google-chrome-stable_current_x86_64.rpm
     rm google-chrome-stable_current_x86_64.rpm
-else
-    echo "already installed"
-fi
-
-echo "Installing fd"
-if [[ ! -x "$(command -v fd)" ]]; then
-    if ls fd-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-         | wget -i -
-    fi
-    tar -xvf ./fd-*-x86_64-unknown-linux-musl.tar.gz
-    cp ./fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
-    sudo chmod +x ~/.local/bin/fd
-    cp ./fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
-    rm -rf ./fd-*-x86_64-unknown-linux-musl/
-    rm ./fd-*-x86_64-unknown-linux-musl.tar.gz
 else
     echo "already installed"
 fi

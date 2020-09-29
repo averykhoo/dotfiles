@@ -40,15 +40,6 @@ else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 fi
 
-echo "Downloading fd"
-if ls fd-*-x86_64-unknown-linux-musl.tar.gz 1> /dev/null 2>&1; then
-    echo "found installer"
-else
-    curl "https://api.github.com/repos/sharkdp/fd/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("fd-.*-x86_64-unknown-linux-musl.tar.gz")) | .browser_download_url' \
-     | wget -i -
-fi
-
 echo "Downloading fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
