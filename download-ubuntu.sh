@@ -6,15 +6,15 @@ echo "downloading all the things"
 # java
 echo "Downloading JDK 11.0.7"
 # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
-CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224136098c2670
-if [[ ! -f jdk-11.0.7_linux-x64_bin.rpm ]]; then
+CHECKSUM=a7334a400fe9a9dbb329e299ca5ebab6ec969b5659a3a72fe0d6f981dbca0224
+if [[ ! -f jdk-11.0.7_linux-x64_bin.tar.gz ]]; then
     echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
     # https://www.adobe.com/support/coldfusion/downloads.html
-    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
+    wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.tar.gz
 else
     echo "jdk installer found"
 fi
-if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.rpm" | sha256sum --check -; then
+if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.tar.gz" | sha256sum --check -; then
     echo "Downloaded and verified sha256 hash, finally actually installing java"
 else
     echo "ERROR: java checksum failed!"
@@ -25,23 +25,30 @@ unset CHECKSUM
 # download everything else
 
 echo "Downloading browsh"
-if ls browsh_*_linux_amd64.rpm 1> /dev/null 2>&1; then
+if ls browsh_*_linux_amd64.deb 1> /dev/null 2>&1; then
     echo "found installer"
 else
     curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
+     | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
      | wget -i -
 fi
 
 echo "Downloading chrome"
-if ls google-chrome-stable_current_x86_64.rpm 1> /dev/null 2>&1; then
+if ls google-chrome-stable_current_amd64.deb 1> /dev/null 2>&1; then
     echo "found installer"
 else
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 fi
 
 echo "Downloading tigervnc server"
 RELEASE="tigervnc-1.11.0.x86_64"
 if [[ ! -f ${RELEASE}.tar.gz ]]; then
     wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+fi
+
+echo "Installing snowflake (renamed to muon)"
+if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
+    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
+     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
+     | wget -i -
 fi

@@ -419,7 +419,7 @@ fi
 
 echo "Installing tigervnc server"
 if [[ ! -x "$(command -v vncserver)" ]]; then
-    RELEASE="tigervnc-1.10.1.x86_64"
+    RELEASE="tigervnc-1.11.0.x86_64"
     if [[ ! -f ${RELEASE}.tar.gz ]]; then
         wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
     fi
