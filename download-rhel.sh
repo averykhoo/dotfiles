@@ -40,10 +40,6 @@ else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 fi
 
-# todo: does this work?
-echo "Downloading micro"
-curl https://getmic.ro | bash
-
 echo "Downloading tigervnc server"
 RELEASE="tigervnc-1.10.1.x86_64"
 if [[ ! -f ${RELEASE}.tar.gz ]]; then

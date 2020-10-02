@@ -8,6 +8,16 @@ dotfiles
 *   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
 *   restart terminal
 
+##  update
+*   fzf
+    *   `cd ~/.fzf`
+    *   `git pull`
+*   tldr
+    *   `tldr --update`
+*   dotfiles
+    *   `cd ~/dotfiles`
+    *   `git pull`
+
 ##  RHEL first steps
 *   `sudo subscription-manager register`
 *   `sudo subscription-manager attach`

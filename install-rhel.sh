@@ -334,35 +334,35 @@ if [[ ! -x "$(command -v zxcvbn)" ]]; then
     pip3 install --user zxcvbn
 fi
 
-# java
-
-echo "Installing JDK 11.0.7"
-if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
-
-    # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
-    CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224136098c2670
-
-    if [[ ! -f jdk-11.0.7_linux-x64_bin.rpm ]]; then
-        echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
-        # https://www.adobe.com/support/coldfusion/downloads.html
-        wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
-    else
-        echo "jdk installer found"
-    fi
-
-    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.rpm" | sha256sum --check -; then
-        echo "Downloaded and verified sha256 hash, finally actually installing java"
-        sudo yum install -y jdk-11.0.7_linux-x64_bin.rpm
-        sudo rm jdk-11.0.7_linux-x64_bin.rpm
-    else
-        echo "ERROR: java checksum failed!"
-    fi
-    unset CHECKSUM
-    rm jdk-11.0.7_linux-x64_bin.rpm
-
-else
-    echo "already installed"
-fi
+## java
+#
+#echo "Installing JDK 11.0.7"
+#if [[ ! -x "$(command -v java)" ]] || [[ $(java -version 2>&1) == *"OpenJDK"* ]]; then
+#
+#    # https://www.oracle.com/webfolder/s/digest/11-0-7-checksum.html
+#    CHECKSUM=0eb9441dfd2be041ca1075842c5335a731e60c6ea2bfb1e947224136098c2670
+#
+#    if [[ ! -f jdk-11.0.7_linux-x64_bin.rpm ]]; then
+#        echo "Acquiring java from Adobe's legally questionable but very helpful mirror"
+#        # https://www.adobe.com/support/coldfusion/downloads.html
+#        wget http://download.macromedia.com/pub/coldfusion/java/java11/1107/jdk-11.0.7_linux-x64_bin.rpm
+#    else
+#        echo "jdk installer found"
+#    fi
+#
+#    if echo "$CHECKSUM jdk-11.0.7_linux-x64_bin.rpm" | sha256sum --check -; then
+#        echo "Downloaded and verified sha256 hash, finally actually installing java"
+#        sudo yum install -y jdk-11.0.7_linux-x64_bin.rpm
+#        sudo rm jdk-11.0.7_linux-x64_bin.rpm
+#    else
+#        echo "ERROR: java checksum failed!"
+#    fi
+#    unset CHECKSUM
+#    rm jdk-11.0.7_linux-x64_bin.rpm
+#
+#else
+#    echo "already installed"
+#fi
 
 # download and install
 
