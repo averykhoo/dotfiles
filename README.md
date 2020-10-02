@@ -20,6 +20,10 @@ dotfiles
         *   actual download path contains the sha256, e.g. `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
 *   `sudo yum remove -y insights-client`
 
+##  Xubuntu first steps
+*   `sudo apt install -y openssh-server git`
+* 
+
 ##  XFCE
 *   (RHEL) `sudo yum group install -y xfce`
 *   (Ubuntu) `sudo apt install -y xfce4 xfce4-goodies`
