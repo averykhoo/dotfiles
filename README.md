@@ -33,6 +33,7 @@ dotfiles
             *   `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
             *   `https://access.cdn.redhat.com/content/origin/files/sha256/b7/b7de3a1f7e6ab1e4bf8c6ab70f934eb2e092cff8ab563fe255404b5777b1137e/rhel-8.3-beta-1-x86_64-dvd.iso`
 *   `sudo yum remove -y insights-client`
+*   (to remove) `sudo subscription-manager remove --all`
 
 ##  Xubuntu first steps
 *   `sudo apt install -y openssh-server`

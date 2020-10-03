@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # https://developers.redhat.com/download-manager/file/rhel-8.2-x86_64-dvd.iso
-ISO_FILE_BASENAME="rhel-8.2-x86_64-dvd"
-ISO_SHA256_CHECKSUM=7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86
+ISO_FILE_BASENAME="rhel-8.3-beta-1-x86_64-dvd"
+ISO_SHA256_CHECKSUM=b7de3a1f7e6ab1e4bf8c6ab70f934eb2e092cff8ab563fe255404b5777b1137e
 
 # remove spaces
 ISO_FILE_SAFENAME=${ISO_FILE_BASENAME// /-}
@@ -114,14 +114,14 @@ fi
 echo "step 5/7: create repo file"
 sudo tee /etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo << EOF
 [dvd-BaseOS]
-name=DVD for RHEL 8.2 - BaseOS
+name=DVD for RHEL 8.3 beta 1 - BaseOS
 baseurl=file://${ISO_TARGET_PATH}/BaseOS
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 
 [dvd-AppStream]
-name=DVD for RHEL 8.2 - AppStream
+name=DVD for RHEL 8.3 beta 1 - AppStream
 baseurl=file://${ISO_TARGET_PATH}/AppStream
 enabled=1
 gpgcheck=1

@@ -114,7 +114,7 @@ fi
 echo "step 5/7: create repo file"
 sudo tee /etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo << EOF
 [InstallMedia]
-name=DVD for Red Hat Enterprise Linux 7.9 Server
+name=DVD for RHEL 7.9 Server
 mediaid=1600369739.509793
 metadata_expire=-1
 gpgcheck=1
