@@ -24,9 +24,9 @@ dotfiles
 *   `sudo subscription-manager attach`
 *   `sudo yum install -y git`
 *   to set up local repo from the [RHEL 8.2 DVD](https://developers.redhat.com/download-manager/file/rhel-8.2-x86_64-dvd.iso)
-    *   you will need at least 8.5GB of space for this, and another temporary 8.5GB for the iso
+    *   you will need at least 9GB of space for this, and another temporary 9GB for the iso
     *   copy in the iso as `rhel-8.2-x86_64-dvd.iso`, and run the `rhel-dvd-repo.sh` from that directory
-    *   alternatively if you don't have an extra 8.5GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
+    *   alternatively if you don't have an extra 9GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will likely be much slower
     *   any other version of RHEL -> update the sha256 and .repo file accordingly
         *   actual download path contains the sha256, e.g.:
             *   `https://access.cdn.redhat.com/content/origin/files/sha256/19/19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191/rhel-server-7.9-x86_64-dvd.iso`
