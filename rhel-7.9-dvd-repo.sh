@@ -109,6 +109,10 @@ if [[ $? != 0 ]]; then
     echo "ERROR: unmount failed" >> /dev/stderr
     exit 1
 fi
+sudo rmdir "${ISO_MOUNT_PATH}"
+if [[ $? != 0 ]]; then
+    echo "WARNING: removing mount point failed" >> /dev/stderr
+fi
 
 # setup repo (updated repofile from https://access.redhat.com/solutions/3776721)
 echo "step 5/7: create repo file"
