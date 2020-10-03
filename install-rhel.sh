@@ -214,7 +214,7 @@ if [[ ! -x "$(command -v tldr)" ]]; then
     cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
     sudo chmod +x ~/.local/bin/tldr
     sudo chmod +x ~/.local/bin/tldr-lint
-    [[ ! -d ~/.local/share/tldr ]] && tar -xvf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar.gz -C ~/.local/share/
+    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar.gz -C ~/.local/share/
     ~/.local/bin/tldr --update
 fi
 

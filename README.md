@@ -5,7 +5,8 @@ dotfiles
 ##  TL;DR
 *   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
 *   `~/dotfiles/setup.sh`
-*   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) or `~/dotfiles/install-rhel.sh` (RHEL 8.2)
+*   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) *or* `~/dotfiles/install-rhel.sh` (RHEL 8.2)
+*   `~/dotfiles/install-jdk-11.0.7.sh` (optional)
 *   restart terminal
 
 ##  update
@@ -34,8 +35,8 @@ dotfiles
 *   `sudo yum remove -y insights-client`
 
 ##  Xubuntu first steps
-*   `sudo apt install -y openssh-server git`
-* 
+*   `sudo apt install -y openssh-server`
+*   `sudo apt install -y git`
 
 ##  XFCE
 *   (RHEL) `sudo yum group install -y xfce`
