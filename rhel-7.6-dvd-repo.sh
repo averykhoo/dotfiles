@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# https://developers.redhat.com/download-manager/file/rhel-server-7.9-x86_64-dvd.iso
-ISO_FILE_BASENAME="rhel-server-7.9-x86_64-dvd"
-ISO_SHA256_CHECKSUM=19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191
+# https://developers.redhat.com/download-manager/content/origin/files/sha256/60/60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c/rhel-server-7.6-x86_64-dvd.iso
+ISO_FILE_BASENAME="rhel-server-7.6-x86_64-dvd"
+ISO_SHA256_CHECKSUM=60a0be5aeed1f08f2bb7599a578c89ec134b4016cd62a8604b29f15d543a469c
 
 # remove spaces
 ISO_FILE_SAFENAME=${ISO_FILE_BASENAME// /-}
@@ -118,8 +118,8 @@ fi
 echo "step 5/7: create repo file"
 sudo tee /etc/yum.repos.d/${ISO_FILE_SAFENAME}.repo << EOF
 [InstallMedia]
-name=DVD for RHEL 7.9 Server
-mediaid=1600369739.509793
+name=DVD for RHEL 7.6 Server
+mediaid=1539194970.388895
 metadata_expire=-1
 gpgcheck=1
 cost=500
