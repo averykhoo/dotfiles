@@ -70,6 +70,30 @@ echo "Installing xz-utils"
 echo "Installing zstd"
 [[ ! -x "$(command -v zstd)" ]] && sudo apt install -y zstd
 
+# pre-reqs
+
+echo "Installing curl"
+sudo apt install -y curl
+
+echo "Installing gdebi-core"
+sudo apt install -y gdebi-core
+
+echo "Installing git & git-lfs"
+sudo apt install -y git git-lfs
+
+echo "Installing jq"
+sudo apt install -y jq
+
+#echo "Installing snap"
+#sudo apt install -y snapd
+#sudo systemctl enable --now snapd
+
+echo "Installing software-properties-common"
+sudo apt install -y software-properties-common
+
+echo "Installing wget"
+sudo apt install -y wget
+
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir --parents /usr/local/share/fonts
@@ -235,30 +259,6 @@ if [[ ! -x "$(command -v xsv)" ]]; then
     cp ~/dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
     sudo chmod +x ~/.local/bin/xsv
 fi
-
-# pre-reqs
-
-echo "Installing curl"
-sudo apt install -y curl
-
-echo "Installing gdebi-core"
-sudo apt install -y gdebi-core
-
-echo "Installing git & git-lfs"
-sudo apt install -y git git-lfs
-
-echo "Installing jq"
-sudo apt install -y jq
-
-#echo "Installing snap"
-#sudo apt install -y snapd
-#sudo systemctl enable --now snapd
-
-echo "Installing software-properties-common"
-sudo apt install -y software-properties-common
-
-echo "Installing wget"
-sudo apt install -y wget
 
 # pip installs
 

@@ -70,6 +70,24 @@ echo "Installing unzip"
 echo "Installing zstd"
 [[ ! -x "$(command -v zstd)" ]] && sudo yum install -y zstd
 
+# pre-reqs
+
+echo "Installing curl"
+sudo yum install -y curl
+
+echo "Installing git & git-lfs"
+sudo yum install -y git git-lfs
+
+echo "Installing jq"
+sudo yum install -y jq
+
+#echo "Installing snap"
+#sudo yum install -y snapd
+#sudo systemctl enable --now snapd
+
+echo "Installing wget"
+sudo yum install -y wget
+
 # vendored installs
 
 [[ -d /usr/local/share/fonts ]] || sudo mkdir --parents /usr/local/share/fonts
@@ -239,24 +257,6 @@ if [[ ! -x "$(command -v xsv)" ]]; then
     cp ~/dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
     sudo chmod +x ~/.local/bin/xsv
 fi
-
-# pre-reqs
-
-echo "Installing curl"
-sudo yum install -y curl
-
-echo "Installing git & git-lfs"
-sudo yum install -y git git-lfs
-
-echo "Installing jq"
-sudo yum install -y jq
-
-#echo "Installing snap"
-#sudo yum install -y snapd
-#sudo systemctl enable --now snapd
-
-echo "Installing wget"
-sudo yum install -y wget
 
 # pip installs
 
