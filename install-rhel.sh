@@ -165,7 +165,7 @@ fi
 if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    tar -xvf ~/dotfiles/vendored/fzf-*.tar.gz -C ~
+    tar -xf ~/dotfiles/vendored/fzf-*.tar.gz -C ~
     git -C ~/.fzf/ pull
     ~/.fzf/install --all
 fi
@@ -228,6 +228,13 @@ if [[ ! -x "$(command -v rg)" ]]; then
     cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
     cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
     sudo chmod +x ~/.local/bin/rg
+fi
+
+if [[ ! -x "$(command -v safe-rm)" ]]; then
+    echo "Installing safe-rm"
+    cp ~/dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
+    cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
+    sudo chmod +x ~/.local/bin/safe-rm
 fi
 
 if [[ ! -x "$(command -v tldr)" ]]; then
@@ -390,7 +397,7 @@ if [[ ! -x "$(command -v x0vncserver)" ]]; then
     if [[ ! -f ${RELEASE}.tar.gz ]]; then
         wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
     fi
-    tar -xvf ${RELEASE}.tar.gz
+    tar -xf ${RELEASE}.tar.gz
     rm ${RELEASE}.tar.gz
     sudo cp -R ${RELEASE}/usr/ /
     rm -rf ${RELEASE}/

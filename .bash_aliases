@@ -67,6 +67,9 @@ fi
 # glogg -> klogg (unless glogg exists)
 [[ -x "$(command -v klogg)" ]] && [[ ! -x "$(command -v glogg)" ]] && alias glogg=klogg
 
+# more -> bat
+[[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
+
 # windows compat
 [[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
 [[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN clear; clear"
