@@ -58,6 +58,9 @@ echo "Installing unrar"
 echo "Installing unp"
 [[ ! -x "$(command -v unp)" ]] && sudo apt install -y unp
 
+echo "Installing zip"
+[[ ! -x "$(command -v zip)" ]] && sudo apt install -y zip
+
 echo "Installing unzip"
 [[ ! -x "$(command -v unzip)" ]] && sudo apt install -y unzip
 
@@ -381,7 +384,7 @@ else
 fi
 
 echo "Installing tigervnc server"
-if [[ ! -x "$(command -v vncserver)" ]]; then
+if [[ ! -x "$(command -v vncserver)" ]] && [[ ! -x "$(command -v x0vncserver)" ]]; then
     RELEASE="tigervnc-1.11.0.x86_64"
     if [[ ! -f ${RELEASE}.tar.gz ]]; then
         wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
