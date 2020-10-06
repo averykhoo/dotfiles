@@ -11,13 +11,16 @@ dotfiles
 
 ##  update
 *   fzf
-    *   `cd ~/.fzf`
-    *   `git pull`
+    *   `git -C ~/.fzf/ pull`
 *   tldr
     *   `tldr --update`
 *   dotfiles
     *   `cd ~/dotfiles`
     *   `git pull`
+
+##  Xubuntu / Ubuntu Desktop first steps
+*   `sudo apt install -y openssh-server`
+*   `sudo apt install -y git`
 
 ##  RHEL first steps
 *   `sudo subscription-manager register`
@@ -34,10 +37,6 @@ dotfiles
             *   `https://access.cdn.redhat.com/content/origin/files/sha256/b7/b7de3a1f7e6ab1e4bf8c6ab70f934eb2e092cff8ab563fe255404b5777b1137e/rhel-8.3-beta-1-x86_64-dvd.iso`
 *   `sudo yum remove -y insights-client`
 *   (to remove) `sudo subscription-manager remove --all`
-
-##  Xubuntu first steps
-*   `sudo apt install -y openssh-server`
-*   `sudo apt install -y git`
 
 ##  XFCE
 *   (RHEL) `sudo yum group install -y xfce`
@@ -78,14 +77,14 @@ conda config --set ssl_verify false
 conda config --add channels conda-forge
 
 # nbextensions
-conda install -c conda-forge jupyter_contrib_nbextensions -y
-conda install -c conda-forge jupyter_nbextensions_configurator -y
+conda install -y -c conda-forge jupyter_contrib_nbextensions
+conda install -y -c conda-forge jupyter_nbextensions_configurator
 
 # start notebook
 jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
 
 # uninstall
-conda install anaconda-clean -y
+conda install -y anaconda-clean
 anaconda-clean -y
 rm -rf ~/anaconda3
 

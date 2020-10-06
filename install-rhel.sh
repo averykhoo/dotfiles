@@ -166,6 +166,7 @@ if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     tar -xvf ~/dotfiles/vendored/fzf-*.tar.gz -C ~
+    git -C ~/.fzf/ pull
     ~/.fzf/install --all
 fi
 
