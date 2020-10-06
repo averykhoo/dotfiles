@@ -94,12 +94,6 @@ git reset --hard origin/master
 git clean -fdx
 ```
 
-##  `vncserver` (assuming you have a GUI, otherwise install [XFCE](#xfce))
-```bash
-vncpasswd  # enter password
-x0vncserver -rfbauth ~/.vnc/passwd
-```
-
 ##  change the date
 ```bash
 # change the date
