@@ -78,20 +78,27 @@ conda config --set ssl_verify false
 conda config --add channels conda-forge
 
 # nbextensions
-conda install -c conda-forge jupyter_contrib_nbextensions
+conda install -c conda-forge jupyter_contrib_nbextensions -y
+conda install -c conda-forge jupyter_nbextensions_configurator -y
 
 # start notebook
 jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
 
 # uninstall
-conda install anaconda-clean
-anaconda-clean --yes
+conda install anaconda-clean -y
+anaconda-clean -y
 rm -rf ~/anaconda3
 
 # reset bashrc
 git fetch origin
 git reset --hard origin/master
 git clean -fdx
+```
+
+##  `vncserver` (assuming you have a GUI, otherwise install [XFCE](#xfce))
+```bash
+vncpasswd  # enter password
+x0vncserver -rfbauth ~/.vnc/passwd
 ```
 
 ##  change the date
