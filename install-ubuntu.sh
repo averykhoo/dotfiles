@@ -385,7 +385,7 @@ else
 fi
 
 echo "Installing tigervnc server"
-if [[ ! -x "$(command -v vncserver)" ]] && [[ ! -x "$(command -v x0vncserver)" ]]; then
+if [[ ! -x "$(command -v x0vncserver)" ]]; then
     RELEASE="tigervnc-1.11.0.x86_64"
     if [[ ! -f ${RELEASE}.tar.gz ]]; then
         wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
@@ -396,6 +396,10 @@ if [[ ! -x "$(command -v vncserver)" ]] && [[ ! -x "$(command -v x0vncserver)" ]
     rm -rf ${RELEASE}/
 else
     echo "already installed"
+fi
+if [[ ! -x "$(command -v vncserver)" ]]; then
+    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
+    sudo chmod +x /usr/bin/vncserver
 fi
 
 # apt installs

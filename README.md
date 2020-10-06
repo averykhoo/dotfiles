@@ -9,15 +9,6 @@ dotfiles
 *   `~/dotfiles/install-jdk-11.0.7.sh` (optional)
 *   restart terminal
 
-##  update
-*   fzf
-    *   `git -C ~/.fzf/ pull`
-*   tldr
-    *   `tldr --update`
-*   dotfiles
-    *   `cd ~/dotfiles`
-    *   `git pull`
-
 ##  Xubuntu / Ubuntu Desktop first steps
 *   `sudo apt install -y openssh-server`
 *   `sudo apt install -y git`
@@ -50,6 +41,15 @@ dotfiles
 *   maybe symlink the xstartup instead of copying it?
 *   firefox / chrome extensions
 *   ```alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'```
+
+##  update
+*   fzf
+    *   `git -C ~/.fzf/ pull`
+*   tldr
+    *   `tldr --update`
+*   dotfiles
+    *   `cd ~/dotfiles`
+    *   `git pull`
 
 
 #   bash references
