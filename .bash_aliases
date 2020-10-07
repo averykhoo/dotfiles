@@ -40,13 +40,20 @@ fi
 alias delete="mv -t ~/.Trash/"
 alias del="mv -t ~/.Trash/"
 
-# use exa
+# use exa for ll
 if [[ -x "$(command -v exa)" ]]; then
     alias ll="exa -abghl --color-scale --git --group-directories-first"
-    alias tree="exa -abghl --tree"
 else
     alias ll="ls -lAh"
+fi
+
+# use exa for tree
+if [[ -x "$(command -v exa)" ]]; then
+    alias tree="exa -abghl --tree"
+elif [[ -x "$(command -v tree)" ]]; then
     alias tree="tree -L 1 --dirsfirst -shugp"
+else
+    alias tree="ls -lAhR"
 fi
 
 # ping -> prettyping
@@ -71,13 +78,13 @@ fi
 [[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
 
 # windows compat
-[[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN ifconfig; ifconfig"
-[[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN clear; clear"
-[[ -x "$(command -v which)" ]] && alias where="echo ASSUMING YOU MEAN which; which"
-[[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN traceroute; traceroute"
+[[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN 'ifconfig'; ifconfig"
+[[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN 'clear'; clear"
+[[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN 'traceroute'; traceroute"
+alias where="echo ASSUMING YOU MEAN 'type' (or you can try 'where'); type -a"
 
 # typos
-alias dc="echo ASSUMING YOU MEAN cd; cd"
+alias dc="echo ASSUMING YOU MEAN 'cd'; cd"
 alias cd..="cd .."
 alias cd-="cd -"
 alias sudosu="sudo su"

@@ -9,6 +9,10 @@ dotfiles
 *   `~/dotfiles/install-jdk-11.0.7.sh` (optional)
 *   restart terminal
 
+#   notes
+##  to NOT run aliases
+*   prepend command with `\`, eg: `\which which`
+
 ##  Xubuntu / Ubuntu Desktop first steps
 *   `sudo apt install -y openssh-server`
 *   `sudo apt install -y git`
