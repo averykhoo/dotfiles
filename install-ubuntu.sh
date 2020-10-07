@@ -178,6 +178,12 @@ if [[ ! -x "$(command -v hexyl)" ]]; then
     sudo chmod +x ~/.local/bin/hexyl
 fi
 
+if [[ ! -x "$(command -v htop)" ]]; then
+    echo "Installing htop"
+    #sudo apt install -y htop
+    sudo gdebi --non-interactive ~/dotfiles/vendored/htop/htop_3.0.2-1_amd64.deb
+fi
+
 if [[ ! -x "$(command -v hyperfine)" ]]; then
     echo "Installing hyperfine"
     cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
@@ -481,9 +487,6 @@ sudo apt install -y gparted
 
 #echo "Installing gufw (and ufw)"
 #sudo apt install -y gufw
-
-echo "Installing htop"
-sudo apt install -y htop
 
 echo "Installing httpie"
 sudo apt install -y httpie

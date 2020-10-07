@@ -176,6 +176,16 @@ if [[ ! -x "$(command -v hexyl)" ]]; then
     sudo chmod +x ~/.local/bin/hexyl
 fi
 
+if [[ ! -x "$(command -v htop)" ]]; then
+    echo "Installing htop"
+    #sudo yum install -y htop
+    if [[ $(uname -r) = *el7* ]]; then
+        yum install -y ~/dotfiles/vendored/htop/htop-2.2.0-3.el7.x86_64.rpm
+    else
+        yum install -y ~/dotfiles/vendored/htop/htop-2.2.0-6.el8.x86_64.rpm
+    fi
+fi
+
 if [[ ! -x "$(command -v hyperfine)" ]]; then
     echo "Installing hyperfine"
     cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
@@ -484,9 +494,6 @@ sudo yum install -y gparted
 
 #echo "Installing gufw (and ufw)"
 #sudo yum install -y gufw
-
-echo "Installing htop"
-sudo yum install -y htop
 
 #echo "Installing httpie"
 #sudo yum install -y httpie
