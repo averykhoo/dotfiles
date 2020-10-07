@@ -94,11 +94,11 @@ foreach (@ARGV) {
     }
 
     # Check against the exclusions
-    if ( exists $protected_dirs{$normalized_pathname} and not -l $pathname ) {
-        print {*STDERR} "safe-rm: skipping $normalized_pathname ($pathname)\n" || 0;
-    }
-    elsif ( exists $protected_dirs{$pathname} and not -l $pathname ) {
+    if ( exists $protected_dirs{$pathname}) {
         print {*STDERR} "safe-rm: skipping $pathname\n" || 0;
+    }
+    elsif ( exists $protected_dirs{$normalized_pathname} and not -l $pathname ) {
+        print {*STDERR} "safe-rm: skipping $normalized_pathname ($pathname)\n" || 0;
     }
     elsif ( $pathname =~ /(.*)/xms ) {    # pointless untainting
         push @allowed_args, $1;
