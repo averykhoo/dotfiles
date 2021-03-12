@@ -110,7 +110,7 @@ alias .....="cd ../../../.."
 alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
-# sudo the things that need to be sudo
+# sudo the things that need to be run as sudo
 [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
 [[ -x "$(command -v snap)" ]] && alias snap="sudo snap"
@@ -118,6 +118,8 @@ alias -- -="cd -"
 [[ -x "$(command -v subscription-manager)" ]] && alias subscription-manager="sudo subscription-manager"
 [[ -x "$(command -v shutdown)" ]] && alias shutdown="sudo shutdown"
 [[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
+[[ -x "$(command -v iftop)" ]] && alias iftop="sudo iftop"
+[[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
 
 # Repeat the last command with sudo prefixed
 # equivalent to `sudo !!`
