@@ -58,6 +58,11 @@ dotfiles
 
 #   bash references
 
+## enable password-less sudo
+```
+echo "$USER  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
+```
+
 ##  set up python
 ```bash
 # install anaconda python
