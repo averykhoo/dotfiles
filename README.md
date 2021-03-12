@@ -58,9 +58,45 @@ dotfiles
 
 #   bash references
 
-## enable password-less sudo
+## Create new user ($NEW_USER)
+```bash
+# assign to variable so this whole thing can run as a script
+NEW_USER=new_username
+
+# create user
+useradd $NEW_USER
+
+# change password
+passwd $NEW_USER  # interactive
+
+# add to sudoers file
+usermod -aG sudo $NEW_USER  # for Ubuntu
+usermod -aG wheel $NEW_USER  # for RHEL
+
+# enable password-less sudo
+echo "$NEW_USER  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
+
+# create home dir
+mkdir /home/$NEW_USER
+chown $NEW_USER:$NEW_USER /home/$NEW_USER
+
+# test that everything is okay
+su $NEW_USER
+
+# set up bash (instead of sh)
+sudo chsh -s $(which bash) $(whoami)
+
+# you may also need to create a .profile to tell bash to source .bashrc 
+cat <<EOT >> ~/.profile
+if [ -s ~/.bashrc ]; then
+    source ~/.bashrc;
+fi
+EOT
 ```
-echo "$USER  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
+
+##  enable password-less sudo for your current account
+```bash
+echo "$(whoami)  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
 ```
 
 ##  set up python
