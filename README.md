@@ -63,14 +63,21 @@ dotfiles
 # assign to variable so this whole thing can run as a script
 NEW_USER=new_username
 
+## TLDR version
+#useradd --create-home --shell $(which bash) --groups sudo  $NEW_USER  # Ubuntu
+#useradd --create-home --shell $(which bash) --groups wheel $NEW_USER  # RHEL
+
 # create user
 useradd $NEW_USER
 
 # change password
 passwd $NEW_USER  # interactive
 
+# set up bash (instead of sh)
+sudo chsh -s $(which bash) $NEW_USER
+
 # add to sudoers file
-usermod -aG sudo $NEW_USER  # for Ubuntu
+usermod -aG sudo  $NEW_USER  # for Ubuntu
 usermod -aG wheel $NEW_USER  # for RHEL
 
 # enable password-less sudo
@@ -80,18 +87,19 @@ echo "$NEW_USER  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
 mkdir /home/$NEW_USER
 chown $NEW_USER:$NEW_USER /home/$NEW_USER
 
-# test that everything is okay
-su $NEW_USER
-
-# set up bash (instead of sh)
-sudo chsh -s $(which bash) $(whoami)
-
-# you may also need to create a .profile to tell bash to source .bashrc 
-cat <<EOT >> ~/.profile
+# create a .profile to tell bash to source .bashrc 
+cat <<EOT >> /home/$NEW_USER/.profile
 if [ -s ~/.bashrc ]; then
     source ~/.bashrc;
 fi
 EOT
+chown $NEW_USER:$NEW_USER /home/$NEW_USER/.profile
+
+# test that everything is okay
+su $NEW_USER
+
+# something went wrong, remove user
+userdel $NEW_USER -r
 ```
 
 ##  enable password-less sudo for your current account
