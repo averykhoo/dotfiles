@@ -16,6 +16,7 @@ dotfiles
 ##  Xubuntu / Ubuntu Desktop first steps
 *   `sudo apt install -y openssh-server`
 *   `sudo apt install -y git`
+*   do NOT update pip without taking a VM snapshot first, it might become broken and unfixable
 
 ##  RHEL first steps
 *   `sudo subscription-manager register`
@@ -58,48 +59,49 @@ dotfiles
 
 #   bash references
 
-## Create new user ($NEW_USER)
+##  Create new user (aka `adduser` the hard way)
 ```bash
 # assign to variable so this whole thing can run as a script
 NEW_USER=new_username
+sudo echo "Creating new user $new_username"
 
 ## TLDR version
-#useradd --create-home --shell $(which bash) --groups sudo  $NEW_USER  # Ubuntu
-#useradd --create-home --shell $(which bash) --groups wheel $NEW_USER  # RHEL
+#sudo useradd --create-home --shell $(which bash) --groups sudo  $NEW_USER  # Ubuntu
+#sudo useradd --create-home --shell $(which bash) --groups wheel $NEW_USER  # RHEL
 
 # create user
-useradd $NEW_USER
+sudo useradd $NEW_USER
 
 # change password
-passwd $NEW_USER  # interactive
+sudo passwd $NEW_USER  # interactive
 
 # set up bash (instead of sh)
 sudo chsh -s $(which bash) $NEW_USER
 
 # add to sudoers file
-usermod -aG sudo  $NEW_USER  # for Ubuntu
-usermod -aG wheel $NEW_USER  # for RHEL
+sudo usermod -aG sudo  $NEW_USER  # for Ubuntu
+sudo usermod -aG wheel $NEW_USER  # for RHEL
 
 # enable password-less sudo
-echo "$NEW_USER  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
+sudo echo "$NEW_USER  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
 
 # create home dir
-mkdir /home/$NEW_USER
-chown $NEW_USER:$NEW_USER /home/$NEW_USER
+sudo mkdir /home/$NEW_USER
+sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER
 
 # create a .profile to tell bash to source .bashrc 
-cat <<EOT >> /home/$NEW_USER/.profile
+sudo tee /home/$NEW_USER/.profile << EOF
 if [ -s ~/.bashrc ]; then
     source ~/.bashrc;
 fi
-EOT
-chown $NEW_USER:$NEW_USER /home/$NEW_USER/.profile
+EOF
+sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.profile
 
 # test that everything is okay
-su $NEW_USER
+sudo su $NEW_USER
 
-# something went wrong, remove user
-userdel $NEW_USER -r
+## something went wrong, remove user
+#sudo userdel $NEW_USER -r
 ```
 
 ##  enable password-less sudo for your current account
