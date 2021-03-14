@@ -33,6 +33,11 @@ do
     fi
 done
 
+# create .profile if it's missing (copied, not linked)
+if [[ ! -e ".profile" ]]; then
+    cp "${DOTFILES_DIR}/.profile" ".profile"
+fi
+
 # special case for rhel 7 because nano is super old
 if [[ -x "$(command -v yum)" ]] && [[ $(uname -r) = *el7* ]]; then
     echo "using legacy settings for nano"
