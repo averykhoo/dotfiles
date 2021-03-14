@@ -494,6 +494,9 @@ sudo apt install -y httpie
 echo "Installing ifconfig"
 sudo apt install -y net-tools
 
+echo "Installing iftop"
+sudo apt install -y iftop
+
 echo "Installing imagemagick"
 sudo apt install -y imagemagick
 

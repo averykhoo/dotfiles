@@ -10,6 +10,17 @@ if [[ ! -x "$(command -v yum)" ]]; then
     exit 1
 fi
 
+# add EPEL for RHEL 7
+if [[ $(uname -r) = *el7* ]]; then
+    sudo echo "adding EPEL 7 repo"
+    if [[ $(rpm -qa) != *epel-release* ]]; then
+        sudo rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        sudo yum update
+    else
+        echo 'already added'
+    fi
+fi
+
 # add extended repo for more packages
 if [[ $(uname -r) = *el8* ]]; then
     sudo echo "adding EPEL 8 repo"
@@ -19,6 +30,7 @@ if [[ $(uname -r) = *el8* ]]; then
         sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-${ARCH}-rpms"
         unset ARCH
     #    sudo dnf config-manager --set-enabled PowerTools
+        sudo yum update
     else
         echo 'already added'
     fi
@@ -500,6 +512,9 @@ sudo yum install -y gparted
 
 echo "Installing ifconfig"
 sudo yum install -y net-tools
+
+echo "Installing iftop"
+sudo yum install -y iftop
 
 echo "Installing imagemagick"
 sudo yum install -y ImageMagick
