@@ -81,7 +81,7 @@ fi
 [[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN 'ifconfig'; ifconfig"
 [[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN 'clear'; clear"
 [[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN 'traceroute'; traceroute"
-alias where="echo ASSUMING YOU MEAN 'type'; type -a"
+alias where="echo ASSUMING YOU MEAN 'type -a'; type -a"
 
 # typos
 alias dc="echo ASSUMING YOU MEAN 'cd'; cd"
