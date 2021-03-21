@@ -37,8 +37,8 @@ if [[ -x /usr/bin/dircolors ]]; then
 fi
 
 # delete to trash
-alias delete="mv -t ~/.Trash/"
-alias del="mv -t ~/.Trash/"
+alias delete="mkdir ~/.Trash/; mv -t ~/.Trash/"
+alias del="mkdir ~/.Trash/; mv -t ~/.Trash/"
 
 # use exa for ll
 if [[ -x "$(command -v exa)" ]]; then
