@@ -39,6 +39,7 @@ if [[ ! -e ".profile" ]]; then
 fi
 
 # special case for rhel 7 because nano is super old
+# todo: check nano --version, because apparently this affects ubuntu bionic too
 if [[ -x "$(command -v yum)" ]] && [[ $(uname -r) = *el7* ]]; then
     echo "using legacy settings for nano"
     rm ".nanorc"

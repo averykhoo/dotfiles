@@ -186,6 +186,9 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 ```
 
+#   todo
+*   check nano version instead of just hardcoding rhel
+
 #   more things you might want to install
 *   baobab (requires gdm3 and gnome desktop)
 *   gedit (requires gdm3 and gnome desktop)
