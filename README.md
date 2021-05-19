@@ -188,6 +188,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 #   todo
 *   check nano version instead of just hardcoding rhel
+*   create `offline-install-*.sh` that's called from the main `install-*.sh`
 
 #   more things you might want to install
 *   baobab (requires gdm3 and gnome desktop)
