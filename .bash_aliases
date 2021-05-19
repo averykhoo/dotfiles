@@ -120,6 +120,8 @@ alias -- -="cd -"
 [[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
 [[ -x "$(command -v iftop)" ]] && alias iftop="sudo iftop"
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
+[[ -x "$(command -v docker)" ]] && alias docker="sudo docker"
+[[ -x "$(command -v docker-compose)" ]] && alias docker-compose="sudo docker-compose"
 
 # Repeat the last command with sudo prefixed
 # equivalent to `sudo !!`
