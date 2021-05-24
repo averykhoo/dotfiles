@@ -74,7 +74,7 @@ fi
 # glogg -> klogg (unless glogg exists)
 [[ -x "$(command -v klogg)" ]] && [[ ! -x "$(command -v glogg)" ]] && alias glogg=klogg
 
-# more -> bat
+# rm -> safe-rm
 [[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
 
 # windows compat
@@ -122,6 +122,7 @@ alias -- -="cd -"
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
 [[ -x "$(command -v docker)" ]] && alias docker="sudo docker"
 [[ -x "$(command -v docker-compose)" ]] && alias docker-compose="sudo docker-compose"
+[[ -x "$(command -v dockercompose)" ]] && alias dockercompose="sudo docker-compose"
 
 # Repeat the last command with sudo prefixed
 # equivalent to `sudo !!`
