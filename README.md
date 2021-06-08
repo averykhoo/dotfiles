@@ -108,6 +108,10 @@ sudo su $NEW_USER
 ```bash
 echo "$(whoami)  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
 ```
+If you messed up the command and can no longer sudo:
+```bash
+pkexec nano /etc/sudoers
+```
 
 ##  set up python
 ```bash
