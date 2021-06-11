@@ -133,14 +133,24 @@ fi
 
 if [[ ! -x "$(command -v batdiff)" ]]; then
     echo "Installing bat-extras"
-    cp ~/dotfiles/vendored/bat-extras-*/batdiff ~/.local/bin/batdiff
-    cp ~/dotfiles/vendored/bat-extras-*/batgrep ~/.local/bin/batgrep
-    cp ~/dotfiles/vendored/bat-extras-*/batman ~/.local/bin/batman
-    cp ~/dotfiles/vendored/bat-extras-*/batwatch ~/.local/bin/batwatch
-    cp ~/dotfiles/vendored/bat-extras-*/prettybat ~/.local/bin/prettybat
+    cp ~/dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
+    cp ~/dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
+    cp ~/dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
+    cp ~/dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
+    cp ~/dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
+    cp ~/dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
+    cp ~/dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
+    cp ~/dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
+    cp ~/dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
+    cp ~/dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
+    cp ~/dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
+    cp ~/dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
+    cp ~/dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
+    sudo chmod +x ~/.local/bin/bat-modules
     sudo chmod +x ~/.local/bin/batdiff
     sudo chmod +x ~/.local/bin/batgrep
     sudo chmod +x ~/.local/bin/batman
+    sudo chmod +x ~/.local/bin/batpipe
     sudo chmod +x ~/.local/bin/batwatch
     sudo chmod +x ~/.local/bin/prettybat
 fi

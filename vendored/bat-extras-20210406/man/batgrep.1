@@ -1,0 +1,72 @@
+.TH "BATGREP" 1
+.SH NAME
+batgrep - Quickly search through and highlight files using ripgrep.
+.SH DESCRIPTION
+.P
+Search through files or directories looking for matching regular expressions (or fixed strings with \fR\fI-F\fR), and print the output using \fR\fIbat\fRfor an easy and syntax-highlighted experience.
+.SH "USAGE"
+.P
+batgrep [OPTIONS] PATTERN [PATH...]
+.SH "OPTIONS"
+.TS
+tab(|) box;
+| cB | cB | cB |
+| _ | _ | _ |
+| l0 |1 l |.
+ Short | Long | Description 
+||
+.SP
+ \fR\fI-i\fR | \fR\fI--ignore-case\fR | Use case insensitive searching. 
+ \fR\fI-s\fR | \fR\fI--case-sensitive\fR | Use case sensitive searching. 
+ \fR\fI-S\fR | \fR\fI--smart-case\fR | Use smart case searching. 
+ \fR\fI-A\fR | \fR\fI--after-context=[LINES]\fR | Display the next \fR\fIn\fRlines after a matched line. 
+ \fR\fI-B\fR | \fR\fI--before-context=[LINES]\fR | Display the previous \fR\fIn\fRlines before a matched line. 
+ \fR\fI-C\fR | \fR\fI--context=[LINES]\fR | A combination of \fR\fI--after-context\fR and \fR\fI--before-context\fR. 
+ \fR\fI-p\fR | \fR\fI--search-pattern\fR | Tell pager to search for \fR\fIPATTERN\fR. Currently supported pagers: \fR\fIless\fR. 
+  | \fR\fI--no-follow\fR | Do not follow symlinks. 
+  | \fR\fI--no-snip\fR | Do not show the \fR\fIsnip\fR decoration.<br /><br />This is automatically enabled when \fR\fI--context=0\fR or when \fR\fIbat --version\fR is less than \fR\fI0.12.x\fR. 
+  | \fR\fI--no-highlight\fR | Do not highlight matching lines.<br /><br />This is automatically enabled when \fR\fI--context=0\fR. 
+  | \fR\fI--color\fR | Force color output. 
+  | \fR\fI--no-color\fR | Force disable color output. 
+  | \fR\fI--paging=["never"/"always"]\fR | Enable/disable paging. 
+  | \fR\fI--pager=[PAGER]\fR | Specify the pager to use. 
+  | \fR\fI--terminal-width=[COLS]\fR | Generate output for the specified terminal width. 
+.TE
+
+.P
+The following options are passed directly to ripgrep, and are not handled by this script.
+.TS
+tab(|) box;
+| cB | cB | cB |
+| _ | _ | _ |
+| l0 |1 l |.
+ Short | Long | Notes 
+||
+.SP
+ \fR\fI-F\fR | \fR\fI--fixed-strings\fR |  
+ \fR\fI-U\fR | \fR\fI--multiline\fR |  
+ \fR\fI-P\fR | \fR\fI--pcre2\fR |  
+ \fR\fI-z\fR | \fR\fI--search-zip\fR |  
+ \fR\fI-w\fR | \fR\fI--word-regexp\fR |  
+  | \fR\fI--one-file-system\fR |  
+  | \fR\fI--multiline-dotall\fR |  
+  | \fR\fI--ignore\fR / \fR\fI--no-ignore\fR |  
+  | \fR\fI--crlf\fR / \fR\fI--no-crlf\fR |  
+  | \fR\fI--hidden\fR / \fR\fI--no-hidden\fR |  
+ \fR\fI-E\fR | \fR\fI--encoding\fR | This is unsupported by \fR\fIbat\fR, and may cause issues when trying to display unsupported encodings. 
+ \fR\fI-g\fR | \fR\fI--glob\fR |  
+ \fR\fI-t\fR | \fR\fI--type\fR |  
+ \fR\fI-T\fR | \fR\fI--type-not\fR |  
+ \fR\fI-m\fR | \fR\fI--max-count\fR |  
+  | \fR\fI--max-depth\fR |  
+  | \fR\fI--iglob\fR |  
+  | \fR\fI--ignore-file\fR |  
+.TE
+
+.SH "CAVEATS"
+.P
+\fR\fBDifferences from ripgrep:\fR
+.P
+- \fR\fI--follow\fR is enabled by default for \fR\fIbatgrep\fR.
+.P
+- Not all the \fR\fIripgrep\fRoptions are supported.

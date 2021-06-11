@@ -1,0 +1,24 @@
+.TH "BATMAN" 1
+.SH NAME
+batman - Read system manual pages (\fR\fIman\fR) using \fR\fIbat\fRas the manual page formatter.
+.SH DESCRIPTION
+.P
+Gone are the days of losing your place while reading through monotone manual pages. With \fR\fIbat\fR and \fR\fIbatman\fR, you can read \fR\fIman ifconfig\fRwith beautiful 24-bit color and syntax higlighting.
+.SH "USAGE"
+.P
+batman [SECTION] [ENTRY]
+.SH "ENVIRONMENT"
+.TS
+tab(|) box;
+| cB | cB |
+| _ | _ |
+| l0 |1 l |.
+ Variable | Description 
+|
+.SP
+ \fR\fIMANPAGER\fR | Changes the pager used for \fR\fIbatman\fR. This is treated like \fR\fIBAT_PAGER\fR, but only affects this command. 
+.TE
+
+.SH "ACKNOWLEDGEMENTS"
+.P
+Thanks to @sharkdp and @LunarLambda for debugging how to make this work properly in certain environments.
