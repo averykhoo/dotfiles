@@ -163,8 +163,9 @@ fi
 
 if [[ ! -x "$(command -v exa)" ]]; then
     echo "Installing exa"
-    cp ~/dotfiles/vendored/exa-linux-x86_64-*/exa-linux-x86_64 ~/.local/bin/exa
+    cp ~/dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
     sudo chmod +x ~/.local/bin/exa
+    cp ~/dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
 fi
 
 if [[ ! -x "$(command -v fd)" ]]; then
