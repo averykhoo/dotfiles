@@ -9,6 +9,9 @@ dotfiles
 *   `~/dotfiles/install-jdk-11.0.7.sh` (optional)
 *   restart terminal
 
+*   if your enterprise firewall is in the way:
+    *   `git -c http.sslVerify=false clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
+
 #   notes
 ##  to NOT run aliases
 *   prepend command with `\`, eg: `\which which`
