@@ -395,19 +395,6 @@ else
     echo "already installed"
 fi
 
-echo "Installing snowflake (renamed to muon)"
-if [[ ! -x "$(command -v snowflake)" ]]; then
-    if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
-        curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive snowflake-*-setup-amd64.deb
-    rm snowflake-*-setup-amd64.deb
-else
-    echo "already installed"
-fi
-
 echo "Installing tigervnc server"
 if [[ ! -x "$(command -v x0vncserver)" ]]; then
     RELEASE="tigervnc-1.11.0.x86_64"

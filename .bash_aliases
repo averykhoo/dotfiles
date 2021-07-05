@@ -40,6 +40,9 @@ fi
 alias delete="mkdir ~/.Trash/; mv -t ~/.Trash/"
 alias del="mkdir ~/.Trash/; mv -t ~/.Trash/"
 
+# # kill everything with this name
+# alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'
+
 # use exa for ll
 if [[ -x "$(command -v exa)" ]]; then
     alias ll="exa -abghl --color-scale --git --group-directories-first"
