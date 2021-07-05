@@ -93,7 +93,7 @@ alias cd-="cd -"
 alias sudosu="sudo su"
 
 # stupid enterprise firewall
-[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated"
+[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated --allow-insecure-repositories"
 [[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
