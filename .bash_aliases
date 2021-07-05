@@ -94,7 +94,7 @@ alias sudosu="sudo su"
 
 # stupid enterprise firewall
 [[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated --allow-insecure-repositories"
-[[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
+[[ -x "$(command -v curl)" ]] && alias curl="curl --insecure --ciphers DEFAULT@SECLEVEL=0"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
