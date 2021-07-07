@@ -268,8 +268,8 @@ if [[ ! -x "$(command -v safe-rm)" ]]; then
     # cp ~/dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
     # cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
     # sudo chmod +x ~/.local/bin/safe-rm
-    cp ~/dotfiles/vendored/safe-rm-*/safe-rm /usr/local/bin/safe-rm
-    cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
+    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm /usr/local/bin/safe-rm
+    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
     sudo chmod +x /usr/local/bin/safe-rm
 fi
 
