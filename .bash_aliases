@@ -113,6 +113,9 @@ alias .....="cd ../../../.."
 alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
+# allow aliases to be run via sudo
+alias sudo='sudo '
+
 # sudo the things that need to be run as sudo
 [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
