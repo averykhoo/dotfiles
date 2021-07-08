@@ -430,9 +430,6 @@ sudo apt install -y asciinema
 echo "Installing autojump"
 sudo apt install -y autojump
 
-#echo "Installing baobab"
-#sudo apt install -y baobab
-
 echo "Installing byobu"
 sudo apt install -y byobu
 
@@ -451,32 +448,20 @@ sudo ufw allow 9090
 echo "Installing coreutils (e.g. realpath)"
 sudo apt install -y coreutils
 
-echo "Installing cuneiform"
-sudo apt install -y cuneiform
-
 echo "Installing dos2unix"
 sudo apt install -y dos2unix
 
 echo "Installing exfat-fuse"
 sudo apt install -y exfat-fuse
 
-echo "Installing feh"
-sudo apt install -y feh
-
 echo "Installing ffmpeg"
 sudo apt install -y ffmpeg ffmpeg-doc
-
-echo "Installing fio"
-sudo apt install -y fio
 
 echo "Installing firefox"
 sudo apt install -y firefox
 
 echo "Installing Noto font"
 sudo apt install -y fonts-noto
-
-#echo "Installing gedit (with plugins)"
-#sudo apt install -y gedit gedit-common gedit-plugins
 
 if [[ ! -x "$(command -v klogg)" ]]; then
     echo "Installing glogg"
@@ -485,9 +470,6 @@ fi
 
 echo "Installing gparted"
 sudo apt install -y gparted
-
-#echo "Installing gufw (and ufw)"
-#sudo apt install -y gufw
 
 echo "Installing httpie"
 sudo apt install -y httpie
@@ -504,9 +486,6 @@ sudo apt install -y imagemagick
 echo "Installing iotop"
 sudo apt install -y iotop
 
-echo "Installing jid"
-sudo apt install -y jid
-
 echo "Installing less"
 sudo apt install -y less
 
@@ -519,36 +498,18 @@ sudo apt install -y lnav
 echo "Installing lsof"
 sudo apt install -y lsof
 
-echo "Installing masscan"
-sudo apt install -y masscan
-
-echo "Installing midnight commander"
-sudo apt install -y mc
-
 echo "Installing mosh"
 sudo apt install -y mosh
 [[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *mosh* ]] && sudo ufw allow mosh
 
-echo "Installing mousepad"
-sudo apt install -y mousepad
-
 echo "Installing mtr"
 sudo apt install -y mtr-tiny
-
-echo "Installing multitail"
-sudo apt install -y multitail
 
 echo "Installing nano"
 sudo apt install -y nano
 
 echo "Installing ncdu"
 sudo apt install -y ncdu
-
-echo "Installing nfs-server"
-sudo apt install -y nfs-kernel-server
-
-echo "Installing nmap"
-sudo apt install -y nmap
 
 echo "Installing nmtui"
 sudo apt install -y network-manager
@@ -565,17 +526,11 @@ sudo apt install -y pandoc
 echo "Installing parallel"
 sudo apt install -y parallel
 
-echo "Installing peco"
-sudo apt install -y peco
-
 echo "Installing pexec"
 sudo apt install -y pexec
 
 echo "Installing pglob, pkill"
 sudo apt install -y procps
-
-echo "Installing poppler-utils"
-sudo apt install -y poppler-utils
 
 echo "Installing prettyping"
 sudo apt install -y prettyping
@@ -597,9 +552,6 @@ sudo systemctl enable --now nmbd
 echo "Installing screen"
 sudo apt install -y screen
 
-echo "Installing shellcheck"
-sudo apt install -y shellcheck
-
 echo "Installing socat"
 sudo apt install -y socat
 
@@ -616,9 +568,6 @@ sudo apt install -y sshfs
 echo "Installing sshpass"
 sudo apt install -y sshpass
 
-echo "Installing tesseract"
-sudo apt install -y tesseract-ocr
-
 echo "Installing tmux"
 sudo apt install -y tmux
 
@@ -628,14 +577,8 @@ sudo apt install -y traceroute
 echo "Installing tree"
 sudo apt install -y tree
 
-echo "Installing uidmap"
-sudo apt install -y uidmap
-
 echo "Installing update-java-alternatives"
 sudo apt install -y java-common
-
-#echo "Installing vlc"
-#sudo apt install -y vlc
 
 echo "Installing wordlists"
 sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
@@ -646,14 +589,5 @@ sudo apt install -y xclip
 echo "Installing xclock"
 sudo apt install -y x11-apps
 
-echo "Installing youtube-dl"
-sudo apt install -y youtube-dl
-
-echo "Installing yagf"
-sudo apt install -y yagf
-
 echo "Installing zcat, zgrep (wrapper)"
 sudo apt install -y zutils
-
-echo "Installing zmap"
-sudo apt install -y zmap

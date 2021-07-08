@@ -447,9 +447,6 @@ sudo yum install -y atop
 #echo "Installing autojump"
 #sudo yum install -y autojump
 
-#echo "Installing baobab"
-#sudo yum install -y baobab
-
 echo "Installing byobu"
 sudo yum install -y byobu
 
@@ -470,23 +467,14 @@ sudo firewall-cmd --reload
 echo "Installing coreutils (e.g. realpath)"
 sudo yum install -y coreutils
 
-#echo "Installing cuneiform"
-#sudo yum install -y cuneiform
-
 echo "Installing dos2unix"
 sudo yum install -y dos2unix
 
 #echo "Installing exfat-fuse"
 #sudo yum install -y exfat-fuse
 
-#echo "Installing feh"
-#sudo yum install -y feh
-
 #echo "Installing ffmpeg"
 #sudo yum install -y ffmpeg ffmpeg-doc
-
-echo "Installing fio"
-sudo yum install -y fio
 
 echo "Installing firefox"
 sudo yum install -y firefox
@@ -494,17 +482,11 @@ sudo yum install -y firefox
 echo "Installing Noto font"
 sudo yum install -y google-noto-*
 
-#echo "Installing gedit (with plugins)"
-#sudo yum install -y gedit gedit-plugins
-
 #echo "Installing glogg"
 #sudo yum install -y glogg
 
 echo "Installing gparted"
 sudo yum install -y gparted
-
-#echo "Installing gufw (and ufw)"
-#sudo yum install -y gufw
 
 #echo "Installing httpie"
 #sudo yum install -y httpie
@@ -521,9 +503,6 @@ sudo yum install -y ImageMagick
 echo "Installing iotop"
 sudo yum install -y iotop
 
-#echo "Installing jid"
-#sudo yum install -y jid
-
 echo "Installing less"
 sudo yum install -y less
 
@@ -537,38 +516,20 @@ sudo yum install -y mlocate
 echo "Installing lsof"
 sudo yum install -y lsof
 
-echo "Installing masscan"
-sudo yum install -y masscan
-
-echo "Installing midnight commander"
-sudo yum install -y mc
-
 echo "Installing mosh"
 sudo yum install -y mosh
 sudo firewall-cmd --add-service=mosh
 sudo firewall-cmd --add-service=mosh --permanent
 sudo firewall-cmd --reload
 
-echo "Installing mousepad"
-sudo yum install -y mousepad
-
 echo "Installing mtr"
 sudo yum install -y mtr
-
-echo "Installing multitail"
-sudo yum install -y multitail
 
 echo "Installing nano"
 sudo yum install -y nano
 
 echo "Installing ncdu"
 sudo yum install -y ncdu
-
-#echo "Installing nfs-server"
-#sudo yum install -y nfs-kernel-server
-
-echo "Installing nmap"
-sudo yum install -y nmap
 
 #echo "Installing nmtui"
 #sudo yum install -y network-manager
@@ -585,17 +546,11 @@ sudo yum install -y pandoc
 echo "Installing parallel"
 sudo yum install -y parallel
 
-#echo "Installing peco"
-#sudo yum install -y peco
-
 #echo "Installing pexec"
 #sudo yum install -y pexec
 
 #echo "Installing pglob, pkill"
 #sudo yum install -y procps
-
-echo "Installing poppler-utils"
-sudo yum install -y poppler-utils
 
 #echo "Installing prettyping"
 #sudo yum install -y prettyping
@@ -620,9 +575,6 @@ sudo systemctl enable --now nmb
 echo "Installing screen"
 sudo yum install -y screen
 
-#echo "Installing shellcheck"
-#sudo yum install -y shellcheck
-
 echo "Installing socat"
 sudo yum install -y socat
 
@@ -641,9 +593,6 @@ sudo yum install -y fuse-sshfs
 echo "Installing sshpass"
 sudo yum install -y sshpass
 
-echo "Installing tesseract"
-sudo yum install -y tesseract
-
 echo "Installing tmux"
 sudo yum install -y tmux
 
@@ -653,14 +602,8 @@ sudo yum install -y traceroute
 echo "Installing tree"
 sudo yum install -y tree
 
-#echo "Installing uidmap"
-#sudo yum install -y uidmap
-
 #echo "Installing update-java-alternatives"
 #sudo yum install -y java-common
-
-#echo "Installing vlc"
-#sudo yum install -y vlc
 
 #echo "Installing wordlists"
 #sudo yum install -y wamerican wamerican-huge wbritish wbritish-huge
@@ -671,14 +614,5 @@ sudo yum install -y xclip
 echo "Installing xclock"
 sudo yum install -y xorg-x11-apps
 
-echo "Installing youtube-dl"
-sudo yum install -y youtube-dl
-
-#echo "Installing yagf"
-#sudo yum install -y yagf
-
 #echo "Installing zcat, zgrep (wrapper)"
 #sudo yum install -y zutils
-
-#echo "Installing zmap"
-#sudo yum install -y zmap
