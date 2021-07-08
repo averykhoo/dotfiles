@@ -74,9 +74,6 @@ fi
 # more -> bat
 [[ -x "$(command -v bat)" ]] && alias more=bat
 
-# glogg -> klogg (unless glogg exists)
-[[ -x "$(command -v klogg)" ]] && [[ ! -x "$(command -v glogg)" ]] && alias glogg=klogg
-
 # rm -> safe-rm
 [[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
 

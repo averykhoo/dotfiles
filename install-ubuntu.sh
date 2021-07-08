@@ -208,11 +208,6 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     sudo sysctl -p --system
 fi
 
-if [[ ! -x "$(command -v klogg)" ]]; then
-    echo "Installing klogg"
-    sudo gdebi --non-interactive ~/dotfiles/vendored/klogg-*-Linux/klogg-*-Linux.deb
-fi
-
 if [[ ! -x "$(command -v micro)" ]]; then
     echo "Installing micro"
     cp ~/dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
@@ -461,11 +456,6 @@ sudo apt install -y firefox
 
 echo "Installing Noto font"
 sudo apt install -y fonts-noto
-
-if [[ ! -x "$(command -v klogg)" ]]; then
-    echo "Installing glogg"
-    sudo apt install -y glogg
-fi
 
 echo "Installing gparted"
 sudo apt install -y gparted
