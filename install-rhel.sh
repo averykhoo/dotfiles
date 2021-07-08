@@ -274,7 +274,7 @@ if [[ ! -x "$(command -v tldr)" ]]; then
     cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
     sudo chmod +x ~/.local/bin/tldr
     sudo chmod +x ~/.local/bin/tldr-lint
-    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar.gz -C ~/.local/share/
+    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
 fi
 
 echo "Configuring xstartup"
