@@ -266,7 +266,6 @@ if [[ ! -x "$(command -v tldr)" ]]; then
     sudo chmod +x ~/.local/bin/tldr
     sudo chmod +x ~/.local/bin/tldr-lint
     [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar.gz -C ~/.local/share/
-    ~/.local/bin/tldr --update
 fi
 
 echo "Configuring xstartup"
