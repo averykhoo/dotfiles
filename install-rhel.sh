@@ -378,54 +378,54 @@ fi
 
 # download and install
 
-echo "Installing browsh"
-if [[ ! -x "$(command -v browsh)" ]]; then
-    if ls browsh_*_linux_amd64.rpm 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo yum install -y browsh_*_linux_amd64.rpm
-    rm browsh_*_linux_amd64.rpm
-else
-    echo "already installed"
-fi
+#echo "Installing browsh"
+#if [[ ! -x "$(command -v browsh)" ]]; then
+#    if ls browsh_*_linux_amd64.rpm 1> /dev/null 2>&1; then
+#        echo "found installer"
+#    else
+#        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+#         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.rpm")) | .browser_download_url' \
+#         | wget -i -
+#    fi
+#    sudo yum install -y browsh_*_linux_amd64.rpm
+#    rm browsh_*_linux_amd64.rpm
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing chrome"
-if [[ ! -x "$(command -v google-chrome)" ]]; then
-    if ls google-chrome-stable_current_x86_64.rpm 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    fi
-    sudo yum install -y google-chrome-stable_current_x86_64.rpm
-    rm google-chrome-stable_current_x86_64.rpm
-else
-    echo "already installed"
-fi
+#echo "Installing chrome"
+#if [[ ! -x "$(command -v google-chrome)" ]]; then
+#    if ls google-chrome-stable_current_x86_64.rpm 1> /dev/null 2>&1; then
+#        echo "found installer"
+#    else
+#        wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+#    fi
+#    sudo yum install -y google-chrome-stable_current_x86_64.rpm
+#    rm google-chrome-stable_current_x86_64.rpm
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing tigervnc server"
-if [[ ! -x "$(command -v x0vncserver)" ]]; then
-    RELEASE="tigervnc-1.11.0.x86_64"
-    if [[ ! -f ${RELEASE}.tar.gz ]]; then
-        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
-    fi
-    tar -xf ${RELEASE}.tar.gz
-    rm ${RELEASE}.tar.gz
-    sudo cp -R ${RELEASE}/usr/ /
-    rm -rf ${RELEASE}/
-else
-    echo "already installed"
-fi
-if [[ ! -x "$(command -v vncserver)" ]]; then
-    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
-    sudo chmod +x /usr/bin/vncserver
-fi
-sudo firewall-cmd --add-port=5900-5999/tcp
-sudo firewall-cmd --add-port=5900-5999/tcp --permanent
-sudo firewall-cmd --reload
+#echo "Installing tigervnc server"
+#if [[ ! -x "$(command -v x0vncserver)" ]]; then
+#    RELEASE="tigervnc-1.11.0.x86_64"
+#    if [[ ! -f ${RELEASE}.tar.gz ]]; then
+#        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+#    fi
+#    tar -xf ${RELEASE}.tar.gz
+#    rm ${RELEASE}.tar.gz
+#    sudo cp -R ${RELEASE}/usr/ /
+#    rm -rf ${RELEASE}/
+#else
+#    echo "already installed"
+#fi
+#if [[ ! -x "$(command -v vncserver)" ]]; then
+#    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
+#    sudo chmod +x /usr/bin/vncserver
+#fi
+#sudo firewall-cmd --add-port=5900-5999/tcp
+#sudo firewall-cmd --add-port=5900-5999/tcp --permanent
+#sudo firewall-cmd --reload
 
 # yum installs
 
@@ -441,8 +441,8 @@ sudo yum install -y atop
 #echo "Installing autojump"
 #sudo yum install -y autojump
 
-echo "Installing byobu"
-sudo yum install -y byobu
+#echo "Installing byobu"
+#sudo yum install -y byobu
 
 #echo "Installing catimg"
 #sudo yum install -y catimg
@@ -470,14 +470,14 @@ sudo yum install -y dos2unix
 #echo "Installing ffmpeg"
 #sudo yum install -y ffmpeg ffmpeg-doc
 
-echo "Installing firefox"
-sudo yum install -y firefox
+#echo "Installing firefox"
+#sudo yum install -y firefox
 
-echo "Installing Noto font"
-sudo yum install -y google-noto-*
+#echo "Installing Noto font"
+#sudo yum install -y google-noto-*
 
-echo "Installing gparted"
-sudo yum install -y gparted
+#echo "Installing gparted"
+#sudo yum install -y gparted
 
 #echo "Installing httpie"
 #sudo yum install -y httpie
@@ -584,8 +584,8 @@ sudo yum install -y fuse-sshfs
 echo "Installing sshpass"
 sudo yum install -y sshpass
 
-echo "Installing tmux"
-sudo yum install -y tmux
+#echo "Installing tmux"
+#sudo yum install -y tmux
 
 echo "Installing traceroute"
 sudo yum install -y traceroute
@@ -599,11 +599,11 @@ sudo yum install -y tree
 #echo "Installing wordlists"
 #sudo yum install -y wamerican wamerican-huge wbritish wbritish-huge
 
-echo "Installing xclip"
-sudo yum install -y xclip
+#echo "Installing xclip"
+#sudo yum install -y xclip
 
-echo "Installing xclock"
-sudo yum install -y xorg-x11-apps
+#echo "Installing xclock"
+#sudo yum install -y xorg-x11-apps
 
 #echo "Installing zcat, zgrep (wrapper)"
 #sudo yum install -y zutils

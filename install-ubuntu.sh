@@ -300,11 +300,11 @@ if [[ ! -x "$(command -v csvgrep)" ]]; then
     pip3 install --user csvkit
 fi
 
-if [[ ! -x "$(command -v glances)" ]]; then
-    echo "Installing glances (and bottle)"
-    pip3 install --user bottle
-    pip3 install --user glances
-fi
+#if [[ ! -x "$(command -v glances)" ]]; then
+#    echo "Installing glances (and bottle)"
+#    pip3 install --user bottle
+#    pip3 install --user glances
+#fi
 
 if [[ ! -x "$(command -v html2text)" ]]; then
     echo "Installing html2text"
@@ -364,51 +364,51 @@ fi
 
 # download and install
 
-echo "Installing browsh"
-if [[ ! -x "$(command -v browsh)" ]]; then
-    if ls browsh_*_linux_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
-         | wget -i -
-    fi
-    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
-    rm browsh_*_linux_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing browsh"
+#if [[ ! -x "$(command -v browsh)" ]]; then
+#    if ls browsh_*_linux_amd64.deb 1> /dev/null 2>&1; then
+#        echo "found installer"
+#    else
+#        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
+#         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+#         | wget -i -
+#    fi
+#    sudo gdebi --non-interactive browsh_*_linux_amd64.deb
+#    rm browsh_*_linux_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing chrome"
-if [[ ! -x "$(command -v google-chrome)" ]]; then
-    if ls google-chrome-stable_current_amd64.deb 1> /dev/null 2>&1; then
-        echo "found installer"
-    else
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    fi
-    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
-    rm google-chrome-stable_current_amd64.deb
-else
-    echo "already installed"
-fi
+#echo "Installing chrome"
+#if [[ ! -x "$(command -v google-chrome)" ]]; then
+#    if ls google-chrome-stable_current_amd64.deb 1> /dev/null 2>&1; then
+#        echo "found installer"
+#    else
+#        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#    fi
+#    sudo gdebi --non-interactive google-chrome-stable_current_amd64.deb
+#    rm google-chrome-stable_current_amd64.deb
+#else
+#    echo "already installed"
+#fi
 
-echo "Installing tigervnc server"
-if [[ ! -x "$(command -v x0vncserver)" ]]; then
-    RELEASE="tigervnc-1.11.0.x86_64"
-    if [[ ! -f ${RELEASE}.tar.gz ]]; then
-        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
-    fi
-    tar -xf ${RELEASE}.tar.gz
-    rm ${RELEASE}.tar.gz
-    sudo cp -R ${RELEASE}/usr/ /
-    rm -rf ${RELEASE}/
-else
-    echo "already installed"
-fi
-if [[ ! -x "$(command -v vncserver)" ]]; then
-    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
-    sudo chmod +x /usr/bin/vncserver
-fi
+#echo "Installing tigervnc server"
+#if [[ ! -x "$(command -v x0vncserver)" ]]; then
+#    RELEASE="tigervnc-1.11.0.x86_64"
+#    if [[ ! -f ${RELEASE}.tar.gz ]]; then
+#        wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
+#    fi
+#    tar -xf ${RELEASE}.tar.gz
+#    rm ${RELEASE}.tar.gz
+#    sudo cp -R ${RELEASE}/usr/ /
+#    rm -rf ${RELEASE}/
+#else
+#    echo "already installed"
+#fi
+#if [[ ! -x "$(command -v vncserver)" ]]; then
+#    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
+#    sudo chmod +x /usr/bin/vncserver
+#fi
 
 # apt installs
 
@@ -424,8 +424,8 @@ sudo apt install -y asciinema
 echo "Installing autojump"
 sudo apt install -y autojump
 
-echo "Installing byobu"
-sudo apt install -y byobu
+#echo "Installing byobu"
+#sudo apt install -y byobu
 
 echo "Installing catimg"
 sudo apt install -y catimg
@@ -451,14 +451,14 @@ sudo apt install -y exfat-fuse
 echo "Installing ffmpeg"
 sudo apt install -y ffmpeg ffmpeg-doc
 
-echo "Installing firefox"
-sudo apt install -y firefox
+#echo "Installing firefox"
+#sudo apt install -y firefox
 
-echo "Installing Noto font"
-sudo apt install -y fonts-noto
+#echo "Installing Noto font"
+#sudo apt install -y fonts-noto
 
-echo "Installing gparted"
-sudo apt install -y gparted
+#echo "Installing gparted"
+#sudo apt install -y gparted
 
 echo "Installing httpie"
 sudo apt install -y httpie
@@ -557,8 +557,8 @@ sudo apt install -y sshfs
 echo "Installing sshpass"
 sudo apt install -y sshpass
 
-echo "Installing tmux"
-sudo apt install -y tmux
+#echo "Installing tmux"
+#sudo apt install -y tmux
 
 echo "Installing traceroute"
 sudo apt install -y traceroute
@@ -566,17 +566,17 @@ sudo apt install -y traceroute
 echo "Installing tree"
 sudo apt install -y tree
 
-echo "Installing update-java-alternatives"
-sudo apt install -y java-common
+#echo "Installing update-java-alternatives"
+#sudo apt install -y java-common
 
-echo "Installing wordlists"
-sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
+#echo "Installing wordlists"
+#sudo apt install -y wamerican wamerican-huge wbritish wbritish-huge
 
-echo "Installing xclip"
-sudo apt install -y xclip
+#echo "Installing xclip"
+#sudo apt install -y xclip
 
-echo "Installing xclock"
-sudo apt install -y x11-apps
+#echo "Installing xclock"
+#sudo apt install -y x11-apps
 
 echo "Installing zcat, zgrep (wrapper)"
 sudo apt install -y zutils
