@@ -38,7 +38,7 @@ if [[ ! -e ".profile" ]]; then
     cp "${DOTFILES_DIR}/.profile" ".profile"
 fi
 
-# special case for rhel 7 because nano is super old
+# special case for rhel 7 and ubuntu 18 because nano is super old
 if [[ -x "$(command -v nano)" ]] && [[ $(nano --version) = *GNU\ nano,\ version\ 2.* ]]; then
     echo "using legacy settings for nano"
     rm ".nanorc"
