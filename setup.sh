@@ -39,7 +39,7 @@ if [[ ! -e ".profile" ]]; then
 fi
 
 # special case for rhel 7 because nano is super old
-if [[ -x "$(command -v nano)" ]] && [[ $(nano --version) = "*GNU nano, version 2.*" ]]; then
+if [[ -x "$(command -v nano)" ]] && [[ $(nano --version) = *GNU\ nano,\ version\ 2.* ]]; then
     echo "using legacy settings for nano"
     rm ".nanorc"
     ln -s "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
