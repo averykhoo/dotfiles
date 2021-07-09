@@ -185,7 +185,10 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 ```
 
 #   todo
-*   download-only script, modify install script to check for downloads
+*   list sources
+    *   scopatz/nanorc
+    *   pepa65/tldr
+    *   ...
 *   is x forwarding enabled
 *   set iosevka as terminal font
 *   set terminal opacity to 90%
