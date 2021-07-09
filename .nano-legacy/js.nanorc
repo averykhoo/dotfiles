@@ -13,8 +13,6 @@
 ## New updated taken from http://wiki.linuxhelp.net/index.php/Nano_Syntax_Highlighting
 
 syntax "JavaScript" "\.(js)$"
-header "^#!.*\/(env +)node"
-## comment "//"
 
 ## Default
 color white "^.+$"
@@ -42,8 +40,6 @@ color red "\<(true|false)\>"
 ## String
 color brightyellow "L?\"(\\"|[^"])*\""
 color brightyellow "L?'(\'|[^'])*'"
-color brightcyan "L?`(\`|[^`])*`"
-color brightwhite,blue start="\$\{" end="\}"
 
 ## Trailing spaces
 color ,green "[[:space:]]+$"
@@ -52,5 +48,5 @@ color ,green "[[:space:]]+$"
 color red "\\[0-7][0-7]?[0-7]?|\\x[0-9a-fA-F]+|\\[bfnrt'"\?\\]"
 
 ## Comments
-color brightblue start="^\s*/\*" end="\*/"
-color brightblue "^\s*//.*$"
+color brightblue start="/\*" end="\*/"
+color brightblue "//.*$"

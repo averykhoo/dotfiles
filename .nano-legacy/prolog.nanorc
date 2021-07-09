@@ -1,7 +1,7 @@
 ## Here is a prolog example.
 
 syntax "prolog" "\.pl"
-## comment "%"
+comment "%"
 
 # Reset everything
 color white ".*"
@@ -26,7 +26,7 @@ color green start="'" end="'"
 
 # Comments
 color white "(^|[[:blank:]])%.*$"
-color white start="^\s*/\*" end="\*/"
+color white start="/\*" end="\*/"
 
 # Reminders
 color black,yellow "(BUG|DEBUG|FIXME|IDEA|NOTE|REVIEW|TEMP|TODO|WARNING|XXX)"

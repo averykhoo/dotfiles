@@ -1,5 +1,4 @@
 syntax "PO" "\.pot?$"
-## comment "#"
 
 color cyan  "\<(msgid|msgstr)\>"
 color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
