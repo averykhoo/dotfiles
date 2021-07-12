@@ -114,6 +114,7 @@ alias -- -="cd -"
 alias sudo='sudo '
 
 # sudo the things that need to be run as sudo
+[[ -x "$(command -v usermod)" ]] && alias usermod="sudo usermod"
 [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
 [[ -x "$(command -v snap)" ]] && alias snap="sudo snap"
