@@ -51,7 +51,7 @@ fi
 [[ -x "$(command -v locale-gen)" ]] && sudo locale-gen en_US.UTF-8
 
 # create local bin
-[[ -d ~/.local/bin/ ]] || mkdir --parents ~/.local/bin/
+mkdir -p ~/.local/bin/
 
 source ~/.bashrc
 
