@@ -89,14 +89,15 @@ alias cd..="cd .."
 alias cd-="cd -"
 alias sudosu="sudo su"
 
-# stupid enterprise firewall
-[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated --allow-insecure-repositories"
+# compatibility with stupid enterprise firewall
+[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt --allow-unauthenticated --allow-insecure-repositories"
 [[ -x "$(command -v curl)" ]] && alias curl="curl --insecure --ciphers DEFAULT@SECLEVEL=0"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
 [[ -x "$(command -v pip)" ]] && alias pip="pip --trusted-host pypi.org --trusted-host files.pythonhosted.org"
 [[ -x "$(command -v git)" ]] && git config --global http.sslVerify false
+[[ -x "$(command -v git)" ]] && git config --global url."https://".insteadOf git://
 export GIT_SSL_NO_VERIFY=true
 
 # launch kite
@@ -116,7 +117,7 @@ alias sudo='sudo '
 
 # sudo the things that need to be run as sudo
 [[ -x "$(command -v usermod)" ]] && alias usermod="sudo usermod"
-[[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
+# [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"  # see above firewall-compatibility alias
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
 [[ -x "$(command -v snap)" ]] && alias snap="sudo snap"
 [[ -x "$(command -v systemctl)" ]] && alias systemctl="sudo systemctl"
