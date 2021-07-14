@@ -40,8 +40,9 @@ fi
 alias delete="mkdir ~/.Trash/; mv -t ~/.Trash/"
 alias del="mkdir ~/.Trash/; mv -t ~/.Trash/"
 
-# # kill everything with this name
-# alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'
+## kill everything with this name
+## just use pkill -f <command-name>
+#alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'
 
 # use exa for ll
 if [[ -x "$(command -v exa)" ]]; then
@@ -209,14 +210,14 @@ function dataurl () {
 #    alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 #fi
 
-# alias xclip to systemwide clipboard if installed
-if [[ -x "$(command -v xclip)" ]]; then
-    alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
-	# copy to clipboard. ex: cat file1 | toclip
-	alias toclip='xclip -selection clipboard'
-	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
-	alias fromclip='xclip -o -selection clipboard'
-fi
+## alias xclip to systemwide clipboard if installed
+#if [[ -x "$(command -v xclip)" ]]; then
+#    alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
+#	# copy to clipboard. ex: cat file1 | toclip
+#	alias toclip='xclip -selection clipboard'
+#	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
+#	alias fromclip='xclip -o -selection clipboard'
+#fi
 
 ## Downloads the embedded video on any web page straight to the desktop.
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""

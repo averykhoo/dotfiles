@@ -58,9 +58,6 @@ echo "Installing lzip"
 echo "Installing p7zip"
 [[ ! -x "$(command -v 7z)" ]] && sudo yum install -y p7zip p7zip-plugins p7zip-doc
 
-echo "Installing pigz"
-[[ ! -x "$(command -v pigz)" ]] && sudo yum install -y pigz
-
 #echo "Installing unar, lsar"
 #[[ ! -x "$(command -v unar)" ]] && sudo yum install -y unar
 
@@ -189,7 +186,7 @@ if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     tar -xf ~/dotfiles/vendored/fzf-*.tar -C ~
-    git -C ~/.fzf/ pull
+    [[ -x "$(command -v git)" ]] && git -C ~/.fzf/ pull
     ~/.fzf/install --all
 fi
 
@@ -227,6 +224,11 @@ if [[ ! -x "$(command -v micro)" ]]; then
     cp ~/dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
     cp ~/dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
     sudo chmod +x ~/.local/bin/micro
+fi
+
+if [[ ! -x "$(command -v osqueryi)" ]]; then
+    echo "Installing osquery"
+    yum install -y ~/dotfiles/vendored/osquery/osquery-4.9.0-1.linux.x86_64.rpm
 fi
 
 if [[ ! -x "$(command -v pipes.sh)" ]]; then

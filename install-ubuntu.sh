@@ -15,8 +15,7 @@ echo "updating apt"
 sudo apt update
 
 # cleanup MOTD
-
-[[ ! -d /etc/update-motd.d.bak/ ]] && sudo mkdir /etc/update-motd.d.bak/
+[[ ! -d /etc/update-motd.d.bak/ ]] &&                  sudo mkdir /etc/update-motd.d.bak/
 [[ -f /etc/update-motd.d/10-help-text ]] &&            sudo mv /etc/update-motd.d/10-help-text            /etc/update-motd.d.bak/10-help-text
 [[ -f /etc/update-motd.d/50-motd-news ]] &&            sudo mv /etc/update-motd.d/50-motd-news            /etc/update-motd.d.bak/50-motd-news
 [[ -f /etc/update-motd.d/90-updates-available ]] &&    sudo mv /etc/update-motd.d/90-updates-available    /etc/update-motd.d.bak/90-updates-available
@@ -45,9 +44,6 @@ echo "Installing lzip"
 
 echo "Installing p7zip"
 [[ ! -x "$(command -v 7z)" ]] && sudo apt install -y p7zip p7zip-full p7zip-rar
-
-echo "Installing pigz"
-[[ ! -x "$(command -v pigz)" ]] && sudo apt install -y pigz
 
 echo "Installing unar, lsar"
 [[ ! -x "$(command -v unar)" ]] && sudo apt install -y unar
@@ -179,7 +175,7 @@ if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     tar -xf ~/dotfiles/vendored/fzf-*.tar -C ~
-    git -C ~/.fzf/ pull
+    [[ -x "$(command -v git)" ]] && git -C ~/.fzf/ pull
     ~/.fzf/install --all
 fi
 
@@ -213,6 +209,11 @@ if [[ ! -x "$(command -v micro)" ]]; then
     cp ~/dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
     cp ~/dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
     sudo chmod +x ~/.local/bin/micro
+fi
+
+if [[ ! -x "$(command -v osqueryi)" ]]; then
+    echo "Installing osquery"
+    sudo gdebi --non-interactive ~/dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
 fi
 
 if [[ ! -x "$(command -v pipes.sh)" ]]; then

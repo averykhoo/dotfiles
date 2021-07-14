@@ -160,5 +160,5 @@ fi
 env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
     bash --norc -c ':' 2>/dev/null;
 
-# you can safely comment this if you're online
+# disables tldr updates; you can safely comment this out if you're online
 export TLDR_EXPIRY=9999
