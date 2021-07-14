@@ -226,10 +226,10 @@ if [[ ! -x "$(command -v micro)" ]]; then
     sudo chmod +x ~/.local/bin/micro
 fi
 
-if [[ ! -x "$(command -v osqueryi)" ]]; then
-    echo "Installing osquery"
-    yum install -y ~/dotfiles/vendored/osquery/osquery-4.9.0-1.linux.x86_64.rpm
-fi
+#if [[ ! -x "$(command -v osqueryi)" ]]; then
+#    echo "Installing osquery"
+#    yum install -y ~/dotfiles/vendored/osquery/osquery-4.9.0-1.linux.x86_64.rpm
+#fi
 
 if [[ ! -x "$(command -v pipes.sh)" ]]; then
     echo "Installing pipes.sh"

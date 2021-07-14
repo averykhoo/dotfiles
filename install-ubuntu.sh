@@ -211,10 +211,10 @@ if [[ ! -x "$(command -v micro)" ]]; then
     sudo chmod +x ~/.local/bin/micro
 fi
 
-if [[ ! -x "$(command -v osqueryi)" ]]; then
-    echo "Installing osquery"
-    sudo gdebi --non-interactive ~/dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
-fi
+#if [[ ! -x "$(command -v osqueryi)" ]]; then
+#    echo "Installing osquery"
+#    sudo gdebi --non-interactive ~/dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
+#fi
 
 if [[ ! -x "$(command -v pipes.sh)" ]]; then
     echo "Installing pipes.sh"
