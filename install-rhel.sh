@@ -311,10 +311,10 @@ if [[ ! -x "$(command -v ad)" ]]; then
     pip3 install --user advance-touch
 fi
 
-if [[ ! -x "$(command -v csvgrep)" ]]; then
-    echo "Installing csvkit"
-    pip3 install --user csvkit
-fi
+#if [[ ! -x "$(command -v csvgrep)" ]]; then
+#    echo "Installing csvkit"
+#    pip3 install --user csvkit
+#fi
 
 #if [[ ! -x "$(command -v glances)" ]]; then
 #    echo "Installing glances (and bottle)"
