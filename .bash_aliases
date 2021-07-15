@@ -91,7 +91,7 @@ alias cd-="cd -"
 alias sudosu="sudo su"
 
 # compatibility with stupid enterprise firewall
-[[ -x "$(command -v apt)" ]] && alias apt="sudo apt --allow-unauthenticated --allow-insecure-repositories"
+[[ -x "$(command -v apt)" ]] && alias apt="sudo apt --allow-unauthenticated"
 [[ -x "$(command -v curl)" ]] && alias curl="curl --insecure --ciphers DEFAULT@SECLEVEL=0"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
