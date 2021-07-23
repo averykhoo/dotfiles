@@ -45,10 +45,3 @@ RELEASE="tigervnc-1.11.0.x86_64"
 if [[ ! -f ${RELEASE}.tar.gz ]]; then
     wget -O ${RELEASE}.tar.gz https://bintray.com/tigervnc/stable/download_file?file_path=${RELEASE}.tar.gz
 fi
-
-echo "Installing snowflake (renamed to muon)"
-if [[ ! -f snowflake-*-setup-amd64.deb ]]; then
-    curl "https://api.github.com/repos/subhra74/snowflake/releases/latest" \
-     | jq -r '.assets[] | select(.name|test("snowflake-.*-setup-amd64.deb")) | .browser_download_url' \
-     | wget -i -
-fi
