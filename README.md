@@ -54,7 +54,7 @@ dotfiles
 #   bash references
 
 ##  Create new user (aka `adduser` the hard way)
-```bash
+```shell
 # assign to variable so this whole thing can run as a script
 NEW_USER=new_username
 sudo echo "Creating new user $new_username"
@@ -99,16 +99,88 @@ sudo su $NEW_USER
 ```
 
 ##  enable password-less sudo for your current account
-```bash
+```shell
 echo "$(whoami)  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
 ```
 If you messed up the command and can no longer sudo:
-```bash
+```shell
 pkexec nano /etc/sudoers
 ```
 
+##  set up `docker`, `docker-compose`, `minikube`, `kubectl`, `helm` (tested on ubuntu 20)
+```shell
+# docker, docker-compose
+apt remove docker docker-engine docker.io containerd runc
+apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+echo   "deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo tee /etc/apt/apt.conf.d/80ssl-exceptions << EOF
+// Do not verify peer certificate
+Acquire::https::Verify-Peer "false";
+// Do not verify that certificate name matches server name
+Acquire::https::Verify-Host "false";
+
+EOF
+apt update --allow-unauthenticated --allow-insecure-repositories
+apt install -y docker-ce docker-compose
+sudo usermod -aG docker user && newgrp docker
+#sudo curl -k https://artifactory.domain.internal/infra/certificates/ca.domain.crt -o /usr/local/share/ca-certificates/ca.domain.crt
+#sudo update-ca-certificates
+#sudo systemctl restart docker
+docker run hello-world
+
+#  minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+sudo dpkg -i minikube_latest_amd64.deb
+minikube start --insecure-registry 0.0.0.0/0
+
+#  kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl version --client
+
+# helm
+#snap install helm --classic  # fails due to MITM cert
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+```
+
+### usage
+```shell
+# without editing a helm chart:
+helm install hzc --set service.type=LoadBalancer,hazelcast.yaml.hazelcast.network.memcache-protocol.enabled=true hazelcast/hazelcast
+watch kubectl get all
+
+# make it available via 0.0.0.0:5701 and 0.0.0.0:8080
+# terminal #1
+minikube tunnel
+
+# terminal #2
+kubectl get all
+export HZC=$(kubectl get services --namespace default -l "app.kubernetes.io/name=hazelcast" -o jsonpath="{.items[0].spec.clusterIP}")
+echo $HZC
+socat TCP4-LISTEN:5701,fork TCP4:${HZC:?}:5701
+# you may want to test using the python script
+
+# terminal #3
+kubectl get all
+export HZCMAN=$(kubectl get services --namespace default -l "app.kubernetes.io/name=hazelcast-mancenter" -o jsonpath="{.items[0].spec.clusterIP}")
+echo $HZCMAN
+socat TCP4-LISTEN:8080,fork TCP4:${HZCMAN:?}:8080
+# you may want to test by visiting in the browser
+
+# stop
+Ctrl-C the socat instances
+pkill -f socat
+Ctrl-C the minikube tunnel
+helm uninstall hzc
+minikube stop
+
+# erase everything
+docker system prune --volumes
+```
+
+
 ##  set up python
-```bash
+```shell
 # install anaconda python
 wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
 chmod +x Anaconda3-*-Linux-x86_64.sh
@@ -148,7 +220,7 @@ git clean -fdx
 ```
 
 ##  change the date
-```bash
+```shell
 # change the date
 sudo date -s "14/08/2019 11:22:33"
 date -u
@@ -157,14 +229,14 @@ sudo hwclock --systohc --localtime
 ```
 
 ##  java-alternatives (shouldn't be needed)
-```bash
+```shell
 # set default java on RHEL
 sudo alternatives --config java
 sudo alternatives --config javac
 ```
 
 ##  git no ssl
-```bash
+```shell
 # ignore ssl errors in git
 git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
@@ -172,7 +244,7 @@ export GIT_SSL_NO_VERIFY=true
 
 ##  find parent for bash script
 Minimal one-liner: `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"`
-```bash
+```shell
 # get parent directory abspath for a bash script, resolving symlinks recursively
 # https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself
 SOURCE="${BASH_SOURCE[0]}"
