@@ -46,6 +46,13 @@ if [[ -x "$(command -v nano)" ]] && [[ $(nano --version) = *GNU\ nano,\ version\
     rm ".nano"
     ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
 fi
+if [[ -x "$(command -v nano)" ]] && [[ $(nano --version) = *GNU\ nano\ version\ 2.* ]]; then
+    echo "using legacy settings for nano"
+    rm ".nanorc"
+    ln -s "${DOTFILES_DIR}/.nanorc-legacy" ".nanorc"
+    rm ".nano"
+    ln -s "${DOTFILES_DIR}/.nano-legacy" ".nano"
+fi
 
 # setup locale
 [[ -x "$(command -v locale-gen)" ]] && sudo locale-gen en_US.UTF-8
