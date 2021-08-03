@@ -250,9 +250,10 @@ if [[ ! -x "$(command -v safe-rm)" ]]; then
     # cp ~/dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
     # cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
     # sudo chmod a+x ~/.local/bin/safe-rm
-    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm /usr/local/bin/safe-rm
+    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm /usr/bin/safe-rm
     sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
-    sudo chmod a+x /usr/local/bin/safe-rm
+    sudo chmod 755 /usr/bin/safe-rm
+    sudo chmod 644 /usr/local/etc/safe-rm.conf
 fi
 
 if [[ ! -x "$(command -v tldr)" ]]; then
