@@ -55,7 +55,7 @@ fi
 if [[ -x "$(command -v exa)" ]]; then
     alias tree="exa -abghl --tree"
 elif [[ -x "$(command -v tree)" ]]; then
-    alias tree="tree -L 1 --dirsfirst -shugp"
+    alias tree="tree -L 3 --dirsfirst -shugp"
 else
     alias tree="ls -lAhR"
 fi
