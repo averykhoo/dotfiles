@@ -107,42 +107,42 @@ sudo yum install -y wget
 [[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 
 echo "Installing Iosevka"
-sudo cp ~/dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
+sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 
 echo "Installing '$' ignorer"
 if [[ ! -x "$(command -v '$')" ]]; then
-    cp ~/dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+    cp ~/.dotfiles/vendored/dollar_sign ~/.local/bin/'$'
     sudo chmod a+x ~/.local/bin/'$'
 fi
 
 if [[ ! -x "$(command -v bak)" ]]; then
     echo "Installing backup.sh"
-    cp ~/dotfiles/vendored/backup.sh ~/.local/bin/bak
+    cp ~/.dotfiles/vendored/backup.sh ~/.local/bin/bak
     sudo chmod a+x ~/.local/bin/bak
 fi
 
 if [[ ! -x "$(command -v bat)" ]]; then
     echo "Installing bat"
-    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
-    cp ~/dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+    cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+    cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
     sudo chmod a+x ~/.local/bin/bat
 fi
 
 if [[ ! -x "$(command -v batdiff)" ]]; then
     echo "Installing bat-extras"
-    cp ~/dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
-    cp ~/dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
-    cp ~/dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
-    cp ~/dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
-    cp ~/dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
-    cp ~/dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
-    cp ~/dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
-    cp ~/dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
-    cp ~/dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
-    cp ~/dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
-    cp ~/dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
-    cp ~/dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
-    cp ~/dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
+    cp ~/.dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
+    cp ~/.dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
+    cp ~/.dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
+    cp ~/.dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
+    cp ~/.dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
+    cp ~/.dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
+    cp ~/.dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
     sudo chmod a+x ~/.local/bin/bat-modules
     sudo chmod a+x ~/.local/bin/batdiff
     sudo chmod a+x ~/.local/bin/batgrep
@@ -154,13 +154,13 @@ fi
 
 if [[ ! -x "$(command -v delta)" ]]; then
     echo "Installing delta"
-    cp ~/dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
+    cp ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
     sudo chmod a+x ~/.local/bin/delta
 fi
 
 if [[ ! -x "$(command -v duf)" ]]; then
     echo "Installing duf"
-    cp ~/dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
+    cp ~/.dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
     sudo chmod a+x ~/.local/bin/duf
 fi
 
@@ -169,30 +169,30 @@ if [[ ! -x "$(command -v exa)" ]]; then
         echo "Skipping exa on RHEL 7"
     else
         echo "Installing exa"
-        cp ~/dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
+        cp ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
         sudo chmod a+x ~/.local/bin/exa
-        cp ~/dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
+        cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
     fi
 fi
 
 if [[ ! -x "$(command -v fd)" ]]; then
     echo "Installing fd"
-    cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
-    cp ~/dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+    cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
+    cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
     sudo chmod a+x ~/.local/bin/fd
 fi
 
 if [[ ! -d ~/.fzf ]]; then
     echo "Installing fzf"
     # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    tar -xf ~/dotfiles/vendored/fzf-*.tar -C ~
+    tar -xf ~/.dotfiles/vendored/fzf-*.tar -C ~
     [[ -x "$(command -v git)" ]] && git -C ~/.fzf/ pull
     ~/.fzf/install --all
 fi
 
 if [[ ! -x "$(command -v hexyl)" ]]; then
     echo "Installing hexyl"
-    cp ~/dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
+    cp ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
     sudo chmod a+x ~/.local/bin/hexyl
 fi
 
@@ -200,96 +200,96 @@ if [[ ! -x "$(command -v htop)" ]]; then
     echo "Installing htop"
     #sudo yum install -y htop
     if [[ $(uname -r) = *el7* ]]; then
-        yum install -y ~/dotfiles/vendored/htop/htop-2.2.0-3.el7.x86_64.rpm
+        yum install -y ~/.dotfiles/vendored/htop/htop-2.2.0-3.el7.x86_64.rpm
     else
-        yum install -y ~/dotfiles/vendored/htop/htop-2.2.0-6.el8.x86_64.rpm
+        yum install -y ~/.dotfiles/vendored/htop/htop-2.2.0-6.el8.x86_64.rpm
     fi
 fi
 
 if [[ ! -x "$(command -v hyperfine)" ]]; then
     echo "Installing hyperfine"
-    cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
-    cp ~/dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+    cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
+    cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
     sudo chmod a+x ~/.local/bin/hyperfine
 fi
 
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     echo "Increase inotify watch limit for pycharm"
-    sudo cp ~/dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
+    sudo cp ~/.dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
     sudo sysctl -p --system
 fi
 
 if [[ ! -x "$(command -v micro)" ]]; then
     echo "Installing micro"
-    cp ~/dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
-    cp ~/dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
+    cp ~/.dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
+    cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
     sudo chmod a+x ~/.local/bin/micro
 fi
 
 #if [[ ! -x "$(command -v osqueryi)" ]]; then
 #    echo "Installing osquery"
-#    yum install -y ~/dotfiles/vendored/osquery/osquery-4.9.0-1.linux.x86_64.rpm
+#    yum install -y ~/.dotfiles/vendored/osquery/osquery-4.9.0-1.linux.x86_64.rpm
 #fi
 
 if [[ ! -x "$(command -v pipes.sh)" ]]; then
     echo "Installing pipes.sh"
-    cp ~/dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
-    cp ~/dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+    cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
+    cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
     sudo chmod a+x ~/.local/bin/pipes.sh
 fi
 
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
     echo "Installing powerline font"
     mkdir --parents ~/.local/share/fonts/
-    cp ~/dotfiles/vendored/powerline-raw-develop-font-*/PowerlineSymbols.otf ~/.local/share/fonts/
+    cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/PowerlineSymbols.otf ~/.local/share/fonts/
     fc-cache -vf ~/.local/share/fonts/
 fi
 
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
     echo "Installing powerline fontconfig"
     mkdir --parents ~/.config/fontconfig/conf.d/
-    cp ~/dotfiles/vendored/powerline-raw-develop-font-*/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+    cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
     echo "already installed"
 fi
 
 if [[ ! -x "$(command -v rg)" ]]; then
     echo "Installing ripgrep"
-    cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
-    cp ~/dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+    cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
+    cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
     sudo chmod a+x ~/.local/bin/rg
 fi
 
 if [[ ! -x "$(command -v safe-rm)" ]]; then
     echo "Installing safe-rm"
-    # cp ~/dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
-    # cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
+    # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
+    # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
     # sudo chmod a+x ~/.local/bin/safe-rm
-    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm /usr/bin/safe-rm
-    sudo cp ~/dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
+    sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm /usr/bin/safe-rm
+    sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
     sudo chmod 755 /usr/bin/safe-rm
     sudo chmod 644 /usr/local/etc/safe-rm.conf
 fi
 
 if [[ ! -x "$(command -v tldr)" ]]; then
     echo "Installing tldr"
-    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
-    cp ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
+    cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
+    cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
     sudo chmod a+x ~/.local/bin/tldr
     sudo chmod a+x ~/.local/bin/tldr-lint
-    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
+    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
 fi
 
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
 if [[ -x "$(command -v gnome-session)" ]]; then
-    cp ~/dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
+    cp ~/.dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
 elif [[ -x "$(command -v startxfce4)" ]]; then
-    cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
+    cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
 else
     echo "no GUI found, copying XFCE-based xstartup"
-    cp ~/dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
+    cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
     #echo "DO YOU WANT TO INSTALL XFCE?"
     #sudo yum group install xfce
 fi
@@ -298,7 +298,7 @@ sudo chmod a+r ~/.vnc/xstartup
 
 if [[ ! -x "$(command -v xsv)" ]]; then
     echo "Installing xsv"
-    cp ~/dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
+    cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
     sudo chmod a+x ~/.local/bin/xsv
 fi
 
@@ -423,7 +423,7 @@ fi
 #    echo "already installed"
 #fi
 #if [[ ! -x "$(command -v vncserver)" ]]; then
-#    sudo cp ~/dotfiles/vendored/vncserver /usr/bin/
+#    sudo cp ~/.dotfiles/vendored/vncserver /usr/bin/
 #    sudo chmod a+x /usr/bin/vncserver
 #fi
 #sudo firewall-cmd --add-port=5900-5999/tcp

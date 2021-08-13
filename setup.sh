@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# create symlinks from `~` to desired items in `~/dotfiles`
+# create symlinks from `~` to desired items in `~/.dotfiles`
 
 # dotfiles directory and backup directory
-DOTFILES_DIR=~/dotfiles
+DOTFILES_DIR=~/.dotfiles
 BACKUP_DIR=${DOTFILES_DIR}/backup--$(date +"%Y-%m-%d--%H-%M-%S")
 if ! [[ -d ${DOTFILES_DIR} ]]; then
     echo "cloning dotfiles repo from github..."
@@ -12,7 +12,8 @@ fi
 # list of files/folders to symlink in homedir
 FILENAMES=".bashrc .bash_aliases .curlrc .inputrc .lessfilter .wgetrc .nano .nanorc"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
+# move any existing dotfiles in homedir to dotfiles_old directory,
+# then create symlinks from the homedir to any files in the ~/.dotfiles directory specified in $files
 cd ~
 for file in ${FILENAMES}
 do
@@ -21,7 +22,7 @@ do
 
     elif ! cmp --silent "${file}" "${DOTFILES_DIR}/${file}"; then
         if [[ -e "${file}" ]]; then
-            mkdir -p ${BACKUP_DIR}
+            mkdir -p "${BACKUP_DIR}"
             echo "backing up existing ${file}"
             mv "${file}" "${BACKUP_DIR}/${file}"
         fi

@@ -4,11 +4,11 @@ dotfiles
 
 #   quickstart
 ##  TL;DR
-*   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
-    *   or `git -c http.sslVerify=false clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/dotfiles`
-*   `~/dotfiles/setup.sh`
-*   `~/dotfiles/install-ubuntu.sh` (Ubuntu 20.04) *or* `~/dotfiles/install-rhel.sh` (RHEL 8.2)
-*   `~/dotfiles/install-jdk-11.0.7.sh` (optional)
+*   `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/.dotfiles`
+    *   or `git -c http.sslVerify=false clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/.dotfiles`
+*   `~/.dotfiles/setup.sh`
+*   `~/.dotfiles/install-ubuntu.sh` (Ubuntu 20.04) *or* `~/.dotfiles/install-rhel.sh` (RHEL 8.2)
+*   `~/.dotfiles/install-jdk-11.0.7.sh` (optional)
 *   restart terminal
 
 
@@ -47,7 +47,7 @@ dotfiles
 *   tldr
     *   `tldr --update`
 *   dotfiles
-    *   `cd ~/dotfiles`
+    *   `cd ~/.dotfiles`
     *   `git pull`
 
 
@@ -188,7 +188,7 @@ chmod +x Anaconda3-*-Linux-x86_64.sh
 rm Anaconda3-*-Linux-x86_64.sh
 
 # commit the changed bashrc (otherwise it's impossible to git pull)
-git add ~/dotfiles/.bashrc
+git add ~/.dotfiles/.bashrc
 git commit -m "installed anaconda"
 
 # Jupyter password
@@ -306,8 +306,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
         *   `cd ~`
         *   `rm .nanorc`
         *   `rm .nano`
-        *   `ln -s dotfiles/.nanorc-legacy .nanorc`
-        *   `ln -s dotfiles/.nano-legacy .nano`
+        *   `ln -s ~/.dotfiles/.nanorc-legacy .nanorc`
+        *   `ln -s ~/.dotfiles/.nano-legacy .nano`
 *   tldr tries very hard to stay updated, but i've disabled this, if you're online then *either*
     *   in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
     *   *or* run `tldr --update` to update
