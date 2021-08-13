@@ -26,6 +26,7 @@ do
             echo "backing up existing ${file}"
             mv "${file}" "${BACKUP_DIR}/${file}"
         fi
+        [[ -L "${file}" ]] && rm "${file}"
         ln -s "${DOTFILES_DIR}/${file}" "${file}"
 
     else
