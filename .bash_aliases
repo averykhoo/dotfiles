@@ -252,7 +252,7 @@ fi
 
 function quiet_helm() {
   helm $* 2>&1 | grep -v ": skipping loading invalid entry"
-  return ${pipestatus[0]}
+  return "${PIPESTATUS[0]}"
 }
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
