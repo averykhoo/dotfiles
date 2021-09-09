@@ -201,14 +201,39 @@ function dataurl () {
 #	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 #}
 
-## URL-encode strings
-#if [[ -x "$(command -v python)" ]]; then
-#    alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-#fi
+# python-based convenience functions
+if [[ -x "$(command -v python)" ]]; then
+    function urlencode {
+      python -c 'import sys, urllib as ul; print(ul.quote_plus(sys.stdin.read()))'
+    }
+    function urldecode {
+      python -c 'import sys, urllib as ul; print(ul.parse(sys.stdin.read()))'
+    }
+
+    function yaml_validate {
+      python -c 'import sys, yaml, json; yaml.safe_load(sys.stdin.read())'
+    }
+
+    function yaml2json {
+      python -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read())))'
+    }
+
+    function yaml2json_pretty {
+      python -c 'import sys, yaml, json; print(json.dumps(yaml.safe_load(sys.stdin.read()), indent=4, sort_keys=False))'
+    }
+
+    function json_validate {
+      python -c 'import sys, yaml, json; json.loads(sys.stdin.read())'
+    }
+
+    function json2yaml {
+      python -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))'
+    }
+fi
 
 # alias xclip to systemwide clipboard if installed
 if [[ -x "$(command -v xclip)" ]]; then
-    alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
+  alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
 	# copy to clipboard. ex: cat file1 | toclip
 	alias toclip='xclip -selection clipboard'
 	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
