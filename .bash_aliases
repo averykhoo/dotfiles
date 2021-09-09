@@ -23,7 +23,11 @@ alias less="less -R"
 
 # enable color support of ls and also add handy aliases
 if [[ -x /usr/bin/dircolors ]]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  if [[ -r ~/.dircolors ]]; then
+    eval "$(dircolors -b ~/.dircolors)"
+  else
+    eval "$(dircolors -b)"
+  fi
 
   [[ -x "$(command -v grep)" ]] && alias grep='grep --color=auto'
   [[ -x "$(command -v rg)" ]] && alias rg='rg --color=auto'
@@ -160,7 +164,7 @@ function fix-crlf() {
 
   # no args given
   if [[ $# -eq 0 ]]; then
-    echo "Usage: $FUNCNAME <filename or directory>"
+    echo "Usage: ${FUNCNAME[0]} <filename or directory>"
     return 0
 
   # is a file, just process that file
@@ -192,7 +196,8 @@ function fix-crlf() {
 
 # Create a data URL from a file
 function dataurl() {
-  local mimeType=$(file -b --mime-type "$1")
+  local mimeType
+  mimeType=$(file -b --mime-type "$1")
   if [[ ${mimeType} == text/* ]]; then
     mimeType="${mimeType};charset=utf-8"
   fi
@@ -251,7 +256,7 @@ fi
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""
 
 function quiet_helm() {
-  helm $* 2>&1 | grep -v ": skipping loading invalid entry"
+  helm "$*" 2>&1 | grep -v ": skipping loading invalid entry"
   return "${PIPESTATUS[0]}"
 }
 
