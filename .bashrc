@@ -17,12 +17,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # if previous printf/echo/cat/whatever didn't end with newline
@@ -35,30 +35,30 @@ PROMPT_COMMAND='printf "\033[101m \033[0m%$((COLUMNS-1))s\\r"'
 force_color_prompt=yes
 
 if [[ -n "$force_color_prompt" ]]; then
-    if [[ -x /usr/bin/tput ]] && tput setaf 1 &>/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [[ -x /usr/bin/tput ]] && tput setaf 1 &>/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
-if [[ "$color_prompt" = yes ]]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+if [[ "$color_prompt" == yes ]]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
+
 esac
 
 # enable programmable completion features (you don't need to enable
@@ -123,26 +123,26 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 # enable autojump
 if [[ -f /usr/share/autojump/autojump.sh ]]; then
-    source /usr/share/autojump/autojump.sh
+  source /usr/share/autojump/autojump.sh
 fi
 
 # enable powerline (assuming it was installed via pip3)
 if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
 
-    # only enable if we're using SSH but not in the cockpit web shell
-    if [[ ! $TERM == "linux" ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
+  # only enable if we're using SSH but not in the cockpit web shell
+  if [[ ! $TERM == "linux" ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
 
-        POWERLINE_ROOT=$(pip3 show powerline-status --disable-pip-version-check | grep -oP --color=never "(?<=Location: ).*")/powerline
-        if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
-            if ! pgrep -f "powerline-daemon" > /dev/null; then
-                powerline-daemon -q
-            fi
-            POWERLINE_BASH_CONTINUATION=1
-            POWERLINE_BASH_SELECT=1
-            source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
-        fi
-        unset POWERLINE_ROOT
+    POWERLINE_ROOT=$(pip3 show powerline-status --disable-pip-version-check | grep -oP --color=never "(?<=Location: ).*")/powerline
+    if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
+      if ! pgrep -f "powerline-daemon" >/dev/null; then
+        powerline-daemon -q
+      fi
+      POWERLINE_BASH_CONTINUATION=1
+      POWERLINE_BASH_SELECT=1
+      source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
     fi
+    unset POWERLINE_ROOT
+  fi
 fi
 
 # pre-populate fzf since we know exactly what script it wants
@@ -160,7 +160,7 @@ fi
 # will be printed if your shell has been patched. It will take a little longer
 # to launch a new shell slightly, but for some, this may be worth it.
 env x='() { :;}; echo "WARNING: SHELLSHOCK DETECTED"' \
-    bash --norc -c ':' 2>/dev/null;
+bash --norc -c ':' 2>/dev/null
 
 # disables tldr updates; you can safely comment this out if you're online
 export TLDR_EXPIRY=9999
