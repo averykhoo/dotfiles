@@ -1,3 +1,4 @@
+
 # some (ubuntu default) ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -23,39 +24,40 @@ alias less="less -R"
 
 # enable color support of ls and also add handy aliases
 if [[ -x /usr/bin/dircolors ]]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-  [[ -x "$(command -v grep)" ]] && alias grep='grep --color=auto'
-  [[ -x "$(command -v rg)" ]] && alias rg='rg --color=auto'
-  [[ -x "$(command -v ls)" ]] && alias ls='ls --color=auto'
-  [[ -x "$(command -v egrep)" ]] && alias egrep='egrep --color=auto'
-  [[ -x "$(command -v fgrep)" ]] && alias fgrep='fgrep --color=auto'
-  [[ -x "$(command -v dir)" ]] && alias dir='dir --color=auto'
-  [[ -x "$(command -v vdir)" ]] && alias vdir='vdir --color=auto'
-  [[ -x "$(command -v fd)" ]] && alias find="fd --color=auto"
+    [[ -x "$(command -v grep)" ]]  && alias grep='grep --color=auto'
+    [[ -x "$(command -v rg)" ]]    && alias rg='rg --color=auto'
+    [[ -x "$(command -v ls)" ]]    && alias ls='ls --color=auto'
+    [[ -x "$(command -v egrep)" ]] && alias egrep='egrep --color=auto'
+    [[ -x "$(command -v fgrep)" ]] && alias fgrep='fgrep --color=auto'
+    [[ -x "$(command -v dir)" ]]   && alias dir='dir --color=auto'
+    [[ -x "$(command -v vdir)" ]]  && alias vdir='vdir --color=auto'
+    [[ -x "$(command -v fd)" ]]    && alias find="fd --color=auto"
 fi
 
 # delete to trash
 alias delete="mkdir ~/.Trash/; mv -t ~/.Trash/"
 alias del="mkdir ~/.Trash/; mv -t ~/.Trash/"
 
-# # kill everything with this name
-# alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'
+## kill everything with this name
+## just use pkill -f <command-name>
+#alias hose kill -9 '`ps -augxww | grep \!* | awk \'{print $2}\'`'
 
 # use exa for ll
 if [[ -x "$(command -v exa)" ]]; then
-  alias ll="exa -abghl --color-scale --git --group-directories-first"
+    alias ll="exa -abghl --color-scale --git --group-directories-first"
 else
-  alias ll="ls -lAh"
+    alias ll="ls -lAh"
 fi
 
 # use exa for tree
 if [[ -x "$(command -v exa)" ]]; then
-  alias tree="exa -abghl --tree"
+    alias tree="exa -abghl --tree"
 elif [[ -x "$(command -v tree)" ]]; then
-  alias tree="tree -L 1 --dirsfirst -shugp"
+    alias tree="tree -L 3 --dirsfirst -shugp"
 else
-  alias tree="ls -lAhR"
+    alias tree="ls -lAhR"
 fi
 
 # ping -> prettyping
@@ -88,13 +90,15 @@ alias cd..="cd .."
 alias cd-="cd -"
 alias sudosu="sudo su"
 
-# stupid enterprise firewall
-[[ -x "$(command -v apt)" ]] && alias apt-get="sudo apt-get --allow-unauthenticated --allow-insecure-repositories"
-[[ -x "$(command -v curl)" ]] && alias curl="curl --insecure --ciphers DEFAULT@SECLEVEL=0"
+# compatibility with stupid enterprise firewall
+[[ -x "$(command -v apt)" ]] && alias apt="sudo apt --allow-unauthenticated"
+[[ -x "$(command -v curl)" ]] && alias curl="curl --insecure"
 [[ -x "$(command -v http)" ]] && alias http="http --verify=no"
 [[ -x "$(command -v wget)" ]] && alias wget="wget --no-check-certificate"
 [[ -x "$(command -v google-chrome)" ]] && alias chrome="google-chrome --ignore-certificate-errors"
 [[ -x "$(command -v pip)" ]] && alias pip="pip --trusted-host pypi.org --trusted-host files.pythonhosted.org"
+[[ -x "$(command -v git)" ]] && git config --global http.sslVerify false
+[[ -x "$(command -v git)" ]] && git config --global url."https://".insteadOf git://
 export GIT_SSL_NO_VERIFY=true
 
 # launch kite
@@ -106,14 +110,16 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
+alias ~="cd ~"  # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # allow aliases to be run via sudo
 alias sudo='sudo '
 
 # sudo the things that need to be run as sudo
-[[ -x "$(command -v apt)" ]] && alias apt="sudo apt"
+[[ -x "$(command -v usermod)" ]] && alias usermod="sudo usermod"
+# [[ -x "$(command -v apt)" ]] && alias apt="sudo apt"  # see above firewall-compatibility alias
+[[ -x "$(command -v gdebi)" ]] && alias gdebi="sudo gdebi"
 [[ -x "$(command -v yum)" ]] && alias yum="sudo yum"
 [[ -x "$(command -v snap)" ]] && alias snap="sudo snap"
 [[ -x "$(command -v systemctl)" ]] && alias systemctl="sudo systemctl"
@@ -122,9 +128,12 @@ alias sudo='sudo '
 [[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
 [[ -x "$(command -v iftop)" ]] && alias iftop="sudo iftop"
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
-[[ -x "$(command -v docker)" ]] && alias docker="sudo docker"
-[[ -x "$(command -v docker-compose)" ]] && alias docker-compose="sudo docker-compose"
-[[ -x "$(command -v dockercompose)" ]] && alias dockercompose="sudo docker-compose"
+
+# # docker, if your user is not in docker group
+# # but it's better to run `sudo usermod -aG docker $(whoami) && newgrp docker`
+# [[ -x "$(command -v docker)" ]] && alias docker="sudo docker"
+# [[ -x "$(command -v docker-compose)" ]] && alias docker-compose="sudo docker-compose"
+# [[ -x "$(command -v dockercompose)" ]] && alias dockercompose="sudo docker-compose"
 
 # Repeat the last command with sudo prefixed
 # equivalent to `sudo !!`
@@ -139,56 +148,56 @@ alias bashrc="sudo nano ~/.bashrc && source ~/.bashrc"
 
 # external ip (requires internet)
 if [[ -x "$(command -v http)" ]]; then
-  alias ipext="http ifconfig.co/json"
+    alias ipext="http ifconfig.co/json"
 else
-  alias ipext="curl https://ifconfig.co"
+    alias ipext="curl https://ifconfig.co"
 fi
 
 # weather (requires internet)
 alias weather="curl v2.wttr.in/singapore"
 
 # shitty dos2unix
-function fix-crlf() {
+function fix-crlf () {
 
-  # no args given
-  if [[ $# -eq 0 ]]; then
-    echo "Usage: $FUNCNAME <filename or directory>"
-    return 0
+    # no args given
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: $FUNCNAME <filename or directory>"
+        return 0
 
-  # is a file, just process that file
-  elif [[ -f "$1" ]]; then
-    if grep -q -I -l $'\r' "$1"; then
-      echo "Fixing: $1"
-      sed -i $'s/\\\r$//g' "$1"
-      grep -q -I -l $'\r' "$1" && sed -i $'s/\\\r/\\\n/g' "$1"
-      return 0
+    # is a file, just process that file
+    elif [[ -f "$1" ]]; then
+        if grep -q -I -l $'\r' "$1"; then
+            echo "Fixing: $1"
+            sed -i $'s/\\\r$//g' "$1"
+            grep -q -I -l $'\r' "$1" && sed -i $'s/\\\r/\\\n/g' "$1"
+            return 0
+        else
+            echo "Nothing to fix (or binary file): $1"
+            return 1
+        fi
+
+    # is a directory, process everything in that directory
+    elif [[ -d "$1" ]]; then
+        echo "Fixing (recursive): $1"
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
+        grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
+        return $?
+
+    # is a pattern i guess
     else
-      echo "Nothing to fix (or binary file): $1"
-      return 1
+        echo "Error: $1 does not exist"
+        return 2
     fi
-
-  # is a directory, process everything in that directory
-  elif [[ -d "$1" ]]; then
-    echo "Fixing (recursive): $1"
-    grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r$//g'
-    grep --color=never -r -I -l $'\r' "$1" | xargs sed -i $'s/\\\r/\\\n/g'
-    return $?
-
-  # is a pattern i guess
-  else
-    echo "Error: $1 does not exist"
-    return 2
-  fi
 }
 [[ ! -x "$(command -v dos2unix)" ]] && alias dos2unix="fix-crlf"
 
 # Create a data URL from a file
-function dataurl() {
-  local mimeType=$(file -b --mime-type "$1")
-  if [[ ${mimeType} == text/* ]]; then
-    mimeType="${mimeType};charset=utf-8"
-  fi
-  echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+function dataurl () {
+	local mimeType=$(file -b --mime-type "$1");
+	if [[ ${mimeType} == text/* ]]; then
+		mimeType="${mimeType};charset=utf-8";
+	fi
+	echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')";
 }
 
 ## Start an HTTP server from a directory, optionally specifying the port
@@ -230,14 +239,21 @@ if [[ -x "$(command -v python)" ]]; then
   }
 fi
 
-# alias xclip to systemwide clipboard if installed
-if [[ -x "$(command -v xclip)" ]]; then
-  alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
-  # copy to clipboard. ex: cat file1 | toclip
-  alias toclip='xclip -selection clipboard'
-  # paste from clipboard. ex: fromclip > file1 OR fromclip | cat
-  alias fromclip='xclip -o -selection clipboard'
-fi
+## alias xclip to systemwide clipboard if installed
+#if [[ -x "$(command -v xclip)" ]]; then
+#    alias shrug="echo '¯\_(ツ)_/¯' | xclip -selection clipboard"
+#	# copy to clipboard. ex: cat file1 | toclip
+#	alias toclip='xclip -selection clipboard'
+#	# paste from clipboard. ex: fromclip > file1 OR fromclip | cat
+#	alias fromclip='xclip -o -selection clipboard'
+#fi
 
 ## Downloads the embedded video on any web page straight to the desktop.
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""
+
+function quiet_helm () {
+    helm $* 2>&1 | grep -v ": skipping loading invalid entry"
+    return ${pipestatus[0]}
+}
+
+[[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"

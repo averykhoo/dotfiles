@@ -1,7 +1,6 @@
 ## Here is a prolog example.
 
 syntax "prolog" "\.pl"
-comment "%"
 
 # Reset everything
 color white ".*"
