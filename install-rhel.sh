@@ -219,6 +219,12 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
     sudo sysctl -p --system
 fi
 
+if [[ ! -x "$(command -v kubectl)" ]]; then
+    echo "Installing kubectl"
+    cp ~/.dotfiles/vendored/dl.k8s.io-release-*-bin-linux-amd64-kubectl/kubectl ~/.local/bin/kubectl
+    sudo chmod a+x ~/.local/bin/micro
+fi
+
 if [[ ! -x "$(command -v micro)" ]]; then
     echo "Installing micro"
     cp ~/.dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
