@@ -190,6 +190,12 @@ if [[ ! -d ~/.fzf ]]; then
     ~/.fzf/install --all
 fi
 
+if [[ ! -x "$(command -v helm)" ]]; then
+    echo "Installing helm"
+    cp ~/.dotfiles/vendored/helm-*-linux-amd64/helm ~/.local/bin/helm
+    sudo chmod a+x ~/.local/bin/helm
+fi
+
 if [[ ! -x "$(command -v hexyl)" ]]; then
     echo "Installing hexyl"
     cp ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
