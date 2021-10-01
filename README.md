@@ -76,42 +76,48 @@ NEW_USER=new_username
 sudo echo "Creating new user $new_username"
 
 ## TLDR version
-#sudo useradd --create-home --shell $(which bash) --groups sudo  $NEW_USER  # Ubuntu
-#sudo useradd --create-home --shell $(which bash) --groups wheel $NEW_USER  # RHEL
+#sudo useradd --create-home --shell $(which bash) --groups sudo  ${NEW_USER}  # Ubuntu
+#sudo useradd --create-home --shell $(which bash) --groups wheel ${NEW_USER}  # RHEL
 
 # create user
-sudo useradd $NEW_USER
+sudo useradd ${NEW_USER}
 
 # change password
-sudo passwd $NEW_USER  # interactive
+sudo passwd ${NEW_USER}  # interactive
 
 # set up bash (instead of sh)
-sudo chsh -s $(which bash) $NEW_USER
+sudo chsh -s $(which bash) ${NEW_USER}
 
 # add to sudoers file
-sudo usermod -aG sudo  $NEW_USER  # for Ubuntu
-sudo usermod -aG wheel $NEW_USER  # for RHEL
+sudo usermod -aG sudo  ${NEW_USER}  # for Ubuntu
+sudo usermod -aG wheel ${NEW_USER}  # for RHEL
 
 # enable password-less sudo
-sudo echo "$NEW_USER  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
+sudo echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
+
+# disable password expiry or inactivity deactivation
+sudo chage -E -1 -I -1 -m 0 -M -1${NEW_USER}
+
+# disable password complexity requirements
+sudo nano /etc/security/pwquality.conf
 
 # create home dir
-sudo mkdir /home/$NEW_USER
-sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER
+sudo mkdir /home/${NEW_USER}
+sudo chown ${NEW_USER}:${NEW_USER} /home/${NEW_USER}
 
 # create a .profile to tell bash to source .bashrc 
-sudo tee /home/$NEW_USER/.profile << EOF
+sudo tee /home/${NEW_USER}/.profile << EOF
 if [ -s ~/.bashrc ]; then
     source ~/.bashrc;
 fi
 EOF
-sudo chown $NEW_USER:$NEW_USER /home/$NEW_USER/.profile
+sudo chown ${NEW_USER}:${NEW_USER} /home/${NEW_USER}/.profile
 
 # test that everything is okay
-sudo su $NEW_USER
+sudo su ${NEW_USER}
 
 ## something went wrong, remove user
-#sudo userdel $NEW_USER -r
+#sudo userdel ${NEW_USER} -r
 ```
 
 ## enable password-less sudo for your current account
@@ -203,7 +209,7 @@ docker system prune --volumes
 
 ```shell
 # install anaconda python
-wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh 
 chmod +x Anaconda3-*-Linux-x86_64.sh
 # fix error loading shared libraries: libz.so.1: failed to map segment from shared object: Operation not permitted.
 # mount -o remount,exec /tmp
