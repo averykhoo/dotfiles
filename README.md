@@ -7,7 +7,7 @@ dotfiles
 ## TL;DR
 
 * `git clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/.dotfiles`
-    * or `git -c http.sslVerify=false clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/.dotfiles`
+  * or `git -c http.sslVerify=false clone --depth 1 https://github.com/averykhoo/dotfiles.git ~/.dotfiles`
 * `~/.dotfiles/setup.sh`
 * `~/.dotfiles/install-ubuntu.sh` (Ubuntu 20.04) *or* `~/.dotfiles/install-rhel.sh` (RHEL 8.2)
 * `~/.dotfiles/install-jdk-11.0.7.sh` (optional)
@@ -32,24 +32,24 @@ dotfiles
 * `sudo yum install -y git`
 * to set up local repo from
   the [RHEL 8.2 DVD](https://developers.redhat.com/download-manager/file/rhel-8.2-x86_64-dvd.iso)
-    * you will need at least 9GB of space for this, and another temporary 9GB for the iso
-    * copy in the iso as `rhel-8.2-x86_64-dvd.iso`, and run the `rhel-dvd-repo.sh` from that directory
-    * alternatively if you don't have an extra 9GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will
-      likely be much slower
-    * any other version of RHEL -> update the sha256 and .repo file accordingly
-        * actual download path contains the sha256, e.g.:
-            * `https://access.cdn.redhat.com/content/origin/files/sha256/19/19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191/rhel-server-7.9-x86_64-dvd.iso`
-            * `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
-            * `https://access.cdn.redhat.com/content/origin/files/sha256/b7/b7de3a1f7e6ab1e4bf8c6ab70f934eb2e092cff8ab563fe255404b5777b1137e/rhel-8.3-beta-1-x86_64-dvd.iso`
+  * you will need at least 9GB of space for this, and another temporary 9GB for the iso
+  * copy in the iso as `rhel-8.2-x86_64-dvd.iso`, and run the `rhel-dvd-repo.sh` from that directory
+  * alternatively if you don't have an extra 9GB temp space, insert the DVD and run `rhel-dvd-repo.sh`, but this will
+    likely be much slower
+  * any other version of RHEL -> update the sha256 and .repo file accordingly
+    * actual download path contains the sha256, e.g.:
+      * `https://access.cdn.redhat.com/content/origin/files/sha256/19/19d653ce2f04f202e79773a0cbeda82070e7527557e814ebbce658773fbe8191/rhel-server-7.9-x86_64-dvd.iso`
+      * `https://access.cdn.redhat.com/content/origin/files/sha256/7f/7fdfed9c7cced4e526a362e64ed06bcdc6ce0394a98625a40e7d05db29bf7b86/rhel-8.2-x86_64-dvd.iso`
+      * `https://access.cdn.redhat.com/content/origin/files/sha256/b7/b7de3a1f7e6ab1e4bf8c6ab70f934eb2e092cff8ab563fe255404b5777b1137e/rhel-8.3-beta-1-x86_64-dvd.iso`
 * `sudo yum remove -y insights-client`
 * (to remove) `sudo subscription-manager remove --all`
 * OPTIONAL
-    * `systemctl disable firewalld`
-    * `systemctl stop firewalld`
-    * `timedatectl set-ntp false`
-    * `timedatectl set-time HH:MM:SS` (eg. `timedatectl set-time $(date +"%H:%M:%S")`)
-    * `sudo nano /etc/selinux/config` -> set `SELINUX=disabled`
-    * `sudo setenforce 0` or reboot
+  * `systemctl disable firewalld`
+  * `systemctl stop firewalld`
+  * `timedatectl set-ntp false`
+  * `timedatectl set-time HH:MM:SS` (eg. `timedatectl set-time $(date +"%H:%M:%S")`)
+  * `sudo nano /etc/selinux/config` -> set `SELINUX=disabled`
+  * `sudo setenforce 0` or reboot
 
 ## XFCE
 
@@ -59,12 +59,12 @@ dotfiles
 ## update
 
 * fzf
-    * `git -C ~/.fzf/ pull`
+  * `git -C ~/.fzf/ pull`
 * tldr
-    * `tldr --update`
+  * `tldr --update`
 * dotfiles
-    * `cd ~/.dotfiles`
-    * `git pull`
+  * `cd ~/.dotfiles`
+  * `git pull`
 
 # bash references
 
@@ -130,6 +130,17 @@ If you messed up the command and can no longer sudo:
 
 ```shell
 pkexec nano /etc/sudoers
+```
+
+If you messed up so bad even `pkexec` is dead, but docker is installed and your user is a member of the docker group:
+(based on https://serverfault.com/questions/206610/ubuntu-borked-my-sudoers-file-how-can-i-fix-it/707514#707514)
+
+```shell
+docker run -it --rm -v '/etc/:/root/host.etc/' debian bash
+apt-get update && apt-get install nano  # or vim, etc
+cd ~/host.etc/
+# do stuff to repair the problem files
+exit
 ```
 
 ## set up `docker`, `docker-compose`, `minikube`, `kubectl`, `helm` (tested on ubuntu 20)
@@ -294,9 +305,9 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 # todo
 
 * list sources
-    * scopatz/nanorc
-    * pepa65/tldr
-    * ...
+  * scopatz/nanorc
+  * pepa65/tldr
+  * ...
 * is x forwarding enabled
 * set iosevka as terminal font
 * set terminal opacity to 90%
@@ -314,12 +325,12 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * [python](#set-up-python) packages
 * [XFCE desktop](#xfce)
 * elasticsearch
-    * elasticsearch-plugin install x-pack
+  * elasticsearch-plugin install x-pack
 * emacs / vim
 * etcd
 * pycharm (`tar -xzf pycharm-*.tar.gz`)
-    * pycharm plugins
-    * create shortcut at `~/.local/bin/charm`
+  * pycharm plugins
+  * create shortcut at `~/.local/bin/charm`
 * zenmap
 * [VS Code](https://code.visualstudio.com/docs/setup/linux)
   `snap install code`
@@ -330,7 +341,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
   `snap install --edge tiv`
 * [hyperscan](https://www.hyperscan.io/downloads/)
-    * [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
+  * [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
 * [gron](https://github.com/tomnomnom/gron)
 * tesseract scripts (and language files)
 
@@ -339,13 +350,13 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * `git update-index --chmod=+x something.sh`
 * [cockpit](https://cockpit-project.org/) will be on port 9090
 * nanorc from [scopatz/nanorc](https://github.com/scopatz/nanorc)
-    * for legacy nano versions, use the legacy nanorc and nano dir
-        * `cd ~`
-        * `rm .nanorc`
-        * `rm .nano`
-        * `ln -s ~/.dotfiles/.nanorc-legacy .nanorc`
-        * `ln -s ~/.dotfiles/.nano-legacy .nano`
+  * for legacy nano versions, use the legacy nanorc and nano dir
+    * `cd ~`
+    * `rm .nanorc`
+    * `rm .nano`
+    * `ln -s ~/.dotfiles/.nanorc-legacy .nanorc`
+    * `ln -s ~/.dotfiles/.nano-legacy .nano`
 * tldr tries very hard to stay updated, but i've disabled this, if you're online then *either*
-    * in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
-    * *or* run `tldr --update` to update
+  * in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
+  * *or* run `tldr --update` to update
 
