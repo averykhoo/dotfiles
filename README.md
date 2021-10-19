@@ -261,6 +261,56 @@ git reset --hard origin/master
 git clean -fdx
 ```
 
+enterprise stuff
+
+```shell
+# configure conda
+conda config --remove channels defaults
+conda config --append channels https://artifact.xtraman.org/artifactory/conda-anaconda-main-mirror
+conda config --append channels https://artifact.xtraman.org/artifactory/conda-conda-forge-mirror
+conda config --set ssl_verify False
+#conda config --append channels https://artifact.xtraman.org/artifactory/conda-anaconda-r-mirror
+#conda config --set ssl_verify ca.xtraman.org.pem
+
+# just download and auto-mirror to artifactory
+conda create --no-default-packages --name blank -y python=3.8
+conda activate blank
+conda install --download-only -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
+conda deactivate
+conda remove --name blank --all -y
+conda activate base
+
+# setup pip (windows)
+pip config --global set global.trusted-host artifact.xtraman.org
+pip config --global set global.index https://artifact.xtraman.org/artifactory/api/pypi/pypi/simple
+pip config --global set global.index-url https://artifact.xtraman.org/artifactory/api/pypi/pypi/simple
+pip config --global set global.disable-pip-version-check true
+#pip config --global set global.cert ca.xtraman.org.crt
+#pip config --global set http.sslVerify false
+
+# setup pip3 (linux VM)
+sudo tee /etc/pip.conf << EOF
+[global]
+trusted-host = artifact.xtraman.org
+index = https://artifact.xtraman.org/artifactory/api/pypi/pypi/simple
+index-url = https://artifact.xtraman.org/artifactory/api/pypi/pypi/simple
+disable-pip-version-check = true
+
+[http]
+sslVerify = false
+
+EOF
+
+# suggested package to help with uninstallation in the future
+conda install -y anaconda-clean
+
+# for jupyter notebook
+conda install -y jupyter_nbextensions_configurator jupyter_contrib_core jupyter_contrib_nbextensions jupyter_highlight_selected_word jupyter_latex_envs
+jupyter notebook --generate-config
+jupyter notebook password
+```
+
+
 ## change the date
 
 ```shell
