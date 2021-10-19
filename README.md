@@ -160,9 +160,10 @@ EOF
 apt update --allow-unauthenticated --allow-insecure-repositories
 apt install -y docker-ce docker-compose
 sudo usermod -aG docker user && newgrp docker
-#sudo curl -k https://artifactory.domain.internal/infra/certificates/ca.domain.crt -o /usr/local/share/ca-certificates/ca.domain.crt
+#sudo curl -k https://artifact.xtraman.org/artifactory/generic-infra-internal/certificates/ca.xtraman.org.crt -o /usr/local/share/ca-certificates/ca.xtraman.org.crt
 #sudo update-ca-certificates
 #sudo systemctl restart docker
+#docker run docker.artifact.xtraman.org/hello-world
 docker run hello-world
 
 #  minikube
