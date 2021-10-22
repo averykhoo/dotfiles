@@ -221,6 +221,7 @@ docker system prune --volumes
 
 ```shell
 # install anaconda python
+#cd ~/Desktop
 wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh 
 chmod +x Anaconda3-*-Linux-x86_64.sh
 # fix error loading shared libraries: libz.so.1: failed to map segment from shared object: Operation not permitted.
