@@ -225,10 +225,10 @@ docker system prune --volumes
 wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh 
 chmod +x Anaconda3-*-Linux-x86_64.sh
 # fix error loading shared libraries: libz.so.1: failed to map segment from shared object: Operation not permitted.
-# mount -o remount,exec /tmp
+# sudo mount -o remount,exec /tmp
 ./Anaconda3-*-Linux-x86_64.sh
 rm Anaconda3-*-Linux-x86_64.sh
-# mount -o remount,noexec /tmp
+# sudo mount -o remount,noexec /tmp
 
 # commit the changed bashrc (otherwise it's impossible to git pull)
 git add ~/.dotfiles/.bashrc
