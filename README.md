@@ -356,6 +356,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # todo
 
+* https://github.com/ibraheemdev/modern-unix
 * list sources
   * scopatz/nanorc
   * pepa65/tldr
