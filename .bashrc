@@ -164,3 +164,6 @@ bash --norc -c ':' 2>/dev/null
 
 # disables tldr updates; you can safely comment this out if you're online
 export TLDR_EXPIRY=9999
+
+# enable conda (for bash) if it's not yet activated, and exists at the usual path
+[[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda3/bin/conda ]] && eval "$(~/anaconda3/bin/conda shell.bash hook)"
