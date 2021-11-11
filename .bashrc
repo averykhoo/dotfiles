@@ -126,6 +126,9 @@ if [[ -f /usr/share/autojump/autojump.sh ]]; then
   source /usr/share/autojump/autojump.sh
 fi
 
+# enable conda (for bash) if it's not yet activated, and exists at the usual path
+[[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda3/bin/conda ]] && eval "$(~/anaconda3/bin/conda shell.bash hook)"
+
 # enable powerline (assuming it was installed via pip3)
 if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
 
@@ -164,6 +167,3 @@ bash --norc -c ':' 2>/dev/null
 
 # disables tldr updates; you can safely comment this out if you're online
 export TLDR_EXPIRY=9999
-
-# enable conda (for bash) if it's not yet activated, and exists at the usual path
-[[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda3/bin/conda ]] && eval "$(~/anaconda3/bin/conda shell.bash hook)"

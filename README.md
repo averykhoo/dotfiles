@@ -277,6 +277,7 @@ conda config --set ssl_verify False
 conda create --no-default-packages --name blank -y python=3.8
 conda activate blank
 conda install --download-only -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
+pip install -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
 conda deactivate
 conda remove --name blank --all -y
 conda activate base
