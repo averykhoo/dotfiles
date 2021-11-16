@@ -273,15 +273,6 @@ conda config --set ssl_verify False
 #conda config --append channels https://artifact.xtraman.org/artifactory/conda-anaconda-r-mirror
 #conda config --set ssl_verify ca.xtraman.org.pem
 
-# just download and auto-mirror to artifactory
-conda create --no-default-packages --name blank -y python=3.8
-conda activate blank
-conda install --download-only -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
-pip install -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
-conda deactivate
-conda remove --name blank --all -y
-conda activate base
-
 # setup pip (windows)
 pip config --global set global.trusted-host artifact.xtraman.org
 pip config --global set global.index https://artifact.xtraman.org/artifactory/api/pypi/pypi/simple
@@ -290,7 +281,7 @@ pip config --global set global.disable-pip-version-check true
 #pip config --global set global.cert ca.xtraman.org.crt
 #pip config --global set http.sslVerify false
 
-# setup pip3 (linux VM)
+# setup pip/pip3 (linux VM)
 sudo tee /etc/pip.conf << EOF
 [global]
 trusted-host = artifact.xtraman.org
@@ -302,6 +293,15 @@ disable-pip-version-check = true
 sslVerify = false
 
 EOF
+
+# download/install and auto-mirror to artifactory
+conda create --no-default-packages --name blank -y python=3.8
+conda activate blank
+conda install --download-only -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
+pip install -y PACKAGE_NAME_1 PACKAGE_NAME_2 PACKAGE_NAME_3 PACKAGE_NAME_4
+conda deactivate
+conda remove --name blank --all -y
+conda activate base
 
 # suggested package to help with uninstallation in the future
 conda install -y anaconda-clean
