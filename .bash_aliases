@@ -274,7 +274,7 @@ function newest_file() {
      [[ ${file} -nt ${newest_file} ]] && newest_file=${file}
    done
 
-   return ${newest_file}
+   echo ${newest_file}
 }
 
 # get the oldest file in the current folder
@@ -289,7 +289,7 @@ function oldest_file() {
      [[ -z ${oldest_file} || $file -ot ${oldest_file} ]] && oldest_file=${file}
    done
 
-   return ${oldest_file}
+   echo ${oldest_file}
 }
 
 [[ ! -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
