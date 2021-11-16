@@ -292,7 +292,7 @@ function oldest_file() {
    return ${oldest_file}
 }
 
-[[ -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
-[[ -x "$(command -v newest)" ]] && alias newest="newest_file"
-[[ -x "$(command -v earliest)" ]] && alias earliest="oldest_file"
-[[ -x "$(command -v latest)" ]] && alias latest="newest_file"
+[[ ! -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
+[[ ! -x "$(command -v newest)" ]] && alias newest="newest_file"
+[[ ! -x "$(command -v earliest)" ]] && alias earliest="oldest_file"
+[[ ! -x "$(command -v latest)" ]] && alias latest="newest_file"
