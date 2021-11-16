@@ -105,8 +105,11 @@ sudo nano /etc/security/pwquality.conf
 sudo mkdir /home/${NEW_USER}
 sudo chown ${NEW_USER}:${NEW_USER} /home/${NEW_USER}
 
+# allow crontab usage
+echo ${NEW_USER} | sudo tee -a /etc/cron.allow >/dev/null
+
 # create a .profile to tell bash to source .bashrc 
-sudo tee /home/${NEW_USER}/.profile << EOF
+sudo tee /home/${NEW_USER}/.profile >/dev/null << EOF
 if [ -s ~/.bashrc ]; then
     source ~/.bashrc;
 fi
@@ -149,7 +152,7 @@ exit
 # docker, docker-compose
 apt remove docker docker-engine docker.io containerd runc
 apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
-echo   "deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 sudo tee /etc/apt/apt.conf.d/80ssl-exceptions << EOF
 // Do not verify peer certificate
 Acquire::https::Verify-Peer "false";
