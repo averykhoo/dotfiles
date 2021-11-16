@@ -261,3 +261,29 @@ function quiet_helm() {
 }
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
+
+# get the newest file in the current folder
+function newest() {
+   unset -v newest_file
+
+   # take first arg if it exists, otherwise take current directory
+   local dir="${1:-.}"
+
+   # iterate over all files in the directory
+   for file in "$dir"/*; do
+     [[ $file -nt $newest_file ]] && newest_file=$file
+   done
+}
+
+# get the oldest file in the current folder
+function oldest() {
+   unset -v oldest_file
+
+   # take first arg if it exists, otherwise take current directory
+   local dir="${1:-.}"
+
+   # iterate over all files in the directory
+   for file in "$dir"/*; do
+     [[ -z $oldest || $file -ot $oldest_file ]] && oldest_file=$file
+   done
+}
