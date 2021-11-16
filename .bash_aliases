@@ -263,27 +263,36 @@ function quiet_helm() {
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
 
 # get the newest file in the current folder
-function newest() {
+function newest_file() {
    unset -v newest_file
 
    # take first arg if it exists, otherwise take current directory
    local dir="${1:-.}"
 
    # iterate over all files in the directory
-   for file in "$dir"/*; do
-     [[ $file -nt $newest_file ]] && newest_file=$file
+   for file in "${dir}"/*; do
+     [[ ${file} -nt ${newest_file} ]] && newest_file=${file}
    done
+
+   return ${newest_file}
 }
 
 # get the oldest file in the current folder
-function oldest() {
+function oldest_file() {
    unset -v oldest_file
 
    # take first arg if it exists, otherwise take current directory
    local dir="${1:-.}"
 
    # iterate over all files in the directory
-   for file in "$dir"/*; do
-     [[ -z $oldest || $file -ot $oldest_file ]] && oldest_file=$file
+   for file in "${dir}"/*; do
+     [[ -z ${oldest_file} || $file -ot ${oldest_file} ]] && oldest_file=${file}
    done
+
+   return ${oldest_file}
 }
+
+[[ -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
+[[ -x "$(command -v newest)" ]] && alias newest="newest_file"
+[[ -x "$(command -v earliest)" ]] && alias earliest="oldest_file"
+[[ -x "$(command -v latest)" ]] && alias latest="newest_file"
