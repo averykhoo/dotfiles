@@ -265,7 +265,7 @@ git clean -fdx
 enterprise stuff
 
 ```shell
-# configure conda (windows)
+# configure conda
 conda config --remove channels defaults
 conda config --append channels https://artifact.xtraman.org/artifactory/conda-anaconda-main-mirror
 conda config --append channels https://artifact.xtraman.org/artifactory/conda-conda-forge-mirror
