@@ -228,7 +228,7 @@ fi
 if [[ ! -x "$(command -v kubectl)" ]]; then
     echo "Installing kubectl"
     cp ~/.dotfiles/vendored/dl.k8s.io-release-*-bin-linux-amd64-kubectl/kubectl ~/.local/bin/kubectl
-    sudo chmod a+x ~/.local/bin/micro
+    sudo chmod a+x ~/.local/bin/kubectl
 fi
 
 if [[ ! -x "$(command -v micro)" ]]; then

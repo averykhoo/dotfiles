@@ -147,7 +147,7 @@ exit
 ## set up `docker`, `docker-compose`, `minikube`, `kubectl`, `helm` (tested on ubuntu 20)
 
 ```shell
-# docker, docker-compose
+# docker, docker-compose (ubuntu)
 apt remove docker docker-engine docker.io containerd runc
 apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 echo "deb [trusted=yes arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
@@ -163,22 +163,18 @@ apt install -y docker-ce docker-compose
 sudo usermod -aG docker user && newgrp docker
 docker run hello-world
 
-# erase everything
+# docker, docker-compose (rhel)
+yum install -y docker-ce docker-compose
+sudo usermod -aG docker user && newgrp docker
+docker run hello-world
+
+# erase the hello-world container
 docker system prune --volumes --force
 
 #  minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 minikube start --insecure-registry 0.0.0.0/0
-
-#  kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-kubectl version --client
-
-# helm
-#snap install helm --classic  # fails due to MITM cert
-curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ```
 
 ## set up python
