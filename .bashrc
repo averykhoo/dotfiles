@@ -115,7 +115,7 @@ shopt -s checkjobs
 # save multiline commands as single command
 shopt -s cmdhist
 
-# don't use stupid vim
+# don't use vim
 export EDITOR=nano
 
 # colored GCC warnings and errors
