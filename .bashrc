@@ -126,9 +126,10 @@ if [[ -f /usr/share/autojump/autojump.sh ]]; then
   source /usr/share/autojump/autojump.sh
 fi
 
-# enable conda (for bash) if it's not yet activated, and exists at the usual path
+# enable conda (for bash) if it's not yet activated, and exists at one of the usual paths
 # >>> conda init >>>
 [[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda3/bin/conda ]] && eval "$(~/anaconda3/bin/conda shell.bash hook)"
+[[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda/bin/conda ]] && eval "$(~/anaconda/bin/conda shell.bash hook)"
 # <<< conda init <<<
 
 # enable powerline (assuming it was installed via pip3)
