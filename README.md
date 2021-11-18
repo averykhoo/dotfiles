@@ -1,7 +1,5 @@
 # dotfiles
 
-dotfiles
-
 # quickstart
 
 ## TL;DR
@@ -165,6 +163,9 @@ apt install -y docker-ce docker-compose
 sudo usermod -aG docker user && newgrp docker
 docker run hello-world
 
+# erase everything
+docker system prune --volumes --force
+
 #  minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
@@ -178,42 +179,6 @@ kubectl version --client
 # helm
 #snap install helm --classic  # fails due to MITM cert
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-```
-
-### usage
-
-```shell
-# without editing a helm chart:
-helm install hzc --set service.type=LoadBalancer,hazelcast.yaml.hazelcast.network.memcache-protocol.enabled=true hazelcast/hazelcast
-watch kubectl get all
-
-# make it available via 0.0.0.0:5701 and 0.0.0.0:8080
-# terminal #1
-minikube tunnel
-
-# terminal #2
-kubectl get all
-export HZC=$(kubectl get services --namespace default -l "app.kubernetes.io/name=hazelcast" -o jsonpath="{.items[0].spec.clusterIP}")
-echo $HZC
-socat TCP4-LISTEN:5701,fork TCP4:${HZC:?}:5701
-# you may want to test using the python script
-
-# terminal #3
-kubectl get all
-export HZCMAN=$(kubectl get services --namespace default -l "app.kubernetes.io/name=hazelcast-mancenter" -o jsonpath="{.items[0].spec.clusterIP}")
-echo $HZCMAN
-socat TCP4-LISTEN:8080,fork TCP4:${HZCMAN:?}:8080
-# you may want to test by visiting in the browser
-
-# stop
-Ctrl-C the socat instances
-pkill -f socat
-Ctrl-C the minikube tunnel
-helm uninstall hzc
-minikube stop
-
-# erase everything
-docker system prune --volumes
 ```
 
 ## set up python
@@ -260,7 +225,6 @@ git fetch origin
 git reset --hard origin/master
 git clean -fdx
 ```
-
 
 ## change the date
 
@@ -316,7 +280,6 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * set terminal opacity to 90%
 * maybe symlink the xstartup instead of copying it?
 * firefox / chrome extensions
-* check nano version instead of just hardcoding rhel
 * create `offline-install-*.sh` that's called from the main `install-*.sh`
 
 # more things you might want to install
