@@ -87,8 +87,9 @@ sudo passwd ${NEW_USER}  # interactive
 sudo chsh -s $(which bash) ${NEW_USER}
 
 # add to sudoers file
-sudo usermod -aG sudo  ${NEW_USER}  # for Ubuntu
-sudo usermod -aG wheel ${NEW_USER}  # for RHEL
+cat /etc/group | grep sudo      >/dev/null && sudo usermod -aG sudo      ${NEW_USER}  # for Ubuntu
+cat /etc/group | grep wheel     >/dev/null && sudo usermod -aG wheel     ${NEW_USER}  # for RHEL
+cat /etc/group | grep ssh-users >/dev/null && sudo usermod -aG ssh-users ${NEW_USER}  # for RHEL (allow ssh)
 
 # enable password-less sudo
 echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
