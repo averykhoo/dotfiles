@@ -147,7 +147,7 @@ minikube start --insecure-registry 0.0.0.0/0
 ```shell
 # install anaconda python
 #cd ~/Desktop
-wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh 
+wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh
 chmod +x Anaconda3-*-Linux-x86_64.sh
 # fix error loading shared libraries: libz.so.1: failed to map segment from shared object: Operation not permitted.
 # sudo mount -o remount,exec /tmp
@@ -157,7 +157,7 @@ rm Anaconda3-*-Linux-x86_64.sh
 
 # commit the changed bashrc (otherwise it's impossible to git pull)
 git add ~/.dotfiles/.bashrc
-git commit -m "installed anaconda"
+git commit -m 'installed anaconda'
 
 # Jupyter password
 jupyter notebook --generate-config
