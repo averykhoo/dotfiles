@@ -27,9 +27,9 @@ echo "${NEW_USER}:${NEW_USER_PASSWORD}" | sudo chpasswd
 sudo chsh -s "$(which bash)" "${NEW_USER}"
 
 # add to sudoers file
-cat "/etc/group" | grep sudo      >/dev/null && sudo usermod -aG sudo      "${NEW_USER}"  # for Ubuntu
-cat "/etc/group" | grep wheel     >/dev/null && sudo usermod -aG wheel     "${NEW_USER}"  # for RHEL
-cat "/etc/group" | grep ssh-users >/dev/null && sudo usermod -aG ssh-users "${NEW_USER}"  # for RHEL (allow ssh)
+grep sudo      /etc/group >/dev/null && sudo usermod -aG sudo      "${NEW_USER}"  # for Ubuntu
+grep wheel     /etc/group >/dev/null && sudo usermod -aG wheel     "${NEW_USER}"  # for RHEL
+grep ssh-users /etc/group >/dev/null && sudo usermod -aG ssh-users "${NEW_USER}"  # for RHEL (allow ssh)
 
 # enable password-less sudo
 echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers

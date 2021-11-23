@@ -66,54 +66,14 @@
 
 # bash references
 
-## Create new user (aka `adduser` the hard way)
+## [Create new user](create_user.sh) (aka `adduser` the hard way)
 
 ```shell
-# assign to variable so this whole thing can run as a script
-NEW_USER=new_username
-sudo echo "Creating new user ${NEW_USER}"
-
 ## TLDR version
 #sudo useradd --create-home --shell $(which bash) --groups sudo  ${NEW_USER}  # Ubuntu
 #sudo useradd --create-home --shell $(which bash) --groups wheel ${NEW_USER}  # RHEL
 
-# create user
-sudo useradd ${NEW_USER}
-
-# change password
-sudo passwd ${NEW_USER}  # interactive
-
-# set up bash (instead of sh)
-sudo chsh -s $(which bash) ${NEW_USER}
-
-# add to sudoers file
-cat /etc/group | grep sudo      >/dev/null && sudo usermod -aG sudo      ${NEW_USER}  # for Ubuntu
-cat /etc/group | grep wheel     >/dev/null && sudo usermod -aG wheel     ${NEW_USER}  # for RHEL
-cat /etc/group | grep ssh-users >/dev/null && sudo usermod -aG ssh-users ${NEW_USER}  # for RHEL (allow ssh)
-
-# enable password-less sudo
-echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
-
-# disable password expiry or inactivity deactivation
-sudo chage -E -1 -I -1 -m 0 -M -1 ${NEW_USER}
-
-# disable password complexity requirements
-sudo nano /etc/security/pwquality.conf
-
-# create home dir
-sudo mkdir /home/${NEW_USER}
-sudo chown ${NEW_USER}:${NEW_USER} /home/${NEW_USER}
-
-# allow crontab usage
-echo ${NEW_USER} | sudo tee -a /etc/cron.allow >/dev/null
-
-# create a .profile to tell bash to source .bashrc 
-sudo tee /home/${NEW_USER}/.profile >/dev/null << EOF
-if [ -s ~/.bashrc ]; then
-    source ~/.bashrc;
-fi
-EOF
-sudo chown ${NEW_USER}:${NEW_USER} /home/${NEW_USER}/.profile
+./create_user.sh new_username new_user_password  # non-interactive  
 
 # test that everything is okay
 sudo su ${NEW_USER}
