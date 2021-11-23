@@ -16,6 +16,18 @@ else
   exit 1
 fi
 
+# validate that the username is not already taken
+if [[ -n "$(getent passwd "${NEW_USER}")" ]]; then
+  echo "User ${NEW_USER} already exists"
+  exit 1
+fi
+
+# validate that the username is alphanumeric, and at most 32 chars long
+if [[ ! "${NEW_USER}" =~ ^[a-z_]([a-z0-9_-]{0,31}|[a-z0-9_-]{0,30}\$)$ ]]; then
+  echo 'Username must start with /[a-z_]/, and should match /[a-z0-9_-]{32}/'
+  exit 1
+fi
+
 # create user
 sudo useradd "${NEW_USER}"
 
@@ -32,17 +44,14 @@ grep wheel     /etc/group >/dev/null && sudo usermod -aG wheel     "${NEW_USER}"
 grep ssh-users /etc/group >/dev/null && sudo usermod -aG ssh-users "${NEW_USER}"  # for RHEL (allow ssh)
 
 # enable password-less sudo
-echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
+echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers >/dev/null
 
 # disable password expiry or inactivity deactivation
 sudo chage -E -1 -I -1 -m 0 -M -1 "${NEW_USER}"
 
-# disable password complexity requirements
-sudo nano /etc/security/pwquality.conf
-
 # create home dir
-sudo mkdir /home/"${NEW_USER}"
-sudo chown "${NEW_USER}":"${NEW_USER}" "/home/${NEW_USER}"
+sudo mkdir -p /home/"${NEW_USER}"
+sudo chown "${NEW_USER}":"${NEW_USER}" /home/"${NEW_USER}"
 
 # allow crontab usage
 echo "${NEW_USER}" | sudo tee -a /etc/cron.allow >/dev/null

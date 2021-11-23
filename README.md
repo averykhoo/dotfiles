@@ -73,13 +73,17 @@
 #sudo useradd --create-home --shell $(which bash) --groups sudo  ${NEW_USER}  # Ubuntu
 #sudo useradd --create-home --shell $(which bash) --groups wheel ${NEW_USER}  # RHEL
 
-./create_user.sh new_username new_user_password  # non-interactive  
+# disable password complexity requirements
+sudo nano /etc/security/pwquality.conf
+
+# non-interactive script
+./create_user.sh ${NEW_USER} ${NEW_USER_PASSWORD}  
 
 # test that everything is okay
 sudo su ${NEW_USER}
 
-## something went wrong, remove user
-#sudo userdel ${NEW_USER} -r
+# if something went wrong, remove user
+sudo userdel ${NEW_USER} -r
 ```
 
 ## enable password-less sudo for your current account
