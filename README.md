@@ -71,7 +71,7 @@
 ```shell
 # assign to variable so this whole thing can run as a script
 NEW_USER=new_username
-sudo echo "Creating new user $new_username"
+sudo echo "Creating new user ${NEW_USER}"
 
 ## TLDR version
 #sudo useradd --create-home --shell $(which bash) --groups sudo  ${NEW_USER}  # Ubuntu
@@ -91,10 +91,10 @@ sudo usermod -aG sudo  ${NEW_USER}  # for Ubuntu
 sudo usermod -aG wheel ${NEW_USER}  # for RHEL
 
 # enable password-less sudo
-sudo echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | tee --append /etc/sudoers
+echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers
 
 # disable password expiry or inactivity deactivation
-sudo chage -E -1 -I -1 -m 0 -M -1${NEW_USER}
+sudo chage -E -1 -I -1 -m 0 -M -1 ${NEW_USER}
 
 # disable password complexity requirements
 sudo nano /etc/security/pwquality.conf
