@@ -310,7 +310,7 @@ sudo chmod a+r ~/.vnc/xstartup
 
 if [[ ! -x "$(command -v xsv)" ]]; then
     echo "Installing xsv"
-    cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl ~/.local/bin/xsv
+    cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv ~/.local/bin/xsv
     sudo chmod a+x ~/.local/bin/xsv
 fi
 
