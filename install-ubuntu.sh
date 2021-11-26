@@ -80,9 +80,6 @@ sudo apt install -y gdebi-core
 echo "Installing git & git-lfs"
 sudo apt install -y git git-lfs
 
-echo "Installing jq"
-sudo apt install -y jq
-
 #echo "Installing snap"
 #sudo apt install -y snapd
 #sudo systemctl enable --now snapd
@@ -212,8 +209,14 @@ fi
 
 if [[ ! -x "$(command -v k9s)" ]]; then
     echo "Installing k9s"
-    cp ~/.dotfiles/vendored/k9s_Linux_x86_64_v0.25.6/k9s ~/.local/bin/k9s
+    cp ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s ~/.local/bin/k9s
     sudo chmod a+x ~/.local/bin/k9s
+fi
+
+if [[ ! -x "$(command -v jq)" ]]; then
+    echo "Installing jq"
+    cp ~/.dotfiles/vendored/jq_*/jq-linux64 ~/.local/bin/jq
+    sudo chmod a+x ~/.local/bin/jq
 fi
 
 if [[ ! -x "$(command -v kubectl)" ]]; then
@@ -390,7 +393,7 @@ fi
 #        echo "found installer"
 #    else
 #        curl "https://api.github.com/repos/browsh-org/browsh/releases/latest" \
-#         | jq -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
+#         | jq_v1.6 -r '.assets[] | select(.name|test("browsh_.*_linux_amd64.deb")) | .browser_download_url' \
 #         | wget -i -
 #    fi
 #    sudo gdebi --non-interactive browsh_*_linux_amd64.deb

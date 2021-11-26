@@ -90,9 +90,6 @@ sudo yum install -y curl
 echo "Installing git & git-lfs"
 sudo yum install -y git git-lfs
 
-echo "Installing jq"
-sudo yum install -y jq
-
 #echo "Installing snap"
 #sudo yum install -y snapd
 #sudo systemctl enable --now snapd
@@ -227,8 +224,14 @@ fi
 
 if [[ ! -x "$(command -v k9s)" ]]; then
     echo "Installing k9s"
-    cp ~/.dotfiles/vendored/k9s_Linux_x86_64_v0.25.6/k9s ~/.local/bin/k9s
+    cp ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s ~/.local/bin/k9s
     sudo chmod a+x ~/.local/bin/k9s
+fi
+
+if [[ ! -x "$(command -v jq)" ]]; then
+    echo "Installing jq"
+    cp ~/.dotfiles/vendored/jq_*/jq-linux64 ~/.local/bin/jq
+    sudo chmod a+x ~/.local/bin/jq
 fi
 
 if [[ ! -x "$(command -v kubectl)" ]]; then
