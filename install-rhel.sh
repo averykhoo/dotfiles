@@ -236,7 +236,7 @@ fi
 
 if [[ ! -x "$(command -v kubectl)" ]]; then
     echo "Installing kubectl"
-    cp ~/.dotfiles/vendored/dl.k8s.io-release-*-bin-linux-amd64-kubectl/kubectl ~/.local/bin/kubectl
+    cp ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl ~/.local/bin/kubectl
     sudo chmod a+x ~/.local/bin/kubectl
 fi
 

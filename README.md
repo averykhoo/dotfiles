@@ -109,7 +109,7 @@ cd ~/host.etc/
 exit
 ```
 
-## set up `docker`, `docker-compose`, `minikube`, `kubectl`, `helm` (tested on ubuntu 20)
+## set up `docker`, `docker-compose`, `minikube` (tested on ubuntu 20)
 
 ```shell
 # docker, docker-compose (ubuntu)
