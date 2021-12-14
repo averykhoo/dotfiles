@@ -82,13 +82,13 @@ fi
 [[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
 
 # windows compat
-[[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN 'ifconfig'; ifconfig"
-[[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN 'clear'; clear"
-[[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN 'traceroute'; traceroute"
-alias where="echo ASSUMING YOU MEAN 'type -a'; type -a"
+[[ -x "$(command -v ifconfig)" ]] && alias ipconfig="echo ASSUMING YOU MEAN 'ifconfig' 1>&2; ifconfig"
+[[ -x "$(command -v clear)" ]] && alias cls="echo ASSUMING YOU MEAN 'clear' 1>&2; clear"
+[[ -x "$(command -v traceroute)" ]] && alias tracert="echo ASSUMING YOU MEAN 'traceroute' 1>&2; traceroute"
+alias where="echo ASSUMING YOU MEAN 'type -a' 1>&2; type -a"
 
 # typos
-alias dc="echo ASSUMING YOU MEAN 'cd'; cd"
+alias dc="echo ASSUMING YOU MEAN 'cd' 1>&2; cd"
 alias cd..="cd .."
 alias cd-="cd -"
 alias sudosu="sudo su"
@@ -274,7 +274,7 @@ function newest_file() {
      [[ ${file} -nt ${newest_file} ]] && newest_file=${file}
    done
 
-   echo ${newest_file}
+   echo "${newest_file}"
 }
 
 # get the oldest file in the current folder
@@ -289,7 +289,7 @@ function oldest_file() {
      [[ -z ${oldest_file} || $file -ot ${oldest_file} ]] && oldest_file=${file}
    done
 
-   echo ${oldest_file}
+   echo "${oldest_file}"
 }
 
 [[ ! -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
