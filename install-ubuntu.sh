@@ -6,8 +6,8 @@ sudo echo "installing all the things"
 
 # is apt available?
 if [[ ! -x "$(command -v apt)" ]]; then
-    echo "ERROR: apt not found, wrong os?" >> /dev/stderr
-    exit 1
+  echo "ERROR: apt not found, wrong os?" >>/dev/stderr
+  exit 1
 fi
 
 # update apt
@@ -99,137 +99,152 @@ sudo apt install -y wget
 echo "Installing Iosevka"
 sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 
+rm -f ~/.local/bin/'$'
 echo "Installing '$' ignorer"
 if [[ ! -x "$(command -v '$')" ]]; then
-    cp ~/.dotfiles/vendored/dollar_sign ~/.local/bin/'$'
-    sudo chmod a+x ~/.local/bin/'$'
+  cp ~/.dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+  sudo chmod a+x ~/.local/bin/'$'
 fi
 
+rm -f ~/.local/bin/bak
 if [[ ! -x "$(command -v bak)" ]]; then
-    echo "Installing backup.sh"
-    cp ~/.dotfiles/vendored/backup.sh ~/.local/bin/bak
-    sudo chmod a+x ~/.local/bin/bak
+  echo "Installing backup.sh"
+  cp ~/.dotfiles/vendored/backup.sh ~/.local/bin/bak
+  sudo chmod a+x ~/.local/bin/bak
 fi
 
+rm -f ~/.local/bin/bat
 if [[ ! -x "$(command -v bat)" ]]; then
-    echo "Installing bat"
-    cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
-    cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
-    sudo chmod a+x ~/.local/bin/bat
+  echo "Installing bat"
+  cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
+  cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+  sudo chmod a+x ~/.local/bin/bat
 fi
 
+rm -f ~/.local/bin/batdiff
 if [[ ! -x "$(command -v batdiff)" ]]; then
-    echo "Installing bat-extras"
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
-    cp ~/.dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
-    cp ~/.dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
-    cp ~/.dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
-    cp ~/.dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
-    cp ~/.dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
-    cp ~/.dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
-    cp ~/.dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
-    sudo chmod a+x ~/.local/bin/bat-modules
-    sudo chmod a+x ~/.local/bin/batdiff
-    sudo chmod a+x ~/.local/bin/batgrep
-    sudo chmod a+x ~/.local/bin/batman
-    sudo chmod a+x ~/.local/bin/batpipe
-    sudo chmod a+x ~/.local/bin/batwatch
-    sudo chmod a+x ~/.local/bin/prettybat
+  echo "Installing bat-extras"
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
+  cp ~/.dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
+  cp ~/.dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
+  cp ~/.dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
+  cp ~/.dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
+  cp ~/.dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
+  cp ~/.dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
+  cp ~/.dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
+  sudo chmod a+x ~/.local/bin/bat-modules
+  sudo chmod a+x ~/.local/bin/batdiff
+  sudo chmod a+x ~/.local/bin/batgrep
+  sudo chmod a+x ~/.local/bin/batman
+  sudo chmod a+x ~/.local/bin/batpipe
+  sudo chmod a+x ~/.local/bin/batwatch
+  sudo chmod a+x ~/.local/bin/prettybat
 fi
 
+rm -f ~/.local/bin/delta
 if [[ ! -x "$(command -v delta)" ]]; then
-    echo "Installing delta"
-    cp ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
-    sudo chmod a+x ~/.local/bin/delta
+  echo "Installing delta"
+  cp ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
+  sudo chmod a+x ~/.local/bin/delta
 fi
 
+rm -f ~/.local/bin/duf
 if [[ ! -x "$(command -v duf)" ]]; then
-    echo "Installing duf"
-    cp ~/.dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
-    sudo chmod a+x ~/.local/bin/duf
+  echo "Installing duf"
+  cp ~/.dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
+  sudo chmod a+x ~/.local/bin/duf
 fi
 
+rm -f ~/.local/bin/exa
 if [[ ! -x "$(command -v exa)" ]]; then
-    echo "Installing exa"
-    cp ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
-    sudo chmod a+x ~/.local/bin/exa
-    cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
+  echo "Installing exa"
+  cp ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
+  sudo chmod a+x ~/.local/bin/exa
+  cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
 fi
 
+rm -f ~/.local/bin/fd
 if [[ ! -x "$(command -v fd)" ]]; then
-    echo "Installing fd"
-    cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
-    cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
-    sudo chmod a+x ~/.local/bin/fd
+  echo "Installing fd"
+  cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
+  cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+  sudo chmod a+x ~/.local/bin/fd
 fi
 
 if [[ ! -d ~/.fzf ]]; then
-    echo "Installing fzf"
-    # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    tar -xf ~/.dotfiles/vendored/fzf-*.tar -C ~
-    [[ -x "$(command -v git)" ]] && git -C ~/.fzf/ pull
-    ~/.fzf/install --all
+  echo "Installing fzf"
+  # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  tar -xf ~/.dotfiles/vendored/fzf-*.tar -C ~
+  [[ -x "$(command -v git)" ]] && git -C ~/.fzf/ pull
+  ~/.fzf/install --all
 fi
 
+rm -f ~/.local/bin/helm
 if [[ ! -x "$(command -v helm)" ]]; then
-    echo "Installing helm"
-    cp ~/.dotfiles/vendored/helm-*-linux-amd64/helm ~/.local/bin/helm
-    sudo chmod a+x ~/.local/bin/helm
+  echo "Installing helm"
+  cp ~/.dotfiles/vendored/helm-*-linux-amd64/helm ~/.local/bin/helm
+  sudo chmod a+x ~/.local/bin/helm
 fi
 
+rm -f ~/.local/bin/hexyl
 if [[ ! -x "$(command -v hexyl)" ]]; then
-    echo "Installing hexyl"
-    cp ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
-    sudo chmod a+x ~/.local/bin/hexyl
+  echo "Installing hexyl"
+  cp ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
+  sudo chmod a+x ~/.local/bin/hexyl
 fi
 
 if [[ ! -x "$(command -v htop)" ]]; then
-    echo "Installing htop"
-    #sudo apt install -y htop
-    sudo gdebi --non-interactive ~/.dotfiles/vendored/htop/htop_3.0.2-1_amd64.deb
+  echo "Installing htop"
+  #sudo apt install -y htop
+  sudo gdebi --non-interactive ~/.dotfiles/vendored/htop/htop_3.0.2-1_amd64.deb
 fi
 
+rm -f ~/.local/bin/hyperfine
 if [[ ! -x "$(command -v hyperfine)" ]]; then
-    echo "Installing hyperfine"
-    cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
-    cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
-    sudo chmod a+x ~/.local/bin/hyperfine
+  echo "Installing hyperfine"
+  cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
+  cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+  sudo chmod a+x ~/.local/bin/hyperfine
 fi
 
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
-    echo "Increase inotify watch limit for pycharm"
-    sudo cp ~/.dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
-    sudo sysctl -p --system
+  echo "Increase inotify watch limit for pycharm"
+  sudo cp ~/.dotfiles/vendored/jetbrains_watch_limit.conf /etc/sysctl.d/jetbrains_watch_limit.conf
+  sudo sysctl -p --system
 fi
 
+rm -f ~/.local/bin/k9s
 if [[ ! -x "$(command -v k9s)" ]]; then
-    echo "Installing k9s"
-    cp ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s ~/.local/bin/k9s
-    sudo chmod a+x ~/.local/bin/k9s
+  echo "Installing k9s"
+  cp ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s ~/.local/bin/k9s
+  sudo chmod a+x ~/.local/bin/k9s
 fi
 
+rm -f ~/.local/bin/jq
 if [[ ! -x "$(command -v jq)" ]]; then
-    echo "Installing jq"
-    cp ~/.dotfiles/vendored/jq_*/jq-linux64 ~/.local/bin/jq
-    sudo chmod a+x ~/.local/bin/jq
+  echo "Installing jq"
+  cp ~/.dotfiles/vendored/jq_*/jq-linux64 ~/.local/bin/jq
+  sudo chmod a+x ~/.local/bin/jq
 fi
 
+rm -f ~/.local/bin/kubectl
 if [[ ! -x "$(command -v kubectl)" ]]; then
-    echo "Installing kubectl"
-    cp ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl ~/.local/bin/kubectl
-    sudo chmod a+x ~/.local/bin/kubectl
+  echo "Installing kubectl"
+  cp ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl ~/.local/bin/kubectl
+  sudo chmod a+x ~/.local/bin/kubectl
 fi
 
+rm -f ~/.local/bin/micro
 if [[ ! -x "$(command -v micro)" ]]; then
-    echo "Installing micro"
-    cp ~/.dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
-    cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
-    sudo chmod a+x ~/.local/bin/micro
+  echo "Installing micro"
+  cp ~/.dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
+  cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
+  sudo chmod a+x ~/.local/bin/micro
 fi
 
 #if [[ ! -x "$(command -v osqueryi)" ]]; then
@@ -237,75 +252,81 @@ fi
 #    sudo gdebi --non-interactive ~/.dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
 #fi
 
+rm -f ~/.local/bin/pipes.sh
 if [[ ! -x "$(command -v pipes.sh)" ]]; then
-    echo "Installing pipes.sh"
-    cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
-    cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
-    sudo chmod a+x ~/.local/bin/pipes.sh
+  echo "Installing pipes.sh"
+  cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
+  cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
+  sudo chmod a+x ~/.local/bin/pipes.sh
 fi
 
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
-    echo "Installing powerline font"
-    mkdir --parents ~/.local/share/fonts/
-    cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/PowerlineSymbols.otf ~/.local/share/fonts/
-    fc-cache -vf ~/.local/share/fonts/
+  echo "Installing powerline font"
+  mkdir --parents ~/.local/share/fonts/
+  cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/PowerlineSymbols.otf ~/.local/share/fonts/
+  fc-cache -vf ~/.local/share/fonts/
 fi
 
 if [[ ! -f ~/.config/fontconfig/conf.d/10-powerline-symbols.conf ]]; then
-    echo "Installing powerline fontconfig"
-    mkdir --parents ~/.config/fontconfig/conf.d/
-    cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
+  echo "Installing powerline fontconfig"
+  mkdir --parents ~/.config/fontconfig/conf.d/
+  cp ~/.dotfiles/vendored/powerline-raw-develop-font-*/10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
 else
-    echo "already installed"
+  echo "already installed"
 fi
 
+rm -f ~/.local/bin/rg
 if [[ ! -x "$(command -v rg)" ]]; then
-    echo "Installing ripgrep"
-    cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
-    cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
-    sudo chmod a+x ~/.local/bin/rg
+  echo "Installing ripgrep"
+  cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
+  cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+  sudo chmod a+x ~/.local/bin/rg
 fi
 
+rm -f ~/.local/bin/safe-rm
+sudo rm -f /usr/bin/safe-rm
 if [[ ! -x "$(command -v safe-rm)" ]]; then
-    echo "Installing safe-rm"
-    # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
-    # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
-    # sudo chmod a+x ~/.local/bin/safe-rm
-    sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm /usr/bin/safe-rm
-    sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
-    sudo chmod 755 /usr/bin/safe-rm
-    sudo chmod 644 /usr/local/etc/safe-rm.conf
+  echo "Installing safe-rm"
+  # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm ~/.local/bin/safe-rm
+  # cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf ~/.config/safe-rm
+  # sudo chmod a+x ~/.local/bin/safe-rm
+  sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm /usr/bin/safe-rm
+  sudo cp ~/.dotfiles/vendored/safe-rm-*/safe-rm.conf /usr/local/etc/safe-rm.conf
+  sudo chmod 755 /usr/bin/safe-rm
+  sudo chmod 644 /usr/local/etc/safe-rm.conf
 fi
 
+rm -f ~/.local/bin/tldr
 if [[ ! -x "$(command -v tldr)" ]]; then
-    echo "Installing tldr"
-    cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
-    cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
-    sudo chmod a+x ~/.local/bin/tldr
-    sudo chmod a+x ~/.local/bin/tldr-lint
-    [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
+  echo "Installing tldr"
+  cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
+  cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
+  sudo chmod a+x ~/.local/bin/tldr
+  sudo chmod a+x ~/.local/bin/tldr-lint
+  [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
 fi
 
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
 [[ -f ~/.vnc/xstartup ]] && mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
 if [[ -x "$(command -v gnome-session)" ]]; then
-    cp ~/.dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
+  cp ~/.dotfiles/vendored/xstartup_gnome ~/.vnc/xstartup
 elif [[ -x "$(command -v startxfce4)" ]]; then
-    cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
+  cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
 else
-    echo "no GUI found, copying XFCE-based xstartup"
-    cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
-    #echo "DO YOU WANT TO INSTALL XFCE?"
-    #sudo apt install xfce4 xfce4-goodies
+  echo "no GUI found, copying XFCE-based xstartup"
+  cp ~/.dotfiles/vendored/xstartup_xfce ~/.vnc/xstartup
+  #echo "DO YOU WANT TO INSTALL XFCE?"
+  #sudo apt install xfce4 xfce4-goodies
 fi
 sudo chmod a+x ~/.vnc/xstartup
 sudo chmod a+r ~/.vnc/xstartup
 
+rm -f ~/.local/bin/xsv
 if [[ ! -x "$(command -v xsv)" ]]; then
-    echo "Installing xsv"
-    cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv ~/.local/bin/xsv
-    sudo chmod a+x ~/.local/bin/xsv
+  echo "Installing xsv"
+  cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv ~/.local/bin/xsv
+  sudo chmod a+x ~/.local/bin/xsv
 fi
 
 # pip installs
@@ -314,8 +335,8 @@ echo "Installing pip3"
 sudo apt install -y python3-pip
 
 if [[ ! -x "$(command -v ad)" ]]; then
-    echo "Installing ad"
-    pip3 install --user advance-touch
+  echo "Installing ad"
+  pip3 install --user advance-touch
 fi
 
 #if [[ ! -x "$(command -v csvgrep)" ]]; then
@@ -330,60 +351,59 @@ fi
 #fi
 
 if [[ ! -x "$(command -v html2text)" ]]; then
-    echo "Installing html2text"
-    pip3 install --user html2text
+  echo "Installing html2text"
+  pip3 install --user html2text
 fi
 
 if [[ ! -x "$(command -v langid)" ]]; then
-    echo "Installing langid"
-    pip3 install --user langid
+  echo "Installing langid"
+  pip3 install --user langid
 fi
 
 if [[ ! -x "$(command -v powerline-daemon)" ]]; then
-    echo "Installing powerline"
-    pip3 install --user powerline-status
+  echo "Installing powerline"
+  pip3 install --user powerline-status
 fi
 
 if [[ ! -x "$(command -v pydf)" ]]; then
-    echo "Installing pydf"
-    pip3 install --user pydf
+  echo "Installing pydf"
+  pip3 install --user pydf
 fi
 
 if [[ ! -x "$(command -v pygmentize)" ]]; then
-    echo "Installing pygmentize"
-    pip3 install --user pygments
+  echo "Installing pygmentize"
+  pip3 install --user pygments
 fi
 
 if [[ ! -x "$(command -v tabulate)" ]]; then
-    echo "Installing tabulate"
-    pip3 install --user tabulate
+  echo "Installing tabulate"
+  pip3 install --user tabulate
 fi
 
 if [[ ! -x "$(command -v trash)" ]]; then
-    echo "Installing trash-cli"
-    pip3 install --user trash-cli
+  echo "Installing trash-cli"
+  pip3 install --user trash-cli
 fi
 
 if [[ ! -x "$(command -v unidecode)" ]]; then
-    echo "Installing unidecode"
-    pip3 install --user unidecode
+  echo "Installing unidecode"
+  pip3 install --user unidecode
 fi
 
 if [[ ! -x "$(command -v vd)" ]]; then
-    echo "Installing visidata"
-    pip3 install --user visidata
+  echo "Installing visidata"
+  pip3 install --user visidata
 fi
 
 if [[ ! -x "$(command -v wormhole)" ]]; then
-    echo "Installing wormhole"
-    pip3 install --user magic-wormhole
+  echo "Installing wormhole"
+  pip3 install --user magic-wormhole
 fi
 
 if [[ ! -x "$(command -v zxcvbn)" ]]; then
-    echo "Installing zxcvbn"
-    pip3 install --user zxcvbn
+  echo "Installing zxcvbn"
+  pip3 install --user zxcvbn
 fi
-
 
 # download and install
 
@@ -512,7 +532,7 @@ sudo apt install -y lsof
 
 echo "Installing mosh"
 sudo apt install -y mosh
-[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *mosh* ]] && sudo ufw allow mosh
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) == *mosh* ]] && sudo ufw allow mosh
 
 echo "Installing mtr"
 sudo apt install -y mtr-tiny
@@ -572,7 +592,7 @@ sudo apt install -y sox
 
 echo "Installing sshd (openssh-server)"
 sudo apt install -y openssh-server
-[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) = *OpenSSH* ]] && sudo ufw allow OpenSSH
+[[ -x "$(command -v ufw)" ]] && [[ $(sudo ufw app list) == *OpenSSH* ]] && sudo ufw allow OpenSSH
 
 echo "Installing sshfs"
 sudo apt install -y sshfs
