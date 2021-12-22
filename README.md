@@ -231,7 +231,14 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # todo
 
-* https://github.com/ibraheemdev/modern-unix
+* maybe dust instead of ncdu
+* maye duf instead of pydf
+* alias time to hyperfine?
+* maybe procs aliased to ps
+* maybe curlie and httpie / xh
+* maybe gtop
+* maybe zoxide instead of autojump
+* maybe dog aliased to dig
 * list sources
   * scopatz/nanorc
   * pepa65/tldr
@@ -242,6 +249,12 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * maybe symlink the xstartup instead of copying it?
 * firefox / chrome extensions
 * create `offline-install-*.sh` that's called from the main `install-*.sh`
+* create a folder for utility scripts and mount it to local bin
+* how to change or remove password expiry and complexity requirements
+* add lists
+  * Windows setup from OneNote (as markdown)
+  * PyCharm plugins from OneNote
+  * Python packages from OneNote
 
 # more things you might want to install
 
