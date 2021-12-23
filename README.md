@@ -255,6 +255,11 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
   * Windows setup from OneNote (as markdown)
   * PyCharm plugins from OneNote
   * Python packages from OneNote
+  * MobaXterm setup steps / ini file
+    * bell sound
+    * ssh keepalive
+    * password manager
+    * ssh key?
 
 # more things you might want to install
 
