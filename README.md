@@ -239,6 +239,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * maybe gtop
 * maybe zoxide instead of autojump
 * maybe dog aliased to dig
+* maybe [miller](https://github.com/johnkerl/miller)
 * list sources
   * scopatz/nanorc
   * pepa65/tldr
