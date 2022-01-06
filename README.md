@@ -252,6 +252,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * create `offline-install-*.sh` that's called from the main `install-*.sh`
 * create a folder for utility scripts and mount it to local bin
 * how to change or remove password expiry and complexity requirements
+* test [neofetch](https://github.com/dylanaraps/neofetch) with mobaxterm (imgcat too)
+* disable powerline by default, enable with shortcut / alias
 * add lists
   * Windows setup from OneNote (as markdown)
   * PyCharm plugins from OneNote
