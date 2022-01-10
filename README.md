@@ -254,6 +254,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * how to change or remove password expiry and complexity requirements
 * test [neofetch](https://github.com/dylanaraps/neofetch) with mobaxterm (imgcat too)
 * disable powerline by default, enable with shortcut / alias
+* BUGFIX: nc -> command not found [in here, line 14](install-rhel.sh)
 * add lists
   * Windows setup from OneNote (as markdown)
   * PyCharm plugins from OneNote
