@@ -133,7 +133,7 @@ fi
 # <<< conda init <<<
 
 # enable powerline
-enable-powerline()
+enable-powerline
 
 # pre-populate fzf since we know exactly what script it wants
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
