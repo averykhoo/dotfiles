@@ -132,24 +132,8 @@ fi
 [[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda/bin/conda ]] && eval "$(~/anaconda/bin/conda shell.bash hook)"
 # <<< conda init <<<
 
-# enable powerline (assuming it was installed via pip3)
-if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
-
-  # only enable if we're using SSH but not in the cockpit web shell
-  if [[ ! $TERM == "linux" ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
-
-    POWERLINE_ROOT=$(pip3 show powerline-status --disable-pip-version-check | grep -oP --color=never "(?<=Location: ).*")/powerline
-    if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
-      if ! pgrep -f "powerline-daemon" >/dev/null; then
-        powerline-daemon -q
-      fi
-      POWERLINE_BASH_CONTINUATION=1
-      POWERLINE_BASH_SELECT=1
-      source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
-    fi
-    unset POWERLINE_ROOT
-  fi
-fi
+# enable powerline
+enable-powerline()
 
 # pre-populate fzf since we know exactly what script it wants
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash

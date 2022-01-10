@@ -264,35 +264,56 @@ function quiet_helm() {
 
 # get the newest file in the current folder
 function newest_file() {
-   unset -v newest_file
+  unset -v newest_file
 
-   # take first arg if it exists, otherwise take current directory
-   local dir="${1:-.}"
+  # take first arg if it exists, otherwise take current directory
+  local dir="${1:-.}"
 
-   # iterate over all files in the directory
-   for file in "${dir}"/*; do
-     [[ ${file} -nt ${newest_file} ]] && newest_file=${file}
-   done
+  # iterate over all files in the directory
+  for file in "${dir}"/*; do
+    [[ ${file} -nt ${newest_file} ]] && newest_file=${file}
+  done
 
-   echo "${newest_file}"
+  echo "${newest_file}"
 }
 
 # get the oldest file in the current folder
 function oldest_file() {
-   unset -v oldest_file
+  unset -v oldest_file
 
-   # take first arg if it exists, otherwise take current directory
-   local dir="${1:-.}"
+  # take first arg if it exists, otherwise take current directory
+  local dir="${1:-.}"
 
-   # iterate over all files in the directory
-   for file in "${dir}"/*; do
-     [[ -z ${oldest_file} || $file -ot ${oldest_file} ]] && oldest_file=${file}
-   done
+  # iterate over all files in the directory
+  for file in "${dir}"/*; do
+    [[ -z ${oldest_file} || $file -ot ${oldest_file} ]] && oldest_file=${file}
+  done
 
-   echo "${oldest_file}"
+  echo "${oldest_file}"
 }
 
 [[ ! -x "$(command -v oldest)" ]] && alias oldest="oldest_file"
 [[ ! -x "$(command -v newest)" ]] && alias newest="newest_file"
 [[ ! -x "$(command -v earliest)" ]] && alias earliest="oldest_file"
 [[ ! -x "$(command -v latest)" ]] && alias latest="newest_file"
+
+# enable powerline (assuming it was installed via pip3)
+function enable-powerline() {
+  if [[ -x "$(command -v pip3)" ]] && [[ -x "$(command -v powerline-daemon)" ]]; then
+
+    # only enable if we're using SSH but not in the cockpit web shell
+    if [[ ! $TERM == "linux" ]] && [[ ! $XDG_SESSION_TYPE == "web" ]]; then
+
+      POWERLINE_ROOT=$(pip3 show powerline-status --disable-pip-version-check | grep -oP --color=never "(?<=Location: ).*")/powerline
+      if [[ -f ${POWERLINE_ROOT}/bindings/bash/powerline.sh ]]; then
+        if ! pgrep -f "powerline-daemon" >/dev/null; then
+          powerline-daemon -q
+        fi
+        POWERLINE_BASH_CONTINUATION=1
+        POWERLINE_BASH_SELECT=1
+        source ${POWERLINE_ROOT}/bindings/bash/powerline.sh
+      fi
+      unset POWERLINE_ROOT
+    fi
+  fi
+}
