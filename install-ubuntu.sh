@@ -102,7 +102,7 @@ sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 rm -f ~/.local/bin/'$'
 echo "Installing '$' ignorer"
 if [[ ! -x "$(command -v '$')" ]]; then
-  cp ~/.dotfiles/vendored/dollar_sign ~/.local/bin/'$'
+  cp ~/.dotfiles/vendored/__dollar_sign__ ~/.local/bin/'$'
   sudo chmod a+x ~/.local/bin/'$'
 fi
 
