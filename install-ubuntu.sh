@@ -106,6 +106,13 @@ if [[ ! -x "$(command -v '$')" ]]; then
   sudo chmod a+x ~/.local/bin/'$'
 fi
 
+rm -f ~/.local/bin/'='
+echo "Installing '=' math convenience function"
+if [[ ! -x "$(command -v '=')" ]]; then
+  cp ~/.dotfiles/vendored/__equals__ ~/.local/bin/'='
+  sudo chmod a+x ~/.local/bin/'='
+fi
+
 rm -f ~/.local/bin/bak
 if [[ ! -x "$(command -v bak)" ]]; then
   echo "Installing backup.sh"

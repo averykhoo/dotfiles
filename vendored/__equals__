@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# convenience function to do math using "=" as a command
+# this has to be a script named "=", because you can't alias "="
+
+#if no arguments are passed
+if [[ $# -eq 0 ]]; then
+  echo 'no arguments provided, cannot compute'
+  echo 'usage example:'
+  echo '= 1+1'
+  echo '> 2'
+  exit 1
+fi
+
+args="$*"
+#echo "${args} = $((args))"
+echo "> $((args))"
