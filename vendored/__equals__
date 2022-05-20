@@ -8,9 +8,18 @@ if [[ $# -eq 0 ]]; then
   echo 'usage example:'
   echo '= 1+1'
   echo '> 2'
+  echo 'if you want an interactive calculator, try "bc"'
   exit 1
 fi
 
+# get the full formula to evaluate as a single string
 args="$*"
-#echo "${args} = $((args))"
-echo "> $((args))"
+
+if [[ -x "$(command -v 'bc')" ]]; then
+  echo "scale=15;${args}" | bc
+elif [[ -x "$(command -v 'awk')" ]]; then
+  awk "BEGIN{print ${args}}"
+else
+  #echo "${args} = $((args))"
+  echo $((args))
+fi
