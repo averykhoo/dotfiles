@@ -96,92 +96,105 @@ sudo apt install -y wget
 [[ -d ~/.local/bin/ ]] || mkdir --parents ~/.local/bin/
 [[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 
-echo "Installing Iosevka"
-sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
+function install-local-bin() {
+  local src_path
+  local dst_name
+  local dst_path
 
-rm -f ~/.local/bin/'$'
+  # if called with zero arguments, print help
+  if [[ $# -eq 0 ]]; then
+    echo 'ERROR: no argument given to "install-local-bin" function'
+    return 1
+  fi
+
+  # if called with more than 2 arguments, print help
+  if [[ $# -gt 2 ]]; then
+    echo 'ERROR: too many arguments given to "install-local-bin" function'
+    return 1
+  fi
+
+  # handle missing input executable
+  src_path="$1"
+  if [[ ! -f "${src_path}" ]]; then
+    echo "ERROR: source executable missing: ${src_path}"
+    return 1
+  fi
+
+  # if provided, the second argument is the destination filename
+  # make sure it does not contain any slashes
+  if [[ $# -eq 2 ]]; then
+    dst_name="$2"
+    if [[ "${dst_name}" == *"/"* ]]; then
+      echo "ERROR: destination filename cannot contain slashes: ${dst_name}"
+      return 1
+    fi
+  else
+    dst_name="$(basename "${src_path}")"
+  fi
+
+  # the directory will always be ~/.local/bin
+  dst_path=~/.local/bin/"${dst_name}"
+
+  # remove destination executable if it exists
+  if [[ -f "${dst_path}" ]]; then
+    echo "INFO: removing existing target executable: ${dst_path}"
+    rm -f "${dst_path}"
+  fi
+
+  # install the executable if it is not already a command
+  if [[ ! -x "$(command -v "${dst_path}")" ]]; then
+    echo "INFO: installing executable: ${src_path} -> ${dst_path}"
+    #install -m 755 "${src_path}" "${dst_path}"
+    cp "${src_path}" "${dst_path}"
+    chmod +x "${dst_path}"
+  fi
+}
+
 echo "Installing '$' ignorer"
-if [[ ! -x "$(command -v '$')" ]]; then
-  cp ~/.dotfiles/vendored/__dollar_sign__ ~/.local/bin/'$'
-  sudo chmod a+x ~/.local/bin/'$'
-fi
+install-local-bin ~/.dotfiles/vendored/__dollar_sign__ '$'
 
-rm -f ~/.local/bin/'='
 echo "Installing '=' math convenience function"
-if [[ ! -x "$(command -v '=')" ]]; then
-  cp ~/.dotfiles/vendored/__equals__ ~/.local/bin/'='
-  sudo chmod a+x ~/.local/bin/'='
-fi
+install-local-bin ~/.dotfiles/vendored/__equals__ '='
 
-rm -f ~/.local/bin/bak
-if [[ ! -x "$(command -v bak)" ]]; then
-  echo "Installing backup.sh"
-  cp ~/.dotfiles/vendored/backup.sh ~/.local/bin/bak
-  sudo chmod a+x ~/.local/bin/bak
-fi
+echo "Installing backup.sh"
+install-local-bin ~/.dotfiles/vendored/backup.sh bak
 
-rm -f ~/.local/bin/bat
-if [[ ! -x "$(command -v bat)" ]]; then
-  echo "Installing bat"
-  cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat ~/.local/bin/bat
-  cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
-  sudo chmod a+x ~/.local/bin/bat
-fi
+echo "Installing bat"
+install-local-bin ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat
+cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
 
-rm -f ~/.local/bin/batdiff
-if [[ ! -x "$(command -v batdiff)" ]]; then
-  echo "Installing bat-extras"
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules ~/.local/bin/bat-modules
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/batdiff ~/.local/bin/batdiff
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/batgrep ~/.local/bin/batgrep
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/batman ~/.local/bin/batman
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/batpipe ~/.local/bin/batpipe
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/batwatch ~/.local/bin/batwatch
-  cp ~/.dotfiles/vendored/bat-extras-*/bin/prettybat ~/.local/bin/prettybat
-  cp ~/.dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
-  cp ~/.dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
-  cp ~/.dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
-  cp ~/.dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
-  cp ~/.dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
-  cp ~/.dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
-  sudo chmod a+x ~/.local/bin/bat-modules
-  sudo chmod a+x ~/.local/bin/batdiff
-  sudo chmod a+x ~/.local/bin/batgrep
-  sudo chmod a+x ~/.local/bin/batman
-  sudo chmod a+x ~/.local/bin/batpipe
-  sudo chmod a+x ~/.local/bin/batwatch
-  sudo chmod a+x ~/.local/bin/prettybat
-fi
+echo "Installing bat-extras"
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/batdiff
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/batgrep
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/batman
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/batpipe
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/batwatch
+install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/prettybat
+cp ~/.dotfiles/vendored/bat-extras-*/man/batdiff.1 ~/.local/share/man/man1/batdiff.1
+cp ~/.dotfiles/vendored/bat-extras-*/man/batgrep.1 ~/.local/share/man/man1/batgrep.1
+cp ~/.dotfiles/vendored/bat-extras-*/man/batman.1 ~/.local/share/man/man1/batman.1
+cp ~/.dotfiles/vendored/bat-extras-*/man/batpipe.1 ~/.local/share/man/man1/batpipe.1
+cp ~/.dotfiles/vendored/bat-extras-*/man/batwatch.1 ~/.local/share/man/man1/batwatch.1
+cp ~/.dotfiles/vendored/bat-extras-*/man/prettybat.1 ~/.local/share/man/man1/prettybat.1
 
-rm -f ~/.local/bin/delta
-if [[ ! -x "$(command -v delta)" ]]; then
-  echo "Installing delta"
-  cp ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta ~/.local/bin/delta
-  sudo chmod a+x ~/.local/bin/delta
-fi
+echo "Installing delta"
+install-local-bin ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta
 
-rm -f ~/.local/bin/duf
-if [[ ! -x "$(command -v duf)" ]]; then
-  echo "Installing duf"
-  cp ~/.dotfiles/vendored/duf_*_linux_x86_64/duf ~/.local/bin/duf
-  sudo chmod a+x ~/.local/bin/duf
-fi
+echo "Installing dog"
+install-local-bin ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/bin/dog
+cp ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/man/dog.1 ~/.local/share/man/man1/dog.1
 
-rm -f ~/.local/bin/exa
-if [[ ! -x "$(command -v exa)" ]]; then
-  echo "Installing exa"
-  cp ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa ~/.local/bin/exa
-  sudo chmod a+x ~/.local/bin/exa
-  cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
-fi
+echo "Installing duf"
+install-local-bin ~/.dotfiles/vendored/duf_*_linux_x86_64/duf
 
-rm -f ~/.local/bin/fd
-if [[ ! -x "$(command -v fd)" ]]; then
-  echo "Installing fd"
-  cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd ~/.local/bin/fd
-  cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
-  sudo chmod a+x ~/.local/bin/fd
-fi
+echo "Installing exa"
+install-local-bin ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa
+cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
+
+echo "Installing fd"
+install-local-bin ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd
+cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
 
 if [[ ! -d ~/.fzf ]]; then
   echo "Installing fzf"
@@ -191,19 +204,11 @@ if [[ ! -d ~/.fzf ]]; then
   ~/.fzf/install --all
 fi
 
-rm -f ~/.local/bin/helm
-if [[ ! -x "$(command -v helm)" ]]; then
-  echo "Installing helm"
-  cp ~/.dotfiles/vendored/helm-*-linux-amd64/helm ~/.local/bin/helm
-  sudo chmod a+x ~/.local/bin/helm
-fi
+echo "Installing helm"
+install-local-bin ~/.dotfiles/vendored/helm-*-linux-amd64/helm
 
-rm -f ~/.local/bin/hexyl
-if [[ ! -x "$(command -v hexyl)" ]]; then
-  echo "Installing hexyl"
-  cp ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl ~/.local/bin/hexyl
-  sudo chmod a+x ~/.local/bin/hexyl
-fi
+echo "Installing hexyl"
+install-local-bin ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl
 
 if [[ ! -x "$(command -v htop)" ]]; then
   echo "Installing htop"
@@ -211,13 +216,12 @@ if [[ ! -x "$(command -v htop)" ]]; then
   sudo gdebi --non-interactive ~/.dotfiles/vendored/htop/htop_3.0.2-1_amd64.deb
 fi
 
-rm -f ~/.local/bin/hyperfine
-if [[ ! -x "$(command -v hyperfine)" ]]; then
-  echo "Installing hyperfine"
-  cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine ~/.local/bin/hyperfine
-  cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
-  sudo chmod a+x ~/.local/bin/hyperfine
-fi
+echo "Installing httpie"
+install-local-bin ~/.dotfiles/vendored/httpie-*/http
+
+echo "Installing hyperfine"
+install-local-bin ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine
+cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
 
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
   echo "Increase inotify watch limit for pycharm"
@@ -225,47 +229,34 @@ if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
   sudo sysctl -p --system
 fi
 
-rm -f ~/.local/bin/k9s
-if [[ ! -x "$(command -v k9s)" ]]; then
-  echo "Installing k9s"
-  cp ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s ~/.local/bin/k9s
-  sudo chmod a+x ~/.local/bin/k9s
-fi
+rm -f /usr/local/share/fonts/iosevka-*.ttf
+echo "Installing Iosevka font"
+sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 
-rm -f ~/.local/bin/jq
-if [[ ! -x "$(command -v jq)" ]]; then
-  echo "Installing jq"
-  cp ~/.dotfiles/vendored/jq_*/jq-linux64 ~/.local/bin/jq
-  sudo chmod a+x ~/.local/bin/jq
-fi
+echo "Installing jq"
+install-local-bin ~/.dotfiles/vendored/jq_*/jq-linux64 jq
 
-rm -f ~/.local/bin/kubectl
-if [[ ! -x "$(command -v kubectl)" ]]; then
-  echo "Installing kubectl"
-  cp ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl ~/.local/bin/kubectl
-  sudo chmod a+x ~/.local/bin/kubectl
-fi
+echo "Installing k9s"
+install-local-bin ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s
 
-rm -f ~/.local/bin/micro
-if [[ ! -x "$(command -v micro)" ]]; then
-  echo "Installing micro"
-  cp ~/.dotfiles/vendored/micro-*-linux64-static/micro ~/.local/bin/micro
-  cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
-  sudo chmod a+x ~/.local/bin/micro
-fi
+echo "Installing kubectl"
+install-local-bin ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl
 
-#if [[ ! -x "$(command -v osqueryi)" ]]; then
+echo "Installing micro"
+install-local-bin ~/.dotfiles/vendored/micro-*-linux64-static/micro
+cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1
+
+#if [[ ! -x "$(command -v osquery)" ]]; then
 #    echo "Installing osquery"
 #    sudo gdebi --non-interactive ~/.dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
 #fi
 
-rm -f ~/.local/bin/pipes.sh
-if [[ ! -x "$(command -v pipes.sh)" ]]; then
-  echo "Installing pipes.sh"
-  cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh ~/.local/bin/pipes.sh
-  cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
-  sudo chmod a+x ~/.local/bin/pipes.sh
-fi
+echo "Installing pandoc"
+install-local-bin ~/.dotfiles/vendored/pandoc-*-linux-amd64/bin/pandoc
+
+echo "Installing pipes.sh"
+install-local-bin ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh
+cp ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh.6 ~/.local/share/man/man1/pipes.sh.6
 
 if [[ ! -f ~/.local/share/fonts/PowerlineSymbols.otf ]]; then
   echo "Installing powerline font"
@@ -282,13 +273,9 @@ else
   echo "already installed"
 fi
 
-rm -f ~/.local/bin/rg
-if [[ ! -x "$(command -v rg)" ]]; then
-  echo "Installing ripgrep"
-  cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg ~/.local/bin/rg
-  cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
-  sudo chmod a+x ~/.local/bin/rg
-fi
+echo "Installing ripgrep"
+install-local-bin ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg
+cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
 
 rm -f ~/.local/bin/safe-rm
 sudo rm -f /usr/bin/safe-rm
@@ -303,15 +290,20 @@ if [[ ! -x "$(command -v safe-rm)" ]]; then
   sudo chmod 644 /usr/local/etc/safe-rm.conf
 fi
 
+echo "Installing sd"
+install-local-bin ~/.dotfiles/vendored/sd-*-x86_64-unknown-linux-musl/sd
+
+echo "Installing shellcheck"
+install-local-bin ~/.dotfiles/vendored/shellcheck-*.linux.x86_64/shellcheck
+
+echo "Installing shfmt"
+install-local-bin ~/.dotfiles/vendored/shfmt_*_linux_amd64/shfmt
+
 rm -f ~/.local/bin/tldr
-if [[ ! -x "$(command -v tldr)" ]]; then
-  echo "Installing tldr"
-  cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr ~/.local/bin/tldr
-  cp ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint ~/.local/bin/tldr-lint
-  sudo chmod a+x ~/.local/bin/tldr
-  sudo chmod a+x ~/.local/bin/tldr-lint
-  [[ ! -d ~/.local/share/tldr ]] && tar -xf ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
-fi
+echo "Installing tldr"
+install-local-bin ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr
+install-local-bin ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr-lint
+[[ ! -d ~/.local/share/tldr ]] && tar -xf ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr.tar -C ~/.local/share/
 
 echo "Configuring xstartup"
 [[ -d ~/.vnc ]] || mkdir ~/.vnc
@@ -329,12 +321,8 @@ fi
 sudo chmod a+x ~/.vnc/xstartup
 sudo chmod a+r ~/.vnc/xstartup
 
-rm -f ~/.local/bin/xsv
-if [[ ! -x "$(command -v xsv)" ]]; then
-  echo "Installing xsv"
-  cp ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv ~/.local/bin/xsv
-  sudo chmod a+x ~/.local/bin/xsv
-fi
+echo "Installing xsv"
+install-local-bin ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv
 
 # pip installs
 
