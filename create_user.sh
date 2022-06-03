@@ -38,10 +38,13 @@ echo "${NEW_USER}:${NEW_USER_PASSWORD}" | sudo chpasswd
 # set up bash (instead of sh)
 sudo chsh -s "$(which bash)" "${NEW_USER}"
 
-# add to sudoers file
-grep sudo      /etc/group >/dev/null && sudo usermod -aG sudo      "${NEW_USER}"  # for Ubuntu
-grep wheel     /etc/group >/dev/null && sudo usermod -aG wheel     "${NEW_USER}"  # for RHEL
-grep ssh-users /etc/group >/dev/null && sudo usermod -aG ssh-users "${NEW_USER}"  # for RHEL (allow ssh)
+# add to sudoers file and docker group
+# note that `grep wheel /etc/group` is unsafe, it would be better to use `grep -q -E "^wheel:" /etc/group`
+# even better, use `getent`
+getent group sudo      >/dev/null && sudo usermod -aG sudo      "${NEW_USER}"  # for Ubuntu
+getent group wheel     >/dev/null && sudo usermod -aG wheel     "${NEW_USER}"  # for RHEL
+getent group ssh-users >/dev/null && sudo usermod -aG ssh-users "${NEW_USER}"  # for RHEL (allow ssh)
+getent group docker    >/dev/null && sudo usermod -aG docker    "${NEW_USER}"  # for RHEL (allow ssh)
 
 # enable password-less sudo
 echo "${NEW_USER}  ALL=(ALL) NOPASSWD:ALL" | sudo tee --append /etc/sudoers >/dev/null
