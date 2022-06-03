@@ -1,0 +1,44 @@
+.TH "PRETTYBAT" 1
+.SH NAME
+prettybat - Pretty-print source code and highlight it with \fR\fIbat\fR.
+.SH DESCRIPTION
+.P
+The only thing better than syntax highlighting? Syntax highlighting \fR\fIand\fR code formatting. This script combines the best of both worlds by using various formatters to format source files before using \fR\fIbat\fR to highlight them.
+.SH "USAGE"
+.P
+    prettybat [OPTIONS] [PATH...]
+.SH "OPTIONS"
+.P
+Every option is passed through to \fR\fIbat\fR.
+.br
+See \fR\fIman bat\fR for more information.
+.SH "LANGUAGES"
+.TS
+tab(|) box;
+| cB | cB |
+| _ | _ |
+| l0 |1 l |.
+ Language | Formatter 
+|
+.SP
+ JavaScript (JS, JSX) | prettier 
+ TypeScript (TS, TSX) | prettier 
+ CSS, SCSS, SASS | prettier 
+ Markdown | prettier 
+ JSON | prettier 
+ YAML | prettier 
+ HTML | prettier 
+ SVG | prettier 
+ Rust | rustfmt 
+ Bash | shfmt 
+ C | ClangFormat 
+ C++ | ClangFormat 
+ Objective-C | ClangFormat 
+ Python | black 
+.TE
+
+.SH "CAVEATS"
+.P
+- The header displayed by bat will show \fR\fISTDIN\fR instead of the filename (\fR\fIbat 0.13\fR or older).
+.br
+- The git changes sidebar will not work with files that have been formatted.

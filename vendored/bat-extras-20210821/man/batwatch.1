@@ -1,0 +1,39 @@
+.TH "BATWATCH" 1
+.SH NAME
+batwatch - Watch for changes in files or command output, and print them with \fR\fIbat\fR.
+.SH DESCRIPTION
+.SH "USAGE"
+.P
+    batwatch [OPTIONS] FILE...
+.P
+    batwatch [OPTIONS] --command COMMAND [ARG...]
+.SH "OPTIONS"
+.TS
+tab(|) box;
+| cB | cB | cB |
+| _ | _ | _ |
+| l0 |1 l |.
+ Short | Long | Description 
+||
+.SP
+  | \fR\fI--command\fR\ | \fR\fI-x\fR | Execute a command on an interval. 
+  | \fR\fI--file\fR\ | \fR\fI-f\fR | Watch a file for changes. 
+  | \fR\fI--watcher=[watcher]\fR | Use a specific program to watch for file changes. See below for more details. 
+  | \fR\fI--interval=[seconds]\fR | The interval for executing commands. 
+  | \fR\fI--clear\fR | Clear the screen before printing the files. This is enabled by default. 
+  | \fR\fI--no-clear\fR | Do not clear the screen before printing the files. 
+  | \fR\fI--color\fR | Force color output. 
+  | \fR\fI--no-color\fR | Force disable color output. 
+.TE
+
+.P
+All remaining options are passed through to bat.
+.SH "WATCHERS"
+.P
+Batwatch uses external programs to watch for file changes.
+.br
+Currently, the following programs are supported:
+.P
+- entr
+.P
+There is also a fallback \fR\fIpoll\fR watcher available.
