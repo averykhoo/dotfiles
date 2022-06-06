@@ -204,8 +204,8 @@ if [[ ! -d ~/.fzf ]]; then
   ~/.fzf/install --all
 fi
 
-echo "Installing helm"
-install-local-bin ~/.dotfiles/vendored/helm-*-linux-amd64/helm
+#echo "Installing helm"
+#install-local-bin ~/.dotfiles/vendored/helm-*-linux-amd64/helm
 
 echo "Installing hexyl"
 install-local-bin ~/.dotfiles/vendored/hexyl-*-x86_64-unknown-linux-musl/hexyl
@@ -216,8 +216,8 @@ if [[ ! -x "$(command -v htop)" ]]; then
   sudo gdebi --non-interactive ~/.dotfiles/vendored/htop/htop_3.0.2-1_amd64.deb
 fi
 
-echo "Installing httpie"
-install-local-bin ~/.dotfiles/vendored/httpie-*/http
+#echo "Installing httpie"
+#install-local-bin ~/.dotfiles/vendored/httpie-*/http
 
 echo "Installing hyperfine"
 install-local-bin ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine
@@ -236,11 +236,11 @@ sudo cp ~/.dotfiles/vendored/iosevka-*/iosevka-*.ttf /usr/local/share/fonts
 echo "Installing jq"
 install-local-bin ~/.dotfiles/vendored/jq_*/jq-linux64 jq
 
-echo "Installing k9s"
-install-local-bin ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s
+#echo "Installing k9s"
+#install-local-bin ~/.dotfiles/vendored/k9s_Linux_x86_64_*/k9s
 
-echo "Installing kubectl"
-install-local-bin ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl
+#echo "Installing kubectl"
+#install-local-bin ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl
 
 echo "Installing micro"
 install-local-bin ~/.dotfiles/vendored/micro-*-linux64-static/micro
@@ -251,8 +251,8 @@ cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/m
 #    sudo gdebi --non-interactive ~/.dotfiles/vendored/osquery/osquery_4.9.0-1.linux_amd64.deb
 #fi
 
-echo "Installing pandoc"
-install-local-bin ~/.dotfiles/vendored/pandoc-*-linux-amd64/bin/pandoc
+#echo "Installing pandoc"
+#install-local-bin ~/.dotfiles/vendored/pandoc-*-linux-amd64/bin/pandoc
 
 echo "Installing pipes.sh"
 install-local-bin ~/.dotfiles/vendored/pipes.sh-master-*/pipes.sh
