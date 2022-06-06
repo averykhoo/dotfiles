@@ -339,8 +339,8 @@ fi
 sudo chmod a+x ~/.vnc/xstartup
 sudo chmod a+r ~/.vnc/xstartup
 
-echo "Installing xsv"
-install-local-bin ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv
+#echo "Installing xsv"
+#install-local-bin ~/.dotfiles/vendored/xsv-*-x86_64-unknown-linux-musl/xsv
 
 # pip installs
 
