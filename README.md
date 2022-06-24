@@ -231,6 +231,8 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # todo
 
+* https://github.com/onceupon/Bash-Oneliner
+* https://github.com/sachaos/viddy
 * maybe dust instead of ncdu
 * maye duf instead of pydf
 * alias time to hyperfine?
