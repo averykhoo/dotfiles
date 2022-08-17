@@ -256,7 +256,7 @@ fi
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""
 
 function quiet_helm() {
-  helm "$*" 2>&1 | grep -v ": skipping loading invalid entry"
+  helm $* 2>&1 | grep -v ": skipping loading invalid entry"  # do not quote this $*
   return "${PIPESTATUS[0]}"
 }
 
