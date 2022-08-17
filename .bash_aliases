@@ -261,7 +261,14 @@ function quiet_helm() {
 }
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
-[[ -x "$(command -v kubectl)" ]] && alias k="kubectl"
+
+if [[ -x "$(command -v kubectl)" ]] ; then
+  if [[ -x "$(command -v kubecolor)" ]]; then
+    alias k="kubecolor"
+  else
+    alias k="kubectl"
+  fi
+fi
 
 # get the newest file in the current folder
 function newest_file() {
