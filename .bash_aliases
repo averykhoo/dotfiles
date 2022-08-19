@@ -264,10 +264,9 @@ function quiet_helm() {
 
 if [[ -x "$(command -v kubectl)" ]] ; then
   if [[ -x "$(command -v kubecolor)" ]]; then
-    alias k="kubecolor"
-  else
-    alias k="kubectl"
+    alias kubectl="kubecolor"
   fi
+  alias k="kubectl"
 fi
 
 # get the newest file in the current folder
