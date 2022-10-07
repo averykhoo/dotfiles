@@ -237,7 +237,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 * maye duf instead of pydf
 * alias time to hyperfine?
 * maybe procs aliased to ps
-* maybe curlie and httpie / xh
+* maybe curlie / httpie / xh / hurl / httpx
 * maybe gtop
 * maybe zoxide instead of autojump
 * maybe dog aliased to dig
