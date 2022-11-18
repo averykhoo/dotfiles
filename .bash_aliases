@@ -131,6 +131,7 @@ alias sudo='sudo '
 [[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
 [[ -x "$(command -v iftop)" ]] && alias iftop="sudo iftop"
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
+[[ -x "$(command -v kubeadm)" ]] && alias kubeadm="sudo kubeadm"
 
 # # docker, if your user is not in docker group
 # # but it's better to run `sudo usermod -aG docker $(whoami) && newgrp docker`
