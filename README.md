@@ -213,7 +213,7 @@ git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 ```
 
-## find parent for bash script
+## find parent dir of your bash script
 
 Minimal one-liner: `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"`
 
@@ -231,6 +231,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
 # todo
 
+* `sudo apt-get install bash-completion -y`
 * https://github.com/onceupon/Bash-Oneliner
 * https://github.com/sachaos/viddy
 * maybe dust instead of ncdu
