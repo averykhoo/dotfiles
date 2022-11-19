@@ -132,9 +132,6 @@ fi
 [[ ! -x "$(command -v conda)" ]] && [[ -f ~/anaconda/bin/conda ]] && eval "$(~/anaconda/bin/conda shell.bash hook)"
 # <<< conda init <<<
 
-# enable powerline
-enable-powerline
-
 # pre-populate fzf since we know exactly what script it wants
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
@@ -154,3 +151,6 @@ bash --norc -c ':' 2>/dev/null
 
 # disables tldr updates; you can safely comment this out if you're online
 export TLDR_EXPIRY=9999
+
+# enable powerline
+enable-powerline

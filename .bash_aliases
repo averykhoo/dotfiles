@@ -131,6 +131,7 @@ alias sudo='sudo '
 [[ -x "$(command -v reboot)" ]] && alias reboot="sudo reboot"
 [[ -x "$(command -v iftop)" ]] && alias iftop="sudo iftop"
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
+[[ -x "$(command -v kubeadm)" ]] && alias kubeadm="sudo kubeadm"
 
 # # docker, if your user is not in docker group
 # # but it's better to run `sudo usermod -aG docker $(whoami) && newgrp docker`
@@ -256,11 +257,18 @@ fi
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""
 
 function quiet_helm() {
-  helm "$*" 2>&1 | grep -v ": skipping loading invalid entry"
+  helm $* 2>&1 | grep -v ": skipping loading invalid entry"  # do not quote this $*
   return "${PIPESTATUS[0]}"
 }
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
+
+if [[ -x "$(command -v kubectl)" ]] ; then
+  if [[ -x "$(command -v kubecolor)" ]]; then
+    alias kubectl="kubecolor"
+  fi
+  alias k="kubectl"
+fi
 
 # get the newest file in the current folder
 function newest_file() {

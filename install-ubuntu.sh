@@ -242,6 +242,9 @@ install-local-bin ~/.dotfiles/vendored/jq_*/jq-linux64 jq
 #echo "Installing kubectl"
 #install-local-bin ~/.dotfiles/vendored/kubectl-dl.k8s.io-release-*-bin-linux-amd64/kubectl
 
+echo "Installing kubecolor"
+install-local-bin ~/.dotfiles/vendored/kubecolor_*_Linux_x86_64/kubecolor
+
 echo "Installing micro"
 install-local-bin ~/.dotfiles/vendored/micro-*-linux64-static/micro
 cp ~/.dotfiles/vendored/micro-*-linux64-static/micro.1 ~/.local/share/man/man1/micro.1

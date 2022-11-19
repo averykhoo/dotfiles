@@ -213,7 +213,7 @@ git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 ```
 
-## find parent for bash script
+## find parent dir of your bash script
 
 Minimal one-liner: `DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"`
 
