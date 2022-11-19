@@ -1,20 +1,22 @@
 # todo
 
 * split out the vendored stuff
-* consider k9s
+* consider k9s* `sudo apt-get install bash-completion -y`
+* https://github.com/onceupon/Bash-Oneliner
+* https://github.com/sachaos/viddy
 * maybe dust instead of ncdu
 * maye duf instead of pydf
 * alias time to hyperfine?
 * maybe procs aliased to ps
-* maybe curlie and httpie / xh
+* maybe curlie / httpie / xh / hurl / httpx
 * maybe gtop
 * maybe zoxide instead of autojump
 * maybe dog aliased to dig
 * maybe [miller](https://github.com/johnkerl/miller)
 * list sources
-    * scopatz/nanorc
-    * pepa65/tldr
-    * ...
+  * scopatz/nanorc
+  * pepa65/tldr
+  * ...
 * is x forwarding enabled
 * set iosevka as terminal font
 * set terminal opacity to 90%
@@ -27,14 +29,14 @@
 * disable powerline by default, enable with shortcut / alias
 * BUGFIX: nc -> command not found [in here, line 14](install-rhel.sh)
 * add lists
-    * Windows setup from OneNote (as markdown)
-    * PyCharm plugins from OneNote
-    * Python packages from OneNote
-    * MobaXterm setup steps / ini file
-        * bell sound
-        * ssh keepalive
-        * password manager
-        * ssh key?
+  * Windows setup from OneNote (as markdown)
+  * PyCharm plugins from OneNote
+  * Python packages from OneNote
+  * MobaXterm setup steps / ini file
+    * bell sound
+    * ssh keepalive
+    * password manager
+    * ssh key?
 
 # more things you might want to install
 
@@ -45,12 +47,12 @@
 * [python](#set-up-python) packages
 * [XFCE desktop](#xfce)
 * elasticsearch
-    * elasticsearch-plugin install x-pack
+  * elasticsearch-plugin install x-pack
 * emacs / vim
 * etcd
 * pycharm (`tar -xzf pycharm-*.tar.gz`)
-    * pycharm plugins
-    * create shortcut at `~/.local/bin/charm`
+  * pycharm plugins
+  * create shortcut at `~/.local/bin/charm`
 * zenmap
 * [VS Code](https://code.visualstudio.com/docs/setup/linux)
   `snap install code`
@@ -61,6 +63,6 @@
 * [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
   `snap install --edge tiv`
 * [hyperscan](https://www.hyperscan.io/downloads/)
-    * [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
+  * [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
 * [gron](https://github.com/tomnomnom/gron)
 * tesseract scripts (and language files)
