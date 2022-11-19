@@ -1,33 +1,27 @@
 # todo
 
-* split out the vendored stuff
-* consider k9s* `sudo apt-get install bash-completion -y`
-* https://github.com/onceupon/Bash-Oneliner
-* https://github.com/sachaos/viddy
-* maybe dust instead of ncdu
-* maye duf instead of pydf
-* alias time to hyperfine?
-* maybe procs aliased to ps
-* maybe curlie / httpie / xh / hurl / httpx
-* maybe gtop
-* maybe zoxide instead of autojump
-* maybe dog aliased to dig
-* maybe [miller](https://github.com/johnkerl/miller)
+* more shortcuts
+  * https://github.com/onceupon/Bash-Oneliner
+  * prepend / append line into file but take newlines into account
+  * how to change or remove password expiry and complexity requirements
+  * disable powerline by default, enable with shortcut / alias
+  * BUGFIX: nc -> command not found [in here, line 14](install-rhel.sh)
+* refactoring
+  * split out the vendored stuff
+  * create `offline-install-*.sh` that's called from the main `install-*.sh`
 * list sources
   * scopatz/nanorc
   * pepa65/tldr
   * ...
-* is x forwarding enabled
-* set iosevka as terminal font
-* set terminal opacity to 90%
-* maybe symlink the xstartup instead of copying it?
-* firefox / chrome extensions
-* create `offline-install-*.sh` that's called from the main `install-*.sh`
-* create a folder for utility scripts and mount it to local bin
-* how to change or remove password expiry and complexity requirements
-* test [neofetch](https://github.com/dylanaraps/neofetch) with mobaxterm (imgcat too)
-* disable powerline by default, enable with shortcut / alias
-* BUGFIX: nc -> command not found [in here, line 14](install-rhel.sh)
+* things to check
+  * is x forwarding enabled
+* gui tweaks
+  * set iosevka as terminal font
+  * set terminal opacity to 90%
+  * ~~firefox / chrome extensions~~
+* others
+  * maybe symlink the xstartup instead of copying it?
+  * create a folder for utility scripts and mount it to local bin
 * add lists
   * Windows setup from OneNote (as markdown)
   * PyCharm plugins from OneNote
@@ -37,9 +31,22 @@
     * ssh keepalive
     * password manager
     * ssh key?
+    * default font
 
-# more things you might want to install
+# more to install
 
+* https://github.com/sachaos/viddy
+* c`sudo apt-get install bash-completion -y`
+* maybe dust instead of ncdu
+* maye duf instead of pydf
+* alias time to hyperfine?
+* maybe procs aliased to ps
+* maybe curlie / ~~httpie (too big)~~ / xh / hurl / httpx
+* maybe gtop
+* maybe zoxide instead of autojump
+* maybe dog aliased to dig
+* maybe [miller](https://github.com/johnkerl/miller)
+* test [neofetch](https://github.com/dylanaraps/neofetch) with mobaxterm (imgcat too)
 * baobab (requires gdm3 and gnome desktop)
 * gedit (requires gdm3 and gnome desktop)
 * gufw (ubuntu-only, requires gdm3 and gnome desktop)
@@ -48,16 +55,16 @@
 * [XFCE desktop](#xfce)
 * elasticsearch
   * elasticsearch-plugin install x-pack
-* emacs / vim
-* etcd
+* ~~emacs / vim~~
+* ~~etcd~~
 * pycharm (`tar -xzf pycharm-*.tar.gz`)
   * pycharm plugins
   * create shortcut at `~/.local/bin/charm`
-* zenmap
+* ~~zenmap~~
 * [VS Code](https://code.visualstudio.com/docs/setup/linux)
   `snap install code`
-* smbclient
-* partitionmanager
+* ~~smbclient~~
+* ~~partitionmanager~~
 * [lsix](https://github.com/hackerb9/lsix)
   (requires a sixel-compatible terminal)
 * [tiv](https://github.com/stefanhaustein/TerminalImageViewer)
@@ -66,3 +73,13 @@
   * [python-hyperscan](https://python-hyperscan.readthedocs.io/en/latest/)
 * [gron](https://github.com/tomnomnom/gron)
 * tesseract scripts (and language files)
+
+# too big to install
+
+* xsv
+* helm
+* httpie
+* k9s
+* kubectl
+* osquery
+* pandoc
