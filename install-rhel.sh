@@ -198,13 +198,9 @@ cp ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/man/dog.1 ~/.local/share
 echo "Installing duf"
 install-local-bin ~/.dotfiles/vendored/duf_*_linux_x86_64/duf
 
-if [[ $(uname -r) == *el7* ]]; then
-  echo "Skipping exa on RHEL 7"
-else
-  echo "Installing exa"
-  install-local-bin ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa
-  cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
-fi
+echo "Installing exa"
+install-local-bin ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa
+cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
 
 echo "Installing fd"
 install-local-bin ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd
