@@ -95,6 +95,7 @@ sudo apt install -y wget
 [[ -d /usr/local/share/fonts ]] || sudo mkdir --parents /usr/local/share/fonts
 [[ -d ~/.local/bin/ ]] || mkdir --parents ~/.local/bin/
 [[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
+[[ -d ~/.local/share/bash-completion/ ]] || mkdir --parents ~/.local/share/bash-completion/
 
 function install-local-bin() {
   local src_path
@@ -162,6 +163,7 @@ install-local-bin ~/.dotfiles/vendored/backup.sh bak
 echo "Installing bat"
 install-local-bin ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat
 cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/bat.1 ~/.local/share/man/man1/bat.1
+cp ~/.dotfiles/vendored/bat-*-x86_64-unknown-linux-musl/autocomplete/bat.bash ~/.local/share/bash-completion/bat.bash
 
 echo "Installing bat-extras"
 install-local-bin ~/.dotfiles/vendored/bat-extras-*/bin/bat-modules
@@ -184,6 +186,7 @@ install-local-bin ~/.dotfiles/vendored/delta-*-x86_64-unknown-linux-musl/delta
 echo "Installing dog"
 install-local-bin ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/bin/dog
 cp ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/man/dog.1 ~/.local/share/man/man1/dog.1
+cp ~/.dotfiles/vendored/dog-*-x86_64-unknown-linux-musl/completions/dog.bash ~/.local/share/bash-completion/dog.bash
 
 echo "Installing duf"
 install-local-bin ~/.dotfiles/vendored/duf_*_linux_x86_64/duf
@@ -191,10 +194,13 @@ install-local-bin ~/.dotfiles/vendored/duf_*_linux_x86_64/duf
 echo "Installing exa"
 install-local-bin ~/.dotfiles/vendored/exa-linux-x86_64-*/bin/exa
 cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa.1 ~/.local/share/man/man1/exa.1
+cp ~/.dotfiles/vendored/exa-linux-x86_64-*/man/exa_colors.5 ~/.local/share/man/man1/exa_colors.5
+cp ~/.dotfiles/vendored/exa-linux-x86_64-*/completions/exa.bash ~/.local/share/bash-completion/exa.bash
 
 echo "Installing fd"
 install-local-bin ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd
 cp ~/.dotfiles/vendored/fd-*-x86_64-unknown-linux-musl/fd.1 ~/.local/share/man/man1/fd.1
+cp ~/.dotfiles/vendored/exa-linux-x86_64-*/autocomplete/fd.bash ~/.local/share/bash-completion/fd.bash
 
 if [[ ! -d ~/.fzf ]]; then
   echo "Installing fzf"
@@ -222,6 +228,7 @@ fi
 echo "Installing hyperfine"
 install-local-bin ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine
 cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/hyperfine.1 ~/.local/share/man/man1/hyperfine.1
+cp ~/.dotfiles/vendored/hyperfine-*-x86_64-unknown-linux-musl/autocomplete/hyperfine.bash-completion ~/.local/share/bash-completion/hyperfine.bash-completion
 
 if [[ ! -f /etc/sysctl.d/jetbrains_watch_limit.conf ]]; then
   echo "Increase inotify watch limit for pycharm"
@@ -279,6 +286,7 @@ fi
 echo "Installing ripgrep"
 install-local-bin ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/rg
 cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/doc/rg.1 ~/.local/share/man/man1/rg.1
+cp ~/.dotfiles/vendored/ripgrep-*-x86_64-unknown-linux-musl/complete/rg.bash ~/.local/share/bash-completion/rg.bash
 
 rm -f ~/.local/bin/safe-rm
 sudo rm -f /usr/bin/safe-rm
@@ -464,6 +472,9 @@ sudo apt install -y asciinema
 
 echo "Installing autojump"
 sudo apt install -y autojump
+
+echo "Installing bash-completion"
+sudo apt install -y bash-completion
 
 #echo "Installing byobu"
 #sudo apt install -y byobu

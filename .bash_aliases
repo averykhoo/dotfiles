@@ -263,11 +263,18 @@ function quiet_helm() {
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
 
+# extra handling for kubectl
 if [[ -x "$(command -v kubectl)" ]] ; then
+  # enable kubecolor
   if [[ -x "$(command -v kubecolor)" ]]; then
     alias kubectl="kubecolor"
   fi
+
+  # lastly setup completions and a shortcut
+  kubectl completion bash > ~/.local/share/bash-completion/kubectl-completion.bash
   alias k="kubectl"
+  # based on https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
+  complete -o default -F __start_kubectl k
 fi
 
 # get the newest file in the current folder

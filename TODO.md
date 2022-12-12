@@ -36,7 +36,6 @@
 # more to install
 
 * https://github.com/sachaos/viddy
-* c`sudo apt-get install bash-completion -y`
 * maybe dust instead of ncdu
 * maye duf instead of pydf
 * alias time to hyperfine?
