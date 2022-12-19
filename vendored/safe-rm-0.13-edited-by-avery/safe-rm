@@ -12,6 +12,10 @@ my $USER_CONFIG_FILE   = ($ENV{XDG_CONFIG_HOME} || "$homedir/.config") . "/safe-
 my $GLOBAL_CONFIG_FILE = '/etc/safe-rm.conf';
 my $GLOBAL_LOCAL_CONFIG_FILE = '/usr/local/etc/safe-rm.conf';
 
+# todo: maybe check for existence of any files or folders in the current dir with a name starting with "-"
+# e.g. "-rf" could have been glob-expanded from "rm *", which could be unintended
+# and if there is any file like that, then require a "--" to delimit the filenames?
+
 my %default_protected_dirs = (
     '/bin'               => 1,
     '/boot'              => 1,
