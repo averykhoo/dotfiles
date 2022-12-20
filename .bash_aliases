@@ -405,6 +405,9 @@ function cut_negative() {
   else
     cut "$@"
   fi
+
+  # return the exit code from cut
+  return $?
 }
 
 # since it's fully backwards compatible, just alias it
