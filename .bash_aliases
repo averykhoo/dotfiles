@@ -257,21 +257,21 @@ fi
 #[[ -x "$(command -v youtube-dl)" ]] && alias ytdl="cd ~/Downloads && youtube-dl \"$1\""
 
 function quiet_helm() {
-  helm $* 2>&1 | grep -v ": skipping loading invalid entry"  # do not quote this $*
+  helm $* 2>&1 | grep -v ": skipping loading invalid entry" # do not quote this $*
   return "${PIPESTATUS[0]}"
 }
 
 [[ -x "$(command -v helm)" ]] && alias helm="quiet_helm"
 
 # extra handling for kubectl
-if [[ -x "$(command -v kubectl)" ]] ; then
+if [[ -x "$(command -v kubectl)" ]]; then
   # enable kubecolor
   if [[ -x "$(command -v kubecolor)" ]]; then
     alias kubectl="kubecolor"
   fi
 
   # lastly setup completions and a shortcut
-  kubectl completion bash > ~/.local/share/bash-completion/kubectl-completion.bash
+  kubectl completion bash >~/.local/share/bash-completion/kubectl-completion.bash
   alias k="kubectl"
   # based on https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
   complete -o default -F __start_kubectl k
@@ -332,3 +332,66 @@ function enable-powerline() {
     fi
   fi
 }
+
+# cut_negative() is a wrapper around the cut command that allows fields to be specified as negative numbers.
+# for compatibility with cut's current syntax, negative numbers must be specified with "--\d".
+#     e.g. `cut -f--1`  takes the last field
+#     e.g. `cut -f---2` takes all fields from the start to the second-last
+#     e.g. `cut -f--3-` takes the last 3 fields
+# possible patterns for the -f argument are:
+#     x, -x, x-       (counting from the front, supported)
+#     --x, ---x, --x- (counting from the back, supported)
+#     x-y             (range counting from the front only, supported)
+#     --x-y           (range counting from the back and front, todo: NOT SUPPORTED)
+#     x---y           (range counting from the front and back, todo: NOT SUPPORTED)
+#     --x---y         (range counting from the back only, SUPPORTED)
+function cut_negative() {
+  # Initialize variable for the field argument
+  field=
+
+  # Iterate over the arguments
+  for arg in "$@"; do
+    # Shift the arguments to remove the current argument from the list
+    shift
+
+    # If an argument starting with "-f--" is found, the remainder of that argument is taken as the field number.
+    # If the field number starts with a hyphen, the hyphen is moved to the end of the field number.
+    # If the field number ends with a hyphen, the hyphen is moved to the start of the field number.
+    # This is because we want to continue to allow prefix and suffix ranges to work correctly as much as possible.
+    if [[ "$arg" =~ ^-f-- ]]; then
+      field="${arg#-f--}" # remove the "-f--" prefix
+
+      # if the field number starts with a hyphen, move it to the end
+      if [[ "$field" =~ ^- ]]; then
+        field="${field#?}-"
+
+      # if the field number ends with a hyphen, move it to the start
+      elif [[ "$field" =~ -$ ]]; then
+        field="-${field%?}"
+
+      # if the field number looks like "x---y", then we want to reverse the args
+      elif [[ "$field" =~ ^[^-]+---[^-]+$ ]]; then
+        field="${field##*---}-${field%%---*}"
+      fi
+
+      # add the modified field number back to the list of arguments
+      set -- "$@" -f"$field"
+
+    # arg doesn't start with "-f--" is found, so just put it back the same way we found it
+    else
+      set -- "$@" "$arg"
+    fi
+  done
+
+  # if we found a negative field argument, we'll reverse, then cut, then reverse again
+  if [ -n "$field" ]; then
+    rev | cut "$@" | rev
+
+  # otherwise, just call cut with the same arguments we received
+  else
+    cut "$@"
+  fi
+}
+
+# since it's fully backwards compatible, just alias it
+alias cut="cut_negative"
