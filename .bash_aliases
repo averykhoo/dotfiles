@@ -342,23 +342,36 @@ function enable-powerline() {
 #     x, -x, x-       (counting from the front, supported)
 #     --x, ---x, --x- (counting from the back, supported)
 #     x-y             (range counting from the front only, supported)
-#     --x-y           (range counting from the back and front, todo: NOT SUPPORTED)
-#     x---y           (range counting from the front and back, todo: NOT SUPPORTED)
+#     --x-y           (range counting from the back and front, NOT SUPPORTED)
+#     x---y           (range counting from the front and back, NOT SUPPORTED)
 #     --x---y         (range counting from the back only, SUPPORTED)
 function cut_negative() {
-  # Initialize variable for the field argument
+  # init empty variable for the field argument
   field=
 
-  # Iterate over the arguments
+  # iterate over the arguments
   for arg in "$@"; do
-    # Shift the arguments to remove the current argument from the list
-    shift
+    shift # shift the arguments to remove the current argument from the list
 
-    # If an argument starting with "-f--" is found, the remainder of that argument is taken as the field number.
-    # If the field number starts with a hyphen, the hyphen is moved to the end of the field number.
-    # If the field number ends with a hyphen, the hyphen is moved to the start of the field number.
-    # This is because we want to continue to allow prefix and suffix ranges to work correctly as much as possible.
-    if [[ "$arg" =~ ^-f-- ]]; then
+    # throw errors for unsupported args
+    if [[ "$arg" =~ ^-f--[^-]+-[^-]+$ ]]; then
+      field="${arg#-f--}" # remove the "-f" prefix
+      first="${field%%-*}"
+      second="${field##*-}"
+      echo "unsupported argument for -f: range counting from back and front: $arg" 1>&2
+      echo "try calling 'cut -f-${second} | cut -f--${first}-' instead" 1>&2
+      exit 1 # todo: make this work
+    elif [[ "$arg" =~ ^-f[^-]+---[^-]+$ ]]; then
+      field="${arg#-f}" # remove the "-f" prefix
+      first="${field%%---*}"
+      second="${field##*---}"
+      echo "unsupported argument for -f: range counting from front and back: $arg" 1>&2
+      echo "try calling 'cut -f${first}- | cut -f---${second}' instead" 1>&2
+      exit 1 # todo: make this work too
+
+    # if an argument starting with "-f--" is found, the remainder of that argument is taken as the field number.
+    # some processing is then done to reverse the range, since we're applying cut on the reversed string
+    elif [[ "$arg" =~ ^-f-- ]]; then
       field="${arg#-f--}" # remove the "-f--" prefix
 
       # if the field number starts with a hyphen, move it to the end
@@ -369,7 +382,8 @@ function cut_negative() {
       elif [[ "$field" =~ -$ ]]; then
         field="-${field%?}"
 
-      # if the field number looks like "x---y", then we want to reverse the args
+      # if the field number looks like "x---y", then we can simply reverse the range
+      # refer to https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
       elif [[ "$field" =~ ^[^-]+---[^-]+$ ]]; then
         field="${field##*---}-${field%%---*}"
       fi
