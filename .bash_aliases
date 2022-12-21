@@ -344,7 +344,7 @@ function enable-powerline() {
 #     x-y             (range counting from the front only, supported)
 #     --x-y           (range counting from the back and front, NOT SUPPORTED)
 #     x---y           (range counting from the front and back, NOT SUPPORTED)
-#     --x---y         (range counting from the back only, SUPPORTED)
+#     --x---y         (range counting from the back only, supported)
 function cut_negative() {
   # init empty variable for the field argument
   field=
