@@ -82,3 +82,4 @@
 * kubectl
 * osquery
 * pandoc
+* kube-lineage
