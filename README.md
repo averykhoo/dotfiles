@@ -244,3 +244,28 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
   * in bashrc, comment line 159: `export TLDR_EXPIRY=9999`
   * *or* run `tldr --update` to update
 
+## `apt update` fails because of SSL
+
+Error observed:
+```
+Err:1 https://apt.releases.hashicorp.com jammy InRelease
+  Certificate verification failed: The certificate is NOT trusted. The certificate issuer is unknown.  Could not handshake: Error in the certificate verification. [IP: 18.155.68.43 443]
+Fetched 487 kB in 7s (67.3 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+20 packages can be upgraded. Run 'apt list --upgradable' to see them.
+W: Failed to fetch https://apt.releases.hashicorp.com/dists/jammy/InRelease  Certificate verification failed: The certificate is NOT trusted. The certificate issuer is unknown.  Could not handshake: Error in the certificate verification. [IP: 18.155.68.43 443]
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+```
+
+Dangerous fix from [stackoverflow](https://unix.stackexchange.com/a/317708):
+```shell
+sudo tee /etc/apt/apt.conf.d/80ssl-exceptions << EOF
+// Do not verify peer certificate
+Acquire::https::Verify-Peer "false";
+// Do not verify that certificate name matches server name
+Acquire::https::Verify-Host "false";
+
+EOF
+```
