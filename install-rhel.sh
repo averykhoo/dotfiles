@@ -559,6 +559,9 @@ sudo yum install -y mlocate
 echo "Installing lsof"
 sudo yum install -y lsof
 
+echo "Installing moreutils"
+sudo yum install -y moreutils
+
 echo "Installing mosh"
 sudo yum install -y mosh
 sudo firewall-cmd --add-service=mosh
