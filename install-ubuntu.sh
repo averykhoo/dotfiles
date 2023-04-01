@@ -97,6 +97,12 @@ sudo apt install -y wget
 [[ -d ~/.local/share/man/man1/ ]] || mkdir --parents ~/.local/share/man/man1/
 [[ -d ~/.local/share/bash-completion/ ]] || mkdir --parents ~/.local/share/bash-completion/
 
+# helper function to "install" executables to ~/.local/bin/
+# optionally also renames the executable if a filename is provided
+# approximately equivalent to `install -m 755 "${src_path}" "${dst_path}"`
+# usage:
+# > install-local-bin [path/to/exe]
+# > install-local-bin [path/to/exe] [new_filename]
 function install-local-bin() {
   local src_path
   local dst_name
