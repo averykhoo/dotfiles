@@ -125,13 +125,14 @@ Acquire::https::Verify-Host "false";
 EOF
 apt update --allow-unauthenticated --allow-insecure-repositories
 apt install -y docker-ce docker-compose
-sudo usermod -aG docker user && newgrp docker
+sudo usermod -aG docker ${USER} && newgrp docker
 docker run hello-world
 
 # docker, docker-compose (rhel)
 yum install -y docker-ce docker-compose
-sudo usermod -aG docker user && newgrp docker
-docker run hello-world
+sudo usermod -aG docker ${USER} && newgrp docker
+#docker run hello-world
+docker run docker.artifact.xtraman.org/hello-world
 
 # erase the hello-world container
 docker system prune --volumes --force
