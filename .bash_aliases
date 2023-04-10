@@ -77,6 +77,7 @@ fi
 
 # more -> bat
 [[ -x "$(command -v bat)" ]] && alias more=bat
+[[ ! -x "$(command -v bat)" ]] && alias more=more_with_filename_and_lineno
 
 # rm -> safe-rm
 [[ -x "$(command -v safe-rm)" ]] && alias rm=safe-rm
@@ -133,6 +134,7 @@ alias sudo='sudo '
 [[ -x "$(command -v nethogs)" ]] && alias nethogs="sudo nethogs"
 [[ -x "$(command -v kubeadm)" ]] && alias kubeadm="sudo kubeadm"
 [[ -x "$(command -v update-ca-certificates)" ]] && alias update-ca-certificates="sudo update-ca-certificates"
+[[ -x "$(command -v add-apt-repository)" ]] && alias add-apt-repository="sudo add-apt-repository"
 
 # # docker, if your user is not in docker group
 # # but it's better to run `sudo usermod -aG docker $(whoami) && newgrp docker`
@@ -413,3 +415,7 @@ function cut_negative() {
 
 # since it's fully backwards compatible, just alias it
 alias cut="cut_negative"
+
+function more_with_filename_and_lineno() {
+  awk '{printf "\033[36m%s:%'"$((1 - $(wc -l <$1 | wc -c)))"'d | \033[0m%s\n", FILENAME, NR, $0}' $1 | more
+}
