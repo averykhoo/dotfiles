@@ -350,6 +350,31 @@ function enable-powerline() {
 #     x---y           (range counting from the front and back, NOT SUPPORTED)
 #     --x---y         (range counting from the back only, supported)
 function cut_negative() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage:"
+    echo "    $(printf '%s\n' "${FUNCNAME}") -f<fields>        [OPTIONS] <file>"
+    echo "    $(printf '%s\n' "${FUNCNAME}") --fields=<fields> [OPTIONS] <file>"
+    echo "Wrapper around the 'cut' command that allows fields to be specified as negative numbers."
+    echo "For compatibility with cut's current syntax, negative numbers must be specified with '--\d'."
+    echo "Supported field patterns for the -f / --fields argument are:"
+    echo "     x        -> return the x-th field"
+    echo "     -x       -> return the first x fields"
+    echo "     x-       -> return all fields from x-th to the last"
+    echo "     --x      -> return the x-th field from the end"
+    echo "     ---x     -> return all fields from the first to x-th from the end"
+    echo "     --x-     -> return the last x fields"
+    echo "     x-y      -> return the x-th field to the y-th field"
+    echo "     --x---y  -> return the x-th field (from the end) to the y-th field (from the end)"
+    echo "Examples:"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f1    # returns 'some'"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f--1  # returns 'row'"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f-2   # returns 'some,csv'"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f---2 # returns 'some,csv,data'"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f2-   # returns 'csv,data,row'"
+    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME}") -d',' -f--2- # returns 'data,row'"
+    return 1
+  fi
+
   # init empty variable for the field argument
   field=
 
