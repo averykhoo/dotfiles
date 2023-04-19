@@ -351,7 +351,7 @@ function enable-powerline() {
 #     --x---y         (range counting from the back only, supported)
 function cut_negative() {
   if [[ $# -eq 0 ]]; then
-    echo ${FUNCNAME}
+    echo ${FUNCNAME[1]}
     echo "Usage:"
     echo "    $(printf '%s\n' "${FUNCNAME[-1]}") -f<fields>        [OPTIONS] <file>"
     echo "    $(printf '%s\n' "${FUNCNAME[-1]}") --fields=<fields> [OPTIONS] <file>"
