@@ -337,7 +337,7 @@ function enable-powerline() {
   fi
 }
 
-# cut_negative() is a wrapper around the cut command that allows fields to be specified as negative numbers.
+# _cut_negative() is a wrapper around the cut command that allows fields to be specified as negative numbers.
 # for compatibility with cut's current syntax, negative numbers must be specified with "--\d".
 #     e.g. `cut -f--1`  takes the last field
 #     e.g. `cut -f---2` takes all fields from the start to the second-last
@@ -349,12 +349,11 @@ function enable-powerline() {
 #     --x-y           (range counting from the back and front, NOT SUPPORTED)
 #     x---y           (range counting from the front and back, NOT SUPPORTED)
 #     --x---y         (range counting from the back only, supported)
-function cut_negative() {
+function _cut_negative() {
   if [[ $# -eq 0 ]]; then
-    echo ${FUNCNAME[1]}
     echo "Usage:"
-    echo "    $(printf '%s\n' "${FUNCNAME[-1]}") -f<fields>        [OPTIONS] <file>"
-    echo "    $(printf '%s\n' "${FUNCNAME[-1]}") --fields=<fields> [OPTIONS] <file>"
+    echo "    cut -f<fields>        [OPTIONS] <file>"
+    echo "    cut --fields=<fields> [OPTIONS] <file>"
     echo "Wrapper around the 'cut' command that allows fields to be specified as negative numbers."
     echo "For compatibility with cut's current syntax, negative numbers must be specified with '--\d'."
     echo "Supported field patterns for the -f / --fields argument are:"
@@ -367,12 +366,12 @@ function cut_negative() {
     echo "     x-y      -> return the x-th field to the y-th field"
     echo "     --x---y  -> return the x-th field (from the end) to the y-th field (from the end)"
     echo "Examples:"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f1    # returns 'some'"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f--1  # returns 'row'"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f-2   # returns 'some,csv'"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f---2 # returns 'some,csv,data'"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f2-   # returns 'csv,data,row'"
-    echo "     echo 'some,csv,data,row' | $(printf '%s\n' "${FUNCNAME[-1]}") -d',' -f--2- # returns 'data,row'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f1    # returns 'some'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f--1  # returns 'row'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f-2   # returns 'some,csv'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f---2 # returns 'some,csv,data'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f2-   # returns 'csv,data,row'"
+    echo "     echo 'some,csv,data,row' | cut -d',' -f--2- # returns 'data,row'"
     return 1
   fi
 
@@ -441,7 +440,7 @@ function cut_negative() {
 }
 
 # since it's fully backwards compatible, just alias it
-alias cut="cut_negative"
+alias cut="_cut_negative"
 
 function more_with_filename_and_lineno() {
   awk '{printf "\033[36m%s:%'"$((1 - $(wc -l <$1 | wc -c)))"'d | \033[0m%s\n", FILENAME, NR, $0}' $1 | more
