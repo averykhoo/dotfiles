@@ -90,6 +90,7 @@ alias where="echo ASSUMING YOU MEAN 'type -a' 1>&2; type -a"
 
 # typos
 alias dc="echo ASSUMING YOU MEAN 'cd' 1>&2; cd"
+[[ -x "$(command -v timedatectl)" ]] && [[ ! -x "$(command -v datetimectl)" ]] && alias datetimectl="echo ASSUMING YOU MEAN 'timedatectl' 1>&2; timedatectl"
 alias cd..="cd .."
 alias cd-="cd -"
 alias sudosu="sudo su"
