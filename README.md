@@ -66,7 +66,9 @@
 
 # bash references
 
-## [Create new user](create_user.sh) (aka `adduser` the hard way)
+## Create a new user (aka `adduser` the hard way)
+
+tldr look at this script: [./create_user.sh](create_user.sh)
 
 ```shell
 ## TLDR version
