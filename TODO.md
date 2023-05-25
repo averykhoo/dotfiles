@@ -1,5 +1,6 @@
 # todo
 
+* use `pipx` instead to install stuff in the `install_*.sh`
 * more shortcuts
   * https://github.com/onceupon/Bash-Oneliner
   * prepend / append line into file but take newlines into account
