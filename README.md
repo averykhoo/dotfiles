@@ -123,6 +123,8 @@ sudo tee /etc/apt/apt.conf.d/80ssl-exceptions << EOF
 Acquire::https::Verify-Peer "false";
 // Do not verify that certificate name matches server name
 Acquire::https::Verify-Host "false";
+// Ignore expiry date
+Acquire::Check-Valid-Until "false";
 
 EOF
 apt update --allow-unauthenticated --allow-insecure-repositories
@@ -261,13 +263,15 @@ W: Failed to fetch https://apt.releases.hashicorp.com/dists/jammy/InRelease  Cer
 W: Some index files failed to download. They have been ignored, or old ones used instead.
 ```
 
-Dangerous fix from [stackoverflow](https://unix.stackexchange.com/a/317708):
+Dangerous fix based on [stackoverflow](https://unix.stackexchange.com/a/317708):
 ```shell
 sudo tee /etc/apt/apt.conf.d/80ssl-exceptions << EOF
 // Do not verify peer certificate
 Acquire::https::Verify-Peer "false";
 // Do not verify that certificate name matches server name
 Acquire::https::Verify-Host "false";
+// Ignore expiry date
+Acquire::Check-Valid-Until "false";
 
 EOF
 ```

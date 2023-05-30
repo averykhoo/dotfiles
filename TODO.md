@@ -1,6 +1,7 @@
 # todo
 
 * use `pipx` instead to install stuff in the `install_*.sh`
+  * also look into `frogmouth` to render markdown files
 * more shortcuts
   * https://github.com/onceupon/Bash-Oneliner
   * prepend / append line into file but take newlines into account
