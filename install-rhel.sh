@@ -330,6 +330,9 @@ install-local-bin ~/.dotfiles/vendored/shellcheck-*.linux.x86_64/shellcheck
 echo "Installing shfmt"
 install-local-bin ~/.dotfiles/vendored/shfmt_*_linux_amd64/shfmt
 
+echo "Installing spacer"
+install-local-bin ~/.dotfiles/vendored/spacer-x86_64-unknown-linux-musl/spacer
+
 rm -f ~/.local/bin/tldr
 echo "Installing tldr"
 install-local-bin ~/.dotfiles/vendored/pepa65-tldr-bash-client-*/tldr
