@@ -37,7 +37,9 @@
 
 # more to install
 
-* https://github.com/sachaos/viddy
+* [ratarmount](https://github.com/mxmlnkn/ratarmount)
+* [sshuttle](https://github.com/sshuttle/sshuttle)
+* [viddy](https://github.com/sachaos/viddy)
 * maybe dust instead of ncdu
 * maye duf instead of pydf
 * alias time to hyperfine?
