@@ -38,6 +38,7 @@
 # more to install
 
 * [ratarmount](https://github.com/mxmlnkn/ratarmount)
+* `telnet`
 * [sshuttle](https://github.com/sshuttle/sshuttle)
 * [viddy](https://github.com/sachaos/viddy)
 * maybe dust instead of ncdu
