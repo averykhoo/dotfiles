@@ -34,6 +34,11 @@
     * password manager
     * ssh key?
     * default font
+* better aliasing, don't just use alias
+  * https://unix.stackexchange.com/questions/125819/bash-function-decorator
+  * Intelligently check if output is pipe and default to unaliased
+  * https://stackoverflow.com/questions/911168/how-can-i-detect-if-my-shell-script-is-running-through-a-pipe
+  * https://askubuntu.com/a/98791
 
 # more to install
 
